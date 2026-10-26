@@ -3,6 +3,7 @@
 // and glossary terms can already point at its planned topics (the link switches on once it is built).
 // To add a unit: create js/content/unitN.js in the same shape as unit3.js and replace its entry here.
 // Check the planned topic titles against the official guide when building each unit.
+import { unit1 } from './unit1.js';
 import { unit3 } from './unit3.js';
 
 const planned = (id, title, emoji, topics) => ({
@@ -11,9 +12,7 @@ const planned = (id, title, emoji, topics) => ({
 });
 
 export const UNITS = [
-  planned('1', 'Introduction to business management', '🏢', [
-    ['1.1', 'Introduction to business management'], ['1.2', 'Types of business entities'], ['1.3', 'Business objectives'],
-    ['1.4', 'Stakeholders'], ['1.5', 'Growth and evolution'], ['1.6', 'Multinational companies (MNCs)']]),
+  unit1,
   planned('2', 'Human resource management', '👥', [
     ['2.1', 'Introduction to human resource management'], ['2.2', 'Organizational structure'], ['2.3', 'Leadership and management'],
     ['2.4', 'Motivation and demotivation'], ['2.5', 'Organizational (corporate) culture', true], ['2.6', 'Communication'],

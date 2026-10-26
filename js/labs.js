@@ -71,6 +71,79 @@ const LABS = {
     });
   },
 
+  // ------------------------------------------------------------ 1.2 unlimited vs limited liability
+  liability(el, lab, onWin) {
+    const ASSETS = 8000, SAVINGS = 6000;   // what the business owns; Noah's own money outside the business
+    const s = { debts: 5000, ltd: false };
+    const kpis = h('div', { class: 'kpis' });
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'As a <b>sole trader</b>, find the smallest debt that wipes out <b>all</b> of Noah\'s personal savings.',
+      'Keep that debt and switch to a <b>Ltd company</b>. How much of Noah\'s own savings is lost now?',
+      'Find the <b>highest</b> debt where it makes no difference to Noah which legal form he chose.'
+    ], onWin);
+    const sole = h('button', { class: 'btn small', onclick: () => { s.ltd = false; update(); } }, '🧍 Sole trader');
+    const ltd = h('button', { class: 'btn small', onclick: () => { s.ltd = true; update(); } }, '🏢 Ltd company');
+    const update = () => {
+      const fromBusiness = Math.min(s.debts, ASSETS), gap = s.debts - fromBusiness;
+      const fromNoah = s.ltd ? 0 : Math.min(SAVINGS, gap), unpaid = gap - fromNoah;
+      sole.className = `btn small${s.ltd ? ' ghost' : ''}`;
+      ltd.className = `btn small${s.ltd ? '' : ' ghost'}`;
+      kpis.replaceChildren(kpi(money(fromBusiness), 'Paid from business assets'),
+        kpi(money(fromNoah), 'Paid from Noah\'s own savings', fromNoah ? 'bad' : 'good'),
+        kpi(money(unpaid), s.ltd ? 'Lost by creditors' : 'Noah still owes', unpaid ? 'bad' : ''));
+      note.innerHTML = !gap
+        ? 'The business can sell its assets and pay every debt. The legal form doesn\'t matter yet.'
+        : s.ltd
+          ? 'The company is a <b>separate legal entity</b>: its debts are not Noah\'s. He loses what he put into the business, but his own savings are safe. The creditors take the loss.'
+          : `As a sole trader, the business <i>is</i> Noah. Its debts are his debts, so his own savings go too${unpaid ? ', and he still owes more: he could be made bankrupt' : ''}.`;
+      challenges.check([!s.ltd && s.debts === ASSETS + SAVINGS, s.ltd && s.debts === ASSETS + SAVINGS, s.debts === ASSETS]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Who pays the debts?'}`),
+      h('p', { class: 'muted' }, `Noah's business owns ${money(ASSETS)} of stock and equipment. Outside the business he has ${money(SAVINGS)} of savings. The business fails. Change its debts and its legal form.`),
+      challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, h('div', { class: 'row', style: 'margin-bottom:12px' }, sole, ltd),
+          slider({ label: 'Debts when the business fails', min: 0, max: 30000, step: 1000, value: s.debts, fmt: money, oninput: v => { s.debts = v; update(); } })),
+        h('div', {}, kpis, note)));
+    update();
+  },
+
+  // ------------------------------------------------------------ 1.5 economies and diseconomies of scale
+  scale(el, lab, onWin) {
+    // Long-run average cost per pair: AC = 10000/q + 10 + 0.04q, lowest at q = 500 (AC = $50).
+    const ac = q => 10000 / q + 10 + 0.04 * q;
+    const s = { q: 100 };
+    const kpis = h('div', { class: 'kpis' });
+    const chartBox = h('div');
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'Find the output where the <b>average cost per pair is lowest</b>.',
+      'Find the output <b>above</b> that level where average cost is back to what it was at <b>250 pairs</b>.'
+    ], onWin);
+    const pts = [];
+    for (let q = 50; q <= 1000; q += 25) pts.push([q, ac(q)]);
+    const update = () => {
+      const a = ac(s.q);
+      kpis.replaceChildren(kpi(money(a, 2), 'Average cost per pair'), kpi(money(a * s.q), 'Total cost per month'),
+        kpi(s.q < 500 ? 'Economies' : s.q > 500 ? 'Diseconomies' : 'Most efficient', s.q === 500 ? 'size' : 'of scale', s.q > 500 ? 'bad' : 'good'));
+      chartBox.replaceChildren(lineChart([{ name: 'Average cost per pair', color: 'var(--chart-1)', points: pts }],
+        { xLabel: 'Pairs customised per month', yMin: 0, markers: [{ x: s.q, label: `${s.q} pairs`, color: 'var(--accent)' }], xTicks: [50, 250, 500, 750, 1000] }));
+      note.innerHTML = s.q < 500
+        ? '<b>Economies of scale:</b> bigger orders of blank sneakers and paint get bulk discounts, a faster machine is used more fully, and fixed costs are spread over more pairs. Average cost falls.'
+        : s.q > 500
+          ? '<b>Diseconomies of scale:</b> more staff and more sites are harder to coordinate, messages get lost and people feel like a number. Average cost rises again.'
+          : 'This is the most efficient size for SoleFlip: the lowest average cost.';
+      challenges.check([s.q === 500, s.q === 1000]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'How big should SoleFlip get?'}`),
+      h('p', { class: 'muted' }, 'Grow SoleFlip and watch what happens to the cost of each pair.'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, slider({ label: 'Pairs per month', min: 50, max: 1000, step: 50, value: s.q, fmt: v => v, oninput: v => { s.q = v; update(); } }), kpis),
+        h('div', {}, chartBox, note)));
+    update();
+  },
+
   // ------------------------------------------------------------ 3.3 profit simulator
   profit(el, lab, onWin) {
     const s = { p: 120, vc: 35, fc: 1500, q: 30 };

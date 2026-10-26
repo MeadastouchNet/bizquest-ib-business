@@ -103,7 +103,7 @@ export const unit3 = {
           <ul><li><b>Trade credit</b>: suppliers let you <b>buy now, pay later</b> (often 30–90 days). Basically Klarna for businesses.</li>
               <li><b>Crowdfunding</b>: lots of people each give a small amount online (Kickstarter). In return they get rewards, equity, or nothing (donation).</li>
               <li><b>Leasing</b>: rent an asset instead of buying it, like a phone contract or car lease. No big upfront cost, but you never own it.</li>
-              <li><b>Microfinance providers</b>: very small loans to entrepreneurs (often in low-income countries) who can't get bank loans, e.g. Grameen Bank.</li>
+              <li><b>Microfinance providers</b>: very small loans to [[entrepreneurs]] (often in low-income countries) who can't get bank loans, e.g. Grameen Bank.</li>
               <li><b>Business angels</b>: rich individuals who invest their own money in exchange for a share of the business, and often bring advice and contacts. The Dragons are business angels.</li></ul>` },
         { title: 'Short-term vs long-term', html: `
           <p><b>Short-term</b> (under 1 year): overdrafts, trade credit. For cash gaps and running costs.</p>
@@ -114,7 +114,7 @@ export const unit3 = {
           <ul><li><b>Purpose</b>: what is the money for, and for how long?</li>
               <li><b>Cost</b>: interest, fees, or giving away part of the profits.</li>
               <li><b>Amount</b> needed.</li>
-              <li><b>Legal structure / size</b>: sole traders can't sell shares.</li>
+              <li><b>Legal structure / size</b>: [[sole traders]] can't sell shares.</li>
               <li><b>Control</b>: will the owners lose decision power?</li>
               <li><b>Existing debt ([[gearing]])</b>: more borrowing is riskier if you already owe a lot.</li></ul>
           <div class="tip">Strong answers name a source, apply it to the business in the case, and give a judgement, e.g. "A bank loan is most suitable <i>because</i>…, although…".</div>` }
@@ -158,7 +158,7 @@ export const unit3 = {
       },
       quiz: [
         { id: '3.2-1', type: 'mcq', cmd: 'Identify', q: 'Which is an <b>internal</b> source of finance?', options: ['Retained profit', 'Bank loan', 'Trade credit', 'Business angel'], answer: 0, why: 'Retained profit comes from within the business. The others come from outside.' },
-        { id: '3.2-2', type: 'mcq', q: 'Which source can a <b>sole trader</b> NOT use?', options: ['Share capital', 'Personal funds', 'Overdraft', 'Leasing'], answer: 0, why: 'Only companies can issue shares.' },
+        { id: '3.2-2', type: 'mcq', q: 'Which source can a <b>sole trader</b> NOT use?', options: ['Share capital', 'Personal funds', 'Overdraft', 'Leasing'], answer: 0, why: 'Only [[companies]] can issue shares.' },
         { id: '3.2-3', type: 'mcq', cmd: 'Recommend', q: 'A shop needs $3,000 for <b>two months</b> because customers pay late. Best source?', options: ['Overdraft', 'Share issue', 'Mortgage', 'Business angel'], answer: 0, why: 'A short-term cash gap calls for flexible short-term finance: an overdraft.' },
         { id: '3.2-4', type: 'tf', q: 'Trade credit means a supplier lets the business pay for goods later, for example after 30 or 60 days.', answer: true, why: 'True. It\'s a short-term external source.' },
         { id: '3.2-5', type: 'mcq', cmd: 'Explain', q: 'The main <b>drawback</b> of finance from a business angel is…', options: ['The owners give up part of the ownership and control', 'It must be repaid with high interest', 'It is only available to sole traders', 'It is always short-term'], answer: 0, why: 'Angels take equity (shares) and often a say in decisions.' },

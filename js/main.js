@@ -50,6 +50,7 @@ function route() {
   else if (view === 'formulas') formulasView(findUnit(a)?.sections ? findUnit(a) : null);
   else if (view === 'stats' || view === 'parent') statsView();
   else if (view === 'settings') settingsView();
+  else if (view === 'trailer') trailerView();
   else homeView();
   renderStats();
   app.focus({ preventScroll: true });
@@ -90,7 +91,8 @@ function homeView() {
   const quick = h('div', { class: 'row', style: 'margin-bottom:26px' },
     h('a', { class: 'btn ghost', href: '#/review' }, icon('rotate-ccw'), 'Review', h('span', { class: 'tag' }, `${due} due`)),
     h('a', { class: 'btn ghost', href: '#/boss' }, icon('swords'), 'Boss Battle'),
-    h('a', { class: 'btn ghost', href: '#/formulas' }, icon('sigma'), 'Formulas'));
+    h('a', { class: 'btn ghost', href: '#/formulas' }, icon('sigma'), 'Formulas'),
+    h('a', { class: 'btn ghost', href: '#/trailer' }, icon('play'), 'Trailer'));
 
   const units = h('section', {}, h('h2', {}, 'Units'), h('div', { class: 'grid' }, UNITS.map(unitCard)));
   app.replaceChildren(hero, quick, units);
@@ -111,6 +113,13 @@ function unitCard(u) {
 }
 
 const hlTag = t => t.hl === true ? h('span', { class: 'tag' }, 'HL only') : t.hl ? h('span', { class: 'tag' }, 'part HL') : null;
+
+// ---------- trailer ----------
+function trailerView() {
+  app.replaceChildren(back('#/', 'Home'), h('h1', { style: 'margin-top:6px' }, 'The trailer'),
+    h('p', { class: 'muted' }, `30 seconds on what ${APP.name} is and why it works.`),
+    h('video', { class: 'trailer', src: 'promo/bizquest-trailer.mp4', poster: 'promo/trailer-poster.jpg', controls: true, preload: 'none', playsinline: true }));
+}
 
 // ---------- unit page ----------
 function unitView(u) {

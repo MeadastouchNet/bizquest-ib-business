@@ -533,7 +533,33 @@ export const GLOSSARY = {
   'business plan': { sec: '6.9', card: 0, aliases: ['business plans'],
     def: 'A document setting out a business idea and how it will be put into action: objectives, market, marketing, operations, people and finances. Used to raise finance and guide the business.' },
   'executive summary': { sec: '6.9', card: 1,
-    def: 'A short overview of the whole business plan, written last and read first.' }
+    def: 'A short overview of the whole business plan, written last and read first.' },
+
+  // ---- Unit 7: Exam and IA ----
+  'key concepts': { sec: '7.1', card: 0, aliases: ['key concept'],
+    def: 'The four big ideas that run through the whole IB course: creativity, change, ethics and sustainability. Your IA uses one of them as its lens.' },
+  'creativity': { sec: '7.1', card: 1,
+    def: 'Generating new ideas and looking at existing ideas in new ways. One of the four key concepts.' },
+  'change': { sec: '7.1', card: 2,
+    def: 'The process of making something different, inside the business or in its environment. One of the four key concepts.' },
+  'ethics': { sec: '7.1', card: 3, aliases: ['business ethics'],
+    def: 'The moral principles that guide decisions: what is right and wrong, beyond what the law requires. One of the four key concepts.' },
+  'command terms': { sec: '7.2', card: 1, aliases: ['command term'],
+    def: 'The verbs that start IB questions (define, explain, evaluate…). Each tells you what kind of answer earns the marks.' },
+  'assessment objectives': { sec: '7.2', card: 1, aliases: ['assessment objective'],
+    def: 'The four skill levels the IB assesses: AO1 knowledge, AO2 application and analysis, AO3 synthesis and evaluation, AO4 skills.' },
+  'Paper 3': { sec: '7.3', card: 0,
+    def: 'The HL-only exam (1 h 15, 25% of the HL grade) based on an unseen case about a social enterprise: questions worth 2, 6 and 17 marks.' },
+  'human needs': { sec: '7.3', card: 1, aliases: ['human need'],
+    def: 'What people need to survive and live a decent life, e.g. food, water, shelter, health, education, safety and meaningful work.' },
+  'mission drift': { sec: '7.3', card: 2,
+    def: 'When chasing income pulls a (social) organization away from its original purpose.' },
+  'internal assessment': { sec: '7.4', card: 0, aliases: ['IA'],
+    def: 'The business research project on a real organization, written through one key concept, max 1,800 words: 30% of the SL grade, 20% at HL.' },
+  'research question': { sec: '7.4', card: 1,
+    def: 'The question an IA answers: it names the organization, the issue and the key concept.' },
+  'supporting documents': { sec: '7.4', card: 2, aliases: ['supporting document'],
+    def: 'The 3–5 documents (primary or secondary) attached to the IA, from which most of its information comes.' },
 };
 
 const INDEX = new Map();

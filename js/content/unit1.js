@@ -137,7 +137,8 @@ export const unit1 = {
                     <li><b>Public sector companies</b>: businesses owned by the government that sell goods or services but serve the public. <i>DSB, the Danish state railway, sells tickets but runs routes that matter to society, even if some are unprofitable.</i></li>
                     <li><b>Cooperatives</b>: businesses owned and run by their members (workers, customers or suppliers), who share the profits. <i>Arla is a cooperative owned by its dairy farmers; Coop is owned by its customer-members.</i></li></ul></li>
               <li><b>Non-profit social enterprises</b> don't distribute profit to owners: any surplus goes back into the cause. They include <b>NGOs</b> (non-governmental organizations) such as the Red Cross and Médecins Sans Frontières.</li></ul>
-          <div class="example">A café that hires and trains young people who have been homeless, and reinvests its profit in more training places, is a social enterprise.</div>` }
+          <div class="example">A café that hires and trains young people who have been homeless, and reinvests its profit in more training places, is a social enterprise.</div>
+          <p class="muted small"><span class="tag">HL</span> [[Paper 3]] is a whole exam about a social enterprise (7.3).</p>` }
       ],
       labs: [
         { type: 'liability', title: 'Who pays the debts?' },

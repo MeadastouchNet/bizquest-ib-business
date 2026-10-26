@@ -118,3 +118,17 @@ formula sheet. The guide prescribes 15 tools: 8 for SL and HL, 7 for HL only. Al
 | Porter's generic strategies | 6.11 | HL |
 | Hofstede's cultural dimensions | 6.12 | HL |
 | Contribution: make-or-buy, contribution costing, absorption costing | 6.13 (basic contribution also in 5.5) | HL |
+
+## Exam and IA (BizQuest "Unit 7")
+
+Course-wide elements rather than syllabus topics; BizQuest gives them id `7`. Nothing here has been checked
+against the guide PDF: the four key concepts, Paper 3's three questions (2, 6, 17 marks) and the IA's 1,800-word
+limit and key-concept lens come from the curriculum critique; the rest is **from memory**, cross-checked only
+against teacher and revision websites.
+
+| Topic | Content points | Label | Source |
+|---|---|---|---|
+| 7.1 The four key concepts | Creativity, change, ethics, sustainability; spotting them; using one as a lens | SL/HL | Critique |
+| 7.2 Command terms and the exam papers | Weightings (SL: P1 35%, P2 35%, IA 30%; HL: P1 25%, P2 30%, P3 25%, IA 20%); timings; AO1–AO4 and their command terms; answering short and long questions | SL/HL (Paper 3 row HL) | From memory |
+| 7.3 Paper 3: social enterprises | 1 h 15, 25 marks; human needs; challenges (funding, mission drift, impact, scaling, people, stakeholders); the 17-mark plan of action; timing | HL | 2/6/17 from critique; rest from memory |
+| 7.4 The internal assessment | Real organization and issue; one key concept (others score 0 on criterion A); 1,800 words; research question; 3–5 supporting documents; tools; criteria A–G (5, 4, 4, 5, 3, 2, 2 = 25); word budget | SL/HL | 1,800 words and lens from critique; criteria from secondary sources |

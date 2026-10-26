@@ -130,7 +130,7 @@ function unitView(u) {
   app.replaceChildren(...head, h('p', { class: 'muted' }, u.blurb),
     h('div', { class: 'row', style: 'margin-bottom:16px' },
       h('a', { class: 'btn ghost', href: `#/boss/${u.id}` }, `👾 Unit ${u.id} Boss Battle`),
-      h('a', { class: 'btn ghost', href: `#/formulas/${u.id}` }, `🧮 Unit ${u.id} formulas`)),
+      u.formulas?.length ? h('a', { class: 'btn ghost', href: `#/formulas/${u.id}` }, `🧮 Unit ${u.id} formulas`) : null),
     h('div', { class: 'grid' }, tiles));
 }
 

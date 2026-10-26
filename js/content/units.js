@@ -9,6 +9,7 @@ import { unit3 } from './unit3.js';
 import { unit4 } from './unit4.js';
 import { unit5 } from './unit5.js';
 import { unit6 } from './unit6.js';
+import { unit7 } from './unit7.js';
 
 const planned = (id, title, emoji, topics) => ({
   id, title, emoji,
@@ -21,7 +22,8 @@ export const UNITS = [
   unit3,
   unit4,
   unit5,
-  unit6
+  unit6,
+  unit7
 ];
 
 export const BUILT = UNITS.filter(u => u.sections);

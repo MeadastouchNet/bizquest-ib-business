@@ -75,12 +75,14 @@ Bold = added or reclassified in the 2026-10-26 update.
 
 ## Beyond the topics: course-wide elements
 
-These run across the whole course rather than sitting in one topic. BizQuest doesn't teach them as lessons yet.
+These run across the whole course rather than sitting in one topic. Since 2026-10-26 they are taught in BizQuest's
+"Unit 7: Exam and IA" (7.1 key concepts, 7.2 command terms and exam papers, 7.3 Paper 3, 7.4 IA). The exam and IA
+facts there are from memory and secondary sources: see the Unit 7 table in [SYLLABUS.md](SYLLABUS.md).
 
-- [ ] **The four key concepts**: creativity, change, ethics and sustainability. They should be woven through all five
+- [ ] **The four key concepts** (7.1): creativity, change, ethics and sustainability. They should be woven through all five
   units, and the IA is written through one of them as a lens.
-- [ ] **HL Paper 3 preparation**: analysing a social enterprise, identifying human needs and organizational
+- [ ] **HL Paper 3 preparation** (7.3): analysing a social enterprise, identifying human needs and organizational
   challenges, and writing a justified strategic recommendation. The July 2024 guide has three compulsory questions
   worth 2, 6 and 17 marks.
-- [ ] **Internal assessment (IA)**: a business research project on a real organization's issue or problem, through
+- [ ] **Internal assessment (IA)** (7.4): a business research project on a real organization's issue or problem, through
   one of the four key concepts, maximum 1,800 words.

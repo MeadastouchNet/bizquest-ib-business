@@ -1,7 +1,7 @@
 # Roadmap: keeping BizQuest growing
 
 All five units of IB Business Management are built (1.1–5.9), plus the business management toolkit as "Unit 6"
-(6.1–6.9). This file is the checklist for changing or adding content, and the list of what is still to do.
+(6.1–6.13), and the course-wide exam and IA preparation as "Unit 7" (7.1–7.4). This file is the checklist for changing or adding content, and the list of what is still to do.
 
 ## Checklist for new or changed content
 
@@ -26,9 +26,12 @@ All five units of IB Business Management are built (1.1–5.9), plus the busines
   guide was applied (see [`docs/CURRICULUM-CHECKLIST.md`](CURRICULUM-CHECKLIST.md)): new topics 6.10–6.13, free
   float, HL flags, pricing methods, PED, R&D, MIS and the 2.1 → 2.4 move. Each item is labelled SL/HL, HL or
   Extra. Nobody has yet checked those labels line by line against the guide PDF.
-- **Course-wide elements.** The four key concepts (creativity, change, ethics, sustainability), HL Paper 3
-  preparation (social enterprises, 2/6/17-mark questions) and IA preparation (1,800 words, one key concept as the
-  lens) aren't taught yet. They'd suit a short "Exam and IA" unit.
+- **Check Unit 7 against the guide.** The exam and IA facts in 7.2–7.4 (weightings, timings, Paper 3's 2/6/17
+  marks, the IA's 1,800 words, 3–5 supporting documents and criteria A–G with their marks) come from memory and
+  secondary sources, not the guide PDF. Check them, especially the IA mark split in 7.4 card 4, and the AO
+  command-term lists in 7.2 card 1. The lessons tell the student to confirm details with their teacher.
+- **Weave the key concepts into Units 1–5.** 7.1 teaches them; the guide wants them throughout. A cheap next
+  step is a "Key concept" line in a few worked examples per unit, tagged `[[sustainability]]`, `[[change]]` etc.
 - **Possibly missing from 2.4.** Check whether the guide lists Daniel Pink's motivation theory (autonomy,
   mastery, purpose) among the SL theories; 2.4 only mentions "purpose" as a reward.
 - **Improve from use.** After a week or two, check Usage stats and fix low-rated or most-missed lessons first.

@@ -7,7 +7,8 @@ management** (2.1–2.7), **Unit 3: Finance and accounts** (3.1–3.9), **Unit 4
 STEEPLE, decision trees, force field analysis, Gantt charts, critical path analysis, linear regression, circular
 business models, the business plan, descriptive statistics, Porter's generic strategies, Hofstede's cultural
 dimensions, contribution costing). The Ansoff and BCG matrices are taught in 4.2 and 4.5, so all 15 prescribed tools
-are covered.
+are covered. Finally, **Exam and IA** as "Unit 7" (7.1–7.4) covers the course-wide elements: the four key concepts,
+command terms and the exam papers, HL Paper 3 on social enterprises, and the internal assessment.
 
 Content follows the 2024 IB guide: HL-only parts are tagged **HL**, and useful material that isn't in the 2024
 syllabus is shown in a dashed "Beyond the IB syllabus" box and never quizzed. See
@@ -29,6 +30,7 @@ Unit 1 tells how it started (sole trader → partnership → Ltd); Unit 2 follow
 leadership, pay, culture, a union dispute); the same SoleFlip Ltd accounts are used from 3.4 to 3.6. Unit 4 launches
 its own sneaker, SoleFlip Originals (research, positioning, pricing, a German launch), and Unit 5 runs the workshop and
 the Porto factory partnership (production methods, quality, location, break-even with the 3.3 numbers, stock control).
+Unit 7 adds StepUp, a Copenhagen social enterprise that repairs SoleFlip's faulty pairs, as the Paper 3 case.
 
 Why it is designed this way: see [docs/LEARNING-DESIGN.md](docs/LEARNING-DESIGN.md).
 What's left and how to change content: see [docs/ROADMAP.md](docs/ROADMAP.md). What each unit covers: [docs/SYLLABUS.md](docs/SYLLABUS.md).
@@ -47,7 +49,7 @@ Then open http://localhost:8765.
 
 | Path | What |
 |---|---|
-| `js/content/unit1.js` … `unit6.js` | All content per unit: cards, worked examples, quizzes, formulas |
+| `js/content/unit1.js` … `unit7.js` | All content per unit: cards, worked examples, quizzes, formulas |
 | `js/labs.js` | The interactive labs |
 | `js/quiz.js` | Quiz engine (multiple choice, true/false, numeric, sort) |
 | `js/store.js` | Progress, XP, streaks, spaced repetition (localStorage) |

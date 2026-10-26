@@ -6,6 +6,7 @@
 // Every question also has { id, cmd? (IB command term) }.
 import { h, shuffle, reward, speakButton } from './ui.js';
 import { sfx } from './audio.js';
+import { calculator } from './calc.js';
 import * as store from './store.js';
 
 function parseNum(s) {
@@ -61,6 +62,7 @@ export function renderQuestion(el, q, { meta = '', onAnswer, done } = {}) {
     });
     wrap.append(...buttons);
     el.append(wrap);
+    if (q.cmd === 'Calculate') el.append(calculator());
   } else if (q.type === 'num') {
     const input = h('input', { type: 'text', inputmode: 'decimal', placeholder: 'Your answer', 'aria-label': 'Your answer' });
     const check = h('button', { class: 'btn' }, 'Check');
@@ -76,7 +78,8 @@ export function renderQuestion(el, q, { meta = '', onAnswer, done } = {}) {
     };
     check.onclick = go;
     input.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
-    el.append(h('div', { class: 'num-input' }, input, q.unit ? h('span', { class: 'muted' }, q.unit) : null, check), h('div', {}, hint, hintBox));
+    el.append(h('div', { class: 'num-input' }, input, q.unit ? h('span', { class: 'muted' }, q.unit) : null, check), h('div', {}, hint, hintBox),
+      calculator({ useAnswer: v => { if (!input.disabled) { input.value = String(v); input.focus(); } } }));
     setTimeout(() => input.focus(), 50);
   } else if (q.type === 'sort') {
     el.append(sortWidget(q, ok => finish(ok, ok ? '' : 'Wrong ones are in red; the right bucket is shown in green.')));

@@ -144,6 +144,21 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--a
 .chip.right { background: var(--good); border-color: var(--good); color: #052; }
 .chip.wrongc { background: var(--bad); border-color: var(--bad); color: #fff; }
 
+.q-text { flex: 1; }
+
+/* calculator */
+.calc { margin-top: 14px; }
+.calc-body { margin-top: 8px; width: 100%; max-width: 300px; background: var(--card-2); border: 1px solid var(--line); border-radius: 14px; padding: 10px; display: grid; gap: 8px; }
+.calc-display { font: 600 1.2rem "Space Grotesk", Inter, sans-serif !important; text-align: right; }
+.calc-result { min-height: 1.2em; font-size: .85rem; color: var(--muted); text-align: right; overflow-wrap: anywhere; }
+.calc-result.err { color: var(--bad); }
+.calc-keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.calc-key { border: 1px solid var(--line); background: var(--card); color: var(--text); border-radius: 10px; padding: 10px 0; font: 600 1.05rem Inter, sans-serif; cursor: pointer; }
+.calc-key:hover { border-color: var(--accent); }
+.calc-key:active { transform: scale(.95); }
+.calc-key.op { background: color-mix(in srgb, var(--accent) 14%, var(--card)); }
+.calc-key.eq { background: var(--accent); color: #fff; border-color: var(--accent); }
+
 /* labs */
 .lab-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
 @media (min-width: 760px) { .lab-grid { grid-template-columns: 300px 1fr; } }

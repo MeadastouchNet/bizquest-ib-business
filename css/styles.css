@@ -149,7 +149,12 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--a
 .qtable { width: auto; min-width: min(100%, 360px); font-size: 1rem; font-weight: 500; background: var(--card-2); border-radius: 10px; overflow: hidden; }
 .qtable th { font-size: .8rem; color: var(--muted); font-weight: 600; background: var(--bg-2); }
 .qtable td, .qtable th { padding: 7px 12px; }
-.qtable td.blank { color: var(--accent); font-weight: 700; background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.qtable td.blank { color: var(--accent); font-weight: 700; background: color-mix(in srgb, var(--accent) 10%, transparent); padding: 4px 6px; }
+.qtable td.blank input { width: 100%; min-width: 84px; max-width: 140px; text-align: right; padding: 5px 8px; font: 600 .95rem Inter, sans-serif; border-width: 1.5px; border-radius: 8px; background: var(--card); }
+.qtable td.blank.right input { border-color: var(--good); background: color-mix(in srgb, var(--good) 14%, var(--card)); }
+.qtable td.blank.wrong input { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 10%, var(--card)); }
+.qtable .cell-fix { font-size: .8rem; color: var(--good); margin-top: 2px; }
+.qtable .cell-fix::before { content: "✓ "; }
 
 /* calculator */
 .calc { margin-top: 14px; }

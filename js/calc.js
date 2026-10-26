@@ -63,7 +63,7 @@ export function calculator({ keys = UNIT3_KEYS, useAnswer } = {}) {
   let last = null;
   const display = h('input', { type: 'text', class: 'calc-display', inputmode: 'none', autocomplete: 'off', 'aria-label': 'Calculator input', placeholder: '0' });
   const result = h('div', { class: 'calc-result', 'aria-live': 'polite' }, ' ');
-  const use = useAnswer ? h('button', { class: 'btn teal small', disabled: true }, '↓ Use as answer') : null;
+  const use = useAnswer ? h('button', { class: 'btn teal small', disabled: true }, '↓ Insert result') : null;
 
   const run = () => {
     try {

@@ -9,13 +9,47 @@ import { sfx } from './audio.js';
 import { calculator } from './calc.js';
 import * as store from './store.js';
 
+/** Parses typed numbers, including accounting brackets: "(14,000)" = −14000. */
 function parseNum(s) {
-  const n = parseFloat(String(s).replace(/[$,%\s]/g, '').replace('−', '-'));
+  let t = String(s).trim().replace(/[$,%\s]/g, '').replace(/−/g, '-');
+  if (/^\(.*\)$/.test(t)) t = '-' + t.slice(1, -1);
+  const n = parseFloat(t);
   return Number.isFinite(n) ? n : null;
 }
 function numCorrect(q, v) {
   const tol = q.tol ?? Math.max(0.01, Math.abs(q.answer) * 0.005);
   return v != null && Math.abs(v - q.answer) <= tol + 1e-9;
+}
+const acct = n => (n < 0 ? `(${Math.abs(n).toLocaleString('en-US', { maximumFractionDigits: 2 })})` : n.toLocaleString('en-US', { maximumFractionDigits: 2 }));
+
+/**
+ * Turns the "?" cells of a question's tables into inputs. Returns the cells and a mark() that checks the
+ * working cells (not the final one), shows the right figure under each wrong or empty cell, and reports a summary.
+ */
+function setupBlanks(root, onEnter) {
+  const cells = [...root.querySelectorAll('td.blank')].map(td => {
+    const input = h('input', { type: 'text', inputmode: 'decimal', placeholder: '?', 'aria-label': 'Your figure for this cell', autocomplete: 'off' });
+    td.replaceChildren(input);
+    return { td, input, a: parseFloat(td.dataset.a), final: td.hasAttribute('data-final') };
+  });
+  cells.forEach((c, i) => c.input.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    if (i < cells.length - 1) cells[i + 1].input.focus(); else onEnter();
+  }));
+  const mark = (finalOk) => {
+    let right = 0;
+    for (const c of cells) {
+      const v = parseNum(c.input.value);
+      const ok = c.final ? finalOk : v != null && Math.abs(v - c.a) <= Math.max(0.5, Math.abs(c.a) * 0.001);
+      if (ok) right++;
+      c.input.disabled = true;
+      c.td.classList.add(ok ? 'right' : 'wrong');
+      if (!ok) c.td.append(h('div', { class: 'cell-fix' }, acct(c.a)));
+    }
+    return cells.length > 1 ? ` Working: <b>${right}/${cells.length}</b> cells right${right < cells.length ? ' (the correct figures are shown in the table)' : ''}.` : '';
+  };
+  return { cells, mark };
 }
 
 /**
@@ -41,9 +75,19 @@ export function renderQuestion(el, q, { meta = '', onAnswer, done } = {}) {
   next.onclick = () => done && done(answered);
 
   const header = h('div', { class: 'q-meta' }, h('span', {}, meta), q.cmd ? h('span', {}, `Command term: ${q.cmd}`) : null);
+  const qText = h('div', { class: 'q-text', html: q.q });
   const text = h('div', { class: 'spread', style: 'align-items:start' },
-    h('div', { class: 'q-text', html: q.q }), speakButton(() => q.q + (q.options ? '. Options: ' + q.options.join('. ') : '')));
+    qText, speakButton(() => q.q + (q.options ? '. Options: ' + q.options.join('. ') : '')));
   el.append(header, text);
+  let submit = () => {};
+  const blanks = setupBlanks(qText, () => submit());
+  // The calculator's result goes into whichever box the student used last (a table cell or the answer box).
+  let target = null;
+  el.addEventListener('focusin', e => { if (e.target.matches('input[inputmode=decimal]')) target = e.target; });
+  const insertResult = v => {
+    const t = (target && !target.disabled) ? target : blanks.cells.find(c => !c.input.value)?.input;
+    if (t && !t.disabled) { t.value = String(v); t.focus(); }
+  };
 
   if (q.type === 'mcq' || q.type === 'tf') {
     const opts = q.type === 'tf'
@@ -62,25 +106,31 @@ export function renderQuestion(el, q, { meta = '', onAnswer, done } = {}) {
     });
     wrap.append(...buttons);
     el.append(wrap);
-    if (q.cmd === 'Calculate') el.append(calculator());
+    if (q.cmd === 'Calculate') el.append(calculator(blanks.cells.length ? { useAnswer: insertResult } : {}));
   } else if (q.type === 'num') {
-    const input = h('input', { type: 'text', inputmode: 'decimal', placeholder: 'Your answer', 'aria-label': 'Your answer' });
+    // If a table has the answer cell, that cell is the answer box.
+    const finalCell = blanks.cells.find(c => c.final);
+    const input = finalCell ? finalCell.input
+      : h('input', { type: 'text', inputmode: 'decimal', placeholder: 'Your answer', 'aria-label': 'Your answer' });
     const check = h('button', { class: 'btn' }, 'Check');
     const hint = q.hint ? h('button', { class: 'btn ghost small' }, '💡 Hint') : null;
     const hintBox = h('div', { class: 'muted small', style: 'margin-top:8px' });
     if (hint) hint.onclick = () => { hintBox.innerHTML = q.hint; hint.remove(); };
-    const go = () => {
+    submit = () => {
       const v = parseNum(input.value);
       if (v == null) { input.focus(); return; }
       input.disabled = check.disabled = true;
       const ok = numCorrect(q, v);
-      finish(ok, ok ? '' : `The answer is <b>${q.display || q.answer}${q.unit && !q.display ? ' ' + q.unit : ''}</b>.`);
+      const working = blanks.mark(ok);
+      finish(ok, (ok ? '' : `The answer is <b>${q.display || q.answer}${q.unit && !q.display ? ' ' + q.unit : ''}</b>.`) + working);
     };
-    check.onclick = go;
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
-    el.append(h('div', { class: 'num-input' }, input, q.unit ? h('span', { class: 'muted' }, q.unit) : null, check), h('div', {}, hint, hintBox),
-      calculator({ useAnswer: v => { if (!input.disabled) { input.value = String(v); input.focus(); } } }));
-    setTimeout(() => input.focus(), 50);
+    check.onclick = submit;
+    if (!finalCell) input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+    el.append(finalCell
+      ? h('div', { class: 'num-input', style: 'margin-top:12px' }, check, h('span', { class: 'muted small' }, 'Fill in the ? cells, then check.'))
+      : h('div', { class: 'num-input' }, input, q.unit ? h('span', { class: 'muted' }, q.unit) : null, check),
+      h('div', {}, hint, hintBox), calculator({ useAnswer: insertResult }));
+    setTimeout(() => (blanks.cells[0]?.input || input).focus(), 50);
   } else if (q.type === 'sort') {
     el.append(sortWidget(q, ok => finish(ok, ok ? '' : 'Wrong ones are in red; the right bucket is shown in green.')));
   }

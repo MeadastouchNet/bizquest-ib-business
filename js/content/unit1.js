@@ -56,6 +56,7 @@ export const unit1 = {
               <li><b>Lack of experience</b>: pricing, hiring and paperwork are new.</li>
               <li><b>High costs</b>: rent, equipment, marketing.</li>
               <li><b>Legal requirements</b>: registering, tax, rules on products and staff.</li></ul>
+          <p class="muted small">Writing a [[business plan]] (toolkit, 6.9) is how many founders spot these problems before they start.</p>
           <div class="example">${sf}'s first month: Noah bought too many pairs, sold few, and had no money left for cleaning fluid. Classic cash problem, even though each sale made a good margin.</div>
           <div class="tip">"Explain a problem" = name it, say <i>why</i> it hurts <i>this</i> business (use the case), and its consequence. A generic list earns little.</div>` }
       ],

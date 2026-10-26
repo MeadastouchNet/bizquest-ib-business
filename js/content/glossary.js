@@ -496,7 +496,11 @@ export const GLOSSARY = {
   'circular business models': { sec: '6.8', card: 1, aliases: ['circular business model'],
     def: 'Five ways to do business in a circular economy: circular supplies, resource recovery, product life extension, sharing platforms and product service systems.' },
   'product service system': { sec: '6.8', card: 1, aliases: ['product service systems', 'product as a service'],
-    def: 'A circular model in which customers pay to use a product while the business keeps ownership and responsibility for it.' }
+    def: 'A circular model in which customers pay to use a product while the business keeps ownership and responsibility for it.' },
+  'business plan': { sec: '6.9', card: 0, aliases: ['business plans'],
+    def: 'A document setting out a business idea and how it will be put into action: objectives, market, marketing, operations, people and finances. Used to raise finance and guide the business.' },
+  'executive summary': { sec: '6.9', card: 1,
+    def: 'A short overview of the whole business plan, written last and read first.' }
 };
 
 const INDEX = new Map();

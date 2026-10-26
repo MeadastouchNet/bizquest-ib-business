@@ -90,8 +90,9 @@ formula sheet. Quiz ids are `6.x-n`.
 | 6.6 Critical path analysis (HL) | Activity-on-arrow network diagrams, nodes with EST and LFT, forward and backward pass, total float = LFT − duration − EST, critical path; strengths and limitations | from memory: free float not taught; check whether the guide asks for it |
 | 6.7 Simple linear regression (HL) | Scatter diagrams, independent and dependent variables, correlation (direction, strength, r described but not calculated), line of best fit y = a + bx, interpolation and extrapolation, correlation vs causation | from memory: check whether r or R² must be calculated or only interpreted |
 | 6.8 Circular business models | Linear vs circular economy; the five models: circular supplies, resource recovery, product life extension, sharing platforms, product service systems; benefits and challenges | from memory |
+| 6.9 The business plan | Purpose of a business plan and its readers (banks, investors, managers); contents (executive summary, business description, market analysis, marketing, operations, HR and financial plans); a worked financial plan (start-up costs, sources of finance, break-even); strengths and limitations | from memory |
 
 HL tagging: 6.6 and 6.7 are HL only; the rest is SL and HL. From memory.
 
 Toolkit items covered elsewhere: stakeholder mapping (1.4), Ansoff matrix (4.2), descriptive statistics (4.4,
-lightly), BCG matrix (4.5). Not yet taught: the business plan, and any other toolkit items in the guide not listed here.
+lightly), BCG matrix (4.5), contribution (5.5). Possibly in the guide but not taught: Porter's generic strategies, Hofstede's cultural dimensions (see docs/CURRICULUM-CHECKLIST.md).

@@ -1,7 +1,7 @@
 # Roadmap: keeping BizQuest growing
 
 All five units of IB Business Management are built (1.1–5.9), plus the business management toolkit as "Unit 6"
-(6.1–6.8). This file is the checklist for changing or adding content, and the list of what is still to do.
+(6.1–6.9). This file is the checklist for changing or adding content, and the list of what is still to do.
 
 ## Checklist for new or changed content
 
@@ -25,6 +25,6 @@ All five units of IB Business Management are built (1.1–5.9), plus the busines
 - **Verify against the official guide.** Every content point in [`docs/SYLLABUS.md`](SYLLABUS.md) is marked
   *from memory*. When the guide is available, check each row, especially those with a note (2.1 recruitment and
   training placement, 4.1 social marketing, 4.3 moving-average types, 5.9 technology list).
-- **Toolkit gaps.** The business plan is not taught yet. When checking the guide, also check 6.6 (free float?) and
+- **Check the curriculum** with [`docs/CURRICULUM-CHECKLIST.md`](CURRICULUM-CHECKLIST.md). Also check 6.6 (free float?) and
   6.7 (must r or R² be calculated?).
 - **Improve from use.** After a week or two, check Usage stats and fix low-rated or most-missed lessons first.

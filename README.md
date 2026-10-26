@@ -3,9 +3,9 @@
 An interactive study app for IB Business Management (HL), built for a smart-but-busy 17-year-old.
 All five units are built: **Unit 1: Introduction to business management** (1.1–1.6), **Unit 2: Human resource
 management** (2.1–2.7), **Unit 3: Finance and accounts** (3.1–3.9), **Unit 4: Marketing** (4.1–4.6) and
-**Unit 5: Operations management** (5.1–5.9), plus **the business management toolkit** as "Unit 6" (6.1–6.8: SWOT,
+**Unit 5: Operations management** (5.1–5.9), plus **the business management toolkit** as "Unit 6" (6.1–6.9: SWOT,
 STEEPLE, decision trees, force field analysis, Gantt charts, critical path analysis, linear regression, circular
-business models).
+business models, the business plan).
 
 Each topic is a ~10-minute "mission":
 

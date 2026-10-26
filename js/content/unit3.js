@@ -96,7 +96,7 @@ export const unit3 = {
           <div class="example">${sf} keeps $6,000 of last year's profit instead of Noah and Freja paying it to themselves. That's retained profit.</div>` },
         { title: 'External sources (1): owners and lenders', html: `
           <ul><li><b>Share capital</b>: selling shares (part-ownership) in a company. No repayment, but you share profits and control. Only for <b>[[companies]]</b>.</li>
-              <li><b>Loan capital</b>: borrowing a fixed sum from a bank, repaid with <b>interest</b> over time (e.g. 5 years). A mortgage is a long-term loan secured on property.</li>
+              <li><b>Loan capital</b>: borrowing a fixed sum from a bank, repaid with <b>interest</b> over time (e.g. 5 years). A mortgage is a long-term loan secured on property. Banks usually ask for a [[business plan]] first.</li>
               <li><b>Overdraft</b>: the bank lets your account go below zero up to a limit. Flexible and short-term, but expensive interest.</li></ul>
           <div class="example">An overdraft works like a phone plan that lets you keep using data after your credit hits zero and sends you a big bill later.</div>` },
         { title: 'External sources (2): the rest of the list', html: `

@@ -169,12 +169,12 @@ export const unit6 = {
       quiz: [
         { id: '6.2-1', type: 'mcq', cmd: 'Identify', q: 'A new EU law limits how companies can use customer data. In STEEPLE this is…', options: ['legal', 'political', 'ethical', 'technological'], answer: 0, why: 'A law is a legal factor. Political would be the government\'s policy decisions or stability.' },
         { id: '6.2-2', type: 'mcq', cmd: 'Identify', q: 'Interest rates rise, so customers borrow and spend less. This is…', options: ['economic', 'social', 'political', 'legal'], answer: 0, why: 'Interest rates, inflation, growth and exchange rates are economic factors.' },
-        { id: '6.2-3', type: 'mcq', cmd: 'Distinguish', q: 'What is the difference between an <b>ethical</b> and a <b>legal</b> factor?', options: ['Legal factors are required by law; ethical ones are about what is right beyond the law', 'Legal factors apply only abroad; ethical factors apply only in the home country', 'Legal factors affect costs; ethical factors never affect a business\'s costs', 'Legal factors change often; ethical factors never change over time'], answer: 0, why: 'The law sets the minimum. Ethics is what stakeholders expect beyond it, e.g. fair wages above the legal minimum.' },
+        { id: '6.2-3', type: 'mcq', cmd: 'Distinguish', q: 'What is the difference between an <b>ethical</b> and a <b>legal</b> factor?', options: ['Legal factors are required by law; ethical ones are about what is right beyond the law', 'Legal factors apply only abroad; ethical factors apply only in the home country', 'Legal factors affect costs; ethical factors never affect a business\'s costs', 'Legal factors change every single year; ethical factors never change over time at all'], answer: 0, why: 'The law sets the minimum. Ethics is what stakeholders expect beyond it, e.g. fair wages above the legal minimum.' },
         { id: '6.2-4', type: 'tf', q: 'STEEPLE analysis looks at a business\'s internal strengths and weaknesses.', answer: false, why: 'False. STEEPLE covers only the external environment. Strengths and weaknesses come from internal analysis (the S and W of SWOT).' },
         { id: '6.2-5', type: 'sort', q: 'Which STEEPLE factor?', buckets: ['Social', 'Technological', 'Environmental', 'Political'], items: [
           { t: 'An ageing population', b: 0 }, { t: 'A new trend for vintage clothes', b: 0 }, { t: 'AI chatbots for customer service', b: 1 }, { t: '3D printing of soles', b: 1 },
           { t: 'More frequent heatwaves', b: 2 }, { t: 'Plastic waste in the oceans', b: 2 }, { t: 'A trade deal between two countries', b: 3 }, { t: 'An election causing uncertainty', b: 3 }], why: 'Social = people and culture; technological = new tech; environmental = nature and climate; political = government and stability.' },
-        { id: '6.2-6', type: 'mcq', cmd: 'Explain', q: 'How does a STEEPLE analysis help with a SWOT analysis?', options: ['It finds the external opportunities and threats', 'It finds the internal strengths and weaknesses', 'It calculates the profit of each strategy', 'It replaces the need for any market research'], answer: 0, why: 'STEEPLE scans the external environment, which is where the O and T of SWOT come from.' }
+        { id: '6.2-6', type: 'mcq', cmd: 'Explain', q: 'How does a STEEPLE analysis help with a SWOT analysis?', options: ['It finds the external opportunities and threats', 'It finds the internal strengths and weaknesses', 'It calculates the profit of each strategy', 'It replaces the need for any primary or secondary market research'], answer: 0, why: 'STEEPLE scans the external environment, which is where the O and T of SWOT come from.' }
       ],
       explain: 'Pick a business you know. Explain to a mate the one <b>STEEPLE</b> factor that worries it most right now, and why.'
     },
@@ -275,7 +275,7 @@ export const unit6 = {
       quiz: [
         { id: '6.4-1', type: 'mcq', cmd: 'Define', q: 'In force field analysis, a <b>restraining force</b> is…', options: ['a factor that resists or works against the change', 'a factor that pushes the business towards the change', 'the manager who is responsible for leading the change', 'the total score of all the forces added together'], answer: 0, why: 'Restraining forces hold the change back; driving forces push it forward.' },
         { id: '6.4-2', type: 'num', cmd: 'Calculate', q: 'Driving forces score <b>4, 3 and 2</b>. Restraining forces score <b>5 and 3</b>. What is the driving total <b>minus</b> the restraining total?', answer: 1, display: '+1', hint: 'Add each side, then subtract.', why: 'Driving = 9, restraining = 8. 9 − 8 = +1: a narrow balance in favour of the change.' },
-        { id: '6.4-3', type: 'mcq', cmd: 'Explain', q: 'Why is weakening restraining forces often better than strengthening driving forces?', options: ['Pushing harder can increase resistance, while removing obstacles reduces it', 'Restraining forces always have higher scores than the driving forces', 'Driving forces cannot be changed once the analysis has been drawn up', 'Weakening restraining forces costs nothing in every possible case'], answer: 0, why: 'Pressure tends to create counter-pressure. Removing the causes of resistance (fear, cost, missing skills) lets the change happen with less conflict.' },
+        { id: '6.4-3', type: 'mcq', cmd: 'Explain', q: 'Why is weakening restraining forces often better than strengthening driving forces?', options: ['Pushing harder can increase resistance, while removing obstacles reduces it', 'Restraining forces always have higher scores than the driving forces', 'Driving forces cannot be changed in any way once the analysis has been drawn up', 'Weakening restraining forces costs nothing in every possible case'], answer: 0, why: 'Pressure tends to create counter-pressure. Removing the causes of resistance (fear, cost, missing skills) lets the change happen with less conflict.' },
         { id: '6.4-4', type: 'sort', q: 'Driving or restraining force for SoleFlip opening in Berlin?', buckets: ['Driving', 'Restraining'], items: [
           { t: 'Growing German demand', b: 0 }, { t: 'Founders\' ambition', b: 0 }, { t: 'A festival partnership offer', b: 0 },
           { t: 'Limited cash', b: 1 }, { t: 'Staff worried about workload', b: 1 }, { t: 'A strong local competitor', b: 1 }], why: 'Driving forces push for the change; restraining forces hold it back.' },
@@ -325,7 +325,7 @@ export const unit6 = {
       },
       quiz: [
         { id: '6.5-1', type: 'num', cmd: 'Calculate', q: 'Task A takes <b>3</b> weeks. Tasks B (<b>2</b> weeks) and C (<b>4</b> weeks) both start after A and can run in parallel. What is the <b>shortest</b> time to finish all three?', answer: 7, display: '7 weeks', hint: 'A, then the longer of B and C.', why: 'A ends at week 3. B and C run together; C ends last at 3 + 4 = 7 weeks.' },
-        { id: '6.5-2', type: 'mcq', cmd: 'Define', q: 'In project planning, a <b>dependent (sequential)</b> task is one that…', options: ['can only start when another task has finished', 'can run at the same time as other tasks', 'has no fixed length and can take any time', 'is the last task in every project plan'], answer: 0, why: 'Dependent tasks wait for earlier tasks. Parallel (concurrent) tasks run at the same time.' },
+        { id: '6.5-2', type: 'mcq', cmd: 'Define', q: 'In project planning, a <b>dependent (sequential)</b> task is one that…', options: ['can only start when another task has finished', 'can run at the same time as other tasks', 'has no fixed length and can take any amount of time', 'is the last task in every project plan'], answer: 0, why: 'Dependent tasks wait for earlier tasks. Parallel (concurrent) tasks run at the same time.' },
         { id: '6.5-3', type: 'mcq', cmd: 'Identify', q: 'Which is a <b>limitation</b> of a Gantt chart?', options: ['It doesn\'t clearly show which tasks are critical to the deadline', 'It cannot show how long each task in the project will take', 'It cannot show tasks that happen at the same time as others', 'It can only be used for projects that last less than a week'], answer: 0, why: 'A Gantt chart shows timing, but critical path analysis is better at showing which tasks can\'t slip.' },
         { id: '6.5-4', type: 'num', cmd: 'Calculate', q: 'In the Berlin plan, F (stock shelves) depends on B (ends week <b>8</b>), D (ends week <b>9</b>) and E (ends week <b>6</b>). F takes <b>1</b> week. In which week does the pop-up open (when F ends)?', answer: 10, display: 'week 10', hint: 'F starts when the last of its dependencies finishes.', why: 'F waits for D, the last to finish (week 9), so it runs 9–10. Opening = week 10.' },
         { id: '6.5-5', type: 'tf', q: 'Running tasks in parallel can shorten the total length of a project.', answer: true, why: 'True. Tasks that don\'t depend on each other can happen at the same time: the Berlin plan falls from 23 weeks to 10.' },
@@ -508,6 +508,109 @@ export const unit6 = {
         { id: '6.8-6', type: 'mcq', cmd: 'Identify', q: 'Which is an example of <b>circular supplies</b>?', options: ['Making packaging from recycled cardboard', 'Renting out party dresses for a single night only', 'Repairing old phones and reselling them', 'Leasing office furniture to companies'], answer: 0, why: 'Circular supplies = renewable, recycled or biodegradable inputs. The others are a sharing/rental model, product life extension and a product service system.' }
       ],
       explain: 'Look around your room. Pick one thing and explain to a mate which <b>circular business model</b> could keep it out of landfill.'
+    },
+
+    // ------------------------------------------------------------------ 6.9
+    {
+      id: '6.9', title: 'The business plan', emoji: '📑', minutes: 12, hl: false,
+      goal: 'explain the purpose and contents of a business plan, use the toolkit to build one, and evaluate a business plan from the reader\'s point of view.',
+      hook: `The bank says yes to lending ${sf} $9,000 for the Berlin pop-up, on one condition: "Send us your business plan."<br><br>Noah has a SWOT, Freja has a Gantt chart, Sami has market research, and there's a break-even sum on a napkin. How do you turn all that into one document a bank would trust?`,
+      cards: [
+        { title: 'What is a business plan, and why write one?', html: `
+          <p>A <b>business plan</b> is a document that sets out a business idea (a new business or a new project) and how it will be put into action: its objectives, market, marketing, operations, people and finances.</p>
+          <p>Why write one:</p>
+          <ul><li><b>To raise finance</b>: banks and investors want evidence that the idea works and the money will come back.</li>
+              <li><b>To test the idea</b>: writing it forces research and shows weak spots before money is spent.</li>
+              <li><b>To set direction</b>: clear objectives and a plan everyone can follow.</li>
+              <li><b>To measure progress</b>: actual results can be compared with the plan.</li></ul>
+          <div class="tip">Who reads it shapes what matters: a <b>bank</b> wants to know it will be repaid; an <b>investor</b> wants growth and a return; <b>managers and staff</b> want to know what to do and when.</div>` },
+        { title: 'What goes in it', html: `
+          <ul><li><b>Executive summary</b>: a one-page overview of the whole plan, written last and read first.</li>
+              <li><b>Business description</b>: the idea, legal form, vision, mission and SMART objectives.</li>
+              <li><b>Market analysis</b>: [[market research]], competitors, a [[SWOT analysis]] and a [[STEEPLE analysis]].</li>
+              <li><b>Marketing plan</b>: [[target market]] and the [[marketing mix|7 Ps]].</li>
+              <li><b>Operations plan</b>: location, production method, suppliers and a timeline (a [[Gantt chart]]).</li>
+              <li><b>Human resources plan</b>: who runs it, staff needed, structure.</li>
+              <li><b>Financial plan</b>: start-up costs, sources of finance, cash flow forecast, forecast profit and loss account, [[break-even]].</li></ul>
+          <p class="muted small">This is where the whole toolkit comes together: almost every tool in this unit has a place in a business plan.</p>` },
+        { title: 'SoleFlip\'s financial plan', html: `
+          <div class="table-wrap"><table class="fin">
+            <tr class="head"><td colspan="2">Start-up costs (Berlin pop-up)</td></tr>
+            <tr><td>Fit-out</td><td>$8,000</td></tr><tr><td>First stock (100 pairs × $50)</td><td>$5,000</td></tr><tr><td>Launch marketing</td><td>$2,000</td></tr>
+            <tr class="total"><td>Total</td><td>$15,000</td></tr>
+            <tr class="head"><td colspan="2">Sources of finance</td></tr>
+            <tr><td>[[retained profit|Retained profit]] from SoleFlip</td><td>$6,000</td></tr><tr><td>Bank loan</td><td>$9,000</td></tr>
+            <tr class="head"><td colspan="2">Monthly break-even</td></tr>
+            <tr><td>Fixed costs (rent, wages)</td><td>$6,000</td></tr><tr><td>Contribution per pair ($90 − $50)</td><td>$40</td></tr>
+            <tr class="total"><td>Break-even</td><td>150 pairs a month</td></tr></table></div>
+          <p>Forecast sales: 200 pairs a month, a [[margin of safety]] of 50 pairs. A bank will also look closely at the cash flow forecast: can SoleFlip make the loan repayments every month?</p>` },
+        { title: 'Strengths and limitations', html: `
+          <p>✅ Helps get finance; makes the owners research and think things through; gives everyone clear objectives; provides targets to check progress against.</p>
+          <p>❌ It's only as good as its <b>assumptions</b>: sales forecasts can be over-optimistic; it goes out of date quickly; it takes time to write; and a great plan doesn't guarantee success.</p>
+          <div class="example">If Berlin sales are 120 pairs a month instead of 200, SoleFlip is 30 pairs below break-even. A good plan says so in advance: "what if sales are 40% lower?"</div>
+          <div class="tip">To evaluate a business plan, test its assumptions: are the sales forecasts backed by research? Is there a margin of safety? What happens if things go worse than planned?</div>` }
+      ],
+      labs: [
+        {
+          type: 'sort', title: 'Which section of the plan?',
+          challenge: 'Sort all 12 into the right section of SoleFlip\'s business plan in one go.',
+          buckets: ['Business description', 'Market analysis', 'Marketing plan', 'Operations plan', 'HR plan', 'Financial plan'],
+          items: [
+            { t: '🎯 Objective: sell 2,400 pairs in Berlin in year 1', b: 0 },
+            { t: '🏢 SoleFlip Ltd, a privately held company', b: 0 },
+            { t: '📋 Survey of 400 Berlin teens', b: 1 },
+            { t: '🧭 SWOT of the Berlin project', b: 1 },
+            { t: '💲 Launch price of $79, then $89.95', b: 2 },
+            { t: '📱 German TikTok campaign', b: 2 },
+            { t: '📅 Gantt chart: opening in 10 weeks', b: 3 },
+            { t: '🏭 Stock shipped from the Porto factory', b: 3 },
+            { t: '🧑‍💼 A German-speaking store manager and 3 staff', b: 4 },
+            { t: '🎓 Two weeks of training before opening', b: 4 },
+            { t: '💧 Monthly cash flow forecast', b: 5 },
+            { t: '⚖️ Break-even: 150 pairs a month', b: 5 }
+          ]
+        },
+        {
+          type: 'scenarios', title: 'What does the reader want?',
+          challenge: 'Pick what each reader cares about most, in all 3 cases.',
+          items: [
+            { s: 'The <b>bank</b> is deciding whether to lend SoleFlip $9,000.', options: [
+              { t: 'The cash flow forecast: can SoleFlip make every repayment?', ok: true, fb: 'Yes: a bank cares most about being repaid on time, so it checks cash flow (and any security).' },
+              { t: 'The design of the store\'s window display', ok: false, fb: 'Nice, but it tells the bank nothing about repayment.' },
+              { t: 'How fast SoleFlip could grow into ten countries', ok: false, fb: 'That matters to investors. The bank\'s return is fixed interest, so it wants safety.' }] },
+            { s: 'A <b>business angel</b> is thinking about buying 20% of SoleFlip.', options: [
+              { t: 'Growth potential and the likely return on the investment', ok: true, fb: 'Yes: an investor shares the risk and wants a big enough reward: growth, profits and a rising share value.' },
+              { t: 'Only the date of the loan repayments', ok: false, fb: 'An investor isn\'t lending; they own part of the business.' },
+              { t: 'The staff training timetable', ok: false, fb: 'Useful detail, but not what decides an investment.' }] },
+            { s: 'The <b>new Berlin store manager</b> reads the plan on day one.', options: [
+              { t: 'The operations and HR plans: what to do, by when, with which team', ok: true, fb: 'Yes: the manager needs the timeline, targets and staffing to run the store.' },
+              { t: 'The interest rate on the bank loan', ok: false, fb: 'That\'s the finance team\'s concern, not the manager\'s day-to-day job.' },
+              { t: 'The executive summary only', ok: false, fb: 'A good start, but the manager needs the detail behind it.' }] }
+          ]
+        }
+      ],
+      worked: {
+        title: 'Should the bank lend? (exam style)',
+        intro: `<p><b>Data from ${sf}'s plan:</b> start-up costs <b>$15,000</b>; owners put in <b>$6,000</b>. Monthly fixed costs <b>$6,000</b>; price <b>$90</b>; variable cost <b>$50</b> a pair; forecast sales <b>200</b> pairs a month. (a) <i>Calculate</i> the loan needed and the break-even quantity. (b) <i>Evaluate</i> the plan from the bank's point of view. [10 marks]</p>`,
+        steps: [
+          { prompt: 'Loan needed?', answer: '15,000 − 6,000 = <b>$9,000</b>' },
+          { prompt: 'Break-even quantity?', answer: 'Contribution = 90 − 50 = $40. 6,000 ÷ 40 = <b>150 pairs a month</b>.' },
+          { prompt: 'Margin of safety, and what it means for the bank?', answer: '200 − 150 = <b>50 pairs</b> (25% of forecast sales). Sales can fall by a quarter before the pop-up makes a loss, so there is some cushion for repayments.' },
+          { prompt: 'What should the bank question?', answer: 'Is 200 pairs a month backed by research (the Berlin survey, German online sales), or a guess? Does the cash flow forecast cover repayments in slow months (January, March)? What security is offered?' },
+          { prompt: 'Judgement.', answer: '"Lend, with conditions: the loan is small compared with SoleFlip\'s owner investment, and there is a 25% margin of safety. But ask for a cash flow forecast that shows repayments in the weakest months, and a plan for what SoleFlip does if sales are 40% lower."' }
+        ],
+        takeaway: 'Use the numbers in the plan, then test its assumptions from the reader\'s point of view before judging.'
+      },
+      quiz: [
+        { id: '6.9-1', type: 'mcq', cmd: 'Define', q: 'A <b>business plan</b> is…', options: ['a document setting out a business idea and how it will be put into action', 'a legal contract that every new business must sign with its bank', 'a list of the business\'s assets and liabilities on a single date', 'a chart showing the tasks of a project and when each will happen'], answer: 0, why: 'A business plan covers the idea, objectives, market, marketing, operations, people and finances. The others describe a loan agreement, a balance sheet and a Gantt chart.' },
+        { id: '6.9-2', type: 'num', cmd: 'Calculate', q: 'Complete the table to find the <b>bank loan</b> SoleFlip needs.' + tbl(['Start-up costs', '$'], [['Fit-out', '8,000'], ['First stock', '5,000'], ['Launch marketing', '2,000'], ['Total start-up costs', A(15000)], ['Owners\' own money', '6,000'], ['<b>Bank loan needed</b>', A(9000, true)]]), answer: 9000, unit: '$', display: '$9,000', why: 'Total = 8,000 + 5,000 + 2,000 = $15,000. Loan = 15,000 − 6,000 = $9,000.' },
+        { id: '6.9-3', type: 'num', cmd: 'Calculate', q: 'The pop-up\'s fixed costs are <b>$6,000</b> a month. Each pair sells for <b>$90</b> and costs <b>$50</b>. What is the <b>break-even</b> quantity per month?', answer: 150, display: '150 pairs', hint: 'Fixed costs ÷ contribution per unit', why: 'Contribution = 90 − 50 = $40. 6,000 ÷ 40 = 150 pairs.' },
+        { id: '6.9-4', type: 'mcq', cmd: 'Identify', q: 'Which part of a business plan is usually written <b>last</b> but read <b>first</b>?', options: ['The executive summary', 'The financial plan', 'The market analysis', 'The operations plan'], answer: 0, why: 'The executive summary gives a short overview of the whole plan, so it can only be written once the rest is done.' },
+        { id: '6.9-5', type: 'mcq', cmd: 'Explain', q: 'What is a <b>limitation</b> of a business plan?', options: ['It is based on forecasts and assumptions that may turn out wrong', 'It can only be used by businesses that already make a profit', 'It must be kept secret from the bank and from any investors', 'It cannot include any numbers, only written descriptions'], answer: 0, why: 'Sales forecasts can be over-optimistic and markets change, so the plan may quickly go out of date.' },
+        { id: '6.9-6', type: 'tf', q: 'A detailed business plan guarantees that a new business will succeed.', answer: false, why: 'False. It improves the chances (research, clear objectives, finance), but the assumptions may be wrong and conditions can change.' },
+        { id: '6.9-7', type: 'mcq', cmd: 'Explain', q: 'Why would a <b>bank</b> focus on the cash flow forecast in a business plan?', options: ['It shows whether the business can make each loan repayment on time', 'It shows how the business has positioned its brand against rivals', 'It shows which leadership style the owners intend to use', 'It shows how quickly the business could grow in other countries'], answer: 0, why: 'A bank\'s main concern is being repaid with interest, month by month.' }
+      ],
+      explain: 'Imagine you\'re asking your parents to "invest" in a business idea of yours. Explain to a mate the three parts of your <b>business plan</b> they\'d care about most, and why.'
     }
   ],
   formulas: [

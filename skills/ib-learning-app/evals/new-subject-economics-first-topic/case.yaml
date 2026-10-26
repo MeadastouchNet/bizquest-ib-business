@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: new-subject-economics-first-topic
+expected_outcome: |
+  A new econquest/ folder holding the BizQuest engine with its own identity (name, icon, a storage key
+  different from bizquest.v1, economics-flavoured level titles), all IB Economics units registered (only the
+  first topic built, the rest planned), no Business Management content left over, and one complete topic:
+  a relatable hook, 3-6 Learn cards, at least one working lab, a worked example, 6-10 quiz questions with
+  explanations, typeset formulas if any, glossary entries and term helpers. The content validator passes.
+  No GitHub repo was created.

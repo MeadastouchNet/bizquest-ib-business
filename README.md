@@ -43,3 +43,11 @@ Then open http://localhost:8765.
 To add a unit, follow the checklist in [docs/ROADMAP.md](docs/ROADMAP.md) (content file, `js/content/units.js`, glossary terms).
 
 Progress is stored only in the browser of the device being used.
+
+## Building more subjects or units
+
+The repeatable workflow is a skill in [skills/ib-learning-app](skills/ib-learning-app/SKILL.md). In Claude it's
+installed as a personal skill, so you can just ask, for example, "Create the remaining units 1, 2, 4 and 5 of
+IB Business Management HL" or "Create all chapters of IB Economics HL as a learning environment". To use it
+from Codex, Gemini CLI or other agents, see [porting.md](skills/ib-learning-app/references/porting.md).
+Check content with `node skills/ib-learning-app/scripts/validate_content.mjs .`

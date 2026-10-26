@@ -1,12 +1,11 @@
 // Progress, XP, spaced repetition and the activity log. Everything lives in localStorage on this device.
-const KEY = 'bizquest.v1';
+import { APP } from './config.js';
+
+const KEY = APP.storageKey;
 const BOX_DAYS = [0, 0, 1, 3, 7, 16]; // index = Leitner box (1..5)
 const LOG_MAX = 5000;
 
-export const LEVELS = [
-  'Intern', 'Junior Analyst', 'Analyst', 'Senior Analyst', 'Finance Manager',
-  'Head of Finance', 'Finance Director', 'CFO', 'CEO', 'Business Legend'
-];
+export const LEVELS = APP.levels;
 export const XP_PER_LEVEL = 250;
 
 const fresh = () => ({

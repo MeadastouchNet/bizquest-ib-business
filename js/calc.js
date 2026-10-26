@@ -3,13 +3,24 @@
 import { h } from './ui.js';
 import { sfx } from './audio.js';
 
-/** Unit 3 needs only the four operations and brackets. */
-export const UNIT3_KEYS = [
+// Key sets. A unit picks one with `calcKeys` in its content file (default BASIC_KEYS).
+// A row with a single key spans the full width.
+/** The four operations and brackets (enough for Unit 3 of Business Management). */
+export const BASIC_KEYS = [
   ['C', '(', ')', '⌫'],
   ['7', '8', '9', '÷'],
   ['4', '5', '6', '×'],
   ['1', '2', '3', '−'],
   ['0', '.', '=', '+']
+];
+/** Adds powers (^), e.g. for discount factors or growth rates. */
+export const POWER_KEYS = [
+  ['C', '(', ')', '⌫'],
+  ['7', '8', '9', '÷'],
+  ['4', '5', '6', '×'],
+  ['1', '2', '3', '−'],
+  ['0', '.', '^', '+'],
+  ['=']
 ];
 
 export function evaluate(expr) {
@@ -22,9 +33,17 @@ export function evaluate(expr) {
     i += m[0].length;
     return parseFloat(m[0]);
   };
-  const factor = () => {
-    if (peek() === '-') { i++; return -factor(); }
-    if (peek() === '+') { i++; return factor(); }
+  const unary = () => {
+    if (peek() === '-') { i++; return -unary(); }
+    if (peek() === '+') { i++; return unary(); }
+    return power();
+  };
+  const power = () => { // right-associative: 2^3^2 = 2^9
+    const b = primary();
+    if (peek() === '^') { i++; return b ** unary(); }
+    return b;
+  };
+  const primary = () => {
     if (peek() === '(') {
       i++;
       const v = expression();
@@ -34,10 +53,10 @@ export function evaluate(expr) {
     return number();
   };
   const term = () => {
-    let v = factor();
+    let v = unary();
     while (peek() === '*' || peek() === '/' || peek() === '(') {
       const op = peek() === '(' ? '*' : src[i++]; // "2(3)" means 2 × 3
-      const r = factor();
+      const r = unary();
       if (op === '/' && r === 0) throw new Error("Can't divide by 0");
       v = op === '*' ? v * r : v / r;
     }
@@ -59,7 +78,7 @@ const fmt = n => n.toLocaleString('en-US', { maximumFractionDigits: 6 });
 /**
  * Calculator panel. useAnswer(value) is called by the "Use as answer" button (omit to hide that button).
  */
-export function calculator({ keys = UNIT3_KEYS, useAnswer } = {}) {
+export function calculator({ keys = BASIC_KEYS, useAnswer } = {}) {
   let last = null;
   const display = h('input', { type: 'text', class: 'calc-display', inputmode: 'none', autocomplete: 'off', 'aria-label': 'Calculator input', placeholder: '0' });
   const result = h('div', { class: 'calc-result', 'aria-live': 'polite' }, ' ');
@@ -94,8 +113,8 @@ export function calculator({ keys = UNIT3_KEYS, useAnswer } = {}) {
   display.addEventListener('input', () => { display.value = display.value.replace(/\*/g, '×').replace(/\//g, '÷'); });
   if (use) use.onclick = () => { if (last != null) useAnswer(last); };
 
-  const pad = h('div', { class: 'calc-keys' }, keys.flat().map(k =>
-    h('button', { type: 'button', class: `calc-key ${/[0-9.]/.test(k) ? '' : k === '=' ? 'eq' : 'op'}`, onclick: () => press(k) }, k)));
+  const pad = h('div', { class: 'calc-keys' }, keys.flatMap(row => row.map(k =>
+    h('button', { type: 'button', class: `calc-key ${/[0-9.]/.test(k) ? '' : k === '=' ? 'eq' : 'op'}`, style: row.length === 1 ? 'grid-column:1 / -1' : null, onclick: () => press(k) }, k))));
   const body = h('div', { class: 'calc-body' }, display, result, pad, use);
   const toggle = h('button', { type: 'button', class: 'btn ghost small calc-toggle', 'aria-expanded': 'true' }, '🧮 Hide calculator');
   toggle.onclick = () => {

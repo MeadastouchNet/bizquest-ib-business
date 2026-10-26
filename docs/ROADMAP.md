@@ -12,7 +12,7 @@ BizQuest already knows about all five units. Unit 3 is built; Units 1, 2, 4 and 
    - Questions with several figures use tables (`tbl()`), and every `?` cell is fillable: write `A(value)`,
      or `A(value, true)` when the cell is the answer itself.
    - Formulas use typeset math (`F` in cards, `M` on the formula sheet).
-   - The calculator keys must cover what the unit needs (`js/calc.js`; Unit 3 uses `UNIT3_KEYS`).
+   - The calculator keys must cover what the unit needs (`js/calc.js`: set `calcKeys` in the unit file, e.g. `POWER_KEYS`; Unit 3 uses the default `BASIC_KEYS`).
 3. **Glossary terms** (`js/content/glossary.js`):
    - Add an entry for each key term the unit teaches: `sec` = topic id, `card` = index of the Learn card.
    - Write `[[term]]` (or `[[term|shown text]]`) wherever a term is mentioned in a topic **other** than the one

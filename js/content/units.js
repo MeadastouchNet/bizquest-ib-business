@@ -31,6 +31,8 @@ export const UNITS = [
 
 export const BUILT = UNITS.filter(u => u.sections);
 export const SECTIONS = BUILT.flatMap(u => u.sections.map(s => Object.assign(s, { unit: u.id })));
+// Each question gets its unit's calculator keys (js/calc.js), if the unit sets `calcKeys`.
+for (const u of BUILT) if (u.calcKeys) for (const s of u.sections) for (const q of s.quiz) q.calcKeys = u.calcKeys;
 export const findSection = id => SECTIONS.find(s => s.id === id);
 export const findUnit = id => UNITS.find(u => u.id === id);
 /** Built section or planned topic for an id like "3.4" or "1.2", with its unit. */

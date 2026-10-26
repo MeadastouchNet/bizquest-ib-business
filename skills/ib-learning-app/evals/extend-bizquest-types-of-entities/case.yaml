@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: extend-bizquest-types-of-entities
+expected_outcome: |
+  A new js/content/unit1.js with a complete 1.2 topic (the other unit 1 topics still listed as planned),
+  registered in js/content/units.js. The glossary entries for sole trader and company now point at the
+  right 1.2 Learn cards, terms mentioned elsewhere are tagged with [[...]], docs/ROADMAP.md is updated,
+  the validator passes, Unit 3 still works, and the work is committed but not pushed.
+context:
+  scaffold_script: place-files.sh

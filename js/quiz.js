@@ -106,7 +106,7 @@ export function renderQuestion(el, q, { meta = '', onAnswer, done } = {}) {
     });
     wrap.append(...buttons);
     el.append(wrap);
-    if (q.cmd === 'Calculate') el.append(calculator(blanks.cells.length ? { useAnswer: insertResult } : {}));
+    if (q.cmd === 'Calculate') el.append(calculator({ keys: q.calcKeys, useAnswer: blanks.cells.length ? insertResult : undefined }));
   } else if (q.type === 'num') {
     // If a table has the answer cell, that cell is the answer box.
     const finalCell = blanks.cells.find(c => c.final);
@@ -129,7 +129,7 @@ export function renderQuestion(el, q, { meta = '', onAnswer, done } = {}) {
     el.append(finalCell
       ? h('div', { class: 'num-input', style: 'margin-top:12px' }, check, h('span', { class: 'muted small' }, 'Fill in the ? cells, then check.'))
       : h('div', { class: 'num-input' }, input, q.unit ? h('span', { class: 'muted' }, q.unit) : null, check),
-      h('div', {}, hint, hintBox), calculator({ useAnswer: insertResult }));
+      h('div', {}, hint, hintBox), calculator({ keys: q.calcKeys, useAnswer: insertResult }));
     setTimeout(() => (blanks.cells[0]?.input || input).focus(), 50);
   } else if (q.type === 'sort') {
     el.append(sortWidget(q, ok => finish(ok, ok ? '' : 'Wrong ones are in red; the right bucket is shown in green.')));

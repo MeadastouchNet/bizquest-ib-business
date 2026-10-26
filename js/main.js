@@ -6,6 +6,7 @@ import * as store from './store.js';
 import { UNITS, BUILT, SECTIONS, findSection, findUnit } from './content/units.js';
 import { typeset, fitFormulas } from './tex.js';
 import { linkTerms } from './terms.js';
+import { APP } from './config.js';
 
 const STEPS = [
   { key: 'hook', label: '👋 Hook' },
@@ -112,7 +113,7 @@ function unitView(u) {
   const head = [h('a', { href: '#/', class: 'muted small' }, '← Home'), h('h1', { style: 'margin-top:6px' }, `${u.emoji} Unit ${u.id} · ${u.title}`)];
   if (!u.sections) {
     app.replaceChildren(...head,
-      h('p', { class: 'muted' }, "This unit isn't in BizQuest yet. These are the topics it will cover:"),
+      h('p', { class: 'muted' }, `This unit isn't in ${APP.name} yet. These are the topics it will cover:`),
       h('div', { class: 'grid' }, u.planned.map(t => h('div', { class: 'tile soon' },
         h('div', { class: 'num' }, t.id, hlTag(t)), h('h3', {}, t.title), h('div', { class: 'muted small' }, 'Coming soon')))));
     return;
@@ -423,7 +424,7 @@ function settingsView() {
       toggle('autoRead', 'Read every card aloud automatically'),
       h('div', { class: 'slider' }, h('label', {}, 'Voice'), voiceSel),
       ui_rate(st),
-      h('button', { class: 'btn ghost small', onclick: () => speak('Profit is not the same as cash. Remember that and you are already ahead of half the class.') }, '🔊 Test voice'),
+      h('button', { class: 'btn ghost small', onclick: () => speak(APP.voiceTest) }, '🔊 Test voice'),
       h('div', { class: 'slider', style: 'margin-top:16px' }, h('label', {}, 'Theme'), theme)));
 }
 function ui_rate(st) {
@@ -466,7 +467,7 @@ function statsView() {
   const exportBtn = h('button', { class: 'btn ghost small' }, '⬇ Export progress');
   exportBtn.onclick = () => {
     const blob = new Blob([store.exportJSON()], { type: 'application/json' });
-    const a = h('a', { href: URL.createObjectURL(blob), download: `bizquest-progress-${store.today()}.json` });
+    const a = h('a', { href: URL.createObjectURL(blob), download: `${APP.name.toLowerCase()}-progress-${store.today()}.json` });
     a.click();
   };
   const importInput = h('input', { type: 'file', accept: 'application/json', class: 'hidden' });
@@ -504,6 +505,10 @@ new MutationObserver(() => {
   setTimeout(() => { typesetQueued = false; linkTerms(app); typeset(app); });
 }).observe(app, { childList: true, subtree: true });
 addEventListener('resize', () => fitFormulas(app));
+
+// Brand from js/config.js (index.html carries the same values for the first paint).
+document.title = `${APP.name} · ${APP.course}`;
+document.querySelector('.brand').replaceChildren(h('span', { class: 'brand-icon' }, APP.icon), ` ${APP.name}`);
 
 applyTheme();
 route();

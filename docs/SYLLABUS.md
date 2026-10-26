@@ -20,6 +20,24 @@ available). Planned units list their topic titles in `js/content/units.js`; thos
 
 HL: all of Unit 1 is treated as SL and HL (no HL-only parts). From memory.
 
+## Unit 2: Human resource management (built 2026-10-26)
+
+| Topic | Content points | Status |
+|---|---|---|
+| 2.1 Introduction to human resource management | Role of HRM; workforce (human resource) planning; labour turnover (formula); internal and external factors that influence HR planning (demographic change, labour mobility, technology, new work patterns incl. teleworking, flexitime, gig economy, laws) | from memory |
+| 2.1 | Recruitment (internal/external), training (induction, on-the-job, off-the-job; cognitive and behavioural), appraisal (formative, summative, 360-degree, self), dismissal and redundancy; outsourcing, offshoring and reshoring | from memory: may sit in a different topic, or be reduced, in the 2024 guide |
+| 2.1 (HL) | Reasons for resistance to change in the workplace; HR strategies for reducing the impact of change and resistance to change | from memory |
+| 2.2 Organizational structure | Delegation, span of control, levels of hierarchy, chain of command, centralization and decentralization, delayering, bureaucracy; flat and tall structures; structures by function, product and region | from memory |
+| 2.2 (HL) | Matrix structure; project-based organization | from memory. Handy's shamrock organization is not included (thought to be removed in the 2024 guide) |
+| 2.3 Leadership and management | Key functions of management (Fayol); management vs leadership; autocratic, paternalistic, democratic, laissez-faire and situational leadership | from memory |
+| 2.4 Motivation and demotivation | Motivation theories: Taylor, Maslow, Herzberg; financial rewards (salary, wages: time and piece rates, commission, profit-related pay, performance-related pay, employee share ownership, fringe payments); non-financial rewards (job enrichment, job enlargement, job rotation, empowerment, purpose, teamwork) | from memory |
+| 2.4 (HL) | McClelland's acquired needs; Deci and Ryan's self-determination theory; Adams' equity theory; Vroom's expectancy theory | from memory |
+| 2.5 Organizational (corporate) culture (HL) | Meaning and dimensions of culture; types of culture (Handy's four types used as the model); reasons for and consequences of culture clashes; how individuals influence culture and culture influences individuals | from memory |
+| 2.6 Communication | Formal and informal communication; methods (written, oral, non-verbal, visual, digital); barriers to communication and how to overcome them | from memory |
+| 2.7 Industrial/employee relations (HL) | Employee and employer representatives; sources of conflict; approaches by employees (collective bargaining, work-to-rule, go-slow, overtime ban, strike) and employers (collective bargaining, threats, changes to contracts, lockout, closure); conflict resolution (conciliation, arbitration, employee participation and industrial democracy, no-strike agreement, single-union agreement) | from memory |
+
+HL tagging: 2.1, 2.2 and 2.4 are SL and HL with HL-only parts; 2.5 and 2.7 are HL only. From memory.
+
 ## Unit 3: Finance and accounts (built 2026-10-26)
 
 Topics 3.1–3.9 as listed in `js/content/unit3.js`; HL-only parts are tagged there. All from memory.

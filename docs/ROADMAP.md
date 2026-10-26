@@ -1,6 +1,6 @@
 # Roadmap: adding the other units
 
-BizQuest already knows about all five units. Units 1 and 3 are built; Units 2, 4 and 5 show on the home page as
+BizQuest already knows about all five units. Units 1, 2 and 3 are built; Units 4 and 5 show on the home page as
 "coming soon", with their planned topics listed in [`js/content/units.js`](../js/content/units.js).
 
 ## Checklist for each new unit
@@ -30,13 +30,11 @@ the definition in `glossary.js`.
 
 | Term | Taught in | Mentioned in |
 |---|---|---|
-| span of control | 2.2 Organizational structure | 1.5 |
-| motivation | 2.4 Motivation and demotivation | 1.5, 3.9 |
 | market share | 4.1 Introduction to marketing | 1.3, 1.5 |
 | just-in-time (JIT) | 5.3 Lean management and quality management (HL) | 3.6 |
 | break-even | 5.5 Break-even analysis | 3.3 |
 
-Also worth tagging once their units exist: *delegation* (Unit 2); *marketing mix*, *pricing strategies* (Unit 4);
-*capacity utilization*, *quality control* (Unit 5). When Unit 2 is built, tag *stakeholders*, *mission statement*
-and *corporate social responsibility* where they come up (Unit 1 teaches them); when Unit 4 is built, tag
+Also worth tagging once their units exist: *marketing mix*, *pricing strategies* (Unit 4);
+*capacity utilization*, *quality control* (Unit 5); in Unit 5, tag Unit 2's *outsourcing*, *offshoring*, *reshoring*,
+*labour turnover*, *training* terms and *resistance to change* where they come up. When Unit 4 is built, tag
 *multinational company*, *globalization* and *economies of scale* in 4.6 International marketing.

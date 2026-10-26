@@ -1,7 +1,8 @@
 # BizQuest: IB Business Management HL
 
 An interactive study app for IB Business Management (HL), built for a smart-but-busy 17-year-old.
-Built so far: **Unit 1: Introduction to business management** (1.1–1.6) and **Unit 3: Finance and accounts** (3.1–3.9).
+Built so far: **Unit 1: Introduction to business management** (1.1–1.6), **Unit 2: Human resource management** (2.1–2.7)
+and **Unit 3: Finance and accounts** (3.1–3.9).
 
 Each topic is a ~10-minute "mission":
 
@@ -15,7 +16,8 @@ Each topic is a ~10-minute "mission":
 Plus **Review** (spaced repetition, mixed topics), a **Boss Battle**, a **formula sheet** and **Usage stats**.
 
 A running case, **SoleFlip** (two 17-year-olds reselling and customising sneakers), connects all the topics.
-Unit 1 tells how it started (sole trader → partnership → Ltd); the same SoleFlip Ltd accounts are used from 3.4 to 3.6.
+Unit 1 tells how it started (sole trader → partnership → Ltd); Unit 2 follows its first ~20 staff (hiring, structure,
+leadership, pay, culture, a union dispute); the same SoleFlip Ltd accounts are used from 3.4 to 3.6.
 
 Why it is designed this way: see [docs/LEARNING-DESIGN.md](docs/LEARNING-DESIGN.md).
 How to add the other units: see [docs/ROADMAP.md](docs/ROADMAP.md).
@@ -34,7 +36,7 @@ Then open http://localhost:8765.
 
 | Path | What |
 |---|---|
-| `js/content/unit1.js`, `unit3.js` | All content per unit: cards, worked examples, quizzes, formulas |
+| `js/content/unit1.js`, `unit2.js`, `unit3.js` | All content per unit: cards, worked examples, quizzes, formulas |
 | `js/labs.js` | The interactive labs |
 | `js/quiz.js` | Quiz engine (multiple choice, true/false, numeric, sort) |
 | `js/store.js` | Progress, XP, streaks, spaced repetition (localStorage) |

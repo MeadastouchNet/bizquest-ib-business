@@ -4,6 +4,7 @@
 // To add a unit: create js/content/unitN.js in the same shape as unit3.js and replace its entry here.
 // Check the planned topic titles against the official guide when building each unit.
 import { unit1 } from './unit1.js';
+import { unit2 } from './unit2.js';
 import { unit3 } from './unit3.js';
 
 const planned = (id, title, emoji, topics) => ({
@@ -13,10 +14,7 @@ const planned = (id, title, emoji, topics) => ({
 
 export const UNITS = [
   unit1,
-  planned('2', 'Human resource management', '👥', [
-    ['2.1', 'Introduction to human resource management'], ['2.2', 'Organizational structure'], ['2.3', 'Leadership and management'],
-    ['2.4', 'Motivation and demotivation'], ['2.5', 'Organizational (corporate) culture', true], ['2.6', 'Communication'],
-    ['2.7', 'Industrial/employee relations', true]]),
+  unit2,
   unit3,
   planned('4', 'Marketing', '📣', [
     ['4.1', 'Introduction to marketing'], ['4.2', 'Marketing planning'], ['4.3', 'Sales forecasting', true],

@@ -514,6 +514,85 @@ const LABS = {
         inputs.map(x => h('tr', {}, h('td', {}, x.r.item), h('td', {}, x.r.budget.toLocaleString('en-US')), h('td', {}, x.r.actual.toLocaleString('en-US')),
           h('td', {}, x.amt), h('td', {}, x.sel), h('td', {}, x.mark))))),
       check, result);
+  },
+
+  // ------------------------------------------------------------ 2.2 span of control and levels of hierarchy
+  structure(el, lab, onWin) {
+    const s = { n: 40, span: 3 };
+    const kpis = h('div', { class: 'kpis' });
+    const chart = h('div', { class: 'pyramid' });
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'With <b>40 staff</b>, make a <b>flat</b> structure: no more than 3 levels of hierarchy.',
+      'Keep 40 staff in 3 levels, using the <b>narrowest</b> span of control that still works.',
+      'With <b>120 staff</b>, find the smallest span of control that fits them into <b>4 levels</b>.'
+    ], onWin);
+    // Fill the hierarchy from the top: level k holds at most span^k people.
+    const layers = (n, span) => {
+      const out = [];
+      for (let left = n, k = 0; left > 0; k++) { const c = Math.min(span ** k, left); out.push(c); left -= c; }
+      return out;
+    };
+    const update = () => {
+      const ls = layers(s.n, s.span), levels = ls.length;
+      // Managers = everyone in the levels above the bottom one who has someone reporting to them.
+      let managers = 0;
+      for (let k = 0; k < levels - 1; k++) managers += k < levels - 2 ? ls[k] : Math.ceil(ls[k + 1] / s.span);
+      kpis.replaceChildren(kpi(levels, 'Levels of hierarchy', levels <= 3 ? 'good' : levels >= 5 ? 'bad' : 'warn'),
+        kpi(managers, 'People managing others'), kpi(`${Math.round(600 / s.span)} min`, 'Weekly time a manager has per direct report'));
+      const max = Math.max(...ls);
+      chart.replaceChildren(...ls.map((c, k) => h('div', { class: 'pyr-row' },
+        h('span', { class: 'pyr-l' }, `L${k + 1}`),
+        h('div', { class: 'pyr-track' }, h('span', { style: `width:${Math.max(4, c / max * 100)}%` })),
+        h('span', { class: 'pyr-n' }, c))));
+      note.innerHTML = levels >= 5
+        ? '<b>Tall structure:</b> narrow spans, close supervision and clear promotion steps, but messages pass through many levels and decisions are slow.'
+        : levels <= 3
+          ? '<b>Flat structure:</b> short chain of command and fast communication, but each manager has many direct reports, so staff need to work without close supervision.'
+          : 'Somewhere in between. Change the span and watch the number of levels and managers.';
+      challenges.check([s.n === 40 && levels <= 3, s.n === 40 && levels === 3 && s.span === 6, s.n === 120 && levels === 4 && s.span === 5]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Design SoleFlip\'s hierarchy'}`),
+      h('p', { class: 'muted' }, 'Choose how many staff SoleFlip has and how many people report to each manager. Each manager has about 10 hours a week for their team.'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, slider({ label: 'Staff (including Noah at the top)', min: 10, max: 120, step: 5, value: s.n, oninput: v => { s.n = v; update(); } }),
+          slider({ label: 'Span of control', min: 2, max: 10, value: s.span, oninput: v => { s.span = v; update(); } }), kpis),
+        h('div', {}, chart, note)));
+    update();
+  },
+
+  // ------------------------------------------------------------ 2.4 time rate vs piece rate
+  payschemes(el, lab, onWin) {
+    const HOURS = 30, RATE = 20, TIME_PAY = HOURS * RATE;   // time rate: $20 an hour for a 30-hour week
+    const s = { pairs: 50, piece: 8 };
+    const kpis = h('div', { class: 'kpis' });
+    const chartBox = h('div');
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'At <b>$8 a pair</b>, find the weekly output where piece rate pays Omar <b>exactly the same</b> as time rate.',
+      'Omar makes <b>100 pairs</b> a week. Set a piece rate that pays him <b>at least $50 more</b> than time rate, while SoleFlip\'s labour cost stays at <b>$7 a pair or less</b>.'
+    ], onWin);
+    const update = () => {
+      const piecePay = s.pairs * s.piece, diff = piecePay - TIME_PAY;
+      kpis.replaceChildren(kpi(money(TIME_PAY), 'Time rate pay (30 h × $20)'), kpi(money(piecePay), 'Piece rate pay', diff >= 0 ? 'good' : 'bad'),
+        kpi(money(TIME_PAY / s.pairs, 2), 'Labour cost per pair on time rate'), kpi(money(s.piece, 2), 'Labour cost per pair on piece rate'));
+      chartBox.replaceChildren(barChart([
+        { label: 'Time rate', value: TIME_PAY, color: 'var(--chart-3)' },
+        { label: 'Piece rate', value: piecePay, color: 'var(--chart-1)' }], { showValues: true, title: 'Omar\'s weekly pay' }));
+      note.innerHTML = diff > 0
+        ? `Piece rate pays <b>${money(diff)} more</b>. Fast workers love it, but watch out: rushing can hurt quality, and pay drops if there is no work.`
+        : diff < 0
+          ? `Time rate pays <b>${money(-diff)} more</b>. Time rate is safer for Omar and better for careful work, but it doesn't reward extra effort.`
+          : 'Both schemes pay the same at this output.';
+      challenges.check([s.piece === 8 && piecePay === TIME_PAY, s.pairs === 100 && diff >= 50 && s.piece <= 7]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Time rate or piece rate?'}`),
+      h('p', { class: 'muted' }, 'Omar customises sneakers. Compare paying him by the hour with paying him per pair finished.'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, slider({ label: 'Pairs finished per week', min: 20, max: 120, step: 5, value: s.pairs, oninput: v => { s.pairs = v; update(); } }),
+          slider({ label: 'Piece rate per pair', min: 4, max: 15, step: 0.5, value: s.piece, fmt: v => money(v, 2), oninput: v => { s.piece = v; update(); } }), kpis),
+        h('div', {}, chartBox, note)));
+    update();
   }
 };
 

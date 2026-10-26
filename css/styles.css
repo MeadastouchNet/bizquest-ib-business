@@ -194,6 +194,12 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
 .kpi .v { font: 700 1.3rem "Space Grotesk"; }
 .kpi .l { font-size: .78rem; color: var(--muted); }
 .kpi.good .v { color: var(--good); } .kpi.bad .v { color: var(--bad); } .kpi.warn .v { color: var(--warn); }
+.pyramid { display: grid; gap: 6px; margin-bottom: 10px; }
+.pyr-row { display: grid; grid-template-columns: 30px 1fr 40px; align-items: center; gap: 8px; font-size: .85rem; }
+.pyr-l { color: var(--muted); }
+.pyr-track { display: flex; justify-content: center; }
+.pyr-track > span { display: block; height: 18px; border-radius: 6px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .3s; }
+.pyr-n { font-weight: 700; text-align: right; }
 .chart { width: 100%; height: auto; display: block; }
 .chart text { fill: var(--muted); font: 11px Inter; }
 .chart .axis { stroke: var(--line); }

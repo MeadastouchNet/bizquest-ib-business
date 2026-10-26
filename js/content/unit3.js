@@ -630,7 +630,7 @@ export const unit3 = {
           <p><b>Cost centre</b>: a part of the business where <b>costs</b> are recorded, but it doesn't earn revenue itself. E.g. the HR department, IT, a warehouse.</p>
           <p><b>Profit centre</b>: a part of the business that has <b>both costs and revenue</b>, so you can work out its profit. E.g. a single store, a product line.</p>
           <div class="example">${sf}: the online shop, the pop-up store and the custom-design service are profit centres. The Instagram/marketing team is a cost centre.</div>
-          <p>✅ Managers can see which parts perform, it motivates and gives responsibility. ❌ Sharing overheads between centres can be unfair, and centres may compete instead of cooperating.</p>` },
+          <p>✅ Managers can see which parts perform, it [[motivation|motivates]] and gives responsibility ([[delegation]]). ❌ Sharing overheads between centres can be unfair, and centres may compete instead of cooperating.</p>` },
         { title: 'Variances', html: `
           ${F`\text{Variance} = \text{actual figure} - \text{budgeted figure}`}
           <p><b>Favourable (F)</b>: better for profit than planned. <b>Adverse (A)</b>: worse for profit than planned.</p>

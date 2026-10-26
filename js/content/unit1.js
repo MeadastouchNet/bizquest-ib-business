@@ -374,7 +374,7 @@ export const unit1 = {
         intro: `<p><b>Question:</b> ${sf} Ltd plans to move its workshop to a bigger, cheaper unit 25 km outside Copenhagen. It would save $8,000 a year in rent. <i>Analyse</i> how two stakeholder groups might be affected. [6 marks]</p>`,
         steps: [
           { prompt: 'Which stakeholders gain?', answer: '<b>Shareholders</b>: $8,000 a year lower costs means higher profit and possibly bigger [[dividends]].' },
-          { prompt: 'Which stakeholders lose?', answer: '<b>Employees</b>: a longer commute, possibly without a car. Some may quit, and SoleFlip would have to recruit and train replacements.' },
+          { prompt: 'Which stakeholders lose?', answer: '<b>Employees</b>: a longer commute, possibly without a car. Some may quit, and SoleFlip would have to [[recruitment|recruit]] and train replacements.' },
           { prompt: 'Is there a knock-on effect on another group?', answer: '<b>Customers</b> who drop off sneakers in person may find it less convenient, so sales could fall and cancel out part of the $8,000 saving.' },
           { prompt: 'How could the conflict be reduced?', answer: 'Keep a small drop-off point in the city, offer a travel allowance to staff, and explain the move early.' }
         ],
@@ -424,7 +424,7 @@ export const unit1 = {
           <p><b>External</b> economies of scale come from the growth of the whole <b>industry</b> in an area: a pool of skilled workers, specialist suppliers nearby, better roads. Example: the many wind-energy firms in Denmark. <b>External diseconomies</b> are the downsides of that growth, e.g. traffic congestion and rising rents and wages.</p>` },
         { title: 'Internal (organic) growth', html: `
           <p><b>Internal (organic) growth</b> is when a business grows using its own resources: selling more, launching new products, opening new stores, entering new markets.</p>
-          <ul><li>✅ Lower risk, keeps control and culture, often financed by [[retained profit]].</li>
+          <ul><li>✅ Lower risk, keeps control and [[organizational culture|culture]], often financed by [[retained profit]].</li>
               <li>❌ Slow, and limited by how much the business itself earns or can borrow.</li></ul>
           <div class="example">${sf} opening its own second store in Aarhus, paid for out of profit, is organic growth.</div>` },
         { title: 'External growth (1): mergers, acquisitions, takeovers', html: `
@@ -432,7 +432,7 @@ export const unit1 = {
           <ul><li><b>Merger</b>: two businesses agree to join and form one new business.</li>
               <li><b>Acquisition</b>: one business buys a controlling stake (over 50% of the shares) in another, with agreement.</li>
               <li><b>Takeover</b>: an acquisition the target's managers <b>don't</b> agree to (hostile).</li></ul>
-          <p>✅ Instant growth, market share, new skills, products and markets. ❌ Expensive, culture clashes, job losses and conflicts, and many deals fail to bring the hoped-for benefits.</p>` },
+          <p>✅ Instant growth, market share, new skills, products and markets. ❌ Expensive, [[culture clash|culture clashes]], job losses and conflicts, and many deals fail to bring the hoped-for benefits.</p>` },
         { title: 'External growth (2): joint ventures, alliances, franchising', html: `
           <ul><li><b>Joint venture</b>: two or more businesses create a <b>new, separate</b> business that they own together, sharing costs, risks and profits. E.g. Sony Honda Mobility for electric cars.</li>
               <li><b>Strategic alliance</b>: businesses agree to cooperate (share resources, knowledge or customers) but <b>no new business is created</b> and each stays independent. E.g. airline alliances like Star Alliance.</li>

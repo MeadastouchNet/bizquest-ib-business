@@ -10,7 +10,7 @@ export const LEVELS = [
 export const XP_PER_LEVEL = 250;
 
 const fresh = () => ({
-  xp: 0, days: {}, sections: {}, cards: {}, explains: {}, ratings: {}, log: [], boss: { best: null },
+  xp: 0, days: {}, sections: {}, cards: {}, explains: {}, ratings: {}, log: [], boss: { byUnit: {} },
   settings: { autoRead: false, sound: true, rate: 1, voice: '', theme: 'auto' }
 });
 
@@ -113,6 +113,13 @@ export function mastery(sectionId, questionIds) {
   if (!questionIds.length) return 0;
   const sum = questionIds.reduce((a, id) => a + (state.cards[id] ? (state.cards[id].box - 1) / 4 : 0), 0);
   return sum / questionIds.length;
+}
+
+/** Best Boss Battle score per unit id ('all' = every built unit). Migrates the old single Unit 3 record. */
+export function bossBests() {
+  const b = state.boss;
+  if (!b.byUnit) { b.byUnit = b.best ? { 3: b.best } : {}; delete b.best; save(); }
+  return b.byUnit;
 }
 
 export function setSetting(k, v) { state.settings[k] = v; save(); }

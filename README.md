@@ -18,6 +18,7 @@ A running case, **SoleFlip** (two 17-year-olds reselling and customising sneaker
 The same SoleFlip accounts are used from 3.4 to 3.6.
 
 Why it is designed this way: see [docs/LEARNING-DESIGN.md](docs/LEARNING-DESIGN.md).
+How to add the other units: see [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## Run it
 
@@ -39,6 +40,6 @@ Then open http://localhost:8765.
 | `js/store.js` | Progress, XP, streaks, spaced repetition (localStorage) |
 | `js/main.js` | Pages: home, lesson, review, boss, formulas, parent, settings |
 
-To add a unit, create `js/content/unitN.js` in the same shape and add it to `UNITS` in `js/main.js`.
+To add a unit, follow the checklist in [docs/ROADMAP.md](docs/ROADMAP.md) (content file, `js/content/units.js`, glossary terms).
 
 Progress is stored only in the browser of the device being used.

@@ -19,8 +19,9 @@ const tbl = (head, rows) => '<div class="table-wrap"><table class="fin qtable">'
   + '</table></div>';
 
 export const unit3 = {
-  id: 'u3',
-  title: 'Unit 3 · Finance and accounts',
+  id: '3',
+  title: 'Finance and accounts',
+  emoji: '💰',
   blurb: 'Meet SoleFlip: Noah and Freja (both 17) clean, customise and resell sneakers. It started on Vinted and Instagram. Now they want a pop-up store, a laser machine and maybe investors. You are their finance brain for the whole unit.',
   sections: [
     // ------------------------------------------------------------------ 3.1
@@ -36,15 +37,15 @@ export const unit3 = {
               <li><b>Growing</b>: a new shop, a new machine, a new market.</li></ul>
           <div class="example">${sf} started with Noah's $400 savings for cleaning kits. Now they need about $20,000 for a laser-engraving machine, and money to pay for stock before customers pay them.</div>` },
         { title: 'Capital expenditure (CapEx)', html: `
-          <p><b>Capital expenditure</b> is spending on <b>non-current (fixed) assets</b>: things the business keeps and uses for <b>more than one year</b>.</p>
+          <p><b>Capital expenditure</b> is spending on <b>[[non-current assets|non-current (fixed) assets]]</b>: things the business keeps and uses for <b>more than one year</b>.</p>
           <p>Examples: buildings, machines, vehicles, computers, shop fittings. Also intangible assets like buying a patent or a brand.</p>
           <div class="example">${sf} buys a $900 sneaker-cleaning station and a $1,500 laptop for design work. Both will be used for years, so this is capital expenditure.</div>
-          <p class="muted small">It goes on the <b>balance sheet</b> as an asset, not straight into the costs of one year.</p>` },
+          <p class="muted small">It goes on the <b>[[balance sheet]]</b> as an asset, not straight into the costs of one year.</p>` },
         { title: 'Revenue expenditure (RevEx)', html: `
           <p><b>Revenue expenditure</b> is spending on the <b>day-to-day running</b> of the business. It's used up within the year.</p>
           <p>Examples: wages, rent, electricity, stock, marketing, insurance, repairs and maintenance.</p>
           <div class="example">${sf}'s cleaning fluid, shipping boxes, Instagram ads and the monthly Adobe subscription are all revenue expenditure.</div>
-          <p class="muted small">It goes on the <b>profit and loss account</b> as an expense in the year it happens.</p>` },
+          <p class="muted small">It goes on the <b>[[profit and loss account]]</b> as an expense in the year it happens.</p>` },
         { title: 'The tricky ones', html: `
           <p>Ask yourself: <b>does this create or improve an asset that lasts more than a year?</b></p>
           <ul><li><b>Repairing</b> a broken machine → revenue (it just keeps it working).</li>
@@ -84,7 +85,7 @@ export const unit3 = {
       quiz: [
         { id: '3.1-1', type: 'mcq', cmd: 'Identify', q: 'Which of these is <b>capital expenditure</b>?', options: ['Buying a delivery van', 'Paying staff wages', 'A month of TikTok ads', 'Fuel for the delivery van'], answer: 0, why: 'The van is a non-current asset used for several years. The others are day-to-day running costs.' },
         { id: '3.1-2', type: 'mcq', cmd: 'Identify', q: 'SoleFlip pays $300 to <b>repair</b> its broken cleaning machine. This is…', options: ['Revenue expenditure', 'Capital expenditure', 'Neither: it is an asset', 'Share capital'], answer: 0, why: 'A repair keeps an existing asset working. It doesn\'t create or improve a long-term asset, so it is revenue expenditure.' },
-        { id: '3.1-3', type: 'tf', q: 'Capital expenditure is recorded in full as an expense on the profit and loss account in the year it is spent.', answer: false, why: 'False. Capital expenditure is recorded as a non-current asset on the <b>balance sheet</b> (its cost is then spread over time through depreciation).' },
+        { id: '3.1-3', type: 'tf', q: 'Capital expenditure is recorded in full as an expense on the profit and loss account in the year it is spent.', answer: false, why: 'False. Capital expenditure is recorded as a [[non-current asset]] on the <b>[[balance sheet]]</b> (its cost is then spread over time through [[depreciation]]).' },
         { id: '3.1-4', type: 'sort', q: 'Sort these café purchases.', buckets: ['CapEx', 'RevEx'], items: [
           { t: 'Espresso machine', b: 0 }, { t: 'Coffee beans', b: 1 }, { t: 'Barista wages', b: 1 },
           { t: 'New tables and chairs', b: 0 }, { t: 'Electricity bill', b: 1 }, { t: 'Delivery e-bike', b: 0 }], why: 'Long-lasting assets = CapEx. Things used up or paid regularly = RevEx.' },
@@ -101,12 +102,12 @@ export const unit3 = {
       hook: `Ever watched <b>Dragons' Den</b> / <b>Shark Tank</b> (Løvens Hule)? Founders give away 20% of their company for $100k. Some later regret it badly, and some say it was the best deal they ever made.<br><br>Where money comes from matters as much as how much you get. Today: every way a business can get money, and how to pick the right one.`,
       cards: [
         { title: 'Internal sources: money from inside', html: `
-          <ul><li><b>Personal funds</b>: the owner's own savings. The main source for <b>sole traders</b> starting out.</li>
+          <ul><li><b>Personal funds</b>: the owner's own savings. The main source for <b>[[sole traders]]</b> starting out.</li>
               <li><b>Retained profit</b>: profit kept in the business instead of paid out to owners. Free, no interest, but only if you made a profit.</li>
               <li><b>Sale of assets</b>: selling things you no longer need (an old van, unused equipment). Also <i>sale and leaseback</i>.</li></ul>
           <div class="example">${sf} keeps $6,000 of last year's profit instead of Noah and Freja paying it to themselves. That's retained profit.</div>` },
         { title: 'External sources (1): owners and lenders', html: `
-          <ul><li><b>Share capital</b>: selling shares (part-ownership) in a company. No repayment, but you share profits and control. Only for <b>companies</b>.</li>
+          <ul><li><b>Share capital</b>: selling shares (part-ownership) in a company. No repayment, but you share profits and control. Only for <b>[[companies]]</b>.</li>
               <li><b>Loan capital</b>: borrowing a fixed sum from a bank, repaid with <b>interest</b> over time (e.g. 5 years). A mortgage is a long-term loan secured on property.</li>
               <li><b>Overdraft</b>: the bank lets your account go below zero up to a limit. Flexible and short-term, but expensive interest.</li></ul>
           <div class="example">An overdraft works like a phone plan that lets you keep using data after your credit hits zero and sends you a big bill later.</div>` },
@@ -127,7 +128,7 @@ export const unit3 = {
               <li><b>Amount</b> needed.</li>
               <li><b>Legal structure / size</b>: sole traders can't sell shares.</li>
               <li><b>Control</b>: will the owners lose decision power?</li>
-              <li><b>Existing debt (gearing)</b>: more borrowing is riskier if you already owe a lot.</li></ul>
+              <li><b>Existing debt ([[gearing]])</b>: more borrowing is riskier if you already owe a lot.</li></ul>
           <div class="tip">Strong answers name a source, apply it to the business in the case, and give a judgement, e.g. "A bank loan is most suitable <i>because</i>…, although…".</div>` }
       ],
       labs: [{
@@ -162,7 +163,7 @@ export const unit3 = {
         steps: [
           { prompt: 'What is the money for, and how long is it needed?', answer: 'Fittings and stock for a store that should last years. That calls for <b>long-term</b> finance.' },
           { prompt: 'Can they use internal finance alone?', answer: 'Retained profit ($6,000) covers only part of $35,000. Use it, but more is needed.' },
-          { prompt: 'Another loan or new shares? What\'s the problem with more debt?', answer: 'They already owe $15,000, so more borrowing raises <b>gearing</b> and interest costs. As a Ltd company they can sell <b>shares</b> (for example to family or a business angel), which needs no repayment.' },
+          { prompt: 'Another loan or new shares? What\'s the problem with more debt?', answer: 'They already owe $15,000, so more borrowing raises <b>[[gearing]]</b> and interest costs. As a [[company|Ltd company]] they can sell <b>shares</b> (for example to family or a business angel), which needs no repayment.' },
           { prompt: 'Make a judgement.', answer: '"I recommend <b>$6,000 retained profit + $29,000 share capital</b>, because it avoids more interest on top of the existing loan. However, Noah and Freja would share control and future profits, so they should keep a majority (over 50%) of shares."' }
         ],
         takeaway: 'Name it → apply it to the case → weigh a downside → make a judgement. That structure gets the marks in "recommend" and "evaluate" questions.'
@@ -220,7 +221,7 @@ export const unit3 = {
           { prompt: 'Total variable cost?', answer: 'TVC = $35 × 30 = <b>$1,050</b>' },
           { prompt: 'Total cost?', answer: 'TC = $1,500 + $1,050 = <b>$2,550</b>' },
           { prompt: 'Profit?', answer: 'Profit = $3,600 − $2,550 = <b>$1,050</b>' },
-          { prompt: 'Bonus: each pair adds $120 − $35 = $85 towards fixed costs. How many pairs before they stop making a loss?', answer: '$1,500 ÷ $85 = 17.6 → <b>18 pairs</b>. That is break-even, which you\'ll study in 5.5.' }
+          { prompt: 'Bonus: each pair adds $120 − $35 = $85 towards fixed costs. How many pairs before they stop making a loss?', answer: '$1,500 ÷ $85 = 17.6 → <b>18 pairs</b>. That is [[break-even]], which you\'ll study in 5.5.' }
         ],
         takeaway: 'In "calculate" questions always write the formula, show the working and include units ($). Method marks can save you even if the final number is wrong.'
       },
@@ -246,14 +247,14 @@ export const unit3 = {
       hook: `Why would <b>Taylor Swift</b> re-record six whole albums? Because she didn't own the <i>masters</i> (the copyright of the original recordings), and someone else could profit from them.<br><br>Copyrights, brands and patents are <b>assets</b> even though you can't touch them. Today you'll learn the two documents that show what a business earns and what it owns: the <b>final accounts</b>.`,
       cards: [
         { title: 'Who reads the accounts, and why?', html: `
-          <ul><li><b>Shareholders / investors</b>: is it profitable? Dividends? Worth investing?</li>
+          <ul><li><b>[[shareholders|Shareholders]] / investors</b>: is it profitable? Dividends? Worth investing?</li>
               <li><b>Managers</b>: to plan, set targets and make decisions.</li>
               <li><b>Employees</b>: job security, pay rises.</li>
               <li><b>Banks / lenders</b>: can it repay a loan?</li>
-              <li><b>Suppliers</b>: will we get paid if we give trade credit?</li>
+              <li><b>Suppliers</b>: will we get paid if we give [[trade credit]]?</li>
               <li><b>Government</b>: how much tax is due?</li>
               <li><b>Competitors</b>: how are we doing compared with them?</li></ul>
-          <div class="tip">For questions on stakeholders' use of accounts, link each stakeholder to a <b>specific interest</b>, e.g. "the bank looks at liquidity to judge whether the loan can be repaid".</div>` },
+          <div class="tip">For questions on [[stakeholders]]' use of accounts, link each stakeholder to a <b>specific interest</b>, e.g. "the bank looks at [[liquidity]] to judge whether the loan can be repaid".</div>` },
         { title: 'The profit and loss account (P&L)', html: `
           <p>Shows revenue, costs and profit <b>over a period</b> (usually one year). It's like a video of the year.</p>
           <div class="table-wrap"><table class="fin">
@@ -267,8 +268,8 @@ export const unit3 = {
         { title: 'The balance sheet', html: `
           <p>A <b>snapshot</b> of what a business owns and owes <b>on one day</b>. It's like a photo, not a video.</p>
           <ul><li><b>Assets</b>: what it owns. <b>Non-current</b> (kept over 1 year: machines, vans) and <b>current</b> (cash, debtors, stock).</li>
-              <li><b>Liabilities</b>: what it owes. <b>Current</b> (due within 1 year: overdraft, creditors, short-term loans) and <b>non-current</b> (long-term loans).</li>
-              <li><b>Equity</b>: the owners' money: share capital + retained earnings.</li></ul>
+              <li><b>Liabilities</b>: what it owes. <b>Current</b> (due within 1 year: [[overdraft]], creditors, short-term loans) and <b>non-current</b> (long-term loans).</li>
+              <li><b>Equity</b>: the owners' money: [[share capital]] + retained earnings.</li></ul>
           ${F`\text{Total assets} - \text{total liabilities} = \text{net assets} = \text{total equity}`}
           <p><b>Debtors</b> = customers who owe <i>you</i> money. <b>Creditors</b> = suppliers <i>you</i> owe money.</p>` },
         { title: 'SoleFlip Ltd balance sheet', html: `
@@ -382,7 +383,7 @@ export const unit3 = {
           <p><b>Improve liquidity</b>: sell off excess stock (even at a discount), get long-term finance instead of short-term, sell unused assets, issue shares, cut current liabilities.</p>
           <p><b>Limits</b> of ratio analysis:</p>
           <ul><li>Based on <b>past</b> data. Next year may be different.</li>
-              <li>Balance sheet = <b>one day</b> (stock could be unusually high that day).</li>
+              <li>[[balance sheet|Balance sheet]] = <b>one day</b> (stock could be unusually high that day).</li>
               <li>Only useful <b>compared</b> with something.</li>
               <li>Ignores <b>qualitative</b> factors: staff morale, brand, the economy.</li></ul>
           <div class="tip">In "analyse" questions don't just calculate. Say what the number <i>means</i> for this business and compare it with something (last year, the industry, a benchmark).</div>` }
@@ -407,7 +408,7 @@ export const unit3 = {
         { id: '3.5-4', type: 'num', cmd: 'Calculate', q: 'Current assets $30,000, current liabilities $15,000. Current ratio?', answer: 2, tol: 0.01, display: '2 (or 2:1)', why: '30,000 ÷ 15,000 = 2.' },
         { id: '3.5-5', type: 'num', cmd: 'Calculate', q: 'What is the <b>acid-test ratio</b> (2 dp)?' + tbl(['', '$'], [['Current assets', '30,000'], ['…of which stock', '16,000'], ['Current liabilities', '15,000']]), answer: 0.93, tol: 0.01, display: '0.93', why: '(30,000 − 16,000) ÷ 15,000 = 0.93.' },
         { id: '3.5-6', type: 'mcq', cmd: 'Explain', q: 'Why does the acid-test ratio leave out stock?', options: ['Stock may be hard to turn into cash quickly', 'Stock is a liability', 'Stock is already counted in cash', 'Stock is a non-current asset'], answer: 0, why: 'Stock might not sell soon (or only at a discount), so it is the least liquid current asset.' },
-        { id: '3.5-7', type: 'mcq', q: 'Which action would improve <b>GPM</b>?', options: ['Switching to a cheaper supplier of sneakers', 'Cutting the marketing budget', 'Taking out a bank loan', 'Chasing debtors to pay faster'], answer: 0, why: 'GPM only depends on revenue and cost of sales. Marketing is an expense, so cutting it improves the profit margin, not GPM.' },
+        { id: '3.5-7', type: 'mcq', q: 'Which action would improve <b>GPM</b>?', options: ['Switching to a cheaper supplier of sneakers', 'Cutting the marketing budget', 'Taking out a bank loan', 'Chasing debtors to pay faster'], answer: 0, why: 'GPM only depends on revenue and [[cost of sales]]. Marketing is an expense, so cutting it improves the profit margin, not GPM.' },
         { id: '3.5-8', type: 'tf', q: 'A current ratio of 5 is always a great sign.', answer: false, why: 'False. It may mean too much idle cash or stock that could be invested to earn more.' },
         { id: '3.5-9', type: 'mcq', q: 'SoleFlip collects $3,000 from debtors (they pay what they owe). What happens to the current ratio?', options: ['Stays the same', 'Rises', 'Falls', 'Becomes zero'], answer: 0, why: 'Debtors fall by $3,000 and cash rises by $3,000. Both are current assets, so the total doesn\'t change. Try it in the lab!' }
       ],
@@ -439,14 +440,14 @@ export const unit3 = {
           <ul><li><b>Above 50%</b>: highly geared. Lots of interest to pay, risky if interest rates rise or sales drop.</li>
               <li><b>Below 25%</b>: low gearing. Safe, but maybe too cautious about growth.</li></ul>
           <div class="example">${sf}: 45,000 ÷ 135,000 × 100 = <b>33.3%</b>. Moderate.</div>
-          <p><b>Reduce gearing</b>: issue shares, use retained profit, repay loans.</p>` },
+          <p><b>Reduce gearing</b>: issue shares, use [[retained profit]], repay loans.</p>` },
         { title: 'Improving efficiency', html: `
-          <ul><li><b>Stock turnover</b>: just-in-time (JIT) ordering, sell slow-moving stock at a discount, stock fewer product lines.</li>
+          <ul><li><b>Stock turnover</b>: [[just-in-time|just-in-time (JIT)]] ordering, sell slow-moving stock at a discount, stock fewer product lines.</li>
               <li><b>Debtor days</b>: shorter credit terms, discounts for early payment, chase late payers, <b>debt factoring</b> (sell your debts to a factoring company for cash now, minus a fee).</li>
               <li><b>Creditor days</b>: negotiate longer payment terms with suppliers, without damaging the relationship.</li></ul>` },
         { title: 'Insolvency vs bankruptcy', html: `
           <p><b>Insolvency</b> is a <b>financial situation</b>: the business (or person) can't pay its debts when they are due.</p>
-          <p><b>Bankruptcy</b> is a <b>legal process</b>: a court officially declares an <i>individual</i> unable to pay, and their assets are sold to repay creditors. For companies, the equivalent is usually called <b>liquidation</b>.</p>
+          <p><b>Bankruptcy</b> is a <b>legal process</b>: a court officially declares an <i>individual</i> unable to pay, and their assets are sold to repay creditors. For [[companies]], the equivalent is usually called <b>liquidation</b>.</p>
           <p>Insolvency can sometimes be fixed (new finance, restructuring). Bankruptcy is the legal end point.</p>
           <div class="tip">Efficiency and gearing ratios are early warning signs. A rising gearing ratio plus rising debtor days is a classic route to insolvency.</div>` }
       ],
@@ -489,9 +490,9 @@ export const unit3 = {
           <p>A profitable business can run out of cash if:</p>
           <ul><li>customers buy on <b>credit</b> and pay later,</li>
               <li>it buys lots of <b>stock</b> before selling it,</li>
-              <li>it spends on big <b>assets</b> (capital expenditure),</li>
+              <li>it spends on big <b>assets</b> ([[capital expenditure]]),</li>
               <li>sales are <b>seasonal</b> (a ski shop in summer).</li></ul>
-          <div class="tip">"Cash is king." Many profitable businesses still go insolvent because the cash ran out first.</div>` },
+          <div class="tip">"Cash is king." Many profitable businesses still go [[insolvent]] because the cash ran out first.</div>` },
         { title: 'Working capital & the working capital cycle', html: `
           ${F`\text{Working capital} = \text{current assets} - \text{current liabilities}`}
           <p>The money available for day-to-day running.</p>
@@ -516,7 +517,7 @@ export const unit3 = {
         { title: 'Fixing cash flow problems', html: `
           <p><b>1. Reduce cash outflows</b>: negotiate longer credit from suppliers, lease instead of buy, cut unnecessary costs, delay big spending.</p>
           <p><b>2. Improve cash inflows</b>: chase debtors, give shorter credit terms, offer discounts for paying cash, run a sale to clear stock, change the product mix.</p>
-          <p><b>3. Get extra finance</b>: overdraft, short-term loan, sell unused assets, debt factoring.</p>
+          <p><b>3. Get extra finance</b>: [[overdraft]], short-term loan, sell unused assets, [[debt factoring]].</p>
           <div class="tip">Each strategy has a downside, e.g. shorter credit terms might push customers to competitors. "Evaluate" answers need that downside.</div>` }
       ],
       labs: [{ type: 'cashflow' }],
@@ -634,7 +635,7 @@ export const unit3 = {
           <ul><li><b>Planning</b>: think ahead about what you'll need.</li>
               <li><b>Control</b>: compare actual with planned and spot problems.</li>
               <li><b>Coordination</b>: departments work towards the same plan.</li>
-              <li><b>Motivation</b>: targets to aim for (if realistic!).</li>
+              <li><b>[[motivation|Motivation]]</b>: targets to aim for (if realistic!).</li>
               <li><b>Accountability</b>: managers are responsible for their budgets.</li></ul>
           <p class="muted small">Limits: a budget can be unrealistic, rigid when things change, or lead to "spend it or lose it" behaviour at year-end.</p>` },
         { title: 'Cost centres vs profit centres', html: `

@@ -3,11 +3,10 @@ import { runQuiz } from './quiz.js';
 import { renderLab } from './labs.js';
 import { speak, stopSpeaking, htmlToSpeech, voices, canSpeak, sfx } from './audio.js';
 import * as store from './store.js';
-import { unit3 } from './content/unit3.js';
+import { UNITS, BUILT, SECTIONS, findSection, findUnit } from './content/units.js';
 import { typeset, fitFormulas } from './tex.js';
+import { linkTerms } from './terms.js';
 
-const UNITS = [unit3];
-const SECTIONS = UNITS.flatMap(u => u.sections);
 const STEPS = [
   { key: 'hook', label: '👋 Hook' },
   { key: 'learn', label: '📖 Learn' },
@@ -17,7 +16,6 @@ const STEPS = [
   { key: 'explain', label: '💬 Explain' }
 ];
 const app = document.getElementById('app');
-const findSection = id => SECTIONS.find(s => s.id === id);
 const questionIndex = new Map(SECTIONS.flatMap(s => s.quiz.map(q => [q.id, { q, sec: s.id }])));
 
 // ---------- theme ----------
@@ -38,13 +36,14 @@ setInterval(() => {
 function route() {
   stopSpeaking();
   const parts = location.hash.replace(/^#\/?/, '').split('/');
-  const [view, a, b] = parts;
+  const [view, a, b, c] = parts;
   window.scrollTo(0, 0);
   if (view === 's' && findSection(a) && b === 'practice') practiceView(findSection(a));
-  else if (view === 's' && findSection(a)) sectionView(findSection(a), b);
+  else if (view === 's' && findSection(a)) sectionView(findSection(a), b, c);
+  else if (view === 'u' && findUnit(a)) unitView(findUnit(a));
   else if (view === 'review') reviewView();
-  else if (view === 'boss') bossView();
-  else if (view === 'formulas') formulasView();
+  else if (view === 'boss') bossView(findUnit(a)?.sections ? findUnit(a) : null);
+  else if (view === 'formulas') formulasView(findUnit(a)?.sections ? findUnit(a) : null);
   else if (view === 'stats' || view === 'parent') statsView();
   else if (view === 'settings') settingsView();
   else homeView();
@@ -57,7 +56,10 @@ addEventListener('hashchange', route);
 function nextAction() {
   const due = store.dueCards().filter(id => questionIndex.has(id));
   if (due.length >= 3) return { href: '#/review', label: `Do my 10 minutes · ${due.length} reviews due`, sub: 'Spaced review first: it locks in what you learned.' };
-  const s = SECTIONS.find(x => !store.section(x.id).done);
+  // Next lesson: keep going in the unit last worked on, then the first unfinished one anywhere.
+  const lastSec = [...store.get().log].reverse().find(l => l.sec && findSection(l.sec))?.sec;
+  const lastUnit = lastSec && findSection(lastSec).unit;
+  const s = SECTIONS.find(x => x.unit === lastUnit && !store.section(x.id).done) || SECTIONS.find(x => !store.section(x.id).done);
   if (s) {
     const st = store.section(s.id).steps;
     const step = STEPS.find(x => !st[x.key])?.key || 'hook';
@@ -85,23 +87,54 @@ function homeView() {
     h('a', { class: 'btn ghost', href: '#/boss' }, '👾 Boss Battle'),
     h('a', { class: 'btn ghost', href: '#/formulas' }, '🧮 Formulas'));
 
-  const units = UNITS.map(u => {
-    const tiles = u.sections.map(s => {
-      const m = store.mastery(s.id, s.quiz.map(q => q.id));
-      const sec = store.section(s.id);
-      return h('a', { class: 'tile', href: `#/s/${s.id}` },
-        h('div', { class: 'num' }, `${s.emoji} ${s.id}`, s.hl === true ? h('span', { class: 'tag' }, 'HL only') : s.hl ? h('span', { class: 'tag' }, 'part HL') : null),
-        h('h3', {}, s.title),
-        h('div', { class: 'bar' }, h('span', { style: `width:${m * 100}%` })),
-        h('div', { class: 'muted small', style: 'margin-top:6px' }, sec.done ? `✅ Done · mastery ${Math.round(m * 100)}% · tap to practise` : Object.keys(sec.steps).length ? '⏳ In progress · tap to continue' : `${s.minutes} min`));
-    });
-    return h('section', {}, h('h2', {}, u.title), h('p', { class: 'muted' }, u.blurb), h('div', { class: 'grid' }, tiles));
+  const units = h('section', {}, h('h2', {}, 'Units'), h('div', { class: 'grid' }, UNITS.map(unitCard)));
+  app.replaceChildren(hero, quick, units);
+}
+
+function unitCard(u) {
+  if (!u.sections) {
+    return h('a', { class: 'tile soon', href: `#/u/${u.id}` },
+      h('div', { class: 'num' }, `${u.emoji} Unit ${u.id}`), h('h3', {}, u.title),
+      h('div', { class: 'muted small' }, `${u.planned.length} topics · coming soon`));
+  }
+  const done = u.sections.filter(s => store.section(s.id).done).length;
+  const m = u.sections.reduce((a, s) => a + store.mastery(s.id, s.quiz.map(q => q.id)), 0) / u.sections.length;
+  return h('a', { class: 'tile', href: `#/u/${u.id}` },
+    h('div', { class: 'num' }, `${u.emoji} Unit ${u.id}`), h('h3', {}, u.title),
+    h('div', { class: 'bar' }, h('span', { style: `width:${m * 100}%` })),
+    h('div', { class: 'muted small', style: 'margin-top:6px' }, `${done}/${u.sections.length} topics done · mastery ${Math.round(m * 100)}%`));
+}
+
+const hlTag = t => t.hl === true ? h('span', { class: 'tag' }, 'HL only') : t.hl ? h('span', { class: 'tag' }, 'part HL') : null;
+
+// ---------- unit page ----------
+function unitView(u) {
+  const head = [h('a', { href: '#/', class: 'muted small' }, '← Home'), h('h1', { style: 'margin-top:6px' }, `${u.emoji} Unit ${u.id} · ${u.title}`)];
+  if (!u.sections) {
+    app.replaceChildren(...head,
+      h('p', { class: 'muted' }, "This unit isn't in BizQuest yet. These are the topics it will cover:"),
+      h('div', { class: 'grid' }, u.planned.map(t => h('div', { class: 'tile soon' },
+        h('div', { class: 'num' }, t.id, hlTag(t)), h('h3', {}, t.title), h('div', { class: 'muted small' }, 'Coming soon')))));
+    return;
+  }
+  const tiles = u.sections.map(s => {
+    const m = store.mastery(s.id, s.quiz.map(q => q.id));
+    const sec = store.section(s.id);
+    return h('a', { class: 'tile', href: `#/s/${s.id}` },
+      h('div', { class: 'num' }, `${s.emoji} ${s.id}`, hlTag(s)),
+      h('h3', {}, s.title),
+      h('div', { class: 'bar' }, h('span', { style: `width:${m * 100}%` })),
+      h('div', { class: 'muted small', style: 'margin-top:6px' }, sec.done ? `✅ Done · mastery ${Math.round(m * 100)}% · tap to practise` : Object.keys(sec.steps).length ? '⏳ In progress · tap to continue' : `${s.minutes} min`));
   });
-  app.replaceChildren(hero, quick, ...units);
+  app.replaceChildren(...head, h('p', { class: 'muted' }, u.blurb),
+    h('div', { class: 'row', style: 'margin-bottom:16px' },
+      h('a', { class: 'btn ghost', href: `#/boss/${u.id}` }, `👾 Unit ${u.id} Boss Battle`),
+      h('a', { class: 'btn ghost', href: `#/formulas/${u.id}` }, `🧮 Unit ${u.id} formulas`)),
+    h('div', { class: 'grid' }, tiles));
 }
 
 // ---------- lesson ----------
-function sectionView(s, stepKey) {
+function sectionView(s, stepKey, startCard) {
   const prog = store.section(s.id);
   if (!stepKey) {
     // Opening a topic: finished → overview; otherwise resume at the first step not done yet.
@@ -115,13 +148,13 @@ function sectionView(s, stepKey) {
   const go = k => { location.hash = `#/s/${s.id}/${k}`; };
   const nextStep = () => {
     store.markStep(s.id, step.key);
-    if (idx < STEPS.length - 1) go(STEPS[idx + 1].key); else location.hash = '#/';
+    if (idx < STEPS.length - 1) go(STEPS[idx + 1].key); else location.hash = `#/u/${s.unit}`;
   };
 
   const stepper = h('nav', { class: 'stepper', 'aria-label': 'Lesson steps' }, STEPS.map((x, i) =>
     h('button', { class: `${i === idx ? 'active' : ''} ${prog.steps[x.key] ? 'done' : ''}`, onclick: () => go(x.key) }, x.label)));
   const head = h('div', {},
-    h('div', { class: 'row small' }, h('a', { href: '#/', class: 'muted' }, '← All topics'),
+    h('div', { class: 'row small' }, h('a', { href: `#/u/${s.unit}`, class: 'muted' }, `← Unit ${s.unit}`),
       prog.done ? h('a', { href: `#/s/${s.id}`, class: 'muted' }, '📋 Topic overview') : null),
     h('h1', { style: 'margin-top:6px' }, `${s.emoji} ${s.id} ${s.title}`, s.hl === true ? h('span', { class: 'tag' }, 'HL only') : null),
     stepper);
@@ -139,7 +172,7 @@ function sectionView(s, stepKey) {
   }
 
   if (step.key === 'learn') {
-    let c = 0;
+    let c = Math.min(Math.max(0, parseInt(startCard, 10) || 0), s.cards.length - 1);
     const holder = h('div');
     const show = () => {
       const card = s.cards[c];
@@ -213,7 +246,7 @@ function sectionView(s, stepKey) {
       prog.done = true;
       store.markStep(s.id, 'explain');
       if (first) { confetti(100); sfx('level'); reward(text.length > 40 ? 70 : 50, `Lesson ${s.id} complete!`); }
-      location.hash = '#/';
+      location.hash = `#/u/${s.unit}`;
     };
     body.append(h('div', { class: 'card' },
       h('h2', {}, '💬 Explain it like you\'re texting a mate'),
@@ -267,7 +300,7 @@ function sectionOverview(s) {
   const boxes = ids.map(id => store.get().cards[id]?.box || 1);
   const strong = boxes.filter(b => b >= 4).length;
   app.replaceChildren(
-    h('a', { href: '#/', class: 'muted small' }, '← All topics'),
+    h('a', { href: `#/u/${s.unit}`, class: 'muted small' }, `← Unit ${s.unit}`),
     h('h1', { style: 'margin-top:6px' }, `${s.emoji} ${s.id} ${s.title}`),
     h('div', { class: 'card hero' },
       h('h2', {}, `✅ Lesson done · mastery ${Math.round(m * 100)}%`),
@@ -327,38 +360,43 @@ function reviewView() {
 }
 
 // ---------- boss battle ----------
-function bossView() {
-  const pool = SECTIONS.flatMap(s => s.quiz.filter(q => q.type !== 'sort').map(q => ({ q, sec: s.id })));
+function bossView(unit) {
+  // A unit's own battle, or (from Home) everything built so far.
+  const key = unit ? unit.id : BUILT.length === 1 ? BUILT[0].id : 'all';
+  const scope = unit ? [unit] : BUILT;
+  const name = scope.length === 1 ? `Unit ${scope[0].id}` : 'All units';
+  const pool = scope.flatMap(u => u.sections).flatMap(s => s.quiz.filter(q => q.type !== 'sort').map(q => ({ q, sec: s.id })));
   const qs = shuffle(pool).slice(0, 15);
-  const best = store.get().boss.best;
+  const bests = store.bossBests();
+  const best = bests[key];
   const start = Date.now();
-  const head = h('div', {}, h('a', { href: '#/', class: 'muted small' }, '← Home'), h('h1', {}, '👾 Boss Battle: Unit 3'),
-    h('p', { class: 'muted' }, `15 mixed questions from all of Unit 3. ${best ? `Your best: ${best.score}/15 in ${best.secs}s.` : 'Set your first record.'}`));
+  const head = h('div', {}, h('a', { href: unit ? `#/u/${unit.id}` : '#/', class: 'muted small' }, unit ? `← Unit ${unit.id}` : '← Home'), h('h1', {}, `👾 Boss Battle: ${name}`),
+    h('p', { class: 'muted' }, `15 mixed questions from ${scope.length === 1 ? `all of Unit ${scope[0].id}` : 'every unit so far'}. ${best ? `Your best: ${best.score}/15 in ${best.secs}s.` : 'Set your first record.'}`));
   const holder = h('div');
   app.replaceChildren(head, holder);
   runQuiz(holder, qs, {
     mode: 'boss', title: 'Boss', xpRight: 12,
     onFinish: ({ right }) => {
       const secs = Math.round((Date.now() - start) / 1000);
-      const b = store.get().boss;
-      const record = !b.best || right > b.best.score || (right === b.best.score && secs < b.best.secs);
-      if (record) { b.best = { score: right, secs }; store.save(); confetti(120); sfx('level'); }
-      store.log('boss', { score: right, secs });
+      const record = !best || right > best.score || (right === best.score && secs < best.secs);
+      if (record) { bests[key] = { score: right, secs }; store.save(); confetti(120); sfx('level'); }
+      store.log('boss', { unit: key, score: right, secs });
       holder.replaceChildren(h('div', { class: 'card hero' }, h('h2', {}, `${right}/15 ${record ? '🏆 New record!' : ''}`),
         h('p', {}, `Time: ${secs}s. ${right >= 12 ? 'Exam ready on this unit.' : right >= 8 ? 'Getting there. Review mode will fix the gaps.' : 'Do the lessons and reviews, then come back for revenge.'}`),
-        h('div', { class: 'row' }, h('a', { class: 'btn', href: '#/boss', onclick: () => setTimeout(route, 0) }, 'Rematch'), h('a', { class: 'btn ghost', href: '#/' }, 'Home'))));
+        h('div', { class: 'row' }, h('a', { class: 'btn', href: location.hash, onclick: () => setTimeout(route, 0) }, 'Rematch'), h('a', { class: 'btn ghost', href: '#/' }, 'Home'))));
     }
   });
 }
 
 // ---------- formulas ----------
-function formulasView() {
-  const rows = UNITS.flatMap(u => u.formulas);
-  app.replaceChildren(h('div', {}, h('a', { href: '#/', class: 'muted small' }, '← Home'), h('h1', {}, '🧮 Formula sheet: Unit 3'),
-    h('p', { class: 'muted' }, 'Every formula you need for Unit 3. Tap 🔊 to hear one read out.')),
-    ...rows.map(g => h('div', { class: 'card' }, h('h2', {}, g.group),
+function formulasView(unit) {
+  const scope = (unit ? [unit] : BUILT).filter(u => u.formulas?.length);
+  app.replaceChildren(h('div', {}, h('a', { href: unit ? `#/u/${unit.id}` : '#/', class: 'muted small' }, unit ? `← Unit ${unit.id}` : '← Home'),
+    h('h1', {}, unit ? `🧮 Formula sheet: Unit ${unit.id}` : '🧮 Formula sheet'),
+    h('p', { class: 'muted' }, 'Every formula you need, by topic. Tap 🔊 to hear one read out.')),
+    ...scope.flatMap(u => [unit ? null : h('h2', { style: 'margin-top:20px' }, `${u.emoji} Unit ${u.id} · ${u.title}`), ...u.formulas.map(g => h('div', { class: 'card' }, h('h2', {}, g.group),
       g.items.map(f => h('div', {}, h('div', { class: 'spread' }, h('b', {}, f.name, f.hl ? h('span', { class: 'tag' }, 'HL') : null), speakButton(f.name + ': ' + f.f)),
-        h('div', { class: 'formula', html: f.f }), f.note ? h('p', { class: 'muted small', html: f.note }) : null)))));
+        h('div', { class: 'formula', html: f.f }), f.note ? h('p', { class: 'muted small', html: f.note }) : null))))]).filter(Boolean));
 }
 
 // ---------- settings ----------
@@ -408,7 +446,7 @@ function statsView() {
   const chart = barChart(days.map(d => ({ label: d.slice(8), value: Math.round((st.days[d]?.ms || 0) / 60000), color: 'var(--chart-2)' })),
     { showValues: true, height: 220, hLines: [{ y: 10, label: '10 min goal', color: 'var(--warn)' }] });
 
-  const rows = SECTIONS.map(s => {
+  const rows = BUILT.flatMap(u => [h('tr', { class: 'head' }, h('td', { colspan: 5 }, `${u.emoji} Unit ${u.id} · ${u.title}`)), ...u.sections.map(s => {
     const p = st.sections[s.id];
     const ft = p?.firstTry;
     const r = st.ratings[s.id];
@@ -418,7 +456,8 @@ function statsView() {
       h('td', {}, ft?.total ? pct(ft.right / ft.total * 100, 0) : '–'),
       h('td', {}, pct(store.mastery(s.id, s.quiz.map(q => q.id)) * 100, 0)),
       h('td', {}, r ? `${['', '😴', '🙂', '🔥'][r.fun] || ''} ${['', 'easy', 'right', 'hard'][r.difficulty] || ''}` : '–'));
-  });
+  })]);
+  const bossBests = Object.entries(store.bossBests());
 
   const wrongs = Object.entries(st.cards).filter(([id, c]) => c.wrong > 0 && questionIndex.has(id))
     .sort((a, b) => b[1].wrong - a[1].wrong).slice(0, 8);
@@ -441,7 +480,7 @@ function statsView() {
     h('div', { class: 'kpis' },
       kpi(`${store.streak()}`, 'day streak'), kpi(`${activeDays}`, 'active days'), kpi(`${totalMin}`, 'minutes total'),
       kpi(`${st.xp}`, `XP · ${store.levelName()}`), kpi(reviewAcc == null ? '–' : pct(reviewAcc, 0), 'review accuracy', reviewAcc == null ? '' : reviewAcc >= 70 ? 'good' : 'warn'),
-      kpi(st.boss.best ? `${st.boss.best.score}/15` : '–', 'Boss best')),
+      kpi(bossBests.length ? bossBests.map(([, b]) => `${b.score}/15`).join(' · ') : '–', bossBests.length ? `Boss best (${bossBests.map(([u]) => u === 'all' ? 'all units' : `Unit ${u}`).join(' · ')})` : 'Boss best')),
     h('div', { class: 'card' }, h('h2', {}, 'Minutes per day (last 14 days)'), chart),
     h('div', { class: 'card' }, h('h2', {}, 'Sections'), h('div', { class: 'table-wrap' }, h('table', { class: 'fin' },
       h('tr', {}, h('th', {}, 'Section'), h('th', {}, 'Done'), h('th', {}, '1st-try'), h('th', {}, 'Mastery'), h('th', {}, 'Rating')), rows)),
@@ -462,7 +501,7 @@ let typesetQueued = false;
 new MutationObserver(() => {
   if (typesetQueued) return;
   typesetQueued = true;
-  setTimeout(() => { typesetQueued = false; typeset(app); });
+  setTimeout(() => { typesetQueued = false; linkTerms(app); typeset(app); });
 }).observe(app, { childList: true, subtree: true });
 addEventListener('resize', () => fitFormulas(app));
 

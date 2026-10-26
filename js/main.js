@@ -96,6 +96,32 @@ function homeView() {
 
   const units = h('section', {}, h('h2', {}, 'Units'), h('div', { class: 'grid' }, UNITS.map(unitCard)));
   app.replaceChildren(hero, quick, units);
+  if (!st.settings.trailerSeen) trailerIntro();
+}
+
+// First visit: the trailer pops up over the home page and starts by itself. Closing it means it never pops up again
+// (it stays on #/trailer). Browsers block sound until the visitor has clicked something, so if playing with sound
+// is refused it plays muted with a big "Tap for sound" button.
+function trailerIntro() {
+  if (document.querySelector('dialog.trailer-intro')) return;
+  const video = h('video', { class: 'trailer', src: 'promo/bizquest-trailer.mp4', poster: 'promo/trailer-poster.jpg', controls: true, playsinline: true });
+  const sound = h('button', { type: 'button', class: 'btn big trailer-sound', hidden: true,
+    onclick: () => { video.muted = false; sound.hidden = true; if (video.ended) video.play(); } }, icon('volume-2'), 'Tap for sound');
+  const dlg = h('dialog', { class: 'trailer-intro', 'aria-label': `${APP.name} trailer` },
+    h('button', { type: 'button', class: 'btn ghost small trailer-close', 'aria-label': 'Close the trailer', onclick: () => dlg.close() }, icon('x'), 'Close'),
+    h('div', { class: 'trailer-wrap' }, video, sound));
+  dlg.addEventListener('close', () => {
+    video.pause();
+    store.log('trailer', { watched: Math.round(video.currentTime) });
+    store.setSetting('trailerSeen', true); // also saves the log entry
+    dlg.remove();
+  });
+  // A click on the dark area around the video closes it too.
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  video.addEventListener('volumechange', () => { if (!video.muted) sound.hidden = true; });
+  document.body.append(dlg);
+  dlg.showModal();
+  video.play().catch(() => { video.muted = true; sound.hidden = false; video.play().catch(() => {}); });
 }
 
 function unitCard(u) {

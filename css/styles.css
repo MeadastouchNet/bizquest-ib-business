@@ -144,7 +144,12 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--a
 .chip.right { background: var(--good); border-color: var(--good); color: #052; }
 .chip.wrongc { background: var(--bad); border-color: var(--bad); color: #fff; }
 
-.q-text { flex: 1; }
+.q-text { flex: 1; min-width: 0; }
+.q-text .table-wrap { margin-top: 12px; }
+.qtable { width: auto; min-width: min(100%, 360px); font-size: 1rem; font-weight: 500; background: var(--card-2); border-radius: 10px; overflow: hidden; }
+.qtable th { font-size: .8rem; color: var(--muted); font-weight: 600; background: var(--bg-2); }
+.qtable td, .qtable th { padding: 7px 12px; }
+.qtable td.blank { color: var(--accent); font-weight: 700; background: color-mix(in srgb, var(--accent) 10%, transparent); }
 
 /* calculator */
 .calc { margin-top: 14px; }
@@ -203,4 +208,6 @@ table.fin td.neg { color: var(--bad); }
 @media (max-width: 520px) {
   .card { padding: 16px; }
   .stats .pill.hide-sm { display: none; }
+  .qtable { font-size: .9rem; }
+  .qtable td, .qtable th { padding: 6px 7px; }
 }

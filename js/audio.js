@@ -39,7 +39,10 @@ export const speaking = () => !!synth && synth.speaking;
 /** Strips HTML into speakable text, turning formula symbols into words. */
 export function htmlToSpeech(html) {
   const div = document.createElement('div');
-  div.innerHTML = speakMath(html);
+  // Tables read row by row: "Year 1, 6,000, 0.9434, blank."
+  // (Text must stay inside cells: text between rows would be moved out of the table by the HTML parser.)
+  div.innerHTML = speakMath(html).replace(/class="blank">\?/g, '>blank')
+    .replace(/<\/t[dh]>\s*<\/tr>/g, '. </td></tr>').replace(/<\/t[dh]>/g, ', </td>');
   return div.textContent
     .replace(/×/g, ' times ').replace(/÷/g, ' divided by ').replace(/−/g, ' minus ')
     .replace(/=/g, ' equals ').replace(/%/g, ' percent ').replace(/\//g, ' over ');

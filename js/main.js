@@ -45,7 +45,7 @@ function route() {
   else if (view === 'review') reviewView();
   else if (view === 'boss') bossView();
   else if (view === 'formulas') formulasView();
-  else if (view === 'parent') parentView();
+  else if (view === 'stats' || view === 'parent') statsView();
   else if (view === 'settings') settingsView();
   else homeView();
   renderStats();
@@ -395,8 +395,8 @@ function ui_rate(st) {
   return h('div', { class: 'slider' }, h('label', {}, h('span', {}, 'Reading speed'), out), r);
 }
 
-// ---------- parent dashboard ----------
-function parentView() {
+// ---------- usage stats ----------
+function statsView() {
   const st = store.get();
   const days = [...Array(14)].map((_, i) => { const d = new Date(); d.setDate(d.getDate() - 13 + i); return store.today(d); });
   const totalMin = Math.round(Object.values(st.days).reduce((a, d) => a + d.ms, 0) / 60000);
@@ -436,8 +436,8 @@ function parentView() {
     catch { toast('That file could not be read'); }
   };
 
-  app.replaceChildren(h('a', { href: '#/', class: 'muted small' }, '← Home'), h('h1', {}, '👀 Parent view'),
-    h('p', { class: 'muted' }, 'Progress is stored in this browser on this device only. Open this page on the device your child uses, or ask them to export the file.'),
+  app.replaceChildren(h('a', { href: '#/', class: 'muted small' }, '← Home'), h('h1', {}, '📊 Usage stats'),
+    h('p', { class: 'muted' }, 'Progress is stored in this browser on this device only. Use Export to save or share a copy.'),
     h('div', { class: 'kpis' },
       kpi(`${store.streak()}`, 'day streak'), kpi(`${activeDays}`, 'active days'), kpi(`${totalMin}`, 'minutes total'),
       kpi(`${st.xp}`, `XP · ${store.levelName()}`), kpi(reviewAcc == null ? '–' : pct(reviewAcc, 0), 'review accuracy', reviewAcc == null ? '' : reviewAcc >= 70 ? 'good' : 'warn'),

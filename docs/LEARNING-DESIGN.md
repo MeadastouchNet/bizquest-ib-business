@@ -40,7 +40,7 @@ turns out to be popular.
 
 ## How we evaluate whether it works
 
-The **Parent view** (link in the footer) shows, for this device:
+The **Usage stats** page (link in the footer) shows, for this device:
 
 - minutes per day (last 14 days) and current streak,
 - mastery per section (how far its questions have moved up the spaced-repetition boxes),
@@ -55,8 +55,8 @@ Suggested check-in after 2 weeks:
 3. **Which formats work?** His ratings per lesson, plus whether he uses read-aloud.
 4. **Exam transfer.** Try one real past Paper 2 question on paper and compare.
 
-Progress is stored in the browser on the device he uses (no account, no server). Use *Export* in the
-parent view to save a copy, or open the parent view on his device.
+Progress is stored in the browser on the device he uses (no account, no server). Use *Export* on the
+Usage stats page to save a copy, or open that page on his device.
 
 ## References
 

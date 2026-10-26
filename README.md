@@ -12,7 +12,7 @@ Each topic is a ~10-minute "mission":
 5. **Quiz**: instant feedback; missed questions come back at the end
 6. **Explain**: put it in your own words, plus a 1-tap rating
 
-Plus **Review** (spaced repetition, mixed topics), a **Boss Battle**, a **formula sheet** and a **Parent view**.
+Plus **Review** (spaced repetition, mixed topics), a **Boss Battle**, a **formula sheet** and **Usage stats**.
 
 A running case, **SoleFlip** (two 17-year-olds reselling and customising sneakers), connects all the topics.
 The same SoleFlip accounts are used from 3.4 to 3.6.

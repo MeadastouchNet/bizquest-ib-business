@@ -3,6 +3,10 @@
 // Numbers in 3.4–3.6 all come from the same SoleFlip Ltd accounts so the topics connect.
 
 const sf = '<b>SoleFlip</b>';
+// F`tex` = a displayed formula block inside card HTML; M`tex` = formula markup for the formula sheet.
+// String.raw keeps TeX backslashes intact. Typeset by KaTeX via js/tex.js.
+const M = (s, ...v) => '$$' + String.raw(s, ...v) + '$$';
+const F = (s, ...v) => `<div class="formula">${M(s, ...v)}</div>`;
 
 export const unit3 = {
   id: 'u3',
@@ -177,8 +181,8 @@ export const unit3 = {
           <p><b>Fixed costs</b> don't change when output changes (in the short run): rent, salaries, insurance, loan interest.</p>
           <p><b>Variable costs</b> change directly with output: raw materials, packaging, shipping per order.</p>
           <div class="example">${sf}: the pop-up store rent is $1,200 a month whether they sell 5 pairs or 500 (fixed). Paint and laces cost $35 per pair customised (variable).</div>
-          <div class="formula">Total variable cost (TVC) = variable cost per unit × quantity</div>
-          <div class="formula">Total cost (TC) = total fixed costs (TFC) + total variable costs (TVC)</div>` },
+          ${F`\text{TVC} = \text{variable cost per unit} \times \text{quantity}`}
+          ${F`\text{TC} = \text{TFC} + \text{TVC}`}` },
         { title: 'Semi-variable costs', html: `
           <p><b>Semi-variable costs</b> have a fixed part <b>plus</b> a part that changes with use or output.</p>
           <ul><li>A phone plan: $20 base + extra for data over the limit.</li>
@@ -190,11 +194,11 @@ export const unit3 = {
           <div class="example">${sf} sells cleaning services <i>and</i> custom designs. The paint is a direct cost of custom designs. The store rent is an indirect cost (both products use the store).</div>
           <div class="tip">Fixed/variable and direct/indirect are two <b>different</b> ways to classify costs. A cost can be direct <i>and</i> variable (materials), or indirect <i>and</i> fixed (rent).</div>` },
         { title: 'Revenue and revenue streams', html: `
-          <div class="formula">Total revenue (TR) = price × quantity sold</div>
+          ${F`\text{TR} = \text{price} \times \text{quantity sold}`}
           <p><b>Revenue streams</b> are the different sources a business earns revenue from. More streams = less risk if one dries up.</p>
           <ul><li>Spotify: Premium subscriptions + advertising.</li>
               <li>${sf}: resale, custom designs, cleaning service, merch.</li></ul>
-          <div class="formula">Profit = total revenue − total costs</div>
+          ${F`\text{Profit} = \text{total revenue} - \text{total costs}`}
           <p class="muted small">Revenue ≠ profit. Revenue is all the money coming in from sales. Profit is what is left after costs.</p>` }
       ],
       labs: [{ type: 'profit' }],
@@ -255,7 +259,7 @@ export const unit3 = {
           <ul><li><b>Assets</b>: what it owns. <b>Non-current</b> (kept over 1 year: machines, vans) and <b>current</b> (cash, debtors, stock).</li>
               <li><b>Liabilities</b>: what it owes. <b>Current</b> (due within 1 year: overdraft, creditors, short-term loans) and <b>non-current</b> (long-term loans).</li>
               <li><b>Equity</b>: the owners' money: share capital + retained earnings.</li></ul>
-          <div class="formula">Total assets − total liabilities = net assets = total equity</div>
+          ${F`\text{Total assets} - \text{total liabilities} = \text{net assets} = \text{total equity}`}
           <p><b>Debtors</b> = customers who owe <i>you</i> money. <b>Creditors</b> = suppliers <i>you</i> owe money.</p>` },
         { title: 'SoleFlip Ltd balance sheet', html: `
           <div class="table-wrap"><table class="fin">
@@ -286,9 +290,9 @@ export const unit3 = {
         { title: 'Depreciation (HL only)', html: `
           <p><b>Depreciation</b> = the fall in value of a non-current asset over time (wear and tear, becoming outdated). Your phone is worth less every year.</p>
           <p><b>Straight-line method</b>: the same amount every year.</p>
-          <div class="formula">Annual depreciation = (purchase cost − residual value) ÷ life span (years)</div>
+          ${F`\text{Annual depreciation} = \frac{\text{purchase cost} - \text{residual value}}{\text{life span (years)}}`}
           <p><b>Units of production method</b>: based on how much the asset is actually used.</p>
-          <div class="formula">Depreciation per unit = (purchase cost − residual value) ÷ expected total units over its life<br>Depreciation for the year = per unit × units produced that year</div>
+          ${F`\text{Depreciation per unit} = \frac{\text{purchase cost} - \text{residual value}}{\text{expected total units over its life}}`}${F`\text{Depreciation this year} = \text{per unit} \times \text{units made}`}
           <div class="example">Gaming laptop: cost $2,000, sells for $400 after 4 years. Straight-line: (2,000 − 400) ÷ 4 = <b>$400 per year</b>.</div>
           <p class="muted small">Depreciation is an <b>expense</b> on the P&L, and it reduces the value of the asset on the balance sheet (accumulated depreciation).</p>` }
       ],
@@ -347,21 +351,21 @@ export const unit3 = {
               <li>with <b>targets</b>.</li></ul>
           <p><b>Profitability ratios</b>: how well it turns sales into profit. <b>Liquidity ratios</b>: can it pay bills due in the next 12 months?</p>` },
         { title: 'Gross profit margin & profit margin', html: `
-          <div class="formula">GPM = gross profit ÷ sales revenue × 100</div>
+          ${F`\text{GPM} = \frac{\text{gross profit}}{\text{sales revenue}} \times 100`}
           <p>How many cents of every $1 of sales are left after paying for the goods themselves.</p>
-          <div class="formula">Profit margin = profit before interest and tax ÷ sales revenue × 100</div>
+          ${F`\text{Profit margin} = \frac{\text{profit before interest and tax}}{\text{sales revenue}} \times 100`}
           <p>What is left after <i>all</i> operating expenses (rent, wages, ads) too.</p>
           <div class="example">${sf}: GPM = 108,000 ÷ 180,000 × 100 = <b>60%</b>. Profit margin = 48,000 ÷ 180,000 × 100 = <b>26.7%</b>. So expenses eat 33.3 cents of every $1 of sales.</div>
           <p><b>Improve GPM</b>: raise prices, find cheaper suppliers, cut waste. <b>Improve profit margin</b>: all of those, plus cutting expenses (cheaper rent, less wasted ad spend).</p>` },
         { title: 'ROCE: return on capital employed', html: `
-          <div class="formula">ROCE = profit before interest and tax ÷ capital employed × 100</div>
-          <div class="formula">Capital employed = non-current liabilities + total equity</div>
+          ${F`\text{ROCE} = \frac{\text{profit before interest and tax}}{\text{capital employed}} \times 100`}
+          ${F`\text{Capital employed} = \text{non-current liabilities} + \text{total equity}`}
           <p>For every $100 invested long-term in the business, how much profit does it make? Compare it with the interest rate at a bank: if ROCE is lower, the owners would have done better leaving their money in a savings account.</p>
           <div class="example">${sf}: capital employed = 45,000 + 90,000 = 135,000. ROCE = 48,000 ÷ 135,000 × 100 = <b>35.6%</b>. Excellent.</div>` },
         { title: 'Current ratio & acid-test ratio', html: `
-          <div class="formula">Current ratio = current assets ÷ current liabilities</div>
+          ${F`\text{Current ratio} = \frac{\text{current assets}}{\text{current liabilities}}`}
           <p>Rule of thumb: <b>1.5 – 2</b> is comfortable. Below 1 means it may struggle to pay. Too high (e.g. 4) means cash or stock is sitting idle instead of being invested.</p>
-          <div class="formula">Acid-test ratio = (current assets − stock) ÷ current liabilities</div>
+          ${F`\text{Acid-test ratio} = \frac{\text{current assets} - \text{stock}}{\text{current liabilities}}`}
           <p>Stricter: it removes stock because stock might not sell quickly (imagine last season's sneakers). Around <b>1</b> is fine. Supermarkets often run below 1 because their stock sells within days.</p>
           <div class="example">${sf}: current ratio = 30,000 ÷ 15,000 = <b>2.0</b>. Acid test = (30,000 − 16,000) ÷ 15,000 = <b>0.93</b>. Healthy, but a lot of its liquidity is tied up in sneakers.</div>` },
         { title: 'Improving liquidity, and the limits of ratios', html: `
@@ -407,20 +411,20 @@ export const unit3 = {
       hook: `You lent a mate $50 for concert tickets. It's been <b>3 months</b>. You still haven't got it back, and now <i>you</i> can't afford the festival.<br><br>Businesses have the same problem with customers who pay late (<b>debtor days</b>), and the reverse with suppliers they pay late (<b>creditor days</b>). Efficiency ratios measure how fast money moves.`,
       cards: [
         { title: 'Stock turnover', html: `
-          <div class="formula">Stock turnover (number of times) = cost of sales ÷ average stock</div>
-          <div class="formula">Stock turnover (days) = average stock ÷ cost of sales × 365</div>
-          <div class="formula">Average stock = (opening stock + closing stock) ÷ 2</div>
+          ${F`\text{Stock turnover (times)} = \frac{\text{cost of sales}}{\text{average stock}}`}
+          ${F`\text{Stock turnover (days)} = \frac{\text{average stock}}{\text{cost of sales}} \times 365`}
+          ${F`\text{Average stock} = \frac{\text{opening stock} + \text{closing stock}}{2}`}
           <p>How often stock is sold and replaced. A <b>higher</b> number of times (or fewer days) is generally better: less money tied up, less risk of stock going out of fashion.</p>
           <div class="example">${sf}: 72,000 ÷ 16,000 = <b>4.5 times</b> a year = every <b>81 days</b>. A sneaker can go out of hype in 81 days. Room to improve.</div>
           <p class="muted small">It depends on the industry: a fruit shop needs a turnover of days, a car dealer can run for months.</p>` },
         { title: 'Debtor days & creditor days', html: `
-          <div class="formula">Debtor days = debtors ÷ total sales revenue × 365</div>
+          ${F`\text{Debtor days} = \frac{\text{debtors}}{\text{total sales revenue}} \times 365`}
           <p>Average number of days customers take to pay. <b>Lower is better</b> (cash comes in faster).</p>
-          <div class="formula">Creditor days = creditors ÷ cost of sales × 365</div>
+          ${F`\text{Creditor days} = \frac{\text{creditors}}{\text{cost of sales}} \times 365`}
           <p>Average number of days the business takes to pay its suppliers. <b>Higher</b> helps cash flow, but paying too late hurts relationships, and suppliers may stop giving credit.</p>
           <div class="example">${sf}: debtor days = 6,000 ÷ 180,000 × 365 = <b>12.2 days</b>. Creditor days = 10,000 ÷ 72,000 × 365 = <b>50.7 days</b>. Customers pay in ~12 days while SoleFlip pays suppliers in ~51. Great for cash.</div>` },
         { title: 'Gearing ratio', html: `
-          <div class="formula">Gearing = non-current liabilities ÷ capital employed × 100</div>
+          ${F`\text{Gearing} = \frac{\text{non-current liabilities}}{\text{capital employed}} \times 100`}
           <p>How much of the long-term finance is <b>borrowed</b>.</p>
           <ul><li><b>Above 50%</b>: highly geared. Lots of interest to pay, risky if interest rates rise or sales drop.</li>
               <li><b>Below 25%</b>: low gearing. Safe, but maybe too cautious about growth.</li></ul>
@@ -479,7 +483,7 @@ export const unit3 = {
               <li>sales are <b>seasonal</b> (a ski shop in summer).</li></ul>
           <div class="tip">"Cash is king." Many profitable businesses still go insolvent because the cash ran out first.</div>` },
         { title: 'Working capital & the working capital cycle', html: `
-          <div class="formula">Working capital = current assets − current liabilities</div>
+          ${F`\text{Working capital} = \text{current assets} - \text{current liabilities}`}
           <p>The money available for day-to-day running.</p>
           <p><b>Working capital cycle</b>: the time between paying out cash for materials and receiving cash from customers.</p>
           <p style="font-size:1.05rem">💵 Cash → 📦 buy stock/materials → 🛠 produce → 🛒 sell (often on credit) → 🧾 debtors → 💵 cash</p>
@@ -493,7 +497,7 @@ export const unit3 = {
             <tr><td>Cash outflows (stock, wages, rent…)</td><td>8,500</td><td>9,000</td></tr>
             <tr><td>Net cash flow (in − out)</td><td class="neg">−500</td><td>2,000</td></tr>
             <tr class="total"><td>Closing balance</td><td>1,500</td><td>3,500</td></tr></table></div>
-          <div class="formula">Closing balance = opening balance + net cash flow<br>Closing balance this month = opening balance next month</div>
+          ${F`\text{Closing balance} = \text{opening balance} + \text{net cash flow}`}${F`\text{Closing balance this month} = \text{opening balance next month}`}
           <p class="muted small">Forecasts can be wrong: sales can disappoint, costs rise, the economy changes. They are a plan, not a promise.</p>` },
         { title: 'Investment, profit and cash flow', html: `
           <p>Investing (e.g. in a new machine) <b>uses cash now</b> and should bring <b>profit later</b>. So a growing business often has <b>low cash</b> even when profits look good.</p>
@@ -552,10 +556,10 @@ export const unit3 = {
             <tr><td>2</td><td>8,000</td><td class="neg">(6,000)</td></tr>
             <tr><td>3</td><td>9,000</td><td>3,000</td></tr></table></div>
           <p>After year 2 we still need <b>$6,000</b>. Year 3 brings $9,000.</p>
-          <div class="formula">Months = amount still needed ÷ net cash flow of that year × 12 = 6,000 ÷ 9,000 × 12 = 8</div>
+          ${F`\text{Months} = \frac{\text{amount still needed}}{\text{net cash flow of that year}} \times 12 = \frac{6{,}000}{9{,}000} \times 12 = 8`}
           <p>Payback = <b>2 years 8 months</b>. ✅ Simple, focuses on risk and cash. ❌ Ignores everything after payback and ignores profitability.</p>` },
         { title: '2. Average rate of return (ARR)', html: `
-          <div class="formula">ARR = ((total returns − cost of investment) ÷ years of use) ÷ cost of investment × 100</div>
+          ${F`\text{ARR} = \frac{\text{average annual profit}}{\text{cost of investment}} \times 100`}${F`\text{average annual profit} = \frac{\text{total returns} - \text{cost of investment}}{\text{years of use}}`}
           <p>Total returns = 6,000 + 8,000 + 9,000 + 7,000 = 30,000<br>
              Total profit = 30,000 − 20,000 = 10,000<br>
              Per year = 10,000 ÷ 4 = 2,500<br>
@@ -563,7 +567,7 @@ export const unit3 = {
           <p>Compare with the interest rate on a loan or savings, or with other projects. ✅ Shows profitability, easy to compare. ❌ Ignores <b>timing</b>: $9,000 in year 1 counts the same as $9,000 in year 4.</p>` },
         { title: '3. Net present value (HL only)', html: `
           <p>Money in the future is worth less than money today (you could earn interest, there's inflation, and the future is risky). So we <b>discount</b> future cash flows to <b>present values</b>.</p>
-          <div class="formula">Present value = net cash flow × discount factor<br>NPV = sum of present values − cost of investment</div>
+          ${F`\text{Present value} = \text{net cash flow} \times \text{discount factor}`}${F`\text{NPV} = \sum \text{present values} - \text{cost of investment}`}
           <p>Discount factors are given in the exam (table). At 6%:</p>
           <div class="table-wrap"><table class="fin"><tr><th>Year</th><th>Cash flow</th><th>DF (6%)</th><th>PV</th></tr>
             <tr><td>1</td><td>6,000</td><td>0.9434</td><td>5,660.40</td></tr>
@@ -629,7 +633,7 @@ export const unit3 = {
           <div class="example">${sf}: the online shop, the pop-up store and the custom-design service are profit centres. The Instagram/marketing team is a cost centre.</div>
           <p>✅ Managers can see which parts perform, it motivates and gives responsibility. ❌ Sharing overheads between centres can be unfair, and centres may compete instead of cooperating.</p>` },
         { title: 'Variances', html: `
-          <div class="formula">Variance = actual figure − budgeted figure</div>
+          ${F`\text{Variance} = \text{actual figure} - \text{budgeted figure}`}
           <p><b>Favourable (F)</b>: better for profit than planned. <b>Adverse (A)</b>: worse for profit than planned.</p>
           <div class="table-wrap"><table class="fin"><tr><th>Item</th><th>Budget</th><th>Actual</th><th>Variance</th></tr>
             <tr><td>Revenue</td><td>50,000</td><td>54,000</td><td>4,000 F</td></tr>
@@ -675,38 +679,38 @@ export const unit3 = {
 
   formulas: [
     { group: '3.3 Costs and revenues', items: [
-      { name: 'Total cost', f: 'TC = total fixed costs + total variable costs' },
-      { name: 'Total variable cost', f: 'TVC = variable cost per unit × quantity' },
-      { name: 'Total revenue', f: 'TR = price × quantity sold' },
-      { name: 'Profit', f: 'Profit = total revenue − total costs' }] },
+      { name: 'Total cost', f: M`\text{TC} = \text{total fixed costs} + \text{total variable costs}` },
+      { name: 'Total variable cost', f: M`\text{TVC} = \text{variable cost per unit} \times \text{quantity}` },
+      { name: 'Total revenue', f: M`\text{TR} = \text{price} \times \text{quantity sold}` },
+      { name: 'Profit', f: M`\text{Profit} = \text{total revenue} - \text{total costs}` }] },
     { group: '3.4 Final accounts', items: [
-      { name: 'Gross profit', f: 'Sales revenue − cost of sales' },
-      { name: 'Profit before interest and tax', f: 'Gross profit − expenses' },
-      { name: 'Retained profit', f: 'Profit for period − dividends' },
-      { name: 'Balance sheet', f: 'Total assets − total liabilities = net assets = total equity' },
-      { name: 'Straight-line depreciation', f: '(purchase cost − residual value) ÷ life span', hl: true },
-      { name: 'Units of production depreciation', f: '(purchase cost − residual value) ÷ expected total units × units produced in the year', hl: true }] },
+      { name: 'Gross profit', f: M`\text{Gross profit} = \text{sales revenue} - \text{cost of sales}` },
+      { name: 'Profit before interest and tax', f: M`\text{PBIT} = \text{gross profit} - \text{expenses}` },
+      { name: 'Retained profit', f: M`\text{Retained profit} = \text{profit for period} - \text{dividends}` },
+      { name: 'Balance sheet', f: M`\text{Total assets} - \text{total liabilities} = \text{total equity}` },
+      { name: 'Straight-line depreciation', f: M`\frac{\text{purchase cost} - \text{residual value}}{\text{life span (years)}}`, hl: true },
+      { name: 'Units of production depreciation', f: M`\frac{\text{purchase cost} - \text{residual value}}{\text{expected total units}} \times \text{units produced in the year}`, hl: true }] },
     { group: '3.5 Profitability and liquidity ratios', items: [
-      { name: 'Gross profit margin', f: 'gross profit ÷ sales revenue × 100' },
-      { name: 'Profit margin', f: 'profit before interest and tax ÷ sales revenue × 100' },
-      { name: 'ROCE', f: 'profit before interest and tax ÷ capital employed × 100', note: 'Capital employed = non-current liabilities + total equity' },
-      { name: 'Current ratio', f: 'current assets ÷ current liabilities' },
-      { name: 'Acid-test ratio', f: '(current assets − stock) ÷ current liabilities' }] },
+      { name: 'Gross profit margin', f: M`\frac{\text{gross profit}}{\text{sales revenue}} \times 100` },
+      { name: 'Profit margin', f: M`\frac{\text{profit before interest and tax}}{\text{sales revenue}} \times 100` },
+      { name: 'ROCE', f: M`\frac{\text{profit before interest and tax}}{\text{capital employed}} \times 100`, note: M`\text{Capital employed} = \text{non-current liabilities} + \text{total equity}` },
+      { name: 'Current ratio', f: M`\frac{\text{current assets}}{\text{current liabilities}}` },
+      { name: 'Acid-test ratio', f: M`\frac{\text{current assets} - \text{stock}}{\text{current liabilities}}` }] },
     { group: '3.6 Debt/efficiency ratios', items: [
-      { name: 'Stock turnover (times)', f: 'cost of sales ÷ average stock', hl: true, note: 'Average stock = (opening stock + closing stock) ÷ 2' },
-      { name: 'Stock turnover (days)', f: 'average stock ÷ cost of sales × 365', hl: true },
-      { name: 'Debtor days', f: 'debtors ÷ total sales revenue × 365', hl: true },
-      { name: 'Creditor days', f: 'creditors ÷ cost of sales × 365', hl: true },
-      { name: 'Gearing ratio', f: 'non-current liabilities ÷ capital employed × 100', hl: true }] },
+      { name: 'Stock turnover (times)', f: M`\frac{\text{cost of sales}}{\text{average stock}}`, hl: true, note: M`\text{Average stock} = \frac{\text{opening stock} + \text{closing stock}}{2}` },
+      { name: 'Stock turnover (days)', f: M`\frac{\text{average stock}}{\text{cost of sales}} \times 365`, hl: true },
+      { name: 'Debtor days', f: M`\frac{\text{debtors}}{\text{total sales revenue}} \times 365`, hl: true },
+      { name: 'Creditor days', f: M`\frac{\text{creditors}}{\text{cost of sales}} \times 365`, hl: true },
+      { name: 'Gearing ratio', f: M`\frac{\text{non-current liabilities}}{\text{capital employed}} \times 100`, hl: true }] },
     { group: '3.7 Cash flow', items: [
-      { name: 'Working capital', f: 'current assets − current liabilities' },
-      { name: 'Net cash flow', f: 'cash inflows − cash outflows' },
-      { name: 'Closing balance', f: 'opening balance + net cash flow' }] },
+      { name: 'Working capital', f: M`\text{current assets} - \text{current liabilities}` },
+      { name: 'Net cash flow', f: M`\text{cash inflows} - \text{cash outflows}` },
+      { name: 'Closing balance', f: M`\text{opening balance} + \text{net cash flow}` }] },
     { group: '3.8 Investment appraisal', items: [
-      { name: 'Payback (part year)', f: 'months = additional cash needed ÷ net cash flow in that year × 12' },
-      { name: 'ARR', f: '((total returns − cost of investment) ÷ years of use) ÷ cost of investment × 100' },
-      { name: 'Net present value', f: 'NPV = sum of (net cash flow × discount factor) − cost of investment', hl: true, note: 'Discount factor = 1 ÷ (1 + r)ⁿ. In the exam you are given a table.' }] },
+      { name: 'Payback (part year)', f: M`\text{Months} = \frac{\text{additional cash needed}}{\text{net cash flow in that year}} \times 12` },
+      { name: 'ARR', f: M`\frac{\text{average annual profit}}{\text{cost of investment}} \times 100`, note: M`\text{average annual profit} = \frac{\text{total returns} - \text{cost of investment}}{\text{years of use}}` },
+      { name: 'Net present value', f: M`\text{NPV} = \sum \text{PV} - \text{cost of investment}`, hl: true, note: M`\text{PV} = \text{net cash flow} \times \text{discount factor}` + M`\text{Discount factor} = \frac{1}{(1+r)^n}` + 'In the exam you are given a table of discount factors.' }] },
     { group: '3.9 Budgets', items: [
-      { name: 'Variance', f: 'actual − budgeted', hl: true, note: 'Favourable = better for profit than budgeted; adverse = worse.' }] }
+      { name: 'Variance', f: M`\text{Variance} = \text{actual} - \text{budgeted}`, hl: true, note: 'Favourable = better for profit than budgeted; adverse = worse.' }] }
   ]
 };

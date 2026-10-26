@@ -4,6 +4,7 @@ import { renderLab } from './labs.js';
 import { speak, stopSpeaking, htmlToSpeech, voices, canSpeak, sfx } from './audio.js';
 import * as store from './store.js';
 import { unit3 } from './content/unit3.js';
+import { typeset, fitFormulas } from './tex.js';
 
 const UNITS = [unit3];
 const SECTIONS = UNITS.flatMap(u => u.sections);
@@ -404,6 +405,15 @@ function parentView() {
       h('button', { class: 'btn ghost small', onclick: () => { if (confirm('Delete all progress on this device?')) { store.reset(); route(); } } }, 'Reset progress')));
 }
 const kpi = (v, l, cls = '') => h('div', { class: `kpi ${cls}` }, h('div', { class: 'v' }, v), h('div', { class: 'l' }, l));
+
+// Typeset $$…$$ formulas whenever a view or card is (re)rendered.
+let typesetQueued = false;
+new MutationObserver(() => {
+  if (typesetQueued) return;
+  typesetQueued = true;
+  setTimeout(() => { typesetQueued = false; typeset(app); });
+}).observe(app, { childList: true, subtree: true });
+addEventListener('resize', () => fitFormulas(app));
 
 applyTheme();
 route();

@@ -1,5 +1,6 @@
 // Read-aloud (Web Speech API) and small game sounds (Web Audio API). No files, no network.
 import { get } from './store.js';
+import { speakMath } from './tex.js';
 
 const synth = window.speechSynthesis;
 let ctx;
@@ -38,7 +39,7 @@ export const speaking = () => !!synth && synth.speaking;
 /** Strips HTML into speakable text, turning formula symbols into words. */
 export function htmlToSpeech(html) {
   const div = document.createElement('div');
-  div.innerHTML = html;
+  div.innerHTML = speakMath(html);
   return div.textContent
     .replace(/×/g, ' times ').replace(/÷/g, ' divided by ').replace(/−/g, ' minus ')
     .replace(/=/g, ' equals ').replace(/%/g, ' percent ').replace(/\//g, ' over ');

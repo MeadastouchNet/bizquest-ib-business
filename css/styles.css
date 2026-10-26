@@ -110,7 +110,9 @@ main { padding-top: 16px; padding-bottom: 40px; outline: none; }
 .example::before { content: "Example"; display: block; font: 700 .75rem Inter; text-transform: uppercase; letter-spacing: .06em; color: var(--accent-2); margin-bottom: 4px; }
 .tip { background: color-mix(in srgb, var(--warn) 14%, var(--card)); border: 1px solid color-mix(in srgb, var(--warn) 40%, var(--line)); padding: 12px 14px; border-radius: 10px; margin: 12px 0; }
 .tip::before { content: "🎯 Exam tip"; display: block; font-weight: 700; margin-bottom: 4px; }
-.formula { font: 600 1rem "Space Grotesk", monospace; background: var(--bg-2); border: 1px dashed var(--line); padding: 10px 14px; border-radius: 10px; margin: 10px 0; overflow-x: auto; }
+.formula { font-size: 1rem; background: var(--bg-2); border: 1px dashed var(--line); padding: 4px 14px; border-radius: 10px; margin: 10px 0; overflow-x: auto; overflow-y: hidden; }
+.katex-display { margin: .6em 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+.formula .katex, .katex-display .katex { font-size: 1.12em; }
 .hook { font-size: 1.15rem; }
 .dots { display: flex; gap: 6px; justify-content: center; margin-top: 12px; }
 .dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }

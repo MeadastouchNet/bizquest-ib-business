@@ -15,122 +15,106 @@ export const unit2 = {
   sections: [
     // ------------------------------------------------------------------ 2.1
     {
-      id: '2.1', title: 'Introduction to human resource management', emoji: '🧑‍🤝‍🧑', minutes: 15, hl: 'part',
-      goal: 'explain the role of HRM and workforce planning, calculate labour turnover, and explain recruitment, training, appraisal and the factors that change HR plans.',
-      hook: `Every December ${sf} hires extra staff for the Christmas rush. This year <b>5 of its 20 staff</b> quit during the year anyway, two of them right before Black Friday. Freja spent a whole week reading CVs instead of designing.<br><br>How many people should ${sf} hire next year, where should it find them, and how does it stop them leaving?`,
+      id: '2.1', title: 'Introduction to human resource management', emoji: '🧑‍🤝‍🧑', minutes: 12, hl: false,
+      goal: 'explain the role of HRM, the internal and external factors that change a business\'s HR plans, why staff resist change and how HR can reduce that resistance.',
+      hook: `${sf} is about to open a second store and switch the workshop to new design software. Freja needs 4 more sellers, and half the young people she interviews only want flexible hours. Omar, her best painter, says he won't touch "that new program".<br><br>How does a business plan for the people it needs, when the people (and the world around them) keep changing?`,
       cards: [
         { title: 'The role of HRM and workforce planning', html: `
           <p><b>Human resource management (HRM)</b> is managing the people in an organization so it has the right staff, with the right skills, in the right place at the right time.</p>
-          <p>HR's jobs: <b>workforce planning</b>, recruitment, training, appraisal, pay and rewards, dismissal and redundancy, and looking after staff wellbeing.</p>
+          <p>HR's jobs include workforce planning, [[recruitment]], training, [[appraisal]], pay and rewards, and looking after staff wellbeing. (Recruitment, training, appraisal and labour turnover are taught in 2.4.)</p>
           <p><b>Workforce planning</b> (human resource planning) means forecasting how many staff the business will need, and with which skills, then planning how to get them.</p>
           <div class="example">${sf} plans to open a second store next year. It needs 4 more sales staff and someone who can run the laser machine. HR must find, hire and train them <i>before</i> opening day.</div>` },
-        { title: 'Labour turnover', html: `
-          <p><b>Labour turnover</b> measures the share of staff who leave in a year.</p>
-          ${F`\text{Labour turnover} = \frac{\text{number of employees leaving}}{\text{average number of employees}} \times 100`}
-          <div class="example">${sf}: 18 staff on 1 January, 22 on 31 December, so the average is (18 + 22) ÷ 2 = 20. 5 people left. Turnover = 5 ÷ 20 × 100 = <b>25%</b>.</div>
-          <p>High turnover costs money (recruiting and training replacements), loses skills and can mean staff are unhappy. Some turnover is healthy: new people bring new ideas.</p>
-          <div class="tip">Always compare: with last year, with the industry (retail and festivals often have high turnover) and with the business's own target. A number on its own says little.</div>` },
         { title: 'What changes the HR plan?', html: `
-          <p><b>Internal factors</b>: the business's own plans (growth, a new store, new machines), its budget, its labour turnover and the skills staff already have.</p>
+          <p><b>Internal factors</b>: the business's own plans (growth, a new store, new machines), its budget, its [[labour turnover]] and the skills staff already have.</p>
           <p><b>External factors</b>:</p>
           <ul><li><b>Demographic change</b>: an ageing population means fewer young workers.</li>
               <li><b>Labour mobility</b>: how easily workers move between jobs and countries (e.g. free movement in the EU).</li>
               <li><b>Technology</b>: new software or machines replace some jobs and need new skills.</li>
-              <li><b>New work patterns</b>: <b>teleworking</b> (working from home), <b>flexitime</b> (staff choose their hours around a core time), part-time and zero-hours contracts, and the <b>gig economy</b> (short tasks paid per job, like food delivery).</li>
+              <li><b>New work patterns, practices and preferences</b>: <b>teleworking</b> (working from home), <b>flexitime</b> (staff choose their hours around a core time), part-time and zero-hours contracts, and the <b>gig economy</b> (short tasks paid per job, like food delivery).</li>
               <li><b>Laws</b>: minimum wages, working hours, anti-discrimination rules.</li></ul>
-          <p>Businesses can also <b>outsource</b> work (pay another firm to do it), <b>offshore</b> it (move it abroad) or <b>reshore</b> it (bring it back home).</p>` },
-        { title: 'Recruitment, dismissal and redundancy', html: `
-          <p><b>Recruitment</b> is finding and hiring new staff. The usual steps: identify the vacancy → write a job description and person specification → advertise → shortlist → interview or test → appoint.</p>
-          <ul><li><b>Internal recruitment</b> (promote someone already there): cheaper, quicker, they know the business, and it motivates others. But no fresh ideas, and it leaves another gap.</li>
-              <li><b>External recruitment</b> (hire from outside): a bigger pool of talent and new ideas. But slower, costs more, and riskier.</li></ul>
-          <p>People can leave against their will in two ways:</p>
-          <ul><li><b>Dismissal</b>: the employee is fired because of <i>them</i>, e.g. serious misconduct or poor performance after warnings.</li>
-              <li><b>Redundancy</b>: the <i>job</i> is no longer needed, e.g. a store closes or a machine takes over. It isn't the worker's fault, and they usually get redundancy pay.</li></ul>` },
-        { title: 'Training and appraisal', html: `
-          <p><b>Training</b> gives staff the skills they need:</p>
-          <ul><li><b>Induction training</b>: introduces new staff to the business, its rules, people and culture.</li>
-              <li><b>On-the-job training</b>: learning while working, e.g. shadowing an experienced colleague. Cheap and realistic, but the trainer is less productive and bad habits can be passed on.</li>
-              <li><b>Off-the-job training</b>: away from the workplace, e.g. a course or college. Expert teaching, but costly, and the trained worker may then leave for a better job.</li></ul>
-          <p>Training can build <b>cognitive</b> skills (thinking, problem-solving) or <b>behavioural</b> skills (dealing with customers, teamwork, managing emotions).</p>
-          <p><b>Appraisal</b> is the regular review of an employee's performance:</p>
-          <ul><li><b>Formative</b>: ongoing feedback to help them improve. <b>Summative</b>: a final judgement, often linked to pay.</li>
-              <li><b>360-degree feedback</b>: views from managers, colleagues, subordinates and even customers. <b>Self-appraisal</b>: the employee reviews themselves.</li></ul>` },
-        { title: 'Resistance to change (HL only)', html: `
-          <p><span class="tag">HL</span> When a business changes (new machines, new shifts, a move), staff often push back. <b>Resistance to change</b> happens because of:</p>
+          <p class="muted small">Moving work to other firms or countries ([[outsourcing]], [[offshoring]], [[reshoring]]) is taught in 5.4.</p>` },
+        { title: 'Resistance to change', html: `
+          <p>When a business changes (new machines, new shifts, a move), staff often push back. <b>Resistance to change</b> happens because of:</p>
           <ul><li><b>Fear of the unknown</b> and of losing their job, pay or status.</li>
               <li><b>Self-interest</b>: the change is worse for <i>them</i>, even if better for the business.</li>
               <li><b>Low trust</b> or <b>poor communication</b>: staff hear rumours instead of reasons.</li>
               <li><b>Habit</b>: the old way is comfortable.</li></ul>
-          <p>HR strategies to reduce resistance: explain early and honestly, <b>involve</b> staff in planning the change, offer <b>training and support</b>, use <b>incentives</b> (e.g. a bonus for learning the new system), and bring the change in gradually. Forcing it through (coercion) is quick but damages trust.</p>
-          <div class="example">${sf} moves its workshop to new software. Omar refuses to use it. Freja shows him how it saves him an hour a day, lets him test it first and pays for a short course. He becomes its biggest fan.</div>` }
+          <p>HR strategies to reduce the impact of change and resistance to it: explain early and honestly, <b>involve</b> staff in planning the change, offer <b>training and support</b>, use <b>incentives</b> (e.g. a bonus for learning the new system), and bring the change in gradually. Forcing it through (coercion) is quick but damages trust.</p>
+          <div class="example">${sf} moves its workshop to new software. Omar refuses to use it. Freja shows him how it saves him an hour a day, lets him test it first and pays for a short course. He becomes its biggest fan.</div>
+          <div class="tip">"Recommend a strategy" answers should match the strategy to the <i>cause</i>: fear needs communication and security, a skills gap needs training, self-interest may need an incentive.</div>` },
+        { title: 'Dismissal and redundancy', html: `
+          <div class="extra">Not a separate point in the IB guide, but these words come up in case studies and in employee relations (2.7).</div>
+          <p>People can leave against their will in two ways:</p>
+          <ul><li><b>Dismissal</b>: the employee is fired because of <i>them</i>, e.g. serious misconduct or poor performance after warnings.</li>
+              <li><b>Redundancy</b>: the <i>job</i> is no longer needed, e.g. a store closes or a machine takes over. It isn't the worker's fault, and they usually get redundancy pay.</li></ul>` }
       ],
       labs: [
         {
-          type: 'sort', title: 'Name the training',
-          challenge: 'Sort all 8 into the right type of training in one go.',
-          buckets: ['Induction', 'On-the-job', 'Off-the-job'],
+          type: 'sort', title: 'What is changing the HR plan?',
+          challenge: 'Sort all 8 factors in one go.',
+          buckets: ['Demographic change', 'Labour mobility', 'Technology', 'Work patterns'],
           items: [
-            { t: '🗺️ A tour of the store and meeting the team on day 1', b: 0 },
-            { t: '📜 Learning the returns policy and safety rules in week 1', b: 0 },
-            { t: '👀 Shadowing Omar while he customises a pair', b: 1 },
-            { t: '🧑‍🏫 Maja coaching a new seller during a busy Saturday', b: 1 },
-            { t: '🔁 Trying each job in the store for a week', b: 1 },
-            { t: '🎓 A two-day laser-engraving course in Odense', b: 2 },
-            { t: '💻 An online retail-management course in the evenings', b: 2 },
-            { t: '🏫 A college day each week as part of an apprenticeship', b: 2 }
+            { t: '👵 Denmark has more pensioners and fewer school-leavers each year', b: 0 },
+            { t: '📉 Fewer 16–20-year-olds apply for Saturday jobs', b: 0 },
+            { t: '🇵🇹 Portuguese designers can move to Copenhagen without a work permit', b: 1 },
+            { t: '🚆 Sellers leave for better-paid jobs in Malmö, 35 minutes away', b: 1 },
+            { t: '🤖 A design program now does in 5 minutes what took Omar an hour', b: 2 },
+            { t: '🛒 Self-checkout tills mean fewer cashiers are needed', b: 2 },
+            { t: '🏠 The online team wants to work from home three days a week', b: 3 },
+            { t: '🛵 Deliveries are done by gig drivers paid per drop', b: 3 }
           ]
         },
         {
-          type: 'scenarios', title: 'Inside or outside?',
-          challenge: 'Choose the best recruitment option for all 3 vacancies.',
+          type: 'scenarios', title: 'Beat the resistance',
+          challenge: 'Choose the best HR strategy for all 3 situations.',
           items: [
-            { s: 'Maja is moving to open the new Odense store. SoleFlip needs a new Copenhagen store manager <b>fast</b>, and Liv has worked there for 2 years and knows every regular.', options: [
-              { t: 'Promote Liv (internal recruitment)', ok: true, fb: 'Yes: quick and cheap, she knows the store and customers, and it shows other staff they can get promoted.' },
-              { t: 'Advertise nationally and take 3 months', ok: false, fb: 'Too slow, and it ignores a strong candidate who is already there.' },
-              { t: 'Leave the store without a manager', ok: false, fb: 'Nobody would be responsible for staff, stock and cash.' }] },
-            { s: 'SoleFlip wants to start selling in Germany. Nobody in the team speaks German or knows German online marketplaces.', options: [
-              { t: 'Recruit externally for someone with that experience', ok: true, fb: 'Yes: the skills don\'t exist inside the business, and an outsider brings new knowledge.' },
-              { t: 'Promote whoever has worked there longest', ok: false, fb: 'Length of service doesn\'t give them German or market knowledge.' },
-              { t: 'Ask Noah to learn German in a month', ok: false, fb: 'Unrealistic, and Noah already has a business to run.' }] },
-            { s: 'For the Christmas rush SoleFlip needs 6 extra people to pack online orders for 5 weeks.', options: [
-              { t: 'Hire temporary staff (or use an agency)', ok: true, fb: 'Yes: the need is short-term and the job is simple, so temporary contracts keep costs flexible.' },
-              { t: 'Hire 6 permanent full-time staff', ok: false, fb: 'In January there would be no work for them, but SoleFlip would still have to pay them.' },
-              { t: 'Make the store staff pack at night for free', ok: false, fb: 'Illegal (unpaid work) and a fast way to raise labour turnover.' }] }
+            { s: 'Staff hear a rumour that the new design software will replace two painters. Nobody from management has said anything.', options: [
+              { t: 'Explain the plan honestly and early, and say how jobs will change', ok: true, fb: 'Yes: the cause is fear and poor communication, so clear, honest communication tackles it directly.' },
+              { t: 'Say nothing until the software arrives', ok: false, fb: 'Silence lets the rumour grow, and trust falls further.' },
+              { t: 'Warn staff that complaining will be noted in their file', ok: false, fb: 'Coercion may stop the complaints, but not the fear, and it damages trust.' }] },
+            { s: 'Omar is willing to change but is worried he won\'t be able to use the new program and will look slow next to younger staff.', options: [
+              { t: 'Offer training and let him practise before it goes live', ok: true, fb: 'Yes: the cause is a skills gap and fear of losing status, so training and support remove it.' },
+              { t: 'Give him a bonus to start using it tomorrow', ok: false, fb: 'Money doesn\'t give him the skill he is worried about lacking.' },
+              { t: 'Move him to the stockroom', ok: false, fb: 'It wastes his skills and confirms his fear about losing status.' }] },
+            { s: 'Store staff must move from fixed shifts to a new rota with more evening work. They say it is worse for their lives.', options: [
+              { t: 'Involve them in designing the rota and pay a premium for evenings', ok: true, fb: 'Yes: the cause is self-interest (the change is worse for them), so involvement and an incentive address it.' },
+              { t: 'Bring it in overnight with no discussion', ok: false, fb: 'Fast, but resistance and labour turnover are likely to rise.' },
+              { t: 'Explain that the business needs it, and leave it there', ok: false, fb: 'Communication helps, but it doesn\'t make the rota any better for them.' }] }
           ]
         }
       ],
       worked: {
-        title: 'Labour turnover, then explain it (exam style)',
-        intro: `<p><b>Question:</b> ${sf} had <b>18</b> employees on 1 January and <b>22</b> on 31 December. <b>5</b> employees left during the year. (a) <i>Calculate</i> the labour turnover. [2 marks] (b) <i>Explain</i> one way ${sf} could reduce it. [4 marks]</p>`,
+        title: 'Plan for change (exam style)',
+        intro: `<p><b>Question:</b> ${sf} is introducing new design software in its workshop. Several painters are resisting. (a) <i>Explain</i> two reasons why the painters may resist the change. [4 marks] (b) <i>Recommend</i> an HR strategy to reduce the resistance. [6 marks]</p>`,
         steps: [
-          { prompt: 'What is the average number of employees?', answer: '(18 + 22) ÷ 2 = <b>20</b>' },
-          { prompt: 'What is the labour turnover?', answer: '5 ÷ 20 × 100 = <b>25%</b>. Show the formula and the working: that\'s where the marks are.' },
-          { prompt: 'Is 25% high? What could it cost SoleFlip?', answer: 'It means 1 in 4 staff left. Each replacement costs advertising, Freja\'s interview time and training, and new staff sell less in their first weeks.' },
-          { prompt: 'Explain one way to reduce it.', answer: '<b>Better induction and training</b>: new staff who feel confident and part of the team are less likely to quit in the first months, so SoleFlip saves on recruitment and keeps experienced sellers for the busy season.' }
+          { prompt: 'First reason, linked to the case?', answer: '<b>Fear of losing their job or status</b>: if software does in 5 minutes what took an hour, painters may think fewer of them will be needed.' },
+          { prompt: 'Second reason, linked to the case?', answer: '<b>Habit and a skills gap</b>: experienced painters are skilled at hand-painting and may worry they will be slow or look incompetent with the new program.' },
+          { prompt: 'Which strategies could work?', answer: 'Communication (explain the plan honestly), involvement (painters test the software and suggest how to use it), training before it goes live, and an incentive for learning it.' },
+          { prompt: 'Recommend one, with a reason and a downside.', answer: '"Training plus involvement: let the painters test the program and train them before it goes live. It tackles both causes (fear and the skills gap). It costs time and money, but less than losing skilled painters to labour turnover."' }
         ],
-        takeaway: 'Calculation: formula → working → answer with units (%). Explanation: name the method, link it to the case, and say why it lowers turnover.'
+        takeaway: 'Link each reason for resistance to the case, then recommend a strategy that tackles the cause, and admit its cost.'
       },
       quiz: [
         { id: '2.1-1', type: 'mcq', cmd: 'Define', q: '<b>Workforce planning</b> means…', options: ['forecasting the number and skills of staff needed, and planning how to get them', 'deciding how much each employee should be paid for the work they do each month', 'writing the job description and advert for a vacancy that has just opened up', 'checking the performance of each employee once a year against the targets they agreed'], answer: 0, why: 'Workforce (human resource) planning looks ahead: how many people, with which skills, and how to find them. Pay, adverts and appraisal are separate HR jobs.' },
-        { id: '2.1-2', type: 'num', cmd: 'Calculate', q: 'Complete the table to find SoleFlip\'s <b>labour turnover</b>.' + tbl(['', 'Employees'], [['Employees on 1 January', '18'], ['Employees on 31 December', '22'], ['Average number of employees', A(20)], ['Employees who left during the year', '5'], ['<b>Labour turnover (%)</b>', A(25, true)]]), answer: 25, unit: '%', display: '25%', hint: 'Average = (start + end) ÷ 2; turnover = leavers ÷ average × 100.', why: 'Average = (18 + 22) ÷ 2 = 20. Turnover = 5 ÷ 20 × 100 = 25%.' },
-        { id: '2.1-3', type: 'num', cmd: 'Calculate', q: 'A festival employs an average of <b>80</b> staff over the season, and <b>12</b> of them leave before it ends. What is the labour turnover?', answer: 15, unit: '%', display: '15%', hint: 'Leavers ÷ average number of staff × 100', why: '12 ÷ 80 × 100 = 15%.' },
-        { id: '2.1-4', type: 'num', cmd: 'Calculate', q: 'A supermarket has an average of <b>250</b> employees and a labour turnover of <b>8%</b>. How many employees left during the year?', answer: 20, display: '20 employees', hint: 'Rearrange: leavers = turnover ÷ 100 × average staff', why: '8 ÷ 100 × 250 = 20 employees.' },
         { id: '2.1-5', type: 'mcq', cmd: 'Distinguish', q: 'A store closes and its 6 workers lose their jobs. This is…', options: ['redundancy, because the jobs no longer exist', 'dismissal, because the workers did something wrong', 'labour turnover, because the workers chose to leave', 'outsourcing, because the work moves to another firm'], answer: 0, why: 'Redundancy = the <i>job</i> disappears. Dismissal = the <i>person</i> is let go because of their conduct or performance.' },
         { id: '2.1-6', type: 'sort', q: 'Internal or external factor affecting SoleFlip\'s workforce plan?', buckets: ['Internal', 'External'], items: [
           { t: 'Plans to open a second store', b: 0 }, { t: 'A rise in the minimum wage', b: 1 }, { t: 'Fewer 16–20-year-olds in Denmark', b: 1 },
           { t: 'A new laser machine bought by Noah', b: 0 }, { t: 'A competitor paying higher wages nearby', b: 1 }, { t: 'SoleFlip\'s own high labour turnover', b: 0 }], why: 'Internal = decisions and data inside the business. External = demographics, laws, competitors and the labour market.' },
-        { id: '2.1-7', type: 'mcq', cmd: 'Identify', q: 'Which is a <b>drawback of internal recruitment</b>?', options: ['It brings in no new ideas and leaves another vacancy to fill', 'It costs more because adverts must reach a much wider pool', 'It takes longer, because nobody in the firm knows the candidates', 'It demotivates staff because they see no route to promotion'], answer: 0, why: 'Internal recruitment is quick and cheap and motivates staff, but the pool is small, no fresh ideas come in, and the promoted person\'s old job must be filled.' },
-        { id: '2.1-8', type: 'tf', q: 'A labour turnover of 0% is always the best outcome for a business.', answer: false, why: 'False. Some turnover brings new ideas and skills, and lets a business adjust its size. Very high turnover is the problem.' },
-        { id: '2.1-9', type: 'mcq', cmd: 'Identify', q: 'Colleagues, a manager and two customers all give feedback on Liv\'s work. This is…', options: ['360-degree feedback', 'Self-appraisal', 'Summative appraisal', 'Induction training'], answer: 0, why: '360-degree = feedback from all around the employee: above, alongside, below and outside.' },
-        { id: '2.1-10', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> Which is the best way to reduce staff <b>resistance to change</b> when introducing new software?', options: ['Involve staff early, explain why, and train them before it starts', 'Announce it on the day so there is no time to complain about it', 'Tell staff that anyone who doesn\'t use it will lose their job', 'Keep the reasons secret so that competitors cannot copy the whole idea'], answer: 0, why: 'Communication, involvement and training reduce fear and build trust. Surprise and threats (coercion) increase resistance and damage motivation.' }
+        { id: '2.1-10', type: 'mcq', cmd: 'Explain', q: 'Which is the best way to reduce staff <b>resistance to change</b> when introducing new software?', options: ['Involve staff early, explain why, and train them before it starts', 'Announce it on the day so there is no time to complain about it', 'Tell staff that anyone who doesn\'t use it will lose their job', 'Keep the reasons secret so that competitors cannot copy the whole idea'], answer: 0, why: 'Communication, involvement and training reduce fear and build trust. Surprise and threats (coercion) increase resistance and damage motivation.' },
+        { id: '2.1-11', type: 'mcq', cmd: 'Define', q: '<b>Labour mobility</b> means…', options: ['how easily workers can move between jobs, places and countries', 'how many workers leave a business during the year', 'how quickly a business can move its stores to new places', 'how many workers use bikes or trains to get to work'], answer: 0, why: 'Labour mobility is about workers moving: between occupations (job mobility) and places (geographical mobility). Leavers per year is labour turnover.' },
+        { id: '2.1-12', type: 'mcq', cmd: 'Identify', q: 'Which is an example of the <b>gig economy</b>?', options: ['A courier paid for each delivery through an app', 'A store manager on a permanent full-time contract', 'An office worker who works from home on Fridays', 'A seller who chooses her hours around a 10–2 core time'], answer: 0, why: 'The gig economy = short, one-off tasks paid per job. Working from home is teleworking; choosing hours around a core time is flexitime.' },
+        { id: '2.1-13', type: 'sort', q: 'Reason for resistance, or strategy to reduce it?', buckets: ['Reason for resistance', 'HR strategy'], items: [
+          { t: 'Fear of losing their job', b: 0 }, { t: 'Rumours instead of reasons', b: 0 }, { t: 'The old way is comfortable', b: 0 },
+          { t: 'Training before the change', b: 1 }, { t: 'Involving staff in the plan', b: 1 }, { t: 'A bonus for learning the new system', b: 1 }], why: 'Fear, poor communication, self-interest and habit cause resistance; communication, involvement, training, incentives and a gradual start reduce it.' },
+        { id: '2.1-14', type: 'tf', q: 'Forcing a change through without consulting staff is quick, but it usually reduces resistance in the long run.', answer: false, why: 'False. Coercion is quick, but it damages trust and motivation, so resistance often shows up later as low effort or higher labour turnover.' }
       ],
-      explain: 'Think of a part-time job you or a friend has had. Explain to a mate what <b>induction training</b> you got (or didn\'t), and how it affected whether you wanted to stay.'
+      explain: 'Think of a change at your school or in a team (a new timetable, a new coach). Explain to a mate why some people <b>resisted</b> it, and what would have made them accept it.'
     },
 
     // ------------------------------------------------------------------ 2.2
     {
       id: '2.2', title: 'Organizational structure', emoji: '🏗️', minutes: 14, hl: 'part',
-      goal: 'use the key terms of organizational structure, compare flat and tall structures, and explain structures by function, product and region (and HL: matrix and project-based).',
+      goal: 'use the key terms of organizational structure, compare flat and tall structures, explain structures by function, product, region and matrix, and (HL) project-based organizations and Handy\'s Shamrock.',
       hook: `When ${sf} was 4 people, everyone just shouted across the workshop. Now there are 22. Liv in Copenhagen doesn't know whether to ask Maja, Freja or Noah about a refund. Omar gets three different instructions in one morning.<br><br>Who reports to whom? It's time to draw ${sf}'s first <b>organizational chart</b>.`,
       cards: [
         { title: 'The key terms', html: `
@@ -160,12 +144,19 @@ export const unit2 = {
               <li><b>Product</b>: a team for each product line, e.g. SoleFlip <i>Resell</i>, <i>Custom</i>, <i>Cleaning</i>. Each team focuses on its customers, but functions like marketing get duplicated.</li>
               <li><b>Region</b>: a team for each area, e.g. Copenhagen, Aarhus, online. Good for local tastes, laws and languages; common in [[multinational company|multinationals]].</li></ul>
           <div class="example">LEGO has regional teams (Americas, Europe, Asia), and inside each one, functional departments.</div>` },
-        { title: 'Matrix and project-based structures (HL only)', html: `
-          <p><span class="tag">HL</span> A <b>matrix structure</b> puts people in teams that cut across departments. Each person has <b>two bosses</b>: their functional manager (e.g. head of marketing) and a project or product manager.</p>
+        { title: 'Matrix structure', html: `
+          <p>A <b>matrix structure</b> puts people in teams that cut across departments. Each person has <b>two bosses</b>: their functional manager (e.g. head of marketing) and a project or product manager.</p>
           <ul><li>✅ Combines skills from different departments; flexible; good for complex projects.</li>
               <li>❌ Two bosses can give conflicting instructions; it is harder to know who is responsible.</li></ul>
-          <p>A <b>project-based structure</b> organizes people around projects that start and end. Teams form for a project, then break up and join new ones.</p>
-          <div class="example">For the SoleFlip × Roskilde Festival collab, Sami (marketing), Omar (workshop) and an accountant form a project team for 4 months, while still belonging to their own departments.</div>` }
+          <div class="example">For the SoleFlip × Roskilde Festival collab, Sami (marketing), Omar (workshop) and an accountant form a project team for 4 months, while still belonging to their own departments.</div>` },
+        { title: 'Project-based organization and Handy\'s Shamrock (HL only)', html: `
+          <p><span class="tag">HL</span> A <b>project-based organization</b> is built around projects that start and end. Teams form for a project, then break up and join new ones. Common in consultancies, film and game studios, and construction.</p>
+          <p>Charles Handy's <b>Shamrock Organization</b> splits the workforce into three "leaves":</p>
+          <ul><li><b>Professional core</b>: permanent, highly skilled staff and managers who are essential to the business. Well paid, loyal, hard to replace.</li>
+              <li><b>Contractual fringe</b>: outside firms and freelancers paid for results, to do work that isn't core (cleaning, IT, design jobs).</li>
+              <li><b>Flexible labour force</b>: part-time, temporary and seasonal workers hired when demand is high.</li></ul>
+          <div class="example">${sf}: the core is Noah, Freja, Omar and Maja. A freelance accountant and the Porto factory are the contractual fringe. The Christmas packers are the flexible labour force.</div>
+          <p>✅ Lower costs and flexibility: the business pays for extra people only when it needs them. ❌ Fringe and flexible workers may feel less loyal or secure, which can hurt motivation and quality.</p>` }
       ],
       labs: [
         { type: 'structure', title: 'Design SoleFlip\'s hierarchy' },
@@ -210,16 +201,21 @@ export const unit2 = {
         { id: '2.2-5', type: 'tf', q: 'When a manager delegates a task, they are no longer responsible for the result.', answer: false, why: 'False. Authority to do the task is passed down, but the manager stays accountable for the outcome.' },
         { id: '2.2-6', type: 'mcq', cmd: 'Explain', q: 'Why might a business with stores in many countries choose <b>decentralization</b>?', options: ['Local managers understand local customers and can react faster', 'Head office can make sure every store looks exactly the same', 'It means senior managers keep tighter control over all spending', 'It removes the need for any managers in the individual stores'], answer: 0, why: 'Decentralization moves decisions closer to the market. The cost is less consistency and control from head office.' },
         { id: '2.2-7', type: 'mcq', cmd: 'Identify', q: 'SoleFlip groups its staff into a Resell team, a Custom team and a Cleaning team. This is a structure by…', options: ['product', 'function', 'region', 'hierarchy'], answer: 0, why: 'Each team is built around one product line. By function would be marketing, finance, HR and operations departments.' },
-        { id: '2.2-8', type: 'mcq', cmd: 'Identify', q: '<span class="tag">HL</span> Which is the main drawback of a <b>matrix structure</b>?', options: ['Staff have two bosses who may give conflicting instructions', 'Specialists from different departments never work together', 'It has the longest chain of command of any structure', 'It can only be used by sole traders and partnerships'], answer: 0, why: 'In a matrix each person reports to a functional manager and a project manager. Great for cooperation, but lines of authority can clash.' },
-        { id: '2.2-9', type: 'tf', q: 'A wide span of control works best when staff are experienced and do similar tasks.', answer: true, why: 'True. They need little supervision, so one manager can look after many of them.' }
+        { id: '2.2-8', type: 'mcq', cmd: 'Identify', q: 'Which is the main drawback of a <b>matrix structure</b>?', options: ['Staff have two bosses who may give conflicting instructions', 'Specialists from different departments never work together', 'It has the longest chain of command of any structure', 'It can only be used by sole traders and partnerships'], answer: 0, why: 'In a matrix each person reports to a functional manager and a project manager. Great for cooperation, but lines of authority can clash.' },
+        { id: '2.2-9', type: 'tf', q: 'A wide span of control works best when staff are experienced and do similar tasks.', answer: true, why: 'True. They need little supervision, so one manager can look after many of them.' },
+        { id: '2.2-10', type: 'sort', q: '<span class="tag">HL</span> Which leaf of Handy\'s <b>Shamrock</b> is each SoleFlip worker in?', buckets: ['Professional core', 'Contractual fringe', 'Flexible labour force'], items: [
+          { t: 'Omar, the head customiser', b: 0 }, { t: 'Freja, co-owner and designer', b: 0 },
+          { t: 'A freelance web developer paid per project', b: 1 }, { t: 'The Porto factory making Originals', b: 1 },
+          { t: 'Students hired to pack orders at Christmas', b: 2 }, { t: 'Weekend staff for the festival stall', b: 2 }], why: 'Core = essential permanent staff. Contractual fringe = outside firms and freelancers paid for results. Flexible labour = part-time and temporary workers used when demand rises.' },
+        { id: '2.2-11', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> What is a likely <b>drawback</b> of a Shamrock Organization for the business?', options: ['Temporary and contract workers may be less loyal, so quality and motivation can suffer', 'Every worker must be given a permanent contract, so costs become hard to cut', 'The professional core is so large that labour costs are always very high', 'Managers lose the ability to hire extra staff when demand rises in busy periods'], answer: 0, why: 'The Shamrock gives flexibility and lower costs, but workers on the fringe and in the flexible labour force have less security, so loyalty and quality can fall.' }
       ],
       explain: 'Draw (in words) the organizational chart of your school, your sports club or a shop you know. Explain to a mate whether it is <b>tall or flat</b>, and one problem that causes.'
     },
 
     // ------------------------------------------------------------------ 2.3
     {
-      id: '2.3', title: 'Leadership and management', emoji: '🧭', minutes: 12, hl: false,
-      goal: 'explain the functions of management, distinguish management from leadership, and evaluate autocratic, paternalistic, democratic, laissez-faire and situational leadership.',
+      id: '2.3', title: 'Leadership and management', emoji: '🧭', minutes: 15, hl: 'part',
+      goal: 'explain the functions of management, distinguish management from leadership, evaluate autocratic, paternalistic, democratic, laissez-faire and situational leadership, and (HL) compare scientific and intuitive thinking in management.',
       hook: `Two people run shifts at ${sf}. When <b>Maja</b> is on, every task is planned to the minute and nothing goes wrong, but nobody suggests anything new. When <b>Emil</b> is on, the team invents a TikTok series that gets 200,000 views, and also forgets to restock the shelves.<br><br>Who is the better boss? Maybe that's the wrong question.`,
       cards: [
         { title: 'What do managers do?', html: `
@@ -255,7 +251,13 @@ export const unit2 = {
               <li>A capable but nervous one needs coaching and support.</li>
               <li>An expert, confident team can be given freedom (more laissez-faire, plenty of [[delegation]]).</li>
               <li>A crisis needs fast, clear decisions.</li></ul>
-          <div class="tip">In "evaluate the leadership style" questions, the top answers say <i>it depends</i>: on the staff, the task, the urgency and the culture. Then make a judgement for the case.</div>` }
+          <div class="tip">In "evaluate the leadership style" questions, the top answers say <i>it depends</i>: on the staff, the task, the urgency and the culture. Then make a judgement for the case.</div>` },
+        { title: 'Scientific vs intuitive thinking (HL only)', html: `
+          <p><span class="tag">HL</span> Managers can make decisions in two ways:</p>
+          <ul><li><b>Scientific thinking (scientific management)</b>: decisions based on <b>data, evidence and a logical process</b>: set the objective, collect data, analyse the options (e.g. with a [[decision tree]] or [[break-even|break-even analysis]]), then choose. ✅ Objective, easier to justify to others, fewer costly mistakes. ❌ Slow, costly, and only as good as the data; some things (taste, mood, culture) are hard to measure.</li>
+              <li><b>Intuitive thinking</b>: decisions based on <b>gut feeling, experience and instinct</b>. ✅ Fast, cheap, works when there is little data or something is new; draws on years of experience. ❌ Can be biased or emotional, hard to explain or check, and risky when the stakes are high.</li></ul>
+          <div class="example">Freja picks next season's colourways on instinct, and she's usually right (intuitive). Noah decides how many pairs to order from Porto using last year's sales data and a forecast (scientific).</div>
+          <div class="tip">Strong answers say most good decisions <b>combine</b> both: data to test the idea, intuition where the data runs out. Judge which matters more for the decision in the case (risk, time, how much data exists).</div>` }
       ],
       labs: [{
         type: 'scenarios', title: 'Be the situational leader',
@@ -301,15 +303,18 @@ export const unit2 = {
         { id: '2.3-5', type: 'mcq', cmd: 'Explain', q: 'Why is a <b>democratic</b> style a poor choice in a crisis?', options: ['Discussing options takes time that a crisis doesn\'t allow', 'It means the leader has no authority over the staff at all', 'Staff never have useful ideas when something goes wrong', 'It is illegal for leaders to consult staff during a crisis'], answer: 0, why: 'Involving people is slow. In an emergency, fast and clear direction matters more.' },
         { id: '2.3-6', type: 'mcq', cmd: 'Identify', q: 'Which team is most suited to <b>laissez-faire</b> leadership?', options: ['Experienced designers working on a creative project', 'New apprentices on their first day with dangerous machines', 'Shop staff during an evacuation after a fire alarm', 'Temporary packers who will only work for two weeks'], answer: 0, why: 'Laissez-faire needs skilled, self-motivated staff and work where freedom helps, like creative projects.' },
         { id: '2.3-7', type: 'tf', q: 'A person can show leadership without having a management job title.', answer: true, why: 'True. A team captain or an experienced colleague can inspire others without formal authority.' },
-        { id: '2.3-8', type: 'mcq', cmd: 'Identify', q: 'Which is a <b>disadvantage</b> of paternalistic leadership?', options: ['Staff may feel treated like children and rely on the leader', 'Decisions take very long because staff vote on everything', 'Staff are left with no direction and deadlines are missed', 'The leader shows no concern at all for staff welfare'], answer: 0, why: 'Paternalistic leaders care for staff but still decide for them, which can feel patronizing and reduce initiative.' }
+        { id: '2.3-8', type: 'mcq', cmd: 'Identify', q: 'Which is a <b>disadvantage</b> of paternalistic leadership?', options: ['Staff may feel treated like children and rely on the leader', 'Decisions take very long because staff vote on everything', 'Staff are left with no direction and deadlines are missed', 'The leader shows no concern at all for staff welfare'], answer: 0, why: 'Paternalistic leaders care for staff but still decide for them, which can feel patronizing and reduce initiative.' },
+        { id: '2.3-9', type: 'mcq', cmd: 'Identify', q: '<span class="tag">HL</span> Noah analyses three years of sales data and a cost spreadsheet before choosing how many pairs to order. This is…', options: ['scientific thinking: a decision based on data and logical analysis', 'intuitive thinking: a decision based on gut feeling and experience', 'laissez-faire leadership: leaving the decision to the staff', 'paternalistic leadership: deciding what is best for the staff'], answer: 0, why: 'Scientific thinking/management uses evidence and a logical process. Intuitive thinking relies on instinct and experience.' },
+        { id: '2.3-10', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> When is <b>intuitive</b> thinking most likely to be the better approach?', options: ['When a quick decision is needed about something new and there is little data', 'When a decision is very costly and must be justified to the bank and shareholders', 'When years of reliable data on the same decision are easily available', 'When managers want to make sure that the decision is free of bias'], answer: 0, why: 'Intuition is fast and works where data is missing. Expensive, high-risk decisions with plenty of data suit scientific thinking, and intuition can be biased.' },
+        { id: '2.3-11', type: 'tf', q: '<span class="tag">HL</span> A drawback of scientific thinking is that it can be slow and costly, and is only as good as the data it uses.', answer: true, why: 'True. Collecting and analysing data takes time and money, and poor or out-of-date data leads to poor decisions.' }
       ],
       explain: 'Think of the best coach, teacher or boss you\'ve had. Explain to a mate which <b>leadership style</b> they used, and whether it would work in a different situation.'
     },
 
     // ------------------------------------------------------------------ 2.4
     {
-      id: '2.4', title: 'Motivation and demotivation', emoji: '🔥', minutes: 18, hl: 'part',
-      goal: 'explain the motivation theories of Taylor, Maslow and Herzberg (HL: McClelland, Deci and Ryan, Adams and Vroom), and evaluate financial and non-financial rewards.',
+      id: '2.4', title: 'Motivation and demotivation', emoji: '🔥', minutes: 24, hl: 'part',
+      goal: 'explain the motivation theories of Taylor, Maslow and Herzberg (HL: McClelland, Deci and Ryan, equity and expectancy theory), evaluate financial and non-financial rewards and training methods, and (HL) recruitment, appraisal and labour turnover.',
       hook: `Noah gives everyone at ${sf} a <b>$100 pay rise</b>. Two weeks later, nobody is working any harder. Then Freja lets Omar design his own limited-edition sneaker, with his name on the box. Omar works until midnight, unpaid, because he wants to.<br><br>So what actually makes people work hard: money, or something else?`,
       cards: [
         { title: 'Motivation and Taylor', html: `
@@ -363,7 +368,28 @@ export const unit2 = {
               <li><b>Empowerment</b>: giving staff the authority to make decisions about their own work. <i>Sellers can give a refund up to $100 without asking.</i></li>
               <li><b>Purpose</b>: the chance to make a difference, e.g. a recycling programme for old sneakers.</li>
               <li><b>Teamwork</b>: working in a team meets social needs.</li></ul>
-          <div class="tip">Link rewards to theory: job enrichment = Herzberg's motivators and Maslow's top levels; teamwork = Maslow's social needs and McClelland's affiliation.</div>` }
+          <div class="tip">Link rewards to theory: job enrichment = Herzberg's motivators and Maslow's top levels; teamwork = Maslow's social needs and McClelland's affiliation.</div>` },
+        { title: 'Training', html: `
+          <p><b>Training</b> gives staff the skills they need. The IB names three methods:</p>
+          <ul><li><b>Induction training</b>: introduces new staff to the business, its rules, people and culture.</li>
+              <li><b>On-the-job training</b>: learning while working, e.g. shadowing an experienced colleague. Cheap and realistic, but the trainer is less productive and bad habits can be passed on.</li>
+              <li><b>Off-the-job training</b>: away from the workplace, e.g. a course or college. Expert teaching, but costly, and the trained worker may then leave for a better job.</li></ul>
+          <p>Training is also a non-financial reward: learning new skills meets Maslow's esteem needs and Deci and Ryan's need for competence.</p>
+          <div class="extra">Training can build <b>cognitive</b> skills (thinking, problem-solving) or <b>behavioural</b> skills (dealing with customers, teamwork, managing emotions).</div>` },
+        { title: 'Recruitment and appraisal (HL only)', html: `
+          <p><span class="tag">HL</span> <b>Recruitment</b> is finding and hiring new staff. The usual steps: identify the vacancy → write a job description and person specification → advertise → shortlist → interview or test → appoint.</p>
+          <ul><li><b>Internal recruitment</b> (promote someone already there): cheaper, quicker, they know the business, and it motivates others. But no fresh ideas, and it leaves another gap.</li>
+              <li><b>External recruitment</b> (hire from outside): a bigger pool of talent and new ideas. But slower, costs more, and riskier.</li></ul>
+          <p><b>Appraisal</b> is the regular review of an employee's performance:</p>
+          <ul><li><b>Formative</b>: ongoing feedback to help them improve. <b>Summative</b>: a final judgement, often linked to pay.</li>
+              <li><b>360-degree feedback</b>: views from managers, colleagues, subordinates and even customers. <b>Self-appraisal</b>: the employee reviews themselves.</li></ul>
+          <div class="tip">Link appraisal to motivation: formative feedback supports competence (Deci and Ryan) and recognition (Herzberg); summative appraisal linked to pay is extrinsic.</div>` },
+        { title: 'Labour turnover (HL only)', html: `
+          <p><span class="tag">HL</span> <b>Labour turnover</b> measures the share of staff who leave in a year. Demotivated staff leave, so it is a key sign of how well motivation is working.</p>
+          ${F`\text{Labour turnover} = \frac{\text{number of employees leaving}}{\text{average number of employees}} \times 100`}
+          <div class="example">${sf}: 18 staff on 1 January, 22 on 31 December, so the average is (18 + 22) ÷ 2 = 20. 5 people left. Turnover = 5 ÷ 20 × 100 = <b>25%</b>.</div>
+          <p>High turnover costs money (recruiting and training replacements), loses skills and can mean staff are unhappy. Some turnover is healthy: new people bring new ideas.</p>
+          <div class="tip">Always compare: with last year, with the industry (retail and festivals often have high turnover) and with the business's own target. A number on its own says little.</div>` }
       ],
       labs: [
         {
@@ -383,7 +409,25 @@ export const unit2 = {
             { t: '🎯 Hitting a tough target you set yourself', b: 1 }
           ]
         },
-        { type: 'payschemes', title: 'Time rate or piece rate?' }
+        { type: 'payschemes', title: 'Time rate or piece rate?' },
+        {
+          type: 'scenarios', title: 'Inside or outside?',
+          challenge: 'Choose the best recruitment option for all 3 vacancies.',
+          items: [
+            { s: 'Maja is moving to open the new Odense store. SoleFlip needs a new Copenhagen store manager <b>fast</b>, and Liv has worked there for 2 years and knows every regular.', options: [
+              { t: 'Promote Liv (internal recruitment)', ok: true, fb: 'Yes: quick and cheap, she knows the store and customers, and it shows other staff they can get promoted.' },
+              { t: 'Advertise nationally and take 3 months', ok: false, fb: 'Too slow, and it ignores a strong candidate who is already there.' },
+              { t: 'Leave the store without a manager', ok: false, fb: 'Nobody would be responsible for staff, stock and cash.' }] },
+            { s: 'SoleFlip wants to start selling in Germany. Nobody in the team speaks German or knows German online marketplaces.', options: [
+              { t: 'Recruit externally for someone with that experience', ok: true, fb: 'Yes: the skills don\'t exist inside the business, and an outsider brings new knowledge.' },
+              { t: 'Promote whoever has worked there longest', ok: false, fb: 'Length of service doesn\'t give them German or market knowledge.' },
+              { t: 'Ask Noah to learn German in a month', ok: false, fb: 'Unrealistic, and Noah already has a business to run.' }] },
+            { s: 'For the Christmas rush SoleFlip needs 6 extra people to pack online orders for 5 weeks.', options: [
+              { t: 'Hire temporary staff (or use an agency)', ok: true, fb: 'Yes: the need is short-term and the job is simple, so temporary contracts keep costs flexible.' },
+              { t: 'Hire 6 permanent full-time staff', ok: false, fb: 'In January there would be no work for them, but SoleFlip would still have to pay them.' },
+              { t: 'Make the store staff pack at night for free', ok: false, fb: 'Illegal (unpaid work) and a fast way to raise labour turnover.' }] }
+          ]
+        }
       ],
       worked: {
         title: 'Recommend a reward (exam style)',
@@ -409,7 +453,17 @@ export const unit2 = {
         { id: '2.4-7', type: 'mcq', cmd: 'Explain', q: 'Why might a big pay rise <b>fail</b> to motivate staff for long, according to Herzberg?', options: ['Pay is a hygiene factor: it removes dissatisfaction but doesn\'t motivate', 'Pay is a motivator, but only once staff have been promoted to managers', 'Staff spend extra pay quickly, so it has no effect on them at all', 'Pay rises are not allowed for staff who already earn the minimum wage'], answer: 0, why: 'Herzberg: fixing hygiene factors stops people being unhappy, but lasting motivation comes from motivators such as responsibility and recognition.' },
         { id: '2.4-8', type: 'mcq', cmd: 'Identify', q: 'Staff get a 10% discount, free lunch on Saturdays and a free pair of sneakers each year. These are…', options: ['fringe payments', 'commission', 'profit-related pay', 'piece rates'], answer: 0, why: 'Fringe payments (perks) are non-cash extras on top of pay.' },
         { id: '2.4-9', type: 'mcq', cmd: 'Identify', q: '<span class="tag">HL</span> Liv discovers a new seller earns more than her for the same job, and starts working less hard. Which theory explains this best?', options: ['Adams\' equity theory', 'Taylor\'s scientific management', 'Maslow\'s hierarchy of needs', 'McClelland\'s need for power'], answer: 0, why: 'Equity theory: people compare their inputs and rewards with others. Unfairness demotivates, even if their own pay hasn\'t changed.' },
-        { id: '2.4-10', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> In Vroom\'s expectancy theory, a bonus for an <b>impossible</b> sales target motivates nobody because…', options: ['expectancy is close to zero: staff don\'t believe effort will hit the target', 'valence is close to zero: nobody wants money as a reward for their hard work', 'instrumentality is too high: staff are sure to get the bonus anyway', 'the bonus is a hygiene factor, so it can only ever remove dissatisfaction'], answer: 0, why: 'Motivation = E × I × V. If staff think "I can\'t hit that whatever I do", expectancy ≈ 0, so motivation ≈ 0.' }
+        { id: '2.4-10', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> In Vroom\'s expectancy theory, a bonus for an <b>impossible</b> sales target motivates nobody because…', options: ['expectancy is close to zero: staff don\'t believe effort will hit the target', 'valence is close to zero: nobody wants money as a reward for their hard work', 'instrumentality is too high: staff are sure to get the bonus anyway', 'the bonus is a hygiene factor, so it can only ever remove dissatisfaction'], answer: 0, why: 'Motivation = E × I × V. If staff think "I can\'t hit that whatever I do", expectancy ≈ 0, so motivation ≈ 0.' },
+        { id: '2.4-11', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> Complete the table to find SoleFlip\'s <b>labour turnover</b>.' + tbl(['', 'Employees'], [['Employees on 1 January', '18'], ['Employees on 31 December', '22'], ['Average number of employees', A(20)], ['Employees who left during the year', '5'], ['<b>Labour turnover (%)</b>', A(25, true)]]), answer: 25, unit: '%', display: '25%', hint: 'Average = (start + end) ÷ 2; turnover = leavers ÷ average × 100.', why: 'Average = (18 + 22) ÷ 2 = 20. Turnover = 5 ÷ 20 × 100 = 25%.' },
+        { id: '2.4-12', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> A festival employs an average of <b>80</b> staff over the season, and <b>12</b> of them leave before it ends. What is the labour turnover?', answer: 15, unit: '%', display: '15%', hint: 'Leavers ÷ average number of staff × 100', why: '12 ÷ 80 × 100 = 15%.' },
+        { id: '2.4-13', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> A supermarket has an average of <b>250</b> employees and a labour turnover of <b>8%</b>. How many employees left during the year?', answer: 20, display: '20 employees', hint: 'Rearrange: leavers = turnover ÷ 100 × average staff', why: '8 ÷ 100 × 250 = 20 employees.' },
+        { id: '2.4-14', type: 'mcq', cmd: 'Identify', q: '<span class="tag">HL</span> Which is a <b>drawback of internal recruitment</b>?', options: ['It brings in no new ideas and leaves another vacancy to fill', 'It costs more because adverts must reach a much wider pool', 'It takes longer, because nobody in the firm knows the candidates', 'It demotivates staff because they see no route to promotion'], answer: 0, why: 'Internal recruitment is quick and cheap and motivates staff, but the pool is small, no fresh ideas come in, and the promoted person\'s old job must be filled.' },
+        { id: '2.4-15', type: 'tf', q: '<span class="tag">HL</span> A labour turnover of 0% is always the best outcome for a business.', answer: false, why: 'False. Some turnover brings new ideas and skills, and lets a business adjust its size. Very high turnover is the problem.' },
+        { id: '2.4-16', type: 'mcq', cmd: 'Identify', q: '<span class="tag">HL</span> Colleagues, a manager and two customers all give feedback on Liv\'s work. This is…', options: ['360-degree feedback', 'Self-appraisal', 'Summative appraisal', 'Induction training'], answer: 0, why: '360-degree = feedback from all around the employee: above, alongside, below and outside.' },
+        { id: '2.4-17', type: 'sort', q: 'Which type of <b>training</b> is each?', buckets: ['Induction', 'On-the-job', 'Off-the-job'], items: [
+          { t: 'A tour of the store on day 1', b: 0 }, { t: 'Learning the safety rules in week 1', b: 0 },
+          { t: 'Shadowing Omar while he customises', b: 1 }, { t: 'Coaching from Maja on a busy Saturday', b: 1 },
+          { t: 'A two-day laser course in Odense', b: 2 }, { t: 'An evening online retail course', b: 2 }], why: 'Induction introduces new staff to the business; on-the-job happens while working; off-the-job happens away from the workplace.' }
       ],
       explain: 'What makes <i>you</i> try hard: in a game, a sport or school? Explain to a mate whether it is <b>intrinsic or extrinsic</b> motivation, and which theory fits it best.'
     },
@@ -430,18 +484,18 @@ export const unit2 = {
           <p>Cultures differ along <b>dimensions</b> such as: formal ↔ informal, risk-taking ↔ cautious, hierarchical ↔ equal, individual ↔ team-based.</p>
           <div class="example">${sf}: informal, risk-taking, equal (everyone calls Noah "Noah"), team-based. Its [[mission statement]] "Every pair tells a story" is part of the culture too.</div>` },
         { title: 'Types of culture (Handy)', html: `
-          <p><span class="tag">HL</span> Charles Handy described four types:</p>
-          <ul><li><b>Power culture</b>: power sits with one person or a small group at the centre. Fast decisions, but depends on the leader. <i>A founder-run start-up.</i></li>
-              <li><b>Role culture</b>: power comes from your job position; clear rules and procedures. Stable but slow to change. <i>A bank, a government office, Pedersen Sko.</i></li>
-              <li><b>Task culture</b>: teams form to solve problems; expertise matters more than rank. Creative and flexible. <i>A design agency, SoleFlip's collab projects.</i></li>
-              <li><b>Person culture</b>: the organization exists for the individuals in it, who are experts. <i>A partnership of lawyers or doctors.</i></li></ul>
+          <p><span class="tag">HL</span> In <i>Gods of Management</i>, Charles Handy described four types of culture, each named after a Greek god:</p>
+          <ul><li><b>Power culture (Zeus)</b>: power sits with one person or a small group at the centre. Fast decisions, but depends on the leader. <i>A founder-run start-up.</i></li>
+              <li><b>Role culture (Apollo)</b>: power comes from your job position; clear rules and procedures. Stable but slow to change. <i>A bank, a government office, Pedersen Sko.</i></li>
+              <li><b>Task culture (Athena)</b>: teams form to solve problems; expertise matters more than rank. Creative and flexible. <i>A design agency, SoleFlip's collab projects.</i></li>
+              <li><b>Person culture (Dionysus)</b>: the organization exists for the individuals in it, who are experts. <i>A partnership of lawyers or doctors.</i></li></ul>
           <div class="tip">Other models exist. In the exam, any clearly explained classification earns marks if you apply it to the case.</div>` },
         { title: 'Culture clashes', html: `
           <p><span class="tag">HL</span> A <b>culture clash</b> happens when groups with different cultures have to work together. Common reasons:</p>
           <ul><li>[[merger|Mergers]] and acquisitions joining two different businesses.</li>
               <li>A new leader with a different style ([[leadership]]).</li>
               <li>Growth: a start-up culture meets new formal systems.</li>
-              <li>Working across countries (a [[multinational company]]): different national cultures.</li></ul>
+              <li>Working across countries (a [[multinational company]]): different national cultures ([[Hofstede's cultural dimensions]], 6.12, help explain them).</li></ul>
           <p>Consequences: misunderstandings and conflict, falling [[motivation]], higher labour turnover, lower productivity, and in the worst cases the failure of a merger.</p>
           <div class="example">Pedersen's repairers felt SoleFlip's "just try it" attitude was careless; SoleFlip's managers found Pedersen's manual absurd. Nobody explained the change. The best repairers left.</div>` },
         { title: 'People shape culture, culture shapes people', html: `
@@ -703,9 +757,8 @@ export const unit2 = {
     }
   ],
   formulas: [
-    { group: '2.1 Introduction to human resource management', items: [
-      { name: 'Labour turnover', f: M`\frac{\text{number of employees leaving}}{\text{average number of employees}} \times 100`, note: M`\text{Average number of employees} = \frac{\text{employees at start} + \text{employees at end}}{2}` }] },
     { group: '2.4 Motivation and demotivation', items: [
+      { name: 'Labour turnover', f: M`\frac{\text{number of employees leaving}}{\text{average number of employees}} \times 100`, hl: true, note: M`\text{Average number of employees} = \frac{\text{employees at start} + \text{employees at end}}{2}` },
       { name: 'Commission pay', f: M`\text{Pay} = \text{basic pay} + \text{commission rate} \times \text{sales}`, note: 'Not on the IB formula sheet, but useful for reward calculations.' },
       { name: 'Expectancy theory (Vroom)', f: M`\text{Motivation} = E \times I \times V`, hl: true, note: 'Not on the IB formula sheet: a model, not a calculation. Expectancy × instrumentality × valence; if one is zero, so is motivation.' }] }
   ]

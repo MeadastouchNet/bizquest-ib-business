@@ -22,9 +22,22 @@ All five units of IB Business Management are built (1.1–5.9), plus the busines
 
 ## Still to do
 
-- **Verify against the official guide.** Every content point in [`docs/SYLLABUS.md`](SYLLABUS.md) is marked
-  *from memory*. When the guide is available, check each row, especially those with a note (2.1 recruitment and
-  training placement, 4.1 social marketing, 4.3 moving-average types, 5.9 technology list).
-- **Check the curriculum** with [`docs/CURRICULUM-CHECKLIST.md`](CURRICULUM-CHECKLIST.md). Also check 6.6 (free float?) and
-  6.7 (must r or R² be calculated?).
+- **Tick off against the guide itself.** On 2026-10-26 every correction from an external review of the official
+  guide was applied (see [`docs/CURRICULUM-CHECKLIST.md`](CURRICULUM-CHECKLIST.md)): new topics 6.10–6.13, free
+  float, HL flags, pricing methods, PED, R&D, MIS and the 2.1 → 2.4 move. Each item is labelled SL/HL, HL or
+  Extra. Nobody has yet checked those labels line by line against the guide PDF.
+- **Course-wide elements.** The four key concepts (creativity, change, ethics, sustainability), HL Paper 3
+  preparation (social enterprises, 2/6/17-mark questions) and IA preparation (1,800 words, one key concept as the
+  lens) aren't taught yet. They'd suit a short "Exam and IA" unit.
+- **Possibly missing from 2.4.** Check whether the guide lists Daniel Pink's motivation theory (autonomy,
+  mastery, purpose) among the SL theories; 2.4 only mentions "purpose" as a reward.
 - **Improve from use.** After a week or two, check Usage stats and fix low-rated or most-missed lessons first.
+
+## Content conventions added in the 2026-10-26 update
+
+- Content that isn't prescribed in the 2024 guide goes in `<div class="extra">…</div>` (shown as "➕ Beyond the
+  IB syllabus"). Don't write quiz questions or lab challenges whose answer is Extra content.
+- HL-only content inside a mixed topic gets `<span class="tag">HL</span>` on the card and quiz question, and the
+  topic gets `hl: 'part'`.
+- Quiz ids that were retired when content moved: 2.1-2, 2.1-3, 2.1-4, 2.1-7, 2.1-8, 2.1-9 (now 2.4-11 to 2.4-16).
+  Don't reuse them.

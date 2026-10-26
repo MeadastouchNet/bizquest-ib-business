@@ -177,12 +177,12 @@ export const unit5 = {
           <p><span class="tag">HL</span> <b>Lean production</b> means making products with as little waste as possible: of time, materials, space, energy and human effort.</p>
           <p>Typical waste: making too much, waiting, unnecessary moving or transport, extra processing, too much stock, defects, and unused talent.</p>
           <p>✅ Lower costs, faster delivery, better quality, less environmental impact.<br>❌ Needs trained, committed staff and reliable suppliers; little slack if something goes wrong.</p>` },
-        { title: 'Lean tools: kaizen, JIT, kanban, andon', html: `
+        { title: 'Lean methods: kaizen and JIT', html: `
+          <p>The IB names two lean methods:</p>
           <ul><li><b>Kaizen</b> (continuous improvement): many small improvements, suggested by the workers who do the job, made all the time.</li>
-              <li><b>Just-in-time (JIT)</b>: materials arrive exactly when needed, so almost no stock is held.</li>
-              <li><b>Kanban</b>: a visual signal (card, board, empty box) that tells the previous stage to make or deliver more.</li>
-              <li><b>Andon</b>: a signal (light, cord, button) any worker can use to stop the line when there's a problem, so it's fixed at once.</li></ul>
-          <div class="example">Toyota made these famous. In ${sf}'s workshop: an empty paint tray on a shelf is the kanban to reorder; Omar can hit a red button (andon) if the laser engraves badly.</div>` },
+              <li><b>Just-in-time (JIT)</b>: materials arrive exactly when needed, so almost no stock is held.</li></ul>
+          <div class="example">Omar's team cuts packing time by 10 seconds, then 10 more (kaizen). Blanks arrive from Porto each Monday for that week only (JIT).</div>
+          <div class="extra">Toyota also made two lean tools famous: <b>kanban</b>, a visual signal (card, board, empty box) that tells the previous stage to make or deliver more, and <b>andon</b>, a signal (light, cord, button) any worker can use to stop the line when there's a problem.</div>` },
         { title: 'Cradle to cradle', html: `
           <p><b>Cradle-to-cradle</b> design and manufacturing means designing products so that, at the end of their life, all their materials can be safely reused, recycled or returned to nature, instead of thrown away ("cradle to grave").</p>
           <p>It links lean thinking with environmental sustainability: no waste, ever. It is one route to a [[circular economy]] (6.8).</p>
@@ -208,16 +208,16 @@ export const unit5 = {
         {
           type: 'sort', title: 'Name the lean tool',
           challenge: 'Sort all 8 correctly in one go.',
-          buckets: ['Kaizen', 'JIT', 'Kanban', 'Andon'],
+          buckets: ['Kaizen', 'JIT', 'Cradle to cradle'],
           items: [
             { t: '💡 Workers suggest one small improvement every week', b: 0 },
             { t: '📉 Packing time cut by 10 seconds, then 10 more', b: 0 },
+            { t: '🗣️ A monthly meeting where staff share tiny fixes', b: 0 },
             { t: '🚚 Blanks delivered each morning for that day only', b: 1 },
             { t: '🏭 A car plant holding only two hours of parts', b: 1 },
-            { t: '🗂️ A card in an empty box triggers the next delivery', b: 2 },
-            { t: '📋 A board showing which tasks need doing next', b: 2 },
-            { t: '🚨 A worker pulls a cord to stop the line', b: 3 },
-            { t: '🔴 A red light shows the laser station has a fault', b: 3 }
+            { t: '♻️ Old soles ground up into new soles', b: 2 },
+            { t: '🧵 Laces designed to be fully recycled at end of life', b: 2 },
+            { t: '📦 Packaging that can be composted', b: 2 }
           ]
         },
         {
@@ -289,10 +289,10 @@ export const unit5 = {
           <div class="tip">The best location balances cost against what the business really needs. A sneaker store needs footfall; a warehouse needs a motorway.</div>` },
         { title: 'Reorganizing production', html: `
           <p>A business can also change <i>who</i> does the work and <i>where</i>:</p>
-          <ul><li><b>[[outsourcing|Outsourcing]]</b> (subcontracting): paying another firm to do some work.</li>
-              <li><b>[[offshoring|Offshoring]]</b>: moving work to another country.</li>
+          <ul><li><b>Outsourcing</b> (subcontracting): paying another firm to do some work.</li>
+              <li><b>Offshoring</b>: moving work to another country.</li>
               <li><b>Insourcing</b>: bringing work that was outsourced back inside the business.</li>
-              <li><b>[[reshoring|Reshoring]]</b>: bringing work that was moved abroad back to the home country.</li></ul>
+              <li><b>Reshoring</b>: bringing work that was moved abroad back to the home country.</li></ul>
           <p>Firms offshore for lower costs and to be near new markets; they reshore for quality, speed, control, lower transport emissions and less supply-chain risk.</p>
           <div class="example">${sf} outsources and offshores the making of Originals to Porto. If quality problems pile up, it might insource the final painting step back into its own workshop.</div>` }
       ],
@@ -447,12 +447,23 @@ export const unit5 = {
           ${F`\text{Productivity rate} = \frac{\text{total output}}{\text{total input}} \times 100`}
           ${F`\text{Defect rate} = \frac{\text{number of defective units}}{\text{total output}} \times 100`}
           <div class="example">240 pairs in 160 labour hours: <b>1.5 pairs per hour</b>. 240 pairs from 2 laser machines: <b>120 pairs per machine</b>. 12 defects: 12 ÷ 240 × 100 = <b>5%</b>.</div>` },
+        { title: 'Operating leverage', html: `
+          <p><b>Operating leverage</b> describes how much of a business's costs are <b>fixed</b> rather than variable. The higher the share of fixed costs, the more its profit swings when sales change.</p>
+          <div class="table-wrap"><table class="fin"><tr><th></th><th>Workshop A (machines)</th><th>Workshop B (hand work)</th></tr>
+            <tr><td>Fixed costs</td><td>$8,000</td><td>$2,000</td></tr>
+            <tr><td>Variable cost per pair</td><td>$10</td><td>$40</td></tr>
+            <tr><td>Profit at 200 pairs ($60 each)</td><td>$2,000</td><td>$2,000</td></tr>
+            <tr><td>Profit at 220 pairs (+10%)</td><td>$3,000 (+50%)</td><td>$2,400 (+20%)</td></tr></table></div>
+          <p><b>High operating leverage</b> (A): once fixed costs are covered, each extra sale adds a lot of profit, but a fall in sales hits profit hard. Risky when demand is uncertain.</p>
+          <p><b>Low operating leverage</b> (B): profit changes less with sales: safer, but extra sales add less profit.</p>
+          <div class="tip">Link it to break-even ([[break-even]]): high fixed costs mean a higher break-even point. Automation raises operating leverage; outsourcing or flexible staff lowers it.</div>` },
         { title: 'Make or buy? CTM vs CTB', html: `
           <p>Should the business make a part itself or buy it in?</p>
           ${F`\text{Cost to buy (CTB)} = \text{price per unit} \times \text{quantity}`}
           ${F`\text{Cost to make (CTM)} = \text{total fixed costs} + \text{variable cost per unit} \times \text{quantity}`}
           <div class="example">2,000 custom laces a year. Buy at $2.20: CTB = <b>$4,400</b>. Make with a $2,000 machine and $1.50 per lace: CTM = 2,000 + 1.50 × 2,000 = <b>$5,000</b>. Buying is $600 cheaper.</div>
-          <div class="tip">Then add qualitative factors: quality control, reliability of the supplier, spare capacity, and whether making it builds a skill or USP.</div>` }
+          <div class="tip">Then add qualitative factors: quality control, reliability of the supplier, spare capacity, and whether making it builds a skill or USP.</div>
+          <p class="muted small">The toolkit topic 6.13 uses the same method, alongside [[contribution costing]] and [[absorption costing]].</p>` }
       ],
       labs: [
         { type: 'stockcontrol', title: 'Never run out of blanks' },
@@ -495,7 +506,8 @@ export const unit5 = {
         { id: '5.6-5', type: 'mcq', cmd: 'Distinguish', q: '<span class="tag">HL</span> Which is an advantage of <b>just-in-case</b> over just-in-time?', options: ['The business can meet sudden rises in demand from its stock', 'Less cash is tied up in stock that is waiting to be used', 'Less warehouse space is needed to store materials', 'Less stock goes out of date or gets damaged in storage'], answer: 0, why: 'JIC holds buffer stock for surprises. The other three are advantages of JIT.' },
         { id: '5.6-6', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> Why can a capacity utilization close to <b>100%</b> be a problem?', options: ['No time for maintenance, staff get stressed, and extra orders must be refused', 'Fixed costs per unit rise because many machines and staff stand idle for hours', 'It means the business is making a loss on every unit it produces', 'It shows that demand has fallen and the business should shrink'], answer: 0, why: 'Near full capacity, there is no slack for breakdowns, training or sudden orders. Idle machines (high fixed cost per unit) are a problem of <i>low</i> utilization.' },
         { id: '5.6-7', type: 'mcq', cmd: 'Identify', q: '<span class="tag">HL</span> On a stock control chart, <b>lead time</b> is…', options: ['the time between placing an order and receiving it', 'the time it takes to use up all the stock in the warehouse', 'the time between two deliveries of the same material', 'the time stock can be kept before it goes out of date'], answer: 0, why: 'Lead time = order to delivery. The reorder level must cover usage during the lead time.' },
-        { id: '5.6-8', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> Buffer stock is <b>30</b> pairs and the reorder quantity is <b>160</b> pairs. What is the <b>maximum stock</b> level?', answer: 190, display: '190 pairs', hint: 'Buffer + reorder quantity', why: 'Maximum stock = 30 + 160 = 190 pairs: a delivery arrives just as stock reaches the buffer.' }
+        { id: '5.6-8', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> Buffer stock is <b>30</b> pairs and the reorder quantity is <b>160</b> pairs. What is the <b>maximum stock</b> level?', answer: 190, display: '190 pairs', hint: 'Buffer + reorder quantity', why: 'Maximum stock = 30 + 160 = 190 pairs: a delivery arrives just as stock reaches the buffer.' },
+        { id: '5.6-9', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> SoleFlip replaces hand-painters with an expensive automated machine. What happens to its <b>operating leverage</b>?', options: ['It rises: more costs are fixed, so profit swings more when sales change', 'It falls: fewer staff means profit is less affected by sales', 'It stays the same: operating leverage only depends on the price', 'It disappears: machines remove all of the business\'s fixed costs'], answer: 0, why: 'The machine is a fixed cost and replaces variable labour costs. A higher share of fixed costs = higher operating leverage: big profit gains when sales rise, big falls when they drop.' }
       ],
       explain: 'Think about your fridge or snack cupboard at home. Explain to a mate whether your family uses <b>JIT</b> or <b>JIC</b>, what the <b>lead time</b> is (how long to get more), and what your <b>buffer stock</b> is.'
     },
@@ -519,8 +531,12 @@ export const unit5 = {
               <li><b>Control</b>: a clear crisis team takes charge, makes decisions and gets the situation back under control.</li></ul>
           <div class="tip">Apply all four to the case in an "explain" answer: what should the business say, to whom, how fast, and who leads?</div>` },
         { title: 'Contingency planning: worth it?', html: `
-          <p><b>Benefits</b>: faster, calmer response; less damage and downtime; staff know their roles; reassures investors, insurers and customers; may lower insurance costs.</p>
-          <p><b>Costs</b>: time and money to plan, train and run drills; back-up systems and stock that may never be used; plans can't predict every crisis, and they go out of date.</p>
+          <p>The IB asks you to judge the impact of contingency planning in four ways:</p>
+          <div class="table-wrap"><table class="fin"><tr><th></th><th>✅ Benefit</th><th>❌ Drawback</th></tr>
+            <tr><td><b>Cost</b></td><td>Less damage and lost sales in a crisis; may lower insurance costs</td><td>Money for planning, training, drills and back-ups that may never be used</td></tr>
+            <tr><td><b>Time</b></td><td>A faster, calmer response; less downtime</td><td>Managers' and staff time to plan, train and keep plans up to date</td></tr>
+            <tr><td><b>Risks</b></td><td>Fewer things go wrong, and investors, insurers and customers are reassured</td><td>No plan covers every crisis; an out-of-date plan gives false confidence</td></tr>
+            <tr><td><b>Safety</b></td><td>Staff and customers know what to do (evacuation, first aid), so fewer people are hurt</td><td>Drills interrupt work, and a badly designed plan can put people at risk</td></tr></table></div>
           <div class="example">${sf}'s contingency plan: a back-up card reader that works offline, waterproof stock boxes at festivals, a second supplier for blanks, and a pre-agreed social media response team.</div>
           <div class="tip">The value of a contingency plan depends on how likely a crisis is and how much damage it would do (likelihood × impact).</div>` }
       ],
@@ -578,7 +594,12 @@ export const unit5 = {
         { id: '5.7-5', type: 'mcq', cmd: 'Identify', q: '<span class="tag">HL</span> Which is a <b>cost</b> of contingency planning?', options: ['Time and money spent on plans that may never be used', 'A slower response when a crisis actually happens', 'Staff being unsure of their roles and duties during a crisis', 'Higher losses when a crisis does happen'], answer: 0, why: 'The plan costs money up front even if no crisis happens. The other options are what happens <i>without</i> a plan.' },
         { id: '5.7-6', type: 'sort', q: '<span class="tag">HL</span> Good or bad crisis management?', buckets: ['Good', 'Bad'], items: [
           { t: 'Updating customers every few hours', b: 0 }, { t: 'One crisis team in charge', b: 0 }, { t: 'Admitting what went wrong', b: 0 },
-          { t: 'Waiting a week to comment', b: 1 }, { t: 'Different managers telling different stories', b: 1 }, { t: 'Deleting critical posts', b: 1 }], why: 'Transparency, communication, speed and control make crisis management effective.' }
+          { t: 'Waiting a week to comment', b: 1 }, { t: 'Different managers telling different stories', b: 1 }, { t: 'Deleting critical posts', b: 1 }], why: 'Transparency, communication, speed and control make crisis management effective.' },
+        { id: '5.7-7', type: 'sort', q: '<span class="tag">HL</span> Which impact of contingency planning is each?', buckets: ['Cost', 'Time', 'Risks', 'Safety'], items: [
+          { t: 'Paying for a back-up card reader', b: 0 }, { t: 'Lower insurance premiums', b: 0 },
+          { t: 'Staff hours spent writing the plan', b: 1 }, { t: 'Reopening in hours, not days', b: 1 },
+          { t: 'A second supplier if Porto stops', b: 2 }, { t: 'A plan that is out of date', b: 2 },
+          { t: 'A practised fire evacuation', b: 3 }, { t: 'First-aid trained festival staff', b: 3 }], why: 'The IB looks at the impact of contingency planning on cost, time, risks and safety: each has benefits and drawbacks.' }
       ],
       explain: 'Think of a crisis you saw a brand or celebrity go through online. Explain to a mate whether they handled it well, using <b>transparency</b>, <b>communication</b>, <b>speed</b> and <b>control</b>.'
     },
@@ -586,7 +607,7 @@ export const unit5 = {
     // ------------------------------------------------------------------ 5.8
     {
       id: '5.8', title: 'Research and development', emoji: '🧪', minutes: 10, hl: true,
-      goal: 'explain the importance of R&D, the four types of innovation, and the difference between incremental and disruptive innovation.',
+      goal: 'explain the importance of R&D, why addressing unmet customer needs matters, how intellectual property protects ideas, and the difference between incremental and disruptive innovation.',
       hook: `Blockbuster once had 9,000 video stores. A small company mailed DVDs, then started streaming. Blockbuster laughed. Then it went bankrupt.<br><br>Netflix didn't just make a better video store. It changed the whole idea of watching films. What kind of innovation does that, and how do businesses plan for it?`,
       cards: [
         { title: 'Why research and development?', html: `
@@ -598,30 +619,43 @@ export const unit5 = {
               <li>Meeting changing customer needs found through [[market research]].</li></ul>
           <p>But R&D is expensive, slow and risky: most ideas never make money.</p>
           <div class="example">${sf}'s R&D: Freja and Omar test 14 versions of a sole made from recycled sneakers before one survives 500 km of wear.</div>` },
-        { title: 'Four types of innovation', html: `
-          <ul><li><b>Product innovation</b>: a new or improved product (the first smartphone; a self-lacing sneaker).</li>
-              <li><b>Process innovation</b>: a new or improved way of making or delivering it (online ordering; a laser instead of hand-painting).</li>
-              <li><b>Positioning innovation</b>: changing how an existing product is seen, or who it is for (Lucozade went from a drink for sick people to a sports drink).</li>
-              <li><b>Paradigm innovation</b>: changing the whole business model or way of thinking (low-cost airlines; streaming instead of owning music).</li></ul>` },
+        { title: 'Unmet customer needs', html: `
+          <p>An <b>unmet customer need</b> is something customers want or struggle with that no product solves well yet. They may not even be able to say it themselves.</p>
+          <ul><li>Finding them takes [[market research]], watching how customers really use products, complaints and reviews.</li>
+              <li>Meeting them first gives a business a [[unique selling point|USP]], higher prices and loyal customers, before rivals catch up.</li></ul>
+          <div class="example">Teens told ${sf} they love sneakers but feel guilty about waste. No big brand offered a sneaker you could send back to be remade. That unmet need became the recycled-sole Originals.</div>
+          <div class="tip">In an R&D answer, link the innovation to a specific unmet need from the case: that's what makes it worth the cost and risk.</div>` },
+        { title: 'Protecting ideas: intellectual property', html: `
+          <p><b>Intellectual property (IP)</b> is the legal right to ideas and creations. Protecting it stops rivals copying the results of expensive R&D.</p>
+          <ul><li><b>Patent</b>: the right to stop others making or selling an invention for a set time (usually up to 20 years). <i>A new recycled-sole process.</i></li>
+              <li><b>Copyright</b>: protects creative work: designs, music, films, software, text. Automatic when the work is created. <i>Freja's hand-drawn sneaker artwork.</i></li>
+              <li><b>Trademark</b>: protects names, logos and slogans that identify a brand. <i>The SoleFlip name and logo.</i></li></ul>
+          <p>✅ A temporary monopoly lets the business earn back its R&D spending; IP can be licensed to others for a fee. ❌ Applying and defending IP costs time and money (lawyers, court cases), and a patent makes the invention public, so rivals may "invent around" it.</p>` },
         { title: 'Incremental vs disruptive innovation', html: `
           <p><b>Incremental innovation</b>: small, step-by-step improvements to existing products or processes (a slightly better phone camera each year). Low risk, keeps customers, but rivals do the same.</p>
           <p><b>Disruptive innovation</b>: a new product or business model that changes a market and pushes out established firms, often starting cheaper or simpler and aimed at customers the leaders ignore (Netflix vs Blockbuster; smartphones vs digital cameras).</p>
-          <div class="tip">Established firms often ignore disruptors because the first versions look worse. In the exam, explain <i>why</i> the leader missed the threat.</div>` }
+          <div class="tip">Established firms often ignore disruptors because the first versions look worse. In the exam, explain <i>why</i> the leader missed the threat.</div>` },
+        { title: 'Four types of innovation', html: `
+          <div class="extra">The IB guide names incremental and disruptive innovation only. These four types are a common way to describe <i>what</i> is new.</div>
+          <ul><li><b>Product innovation</b>: a new or improved product (the first smartphone; a self-lacing sneaker).</li>
+              <li><b>Process innovation</b>: a new or improved way of making or delivering it (online ordering; a laser instead of hand-painting).</li>
+              <li><b>Positioning innovation</b>: changing how an existing product is seen, or who it is for (Lucozade went from a drink for sick people to a sports drink).</li>
+              <li><b>Paradigm innovation</b>: changing the whole business model or way of thinking (low-cost airlines; streaming instead of owning music).</li></ul>` }
       ],
       labs: [
         {
-          type: 'sort', title: 'Which type of innovation?',
+          type: 'sort', title: 'Patent, copyright or trademark?',
           challenge: 'Sort all 8 correctly in one go.',
-          buckets: ['Product', 'Process', 'Positioning', 'Paradigm'],
+          buckets: ['Patent', 'Copyright', 'Trademark'],
           items: [
-            { t: '👟 A sneaker with a sole made from recycled sneakers', b: 0 },
-            { t: '🎧 Noise-cancelling earbuds', b: 0 },
-            { t: '🔦 Using a laser to engrave instead of hand-painting', b: 1 },
-            { t: '🤖 Robots packing online orders', b: 1 },
-            { t: '🥤 Rebranding a drink for sick people as a sports drink', b: 2 },
-            { t: '🛹 Marketing an old shoe brand to skaters', b: 2 },
-            { t: '🎵 Streaming music instead of selling CDs', b: 3 },
-            { t: '🚲 Renting city bikes by the minute through an app', b: 3 }
+            { t: '⚙️ A new way to turn old soles into new ones', b: 0 },
+            { t: '🔋 A longer-lasting phone battery design', b: 0 },
+            { t: '🧪 A new quick-drying sneaker paint formula', b: 0 },
+            { t: '🎨 Freja\'s hand-drawn sneaker artwork', b: 1 },
+            { t: '🎵 The music in SoleFlip\'s TikTok ad', b: 1 },
+            { t: '💻 The code behind SoleFlip\'s app', b: 1 },
+            { t: '🔤 The SoleFlip name and logo', b: 2 },
+            { t: '💬 The slogan "Every pair tells a story"', b: 2 }
           ]
         },
         {
@@ -647,7 +681,7 @@ export const unit5 = {
         title: 'Should SoleFlip spend on R&D? (exam style)',
         intro: `<p><b>Question:</b> ${sf} could spend <b>$25,000</b> developing a sneaker that can be fully taken apart and recycled. <i>Evaluate</i> this R&D investment. [10 marks]</p>`,
         steps: [
-          { prompt: 'What type of innovation is it?', answer: 'Product innovation (a new product), linked to cradle-to-cradle design (5.3). It could become a strong USP.' },
+          { prompt: 'Which unmet customer need does it address?', answer: 'Teens who love sneakers but hate the waste: no big brand offers a sneaker that can be fully taken apart and recycled. Linked to cradle-to-cradle design (5.3), it could become a strong USP.' },
           { prompt: 'Benefits?', answer: 'Differentiation from big brands, appeal to sustainability-minded teens, a possible patent, and a new product as Originals matures.' },
           { prompt: 'Risks?', answer: '$25,000 is a lot for SoleFlip: R&D may fail, take longer than planned, and big rivals could copy it quickly. Cash is tied up with no return for a year or more.' },
           { prompt: 'What does it depend on?', answer: 'Whether market research shows customers will pay more for it, whether SoleFlip can finance it without risking its [[liquidity]], and whether it can protect the idea.' },
@@ -656,14 +690,15 @@ export const unit5 = {
         takeaway: 'R&D answers should weigh long-term competitive advantage against cost, time and risk, and use the business\'s finances.'
       },
       quiz: [
-        { id: '5.8-1', type: 'mcq', cmd: 'Identify', q: '<span class="tag">HL</span> A low-cost airline cuts out free meals, uses one plane type and sells only online, changing how flying works. This is…', options: ['paradigm innovation', 'product innovation', 'positioning innovation', 'incremental innovation'], answer: 0, why: 'A whole new business model = paradigm innovation.' },
+        { id: '5.8-1', type: 'mcq', cmd: 'Identify', q: '<span class="tag">HL</span> SoleFlip invents a new process for turning old soles into new ones. Which form of intellectual property protects it?', options: ['A patent', 'A copyright', 'A trademark', 'A franchise'], answer: 0, why: 'Patents protect inventions (products and processes). Copyright protects creative work; trademarks protect names and logos.' },
         { id: '5.8-2', type: 'mcq', cmd: 'Distinguish', q: '<span class="tag">HL</span> What is <b>disruptive innovation</b>?', options: ['A new product or model that changes a market and pushes out established firms', 'A small, step-by-step improvement to an existing product that is made every year', 'A change in how an existing product is seen by its customers', 'A faster way of producing an existing product in the factory'], answer: 0, why: 'Disruptive innovation reshapes the market (Netflix vs Blockbuster). The others are incremental, positioning and process innovation.' },
         { id: '5.8-3', type: 'tf', q: '<span class="tag">HL</span> Spending more on R&D always leads to more profit.', answer: false, why: 'False. R&D is risky: many projects fail, and successful ones may be copied. It\'s an investment, not a guarantee.' },
         { id: '5.8-4', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> Why might a business need R&D as a product reaches <b>maturity</b>?', options: ['To have new products ready to replace it when sales decline', 'Because R&D is only allowed once a product is profitable', 'Because mature products can never be extended in any way', 'To raise the price of the mature product to a higher level'], answer: 0, why: 'Products eventually decline; R&D creates the next products (and extension ideas) to keep revenue flowing.' },
-        { id: '5.8-5', type: 'mcq', cmd: 'Identify', q: '<span class="tag">HL</span> A bakery starts using a machine that shapes croissants twice as fast. This is…', options: ['process innovation', 'product innovation', 'positioning innovation', 'paradigm innovation'], answer: 0, why: 'A new way of making the same product = process innovation.' },
+        { id: '5.8-5', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> Why is addressing an <b>unmet customer need</b> valuable for a business?', options: ['It can give a USP and loyal customers before rivals catch up', 'It removes all of the risk from research and development', 'It means the business no longer needs any market research', 'It guarantees that the product will sell at a premium price'], answer: 0, why: 'Being first to solve a real problem gives a USP, pricing power and loyalty. It is still risky, and finding the need takes research.' },
         { id: '5.8-6', type: 'sort', q: '<span class="tag">HL</span> Incremental or disruptive?', buckets: ['Incremental', 'Disruptive'], items: [
           { t: 'A new colourway of a popular sneaker', b: 0 }, { t: 'A games console with a slightly faster chip', b: 0 }, { t: 'Longer battery life in this year\'s laptop', b: 0 },
-          { t: 'Streaming replacing DVD rental', b: 1 }, { t: 'Ride-hailing apps replacing taxi firms', b: 1 }, { t: 'Smartphones replacing digital cameras', b: 1 }], why: 'Incremental = small improvements. Disruptive = changes the market and displaces established firms.' }
+          { t: 'Streaming replacing DVD rental', b: 1 }, { t: 'Ride-hailing apps replacing taxi firms', b: 1 }, { t: 'Smartphones replacing digital cameras', b: 1 }], why: 'Incremental = small improvements. Disruptive = changes the market and displaces established firms.' },
+        { id: '5.8-7', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> What is a <b>drawback</b> of patenting an invention?', options: ['The design becomes public and defending it in court can be expensive', 'Rivals are allowed to copy the invention freely from the first day', 'A patent lasts forever, so the business can never stop paying for it', 'Patents only protect logos and slogans, not inventions themselves'], answer: 0, why: 'A patent gives a temporary monopoly, but the details are published, rivals may invent around it, and defending it costs money.' }
       ],
       explain: 'Think of an app or gadget that changed how you do something. Explain to a mate which <b>type of innovation</b> it was and whether it was <b>incremental</b> or <b>disruptive</b>.'
     },
@@ -671,7 +706,7 @@ export const unit5 = {
     // ------------------------------------------------------------------ 5.9
     {
       id: '5.9', title: 'Management information systems', emoji: '💻', minutes: 12, hl: true,
-      goal: 'explain how businesses collect and use data, the threats of cybercrime, critical technologies (AI, big data, IoT, VR), and the ethics of data and employee monitoring.',
+      goal: 'explain how businesses collect and use data, the threats of cybercrime, critical technologies and infrastructures (AI, artificial neural networks, big data, cloud computing, data centres, IoT, VR), and the ethics of data and employee monitoring.',
       hook: `${sf}'s app knows that you browse high-tops at 11 pm, abandon your basket on Sundays and always buy in red. The next morning you get a 10% code for red high-tops.<br><br>Helpful, or creepy? And what happens if hackers get that data?`,
       cards: [
         { title: 'Data, databases and analytics', html: `
@@ -684,10 +719,12 @@ export const unit5 = {
           <p><b>Cybercrime</b> is crime using computers and the internet: hacking, data theft, ransomware (locking files until a ransom is paid), phishing and fraud.</p>
           <p><b>Cybersecurity</b> is how a business protects its systems and data: strong passwords and two-factor login, staff training against phishing, software updates, encryption, back-ups and firewalls.</p>
           <div class="tip">A data breach costs far more than fixing the system: fines (under GDPR), lost trust, lost sales. Link cybersecurity to [[crisis management]] and contingency planning.</div>` },
-        { title: 'Critical technologies', html: `
+        { title: 'Critical technologies and infrastructures', html: `
           <ul><li><b>Artificial intelligence (AI)</b> and machine learning: systems that learn from data to make predictions or decisions (recommendations, chatbots, forecasting demand).</li>
+              <li><b>Artificial neural networks (ANNs)</b>: a type of AI loosely modelled on the brain, with layers of connected "neurons" that learn patterns from examples. They power image recognition, voice assistants, fraud detection and translation. <i>An ANN can spot a fake sneaker from a photo.</i></li>
               <li><b>Big data</b>: huge, fast-changing data sets (every click by millions of users) that need special tools to analyse.</li>
               <li><b>Cloud computing</b>: storing data and running software on remote servers over the internet.</li>
+              <li><b>Data centres</b>: the buildings full of servers that store and process data and run the cloud. Critical infrastructure: if one fails, every business relying on it can stop. They use huge amounts of electricity and water, an environmental issue.</li>
               <li><b>Internet of things (IoT)</b>: everyday devices connected to the internet that collect and share data (smart shelves, delivery trackers, fitness watches).</li>
               <li><b>Virtual reality (VR)</b>: computer-generated environments, e.g. trying on sneakers virtually or training staff.</li></ul>
           <p>These can cut costs and improve decisions, but are costly, need skills, and raise ethical and security questions.</p>` },

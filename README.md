@@ -3,15 +3,21 @@
 An interactive study app for IB Business Management (HL), built for a smart-but-busy 17-year-old.
 All five units are built: **Unit 1: Introduction to business management** (1.1–1.6), **Unit 2: Human resource
 management** (2.1–2.7), **Unit 3: Finance and accounts** (3.1–3.9), **Unit 4: Marketing** (4.1–4.6) and
-**Unit 5: Operations management** (5.1–5.9), plus **the business management toolkit** as "Unit 6" (6.1–6.9: SWOT,
+**Unit 5: Operations management** (5.1–5.9), plus **the business management toolkit** as "Unit 6" (6.1–6.13: SWOT,
 STEEPLE, decision trees, force field analysis, Gantt charts, critical path analysis, linear regression, circular
-business models, the business plan).
+business models, the business plan, descriptive statistics, Porter's generic strategies, Hofstede's cultural
+dimensions, contribution costing). The Ansoff and BCG matrices are taught in 4.2 and 4.5, so all 15 prescribed tools
+are covered.
+
+Content follows the 2024 IB guide: HL-only parts are tagged **HL**, and useful material that isn't in the 2024
+syllabus is shown in a dashed "Beyond the IB syllabus" box and never quizzed. See
+[docs/CURRICULUM-CHECKLIST.md](docs/CURRICULUM-CHECKLIST.md).
 
 Each topic is a ~10-minute "mission":
 
 1. **Hook**: a relatable situation (gaming PCs, festivals, MrBeast, Taylor Swift's masters…)
 2. **Learn**: short cards with read-aloud 🔊
-3. **Play**: an interactive lab with a challenge (profit simulator, ratio "control room", cash flow forecast, investment showdown, perception map, product life cycle, break-even, stock control, decision tree, critical path…)
+3. **Play**: an interactive lab with a challenge (profit simulator, ratio "control room", cash flow forecast, investment showdown, perception map, product life cycle, break-even, stock control, decision tree, critical path, statistics, culture comparison, costing…)
 4. **Worked example**: revealed one step at a time
 5. **Quiz**: instant feedback; missed questions come back at the end
 6. **Explain**: put it in your own words, plus a 1-tap rating

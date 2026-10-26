@@ -1,0 +1,300 @@
+# IB Business Management HL curriculum audit
+
+Corrections needed
+
+Your BizQuest checklist is broadly accurate in its coverage of the 2024 IB Business Management HL syllabus, but it is not yet complete or fully aligned with the official guide.
+
+I compared your uploaded `CURRICULUM-CHECKLIST.md` against the IB's Business Management Guide — First Assessment 2024, including the syllabus content, prescribed Business Management Toolkit, and HL requirements.
+
+The checklist correctly identifies all 37 syllabus topics across Units 1–5, and most of the major subject areas are represented. However, there are several substantive omissions, incorrect HL classifications, and topics carried over from the previous syllabus.
+
+### Sources and scope
+
+My primary reference is the [official IB Business Management Guide (PDF)](https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/business-management-guide.pdf?utm_source=chatgpt.com), particularly syllabus pages 23–36 and toolkit pages 14–15.
+
+That publicly hosted IB PDF was updated in May 2022. I also checked the July 2024 revision, which corrected Paper 3 wording and percentage signs in formulae without changing the prescribed syllabus topics.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.ibo.org\&sz=32)
+
+International Baccalaureate®
+
++2
+
+
+
+## 1. Highest-priority corrections
+
+These are the changes I would make first.
+
+| Checklist area          | Finding                                                                                                                |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Toolkit                 | Porter's generic strategies (HL) is missing.                                                                           |
+| Toolkit                 | Hofstede's cultural dimensions (HL) is missing.                                                                        |
+| Toolkit                 | Contribution costing and absorption costing are missing from the HL Contribution tool.                                 |
+| Toolkit                 | Free float is required in critical path analysis, not just total float.                                                |
+| Toolkit                 | Descriptive statistics is too lightly covered; quartiles and standard deviation are required.                          |
+| 2.3 Leadership          | Scientific and intuitive thinking/management (HL) is missing.                                                          |
+| 4.3 Sales forecasting   | Three- and four-part moving averages are not prescribed in the 2024 syllabus.                                          |
+| 4.5 Marketing mix       | Several prescribed pricing methods are missing, particularly contribution pricing and price elasticity of demand (HL). |
+| 5.6 Production planning | Operating leverage, productivity subtypes, and stock-control details need explicit coverage.                           |
+| 5.8 R&D                 | Intellectual property protection and unmet customer needs are missing.                                                 |
+| 5.9 Information systems | Artificial neural networks and data centres are missing.                                                               |
+
+All of these are directly verifiable from the official syllabus or toolkit.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.ibo.org\&sz=32)
+
+International Baccalaureate®
+
++3
+
+
+
+## 2. Detailed review by unit
+
+### Unit 1 — Introduction to business management
+
+Mostly accurate
+
+| Section | Required correction or clarification                                                                                                                   |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1.1     | Entrepreneurship is prescribed, but intrapreneurship is not explicitly listed. Keep it as enrichment rather than compulsory content.                   |
+| 1.2     | Add private sector companies and public sector companies as types of for-profit social enterprises. Cooperatives are already correct.                  |
+| 1.3     | SMART objectives are not explicitly prescribed. Reasons objectives change appear as a suggested inquiry question, not a formal syllabus content point. |
+| 1.4     | Stakeholder mapping is not one of the 15 prescribed toolkit tools. Internal/external stakeholders and stakeholder conflict are correct.                |
+| 1.5     | Your coverage matches the prescribed topics well.                                                                                                      |
+| 1.6     | The prescribed learning outcome focuses on the impact of MNCs on host countries. Reasons for international expansion are useful additional teaching.   |
+
+Verdict: No entire topic is missing, but 1.2 needs a substantive addition.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.ibo.org\&sz=32)
+
+International Baccalaureate®
+
+
+
+### Unit 2 — Human resource management
+
+Several classification errors
+
+This unit needs some restructuring.
+
+| Section | Required correction or clarification                                                 |
+| ------- | ------------------------------------------------------------------------------------ |
+| 2.1     | Resistance to change and HR strategies for addressing it are SL and HL, not HL-only. |
+| 2.1     | Move labour turnover, recruitment, appraisal and training to 2.4.                    |
+| 2.1     | Move outsourcing, offshoring and reshoring to 5.4.                                   |
+| 2.2     | Matrix structure is SL and HL, not HL-only.                                          |
+| 2.2 HL  | Add Charles Handy's Shamrock Organization alongside project-based organizations.     |
+| 2.3 HL  | Add scientific versus intuitive thinking/management.                                 |
+| 2.4 HL  | Clearly label labour turnover, appraisal and recruitment as HL-only.                 |
+| 2.5 HL  | Include Handy's Gods of Management as an example of organizational culture types.    |
+| 2.7 HL  | Explicitly include industrial democracy and employer-side collective bargaining.     |
+
+The guide places induction, on-the-job training and off-the-job training in 2.4 as SL/HL material. The separate cognitive and behavioural training distinction in your list is not prescribed.
+
+Your HL motivation theories are correct: McClelland, Deci and Ryan, equity theory and expectancy theory. The guide names the latter two theories without specifying Adams and Vroom in the topic table.
+
+Likewise, go-slow and overtime bans are reasonable industrial relations examples but are not individually named requirements in the prescribed 2.7 list.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.ibo.org\&sz=32)
+
+International Baccalaureate®
+
++1
+
+
+
+### Unit 3 — Finance and accounts
+
+Mostly accurate
+
+| Section | Required correction or clarification                                                               |
+| ------- | -------------------------------------------------------------------------------------------------- |
+| 3.3     | Semi-variable costs are not explicitly prescribed. Fixed, variable, direct and indirect costs are. |
+| 3.4 HL  | Add the appropriateness of each depreciation method, not just calculations.                        |
+| 3.5     | Add strategies to improve profitability and liquidity ratios.                                      |
+| 3.6 HL  | Rename to Efficiency ratio analysis and add strategies to improve the ratios.                      |
+| 3.7     | Add liquidity position and the relationship between investment, profit and cash flow.              |
+| 3.9 HL  | Explicitly include constructing budgets and using budgets and variances in decision-making.        |
+
+Your coverage of sources of finance, the actual ratios, investment appraisal and the two depreciation methods is otherwise consistent with the guide.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.ibo.org\&sz=32)
+
+International Baccalaureate®
+
+
+
+### Unit 4 — Marketing
+
+Significant corrections
+
+4.1 Introduction to marketing: Market share and market growth are required, including calculations. The importance of market share and market leadership is HL-only. Social marketing is not an explicitly prescribed topic.
+
+4.2 Marketing planning: The checklist is substantially correct. The different segmentation categories are useful detail, but the guide does not prescribe a fixed list of demographic, geographic, psychographic and behavioural segmentation methods.
+
+4.3 Sales forecasting (HL): This is an important older-syllabus carryover. The 2024 guide prescribes the benefits and limitations of sales forecasting at AO3. It does not prescribe three- or four-part moving-average calculations or seasonal, cyclical and random variation calculations. Those belonged to the previous syllabus.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.ibo.org\&sz=32)
+
+International Baccalaureate®
+
++1
+
+
+
+4.4 Market research: The officially named sampling methods are:
+
+- Quota sampling
+- Random sampling
+- Convenience sampling
+
+Stratified, cluster and snowball sampling can be taught as enrichment, but are not explicitly prescribed. Your primary methods are correct. Secondary methods should explicitly cover market analyses, academic journals, government publications, media articles and online content.
+
+4.5 Seven Ps: Your list needs the following pricing correction.
+
+| Prescribed method          | Level | Your checklist |
+| -------------------------- | ----- | -------------- |
+| Cost-plus pricing          | SL/HL | Included       |
+| Penetration pricing        | SL/HL | Included       |
+| Loss leader                | SL/HL | Included       |
+| Predatory pricing          | SL/HL | Missing        |
+| Premium pricing            | SL/HL | Missing        |
+| Dynamic pricing            | HL    | Included       |
+| Competitive pricing        | HL    | Included       |
+| Contribution pricing       | HL    | Missing        |
+| Price elasticity of demand | HL    | Missing        |
+
+Price skimming, psychological pricing and price discrimination are not individually prescribed in this guide.
+
+Other content to make explicit in 4.5 includes branding awareness, development, loyalty and value; through-the-line promotion; the relationship between the product life cycle, investment, profit and cash flow; and the service-related considerations under People, Processes and Physical Evidence.
+
+4.6 International marketing (HL): The guide prescribes opportunities and threats of entering and operating internationally. Your detailed entry methods, standardization and glocalization topics are relevant supplementary content, but not individually listed requirements.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.ibo.org\&sz=32)
+
+International Baccalaureate®
+
++1
+
+
+
+### Unit 5 — Operations management
+
+HL additions required
+
+| Section | Required correction or clarification                                                                                                                                            |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 5.1     | Sustainability is important across the course, although 5.1 itself explicitly prescribes the role of operations management.                                                     |
+| 5.3 HL  | Kaizen and JIT are prescribed lean methods. Kanban and andon are useful enrichment, not explicitly prescribed.                                                                  |
+| 5.5     | Mostly correct. Keep total versus per-unit contribution, break-even charts, profit/loss, margin of safety, target profit/output/price and sensitivity to cost or price changes. |
+| 5.6 HL  | Explicitly add operating leverage, labour productivity, capital productivity and productivity rate.                                                                             |
+| 5.6 HL  | Add lead time, buffer stock, reorder level and reorder quantity to the stock-control-chart material.                                                                            |
+| 5.7 HL  | Add the impact of contingency planning in terms of cost, time, risks and safety.                                                                                                |
+| 5.8 HL  | Add the importance of addressing unmet customer needs and intellectual property protection: copyright, patents and trademarks.                                                  |
+| 5.9 HL  | Add artificial neural networks and data centres as part of critical infrastructures, alongside cloud computing.                                                                 |
+
+For 5.8, the guide explicitly names incremental and disruptive innovation. Product, process, position and paradigm innovation are not individually prescribed.
+
+Your 5.9 coverage is otherwise strong. Data analytics, databases, cybersecurity, VR, IoT, AI, big data, loyalty programmes, Digital Taylorism, data mining and ethical implications all belong in this topic.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.ibo.org\&sz=32)
+
+International Baccalaureate®
+
++1
+
+
+
+## 3. Business Management Toolkit — full verification
+
+The guide requires 15 prescribed tools, divided into eight tools for SL/HL and seven HL-only tools.
+
+Your checklist includes or references 13 of the 15. The two genuinely missing tools are Porter and Hofstede.
+
+SL AND HL — 8 TOOLS
+
+SWOT analysis  Ansoff matrix  STEEPLE analysis  BCG matrix  Business plan  Decision trees  Descriptive statistics  Circular business models
+
+HL ONLY — 7 TOOLS
+
+Force field analysis  Gantt charts  Hofstede's cultural dimensions  Porter's generic strategies  Contribution  Critical path analysis  Simple linear regression
+
+Two classification corrections: your toolkit lines 6.4 and 6.5 should explicitly mark force field analysis and Gantt charts as HL-only.
+
+There are also three toolkit detail gaps worth addressing.
+
+Critical path analysis (HL): The guide requires completing and analysing diagrams, identifying the critical path, and calculating free float and total float. Students are not required to draw an entire critical path diagram from scratch.
+
+Contribution (HL): Treat this as its own toolkit item covering make-or-buy analysis, contribution costing and absorption costing. Basic contribution in break-even analysis remains part of 5.5 for SL and HL.
+
+Descriptive statistics (SL/HL): Add explicit coverage of mean, mode, median, bar charts, pie charts, infographics, quartiles and standard deviation. Teaching it only lightly in 4.4 is insufficient for the toolkit requirements.
+
+For simple linear regression, the prescribed elements are scatter diagrams, line of best fit, correlation and extrapolation. The guide does not prescribe calculating Pearson's correlation coefficient \\(r\\).&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.ibo.org\&sz=32)
+
+International Baccalaureate®
+
+
+
+## 4. Cross-cutting curriculum elements missing from the checklist
+
+Because this is a teaching-coverage checklist rather than just a list of chapter headings, I would add a small separate section for the following.
+
+Four key concepts: Creativity, Change, Ethics and Sustainability. These should be integrated across all five units, rather than taught exclusively as isolated topics.
+
+HL Paper 3 preparation: Analysis of social enterprises, identifying human needs and organizational challenges, and writing justified strategic recommendations. The July 2024 guide specifies three compulsory questions, worth 2, 6 and 17 marks.
+
+Internal assessment preparation: A business research project addressing a real organization's issue or problem through one of the four key conceptual lenses, with a maximum of 1,800 words.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://www.ibo.org\&sz=32)
+
+International Baccalaureate®
+
++1
+
+
+
+## 5. Recommended order of changes
+
+Correction tracker
+
+0 of 12 completed
+
+Add Hofstede’s cultural dimensions and Porter’s generic strategies
+
+Complete the toolkit: free float, contribution costing, absorption costing and descriptive statistics
+
+Add missing marketing pricing methods and price elasticity of demand
+
+Add scientific versus intuitive management and Handy’s Shamrock Organization
+
+Add operating leverage, productivity measures and stock-control components
+
+Add intellectual property and unmet customer needs to R&D
+
+Add artificial neural networks and data centres to MIS
+
+Correct HR topic placement and SL/HL classifications
+
+Remove moving-average calculations from compulsory sales-forecasting content
+
+Add ratio improvement strategies, cash-flow relationships and budgeting applications
+
+Separate additional teaching content from explicitly prescribed IB content
+
+Add the four key concepts, Paper 3 and IA preparation to a separate coverage section
+
+
+
+## Final assessment
+
+The document is a solid starting point. Its five-unit structure and topic numbering are correct, and it already includes the majority of prescribed material.
+
+The most significant weakness is not missing whole syllabus sections. It is that several HL learning outcomes are hidden inside broad descriptions, certain toolkit requirements are incomplete, and some older-syllabus content is presented alongside compulsory 2024 material.
+
+For BizQuest, I recommend distinguishing each curriculum item as either IB-prescribed, IB-prescribed HL-only, or supplementary/enrichment. That will make the checklist substantially more reliable for measuring actual curriculum coverage, especially when planning revision and exam preparation.
+
+The official guide should be the definitive baseline, with its prescribed learning outcomes and assessment-objective levels controlling what counts as complete.

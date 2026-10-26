@@ -121,6 +121,10 @@ main { padding-top: 16px; padding-bottom: 40px; outline: none; }
 .example.plain::before { content: none; }
 .tip { background: color-mix(in srgb, var(--warn) 14%, var(--card)); border: 1px solid color-mix(in srgb, var(--warn) 40%, var(--line)); padding: 12px 14px; border-radius: 10px; margin: 12px 0; }
 .tip::before { content: "🎯 Exam tip"; display: block; font-weight: 700; margin-bottom: 4px; }
+/* content that is useful but not prescribed by the IB guide (first assessment 2024) */
+.extra { background: var(--card-2); border: 1px dashed var(--line); padding: 12px 14px; border-radius: 10px; margin: 12px 0; }
+.extra::before { content: "➕ Beyond the IB syllabus"; display: block; font: 700 .75rem Inter; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 4px; }
+.tag.extra { background: color-mix(in srgb, var(--muted) 18%, transparent); color: var(--muted); }
 .formula { font-size: 1rem; background: var(--bg-2); border: 1px dashed var(--line); padding: 4px 14px; border-radius: 10px; margin: 10px 0; overflow-x: auto; overflow-y: hidden; }
 .katex-display { margin: .6em 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
 .formula .katex, .katex-display .katex { font-size: 1.12em; }

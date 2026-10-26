@@ -17,7 +17,7 @@ export const unit4 = {
   sections: [
     // ------------------------------------------------------------------ 4.1
     {
-      id: '4.1', title: 'Introduction to marketing', emoji: '🎯', minutes: 10, hl: false,
+      id: '4.1', title: 'Introduction to marketing', emoji: '🎯', minutes: 10, hl: 'part',
       goal: 'define marketing, compare market and product orientation, and calculate and interpret market size, market growth and market share.',
       hook: `${sf}'s sales grew from <b>$160,000</b> to <b>$180,000</b> this year. Noah is celebrating. Sami isn't: "The whole market grew much faster than us."<br><br>How can a business grow and fall behind at the same time? And who is "winning" a market anyway?`,
       cards: [
@@ -39,7 +39,8 @@ export const unit4 = {
           <p><b>Market share</b> is one business's sales as a percentage of the whole market.</p>
           ${F`\text{Market share} = \frac{\text{a firm's sales}}{\text{total sales in the market}} \times 100`}
           <div class="example">The Danish resale-and-custom sneaker market grew from $4.0m to $5.0m: growth = 1.0 ÷ 4.0 × 100 = <b>25%</b>. ${sf} sold $180,000: share = 180,000 ÷ 5,000,000 × 100 = <b>3.6%</b>.</div>` },
-        { title: 'Market leadership', html: `
+        { title: 'Why market share and leadership matter (HL only)', html: `
+          <p><span class="tag">HL</span> Calculating market share and growth is for everyone; explaining why they matter is HL.</p>
           <p>The <b>market leader</b> is the business with the biggest market share. In ${sf}'s market that's KickBack, with $1.2m of $5.0m: <b>24%</b>.</p>
           <p>Why a big share matters:</p>
           <ul><li><b>[[economies of scale|Economies of scale]]</b>: bigger orders, lower cost per unit.</li>
@@ -100,7 +101,7 @@ export const unit4 = {
         { id: '4.1-4', type: 'num', cmd: 'Calculate', q: 'KickBack has a <b>24%</b> share of a market worth <b>$5.0m</b>. What are its sales in $?', answer: 1200000, unit: '$', display: '$1,200,000', hint: 'Sales = share ÷ 100 × market size', why: '24 ÷ 100 × 5,000,000 = $1,200,000.' },
         { id: '4.1-5', type: 'tf', q: 'If a business\'s sales rise, its market share must rise too.', answer: false, why: 'False. If the whole market grows faster than the business, its share falls even though its sales rose (SoleFlip: sales +12.5%, share 4.0% → 3.6%).' },
         { id: '4.1-6', type: 'mcq', cmd: 'Identify', q: 'Which is an example of <b>product orientation</b>?', options: ['A tech firm builds the most powerful drone it can, then looks for buyers', 'A café asks customers which new drinks they want before changing its menu', 'A clothing brand tracks TikTok trends and makes those styles within weeks', 'A gym runs a survey to find out which classes members want added next'], answer: 0, why: 'Product orientation starts with the product and what the business can make, not with customer research.' },
-        { id: '4.1-7', type: 'mcq', cmd: 'Explain', q: 'Why does a large <b>market share</b> often help a business?', options: ['It brings economies of scale and stronger brand and pricing power', 'It guarantees that the business makes a profit every single year', 'It means the market itself is growing faster than all other markets', 'It means the business no longer needs to spend money on marketing'], answer: 0, why: 'A leader buys in bulk, is trusted by customers and retailers, and can often set prices. But share doesn\'t guarantee profit, and leaders still market.' },
+        { id: '4.1-7', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> Why does a large <b>market share</b> often help a business?', options: ['It brings economies of scale and stronger brand and pricing power', 'It guarantees that the business makes a profit every single year', 'It means the market itself is growing faster than all other markets', 'It means the business no longer needs to spend money on marketing'], answer: 0, why: 'A leader buys in bulk, is trusted by customers and retailers, and can often set prices. But share doesn\'t guarantee profit, and leaders still market.' },
         { id: '4.1-8', type: 'mcq', cmd: 'Distinguish', q: 'Which is a feature of a <b>service</b> rather than a good?', options: ['It can\'t be stored: an unsold haircut slot is lost', 'It can be stored in a warehouse until a customer orders it', 'It can be checked for faults before it reaches the customer', 'It is identical every time, because a machine produces it'], answer: 0, why: 'Services are intangible and perishable, and quality depends on the person providing them. Goods can be stored and checked before sale.' }
       ],
       explain: 'Think of a market you know (energy drinks, streaming, gaming headsets…). Explain to a mate who the <b>market leader</b> is, and why being the leader helps them.'
@@ -141,7 +142,8 @@ export const unit4 = {
         { title: 'Unique selling point (USP)', html: `
           <p>A <b>unique selling point (USP)</b> is a feature or benefit that makes a product different from its competitors and gives customers a reason to choose it.</p>
           <p>It can come from design, quality, price, service, a story or values. A USP helps a business <b>differentiate</b> itself, charge more and build loyalty.</p>
-          <div class="example">${og}' USP: every pair has a hand-painted detail by the SoleFlip workshop and a sole made from recycled sneakers. Nike can't easily copy "made by people you can follow on TikTok".</div>` },
+          <div class="example">${og}' USP: every pair has a hand-painted detail by the SoleFlip workshop and a sole made from recycled sneakers. Nike can't easily copy "made by people you can follow on TikTok".</div>
+          <p class="muted small">HL: differentiating for a narrow segment is one of [[Porter's generic strategies]] (6.11).</p>` },
         { title: 'The Ansoff matrix (toolkit)', html: `
           <p>The <b>Ansoff matrix</b> is a toolkit item (you can use it in any unit). It shows four growth strategies, by product (existing/new) and market (existing/new):</p>
           <div class="table-wrap"><table class="fin"><tr><th></th><th>Existing products</th><th>New products</th></tr>
@@ -196,61 +198,85 @@ export const unit4 = {
 
     // ------------------------------------------------------------------ 4.3
     {
-      id: '4.3', title: 'Sales forecasting', emoji: '🔮', minutes: 14, hl: true,
-      goal: 'calculate three-part and four-part centred moving averages, find seasonal variations and use them to forecast sales, and evaluate forecasting.',
-      hook: `Every December ${sf}'s online orders explode, and every March they crash. Last year Noah ordered stock based on December and was stuck with 200 pairs in spring.<br><br>Can you see past the seasons to the real direction of sales, and predict next quarter?`,
+      id: '4.3', title: 'Sales forecasting', emoji: '🔮', minutes: 12, hl: true,
+      goal: 'explain what sales forecasting is, read trend and seasonal, cyclical and random variations in sales data, and evaluate the benefits and limitations of sales forecasting.',
+      hook: `Every December ${sf}'s online orders explode, and every March they crash. Last year Noah ordered stock based on December and was stuck with 200 pairs in spring.<br><br>Can you see past the seasons to the real direction of sales, and how far should you trust any prediction of next quarter?`,
       cards: [
         { title: 'Why forecast sales?', html: `
-          <p><span class="tag">HL</span> <b>Sales forecasting</b> means predicting future sales, usually from past sales data.</p>
+          <p><span class="tag">HL</span> <b>Sales forecasting</b> means predicting future sales, usually from past sales data, market research and managers' judgement.</p>
           <p>Every function needs it: operations (how much to make or buy), HR (how many staff), finance (cash flow and [[budget|budgets]]) and marketing (when to promote).</p>
-          <div class="tip">Forecasts are estimates. In evaluation questions, say what they're based on (past data) and what could make them wrong (new competitors, a recession, a viral trend).</div>` },
-        { title: 'Moving averages', html: `
-          <p>A <b>moving average</b> smooths out ups and downs to show the underlying trend. You average a fixed number of periods, then move one period on.</p>
-          <p><b>Three-part moving average</b> (e.g. for months): average periods 1–3, then 2–4, then 3–5…</p>
-          <div class="example">App downloads (000) in months 1–4: 120, 150, 180, 210. Averages: (120 + 150 + 180) ÷ 3 = <b>150</b> (centred on month 2), then (150 + 180 + 210) ÷ 3 = <b>180</b> (month 3).</div>
-          <p><b>Four-part centred moving average</b> (for quarterly data): a 4-part average falls <i>between</i> two quarters, so average two neighbouring 4-part averages to centre it on a quarter.</p>
-          ${F`\text{Centred MA} = \frac{\text{4-part average}_1 + \text{4-part average}_2}{2}`}` },
+          <div class="tip">The IB guide asks you to <b>evaluate</b> sales forecasting: its benefits and limitations for a business in the case. You won't have to calculate moving averages.</div>` },
         { title: 'Trend and variations', html: `
-          <p>Sales data is made of:</p>
-          <ul><li><b>Trend</b>: the long-term direction (the moving average shows it).</li>
+          <p>Past sales data is made of:</p>
+          <ul><li><b>Trend</b>: the long-term direction, with the ups and downs smoothed out.</li>
               <li><b>Seasonal variation</b>: regular changes within a year (Christmas, summer festivals).</li>
               <li><b>Cyclical variation</b>: changes over several years with the business cycle (booms and recessions).</li>
               <li><b>Random variation</b>: one-off, unpredictable events (a viral video, a storm, a pandemic).</li></ul>
-          ${F`\text{Seasonal variation} = \text{actual sales} - \text{trend}`}
-          <div class="example">${sf}'s Q3 sales were $18k when the trend was $24k: seasonal variation = 18 − 24 = <b>−$6k</b>.</div>` },
-        { title: 'Making the forecast', html: `
-          <ol><li>Calculate the trend with moving averages.</li>
-              <li>Extend the trend into the future (e.g. it rises about $2k a quarter).</li>
-              <li>Find the <b>average seasonal variation</b> for the quarter you're forecasting.</li>
-              <li>Forecast = projected trend + average seasonal variation.</li></ol>
-          ${F`\text{Forecast} = \text{projected trend} + \text{average seasonal variation}`}
-          <p><b>Benefits</b>: simple, uses real data, shows seasonal patterns for planning stock and staff. <b>Limitations</b>: assumes the past continues, ignores new events and qualitative factors, and gets less reliable the further ahead you look.</p>
-          <p class="muted small">Another forecasting tool, from the toolkit: [[simple linear regression]] (6.7).</p>` }
+          <p>A simple forecast extends the trend into the future, then adjusts it for the season: "the trend for next Q1 is about $44k, and Q1 is usually $4k below the trend, so expect about $40k."</p>
+          <div class="example">${sf}'s Q3 sales were $18k when the trend was $24k: Q3 was $6k below the trend, a seasonal dip (festival season is over, Christmas hasn't started).</div>` },
+        { title: 'Benefits of sales forecasting', html: `
+          <ul><li><b>Better planning</b>: operations orders the right amount of stock, so less cash is tied up in unsold pairs and fewer sales are lost to stock-outs.</li>
+              <li><b>Workforce planning</b>: HR hires temporary staff for December before the rush, not during it.</li>
+              <li><b>Cash flow and budgets</b>: finance can see the March cash dip coming and arrange an [[overdraft]] in time.</li>
+              <li><b>Marketing</b>: promotions can be timed for weak quarters.</li>
+              <li><b>Finance from outsiders</b>: banks and investors want to see a forecast in a [[business plan]].</li></ul>
+          <div class="example">With a forecast, Noah would have ordered for a $40k Q1, not a $50k December, and avoided the 200 unsold pairs.</div>` },
+        { title: 'Limitations of sales forecasting', html: `
+          <ul><li><b>It assumes the past continues</b>: a new competitor, a recession or a change in fashion can break the pattern.</li>
+              <li><b>Random events</b> can't be forecast: a viral TikTok, a supply crisis, a pandemic.</li>
+              <li><b>The further ahead, the less reliable</b>: next quarter is far easier to forecast than three years' time.</li>
+              <li><b>New products and new markets</b> have no past data, so forecasts rely more on research and judgement.</li>
+              <li><b>Bias</b>: managers may forecast what they hope for, or what gets their budget approved.</li></ul>
+          <div class="tip">A strong "evaluate" answer weighs the benefits against these limits for <i>this</i> business: how stable is its market, how much data does it have, how far ahead is it looking? Another forecasting tool, from the toolkit: [[simple linear regression]] (6.7).</div>` },
+        { title: 'Moving averages', html: `
+          <div class="extra">Calculating moving averages was in the old IB syllabus, not the 2024 one. Read this to understand how a trend is found; you won't be asked to calculate one.</div>
+          <p>A <b>moving average</b> smooths out ups and downs to show the trend. You average a fixed number of periods, then move one period on.</p>
+          <div class="example">App downloads (000) in months 1–4: 120, 150, 180, 210. Three-part averages: (120 + 150 + 180) ÷ 3 = <b>150</b>, then (150 + 180 + 210) ÷ 3 = <b>180</b>.</div>
+          <p>For quarterly data, a <b>four-part</b> average contains one of every quarter, so the seasonal effects cancel out and only the trend is left.</p>` }
       ],
-      labs: [{ type: 'forecast', title: 'Forecast SoleFlip\'s online sales' }],
+      labs: [
+        { type: 'forecast', title: 'Forecast SoleFlip\'s online sales' },
+        {
+          type: 'scenarios', title: 'Trust the forecast?',
+          challenge: 'Judge all 3 forecasts correctly.',
+          items: [
+            { s: 'A supermarket forecasts next month\'s milk sales from five years of steady weekly data.', options: [
+              { t: 'Fairly reliable: a stable market with lots of data, forecasting a short time ahead', ok: true, fb: 'Yes: steady demand, plenty of data and a short horizon are when forecasts work best.' },
+              { t: 'Useless: all forecasts are guesses', ok: false, fb: 'Too strong. Forecasts are estimates, but some are far more reliable than others.' },
+              { t: 'Unreliable: milk is a new product', ok: false, fb: 'Milk has decades of sales history.' }] },
+            { s: 'SoleFlip forecasts sales of its first ever sneaker launch in Germany, using its Danish sales history.', options: [
+              { t: 'Unreliable: a new market with no past data of its own, so it needs research and judgement too', ok: true, fb: 'Yes: Danish data may not fit German tastes, competitors or prices. Test it with research (or a pop-up) first.' },
+              { t: 'Very reliable: it uses real past sales data', ok: false, fb: 'It\'s real data, but from a different market.' },
+              { t: 'Reliable, as long as the maths is right', ok: false, fb: 'Correct maths can\'t fix the wrong data.' }] },
+            { s: 'A festival-merch seller forecasts sales for the next five years from the last two summers.', options: [
+              { t: 'Unreliable: little data, a long time ahead, and festivals can be cancelled', ok: true, fb: 'Yes: two seasons is a tiny sample, and random events (weather, a cancelled line-up) are common.' },
+              { t: 'Reliable: festivals happen every year', ok: false, fb: 'The season repeats, but the size of the crowd, the weather and the line-up don\'t.' },
+              { t: 'Reliable: the further ahead, the more accurate', ok: false, fb: 'The opposite: forecasts get less reliable the further ahead they go.' }] }
+          ]
+        }
+      ],
       worked: {
-        title: 'Centred moving average and seasonal variation',
-        intro: '<p>A festival-merch shop\'s sales ($000): Y1 Q1 <b>40</b>, Q2 <b>60</b>, Q3 <b>50</b>, Q4 <b>90</b>, Y2 Q1 <b>48</b>. <i>Calculate</i> the four-part centred moving average for Y1 Q3 and the seasonal variation for that quarter. [4 marks]</p>',
+        title: 'Evaluate a sales forecast (exam style)',
+        intro: `<p><b>Question:</b> ${sf} forecasts online sales of <b>$40k</b> for next Q1, based on three years of quarterly sales. Noah will use it to decide how many pairs to order from Porto. <i>Evaluate</i> the usefulness of this forecast for ${sf}. [10 marks]</p>`,
         steps: [
-          { prompt: 'First 4-part average (Y1 Q1–Q4)?', answer: '(40 + 60 + 50 + 90) ÷ 4 = 240 ÷ 4 = <b>60</b>' },
-          { prompt: 'Second 4-part average (Y1 Q2–Y2 Q1)?', answer: '(60 + 50 + 90 + 48) ÷ 4 = 248 ÷ 4 = <b>62</b>' },
-          { prompt: 'Centred moving average for Y1 Q3?', answer: '(60 + 62) ÷ 2 = <b>61</b>: the trend value for Y1 Q3.' },
-          { prompt: 'Seasonal variation for Y1 Q3?', answer: 'Actual − trend = 50 − 61 = <b>−11</b> ($11k below trend).' },
-          { prompt: 'What does that tell the shop?', answer: 'Q3 is a weak quarter, so the shop should order less stock and roster fewer staff then, and save cash for the Q4 peak.' }
+          { prompt: 'What is the forecast based on?', answer: 'Three years of past quarterly sales: the trend (rising about $2k a quarter) plus the usual Q1 dip below the trend.' },
+          { prompt: 'Benefits for SoleFlip?', answer: 'Noah orders for a $40k quarter, not a $50k December, so less cash is tied up in stock and fewer pairs go out of fashion. Finance can plan the cash flow; HR knows Q1 needs no temporary staff.' },
+          { prompt: 'Limitations for SoleFlip?', answer: 'Only 12 quarters of data. It assumes the past continues, but sneaker fashion changes fast, KickBack is expanding, and a viral post could double sales (random variation).' },
+          { prompt: 'Judgement.', answer: '"Useful as a starting point for a short-term decision like a Q1 order, because SoleFlip\'s seasonal pattern is clear. But Noah should combine it with current information (pre-orders, social media trends) and agree a quick reorder with Porto in case demand is higher."' }
         ],
-        takeaway: 'Show every average. A centred moving average always takes two steps: two 4-part averages, then their average.'
+        takeaway: 'Evaluate a forecast: what is it based on, how does it help this business, what could make it wrong, and how much should they rely on it?'
       },
       quiz: [
-        { id: '4.3-1', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> Monthly sales (units) were <b>120, 150, 180</b>. What is the three-part moving average?', answer: 150, display: '150', hint: 'Add the three and divide by 3.', why: '(120 + 150 + 180) ÷ 3 = 450 ÷ 3 = 150.' },
-        { id: '4.3-2', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> Complete the table to find the <b>four-part centred moving average</b> for Y1 Q3 (sales in $000).' + tbl(['Quarter', 'Sales', 'Working'], [['Y1 Q1', '40', ''], ['Y1 Q2', '60', ''], ['Y1 Q3', '50', ''], ['Y1 Q4', '90', ''], ['Y2 Q1', '48', ''], ['4-part average 1 (Y1 Q1–Q4)', '', A(60)], ['4-part average 2 (Y1 Q2–Y2 Q1)', '', A(62)], ['<b>Centred MA for Y1 Q3</b>', '', A(61, true)]]), answer: 61, display: '61', why: '(40+60+50+90) ÷ 4 = 60; (60+50+90+48) ÷ 4 = 62; (60 + 62) ÷ 2 = 61.' },
-        { id: '4.3-3', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> Actual sales in a quarter were <b>$50k</b> and the trend was <b>$61k</b>. What is the seasonal variation (in $000)?', answer: -11, display: '−11', hint: 'Actual − trend. It can be negative.', why: '50 − 61 = −11: sales were $11k below the trend.' },
-        { id: '4.3-4', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> The trend for Y3 Q4 is <b>$120k</b> and is rising by <b>$5k</b> per quarter. The average seasonal variation for Q2 is <b>+$12k</b>. What is the forecast for <b>Y4 Q2</b> (in $000)?', answer: 142, unit: '$000', display: '142 ($142k)', hint: 'Y4 Q2 is two quarters after Y3 Q4.', why: 'Trend for Y4 Q2 = 120 + 2 × 5 = 130. Forecast = 130 + 12 = $142k.' },
-        { id: '4.3-5', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> Why is a <b>four-part</b> moving average used for quarterly data?', options: ['Each average includes one of every quarter, so seasonal effects cancel out', 'It is quicker to calculate than a three-part average for any data set', 'It always produces higher forecasts, so the business orders more stock', 'It removes all random variation completely, so the forecasts are always accurate'], answer: 0, why: 'Four quarters = one full year of seasons, so each average contains one Q1, Q2, Q3 and Q4 and the seasonal pattern is smoothed away.' },
+        { id: '4.3-1', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> Which is a <b>benefit</b> of sales forecasting for a business?', options: ['It helps plan stock, staff and cash before demand changes', 'It guarantees how much the business will sell next year', 'It removes the need for any market research at all', 'It stops competitors from entering the business\'s market'], answer: 0, why: 'A forecast helps every function plan ahead. It is an estimate, not a guarantee, and it doesn\'t replace research or stop competitors.' },
+        { id: '4.3-2', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> Why is a forecast for a <b>brand-new product</b> usually less reliable?', options: ['There is no past sales data, so it relies more on research and judgement', 'New products always sell more than any forecast predicts for them', 'Forecasts can only be made for products in the decline stage', 'The law does not allow businesses to forecast sales of new products'], answer: 0, why: 'Most forecasts extend past patterns. A new product has none, so the forecast leans on market research and managers\' judgement, which are less certain.' },
+        { id: '4.3-3', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> Actual sales in a quarter were <b>$50k</b> and the trend was <b>$61k</b>. How far above (+) or below (−) the trend were sales (in $000)?', answer: -11, display: '−11', hint: 'Actual − trend. It can be negative.', why: '50 − 61 = −11: sales were $11k below the trend, a weak quarter.' },
+        { id: '4.3-4', type: 'mcq', cmd: 'Evaluate', q: '<span class="tag">HL</span> When is a sales forecast likely to be <b>most</b> reliable?', options: ['In a stable market, with lots of past data, forecasting a short time ahead', 'In a fast-changing market, forecasting several years ahead', 'For a new product launched in a new country', 'When the managers who make it want their budget approved'], answer: 0, why: 'Stable demand, plenty of data and a short horizon make forecasts more reliable. Long horizons, new products and biased forecasters make them less so.' },
+        { id: '4.3-5', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> A forecast assumes past patterns continue. Which event would most likely make SoleFlip\'s forecast <b>wrong</b>?', options: ['A big rival opens three stores next to SoleFlip\'s', 'December sales are high again, as they are every year', 'Sales keep growing at about the same rate as before', 'Spring sales dip a little, just like last spring'], answer: 0, why: 'A new competitor breaks the past pattern. The other three are exactly what the forecast already expects.' },
         { id: '4.3-6', type: 'sort', q: '<span class="tag">HL</span> Which kind of variation is each?', buckets: ['Seasonal', 'Cyclical', 'Random'], items: [
           { t: 'Ice-cream sales peak every summer', b: 0 }, { t: 'Sneaker sales jump every December', b: 0 },
           { t: 'Car sales fall in a recession', b: 1 }, { t: 'Spending rises in an economic boom', b: 1 },
           { t: 'A celebrity posts your product and it goes viral', b: 2 }, { t: 'A flood closes the store for a week', b: 2 }], why: 'Seasonal = regular, within a year. Cyclical = the business cycle over several years. Random = unpredictable one-offs.' },
-        { id: '4.3-7', type: 'tf', q: '<span class="tag">HL</span> A forecast based on moving averages will be accurate as long as the calculations are correct.', answer: false, why: 'False. It assumes the past pattern continues. New competitors, a recession or a viral trend can make even a perfectly calculated forecast wrong.' },
+        { id: '4.3-7', type: 'tf', q: '<span class="tag">HL</span> A sales forecast will be accurate as long as the calculations are correct.', answer: false, why: 'False. It assumes the past pattern continues. New competitors, a recession or a viral trend can make even a perfectly calculated forecast wrong.' },
         { id: '4.3-8', type: 'mcq', cmd: 'Identify', q: '<span class="tag">HL</span> Which department uses a sales forecast to decide <b>how many staff</b> to hire for December?', options: ['Human resources', 'Finance', 'Operations', 'Marketing'], answer: 0, why: 'HR uses the forecast for workforce planning. Operations uses it for output and stock, finance for cash flow, marketing for promotions.' }
       ],
       explain: 'Think of something with a seasonal pattern in your life (gym visits, game sales, festival tickets…). Explain to a mate the <b>trend</b>, the <b>seasonal variation</b>, and one <b>random</b> event that could wreck a forecast.'
@@ -275,21 +301,21 @@ export const unit4 = {
           <p>✅ Up to date, specific to the business, not available to rivals. ❌ Expensive and time-consuming.</p>` },
         { title: 'Secondary research', html: `
           <p><b>Secondary research</b> (desk research) uses data that already exists, collected by someone else for another purpose.</p>
-          <p>Sources: market analyses and industry reports, government statistics (e.g. Statistics Denmark), academic journals, media articles, competitors' websites and annual reports.</p>
+          <p>The IB names these sources: <b>market analyses</b> (industry reports), <b>academic journals</b>, <b>government publications</b> (e.g. Statistics Denmark), <b>media articles</b> and <b>online content</b> (competitors' websites, annual reports, reviews, social media).</p>
           <p>✅ Cheap or free, quick, often covers whole markets. ❌ May be out of date, not exactly what the business needs, and rivals can see it too.</p>
           <div class="tip">Businesses usually start with secondary research (what already exists?) and then fill the gaps with primary research.</div>` },
         { title: 'Qualitative vs quantitative data', html: `
           <p><b>Quantitative data</b> is numerical: how many, how much, what percentage. E.g. "62% would pay $90". Easy to analyse and compare, but doesn't explain <i>why</i>.</p>
           <p><b>Qualitative data</b> is about opinions, feelings and reasons. E.g. "I'd buy it if the sole were recycled". Rich insight, but harder to analyse and to generalise.</p>
-          <div class="example">Sami runs a survey of 400 teens (quantitative) and then two focus groups of 8 (qualitative) to understand the numbers.</div>` },
+          <div class="example">Sami runs a survey of 400 teens (quantitative) and then two focus groups of 8 (qualitative) to understand the numbers.</div>
+          <p class="muted small">Quantitative results are summarised with [[descriptive statistics]] (6.10): averages, spread and charts.</p>` },
         { title: 'Sampling methods', html: `
           <p>A <b>sample</b> is the group of people from the population who are actually asked. The bigger and more representative, the more reliable the results.</p>
-          <ul><li><b>Random sampling</b>: everyone in the population has an equal chance of being picked.</li>
-              <li><b>Stratified sampling</b>: split the population into groups (strata), then pick randomly from each in proportion to its size.</li>
-              <li><b>Quota sampling</b>: split into groups and interview a set number from each, chosen by the researcher (not random).</li>
-              <li><b>Cluster sampling</b>: pick a few areas (clusters) at random and survey people there; cheaper when the population is spread out.</li>
-              <li><b>Convenience sampling</b>: ask whoever is easiest to reach. Quick but often biased.</li>
-              <li><b>Snowball sampling</b>: respondents recruit others they know; useful for hard-to-reach groups (e.g. sneaker collectors).</li></ul>` },
+          <p>The IB names three sampling methods:</p>
+          <ul><li><b>Quota sampling</b>: split the population into groups and interview a set number from each, chosen by the researcher (not random). Quick and matches the groups, but the researcher's choices can bias it.</li>
+              <li><b>Random sampling</b>: everyone in the population has an equal chance of being picked. Fair and less biased, but needs a full list of the population and can be slow.</li>
+              <li><b>Convenience sampling</b>: ask whoever is easiest to reach. Quick and cheap but often biased.</li></ul>
+          <div class="extra">Other methods you may meet: <b>stratified sampling</b> (pick randomly within each group, in proportion to its size), <b>cluster sampling</b> (pick a few areas at random and survey people there) and <b>snowball sampling</b> (respondents recruit others they know, useful for hard-to-reach groups).</div>` },
         { title: 'Ethics of market research', html: `
           <p>Research must be done ethically:</p>
           <ul><li><b>Informed consent</b>: people know what the research is for and agree to take part.</li>
@@ -318,18 +344,18 @@ export const unit4 = {
           type: 'scenarios', title: 'Pick the sample',
           challenge: 'Choose the best sampling method in all 3 cases.',
           items: [
-            { s: 'Sami wants views from Danish 15–24-year-olds, and knows that 60% of SoleFlip\'s buyers are boys and 40% girls. He wants the sample to match that, chosen fairly.', options: [
-              { t: 'Stratified sampling', ok: true, fb: 'Yes: split into boys and girls, then pick randomly within each group in a 60:40 ratio.' },
+            { s: 'Sami knows that 60% of SoleFlip\'s buyers are boys and 40% girls. He wants 100 answers this week, matching that split, and will stop shoppers himself.', options: [
+              { t: 'Quota sampling: 60 boys and 40 girls', ok: true, fb: 'Yes: set numbers from each group, chosen by the researcher. Quick, and the sample matches the 60:40 split.' },
               { t: 'Convenience sampling', ok: false, fb: 'Asking whoever is nearby won\'t match the 60:40 split and is likely to be biased.' },
-              { t: 'Snowball sampling', ok: false, fb: 'Friends recruit friends, so the sample will be similar people, not representative.' }] },
-            { s: 'SoleFlip wants to talk to rare-sneaker collectors. There is no list of them, but collectors know each other.', options: [
-              { t: 'Snowball sampling', ok: true, fb: 'Yes: each collector introduces others, reaching a hidden group.' },
-              { t: 'Random sampling', ok: false, fb: 'You can\'t pick randomly from a population you have no list of.' },
-              { t: 'Cluster sampling of whole towns', ok: false, fb: 'Most people in a town aren\'t collectors, so it would waste time and money.' }] },
+              { t: 'Random sampling of all Danish teens', ok: false, fb: 'There\'s no list of all Danish teens, and it would take far longer than a week.' }] },
+            { s: 'SoleFlip has a list of all 5,000 newsletter subscribers and wants a fair sample of 200 with no bias in who is picked.', options: [
+              { t: 'Random sampling from the list', ok: true, fb: 'Yes: with a full list, every subscriber can have an equal chance of being chosen.' },
+              { t: 'Ask the 200 who reply fastest', ok: false, fb: 'That\'s convenience sampling: the fastest repliers are probably the biggest fans, so it\'s biased.' },
+              { t: 'Sami picks 200 people he thinks are typical', ok: false, fb: 'His own choices can bias the sample.' }] },
             { s: 'With one afternoon and no budget, Sami wants a quick feel for reactions to a new logo before a proper survey.', options: [
               { t: 'Convenience sampling of store visitors', ok: true, fb: 'Yes: fast and free. Fine for a first impression, as long as he remembers it may be biased.' },
               { t: 'A national random sample of 2,000 people', ok: false, fb: 'Far too slow and expensive for a quick logo check.' },
-              { t: 'Hire a research agency for a stratified study', ok: false, fb: 'Good quality, but not possible with no budget and one afternoon.' }] }
+              { t: 'Hire a research agency for a large random sample', ok: false, fb: 'Good quality, but not possible with no budget and one afternoon.' }] }
           ]
         }
       ],
@@ -362,8 +388,8 @@ export const unit4 = {
 
     // ------------------------------------------------------------------ 4.5
     {
-      id: '4.5', title: 'The seven Ps of the marketing mix', emoji: '🧩', minutes: 18, hl: false,
-      goal: 'apply each of the seven Ps, explain the product life cycle, extension strategies, the BCG matrix and branding, and choose pricing and promotion methods.',
+      id: '4.5', title: 'The seven Ps of the marketing mix', emoji: '🧩', minutes: 22, hl: 'part',
+      goal: 'apply each of the seven Ps, explain the product life cycle, extension strategies, the BCG matrix and branding, choose pricing and promotion methods, and (HL) use price elasticity of demand.',
       hook: `Two sneakers cost the same to make. One sells for $90, the other for $400. One is everywhere on TikTok, the other you never see. One comes in a box you keep forever.<br><br>Which decisions turn a $50 pair of shoes into something people queue for? Marketers call them the <b>seven Ps</b>.`,
       cards: [
         { title: 'The marketing mix', html: `
@@ -376,10 +402,12 @@ export const unit4 = {
           <div class="tip">The Ps must fit together and fit the [[target market]]. A luxury price with bargain-bin promotion confuses customers. "Coherent mix" is a phrase examiners like.</div>` },
         { title: 'Product and the product life cycle', html: `
           <p>The <b>product life cycle</b> shows the stages a product goes through: <b>development → introduction → growth → maturity → decline</b>.</p>
-          <ul><li>Development and introduction: high costs, low sales, <b>negative cash flow</b>.</li>
-              <li>Growth: sales rise fast, profit and cash flow turn positive, competitors arrive.</li>
-              <li>Maturity: sales peak; the best cash flow, as marketing costs fall.</li>
-              <li>Decline: sales and profit fall.</li></ul>
+          <div class="table-wrap"><table class="fin"><tr><th>Stage</th><th>Investment</th><th>Profit</th><th>Cash flow</th></tr>
+            <tr><td>Development</td><td>Heavy (R&D, design)</td><td>None: no sales yet</td><td>Negative</td></tr>
+            <tr><td>Introduction</td><td>High (launch promotion)</td><td>Low or a loss</td><td>Negative</td></tr>
+            <tr><td>Growth</td><td>Still high (capacity, promotion)</td><td>Rising</td><td>Turns positive</td></tr>
+            <tr><td>Maturity</td><td>Low</td><td>Highest</td><td>Highest</td></tr>
+            <tr><td>Decline</td><td>Little, unless extended</td><td>Falling</td><td>Falling</td></tr></table></div>
           <p><b>Extension strategies</b> stretch the life of a product: new colours or features, new markets, new uses, rebranding, new promotion or a price change.</p>
           <div class="example">Nike's Air Force 1 (launched 1982) keeps returning with collabs and new colourways: a textbook extension strategy.</div>` },
         { title: 'BCG matrix (toolkit) and branding', html: `
@@ -388,24 +416,33 @@ export const unit4 = {
               <li><b>Cash cows</b>: high share, low growth. Bring in cash for the others.</li>
               <li><b>Question marks</b>: low share, high growth. Invest or drop?</li>
               <li><b>Dogs</b>: low share, low growth. Usually withdraw.</li></ul>
-          <p><b>Branding</b> is the name, logo, design and image that make a product recognisable. It builds <b>brand awareness</b> (people know it), <b>brand loyalty</b> (they keep buying it) and <b>brand value</b> (they pay more for it). <b>Packaging</b> protects the product, informs and promotes.</p>
+          <p><b>Branding</b> is the name, logo, design and image that make a product recognisable. The IB looks at four aspects: <b>brand awareness</b> (people know it), <b>brand development</b> (building and stretching the brand over time, e.g. into new products), <b>brand loyalty</b> (they keep buying it) and <b>brand value</b> (they pay more for it). <b>Packaging</b> protects the product, informs and promotes.</p>
           <div class="example">For ${sf}: cleaning is a cash cow, Originals a question mark.</div>` },
         { title: 'Price: pricing methods', html: `
           <ul><li><b>Cost-plus pricing</b> (mark-up): unit cost + a percentage. Simple, covers costs, but ignores what customers will pay.</li>
               <li><b>Penetration pricing</b>: start low to win market share fast, then raise the price.</li>
-              <li><b>Price skimming</b>: start high for a new or unique product, then lower it over time.</li>
-              <li><b>Psychological pricing</b>: $89.95 instead of $90.</li>
+              <li><b>Premium pricing</b>: a deliberately high price to signal quality, exclusivity or status (limited-edition sneakers, Apple).</li>
               <li><b>Loss leader</b>: sell one item below cost to attract customers who buy other things.</li>
-              <li><b>Price discrimination</b>: different prices for different customers for the same product (student discounts).</li>
-              <li><b>Dynamic pricing</b>: prices change with demand in real time (concert tickets, ride apps).</li>
-              <li><b>Competitive pricing</b>: price close to rivals.</li></ul>
+              <li><b>Predatory pricing</b>: setting prices very low (even below cost) to force rivals out of the market, then raising them. Illegal in the EU and many countries.</li>
+              <li><span class="tag">HL</span> <b>Dynamic pricing</b>: prices change with demand in real time (concert tickets, ride apps).</li>
+              <li><span class="tag">HL</span> <b>Competitive pricing</b>: price close to rivals.</li>
+              <li><span class="tag">HL</span> <b>Contribution pricing</b>: any price above the [[contribution|variable cost per unit]] adds to paying fixed costs, so it can make sense for extra or one-off orders when there is spare capacity.</li></ul>
           ${F`\text{Cost-plus price} = \text{unit cost} \times \left(1 + \frac{\text{mark-up \%}}{100}\right)`}
-          <div class="example">Originals cost $50 a pair ($38 factory + $12 shipping and packaging). An 80% mark-up: 50 × 1.8 = <b>$90</b>.</div>` },
+          <div class="example">Originals cost $50 a pair ($38 factory + $12 shipping and packaging). An 80% mark-up: 50 × 1.8 = <b>$90</b>. A festival asks for 300 pairs at $65: each still covers its $50 variable cost and contributes $15, so <b>$4,500</b> towards fixed costs.</div>
+          <div class="extra"><b>Price skimming</b> (start high, then lower), <b>psychological pricing</b> ($89.95) and <b>price discrimination</b> (student discounts) are common in textbooks but aren't on the 2024 IB list.</div>` },
+        { title: 'Price elasticity of demand (HL only)', html: `
+          <p><span class="tag">HL</span> <b>Price elasticity of demand (PED)</b> measures how strongly the quantity demanded reacts to a change in price.</p>
+          ${F`\text{PED} = \frac{\%\ \text{change in quantity demanded}}{\%\ \text{change in price}}`}
+          <ul><li><b>Elastic</b> (PED above 1, ignoring the minus sign): demand reacts a lot. Raising the price <b>lowers</b> revenue; cutting it raises revenue. Many close substitutes.</li>
+              <li><b>Inelastic</b> (PED below 1): demand reacts little. Raising the price <b>raises</b> revenue. Few substitutes, necessities, strong brands.</li></ul>
+          <div class="example">Originals go from $90 to $99 (+10%) and sales fall from 400 to 320 pairs a month (−20%): PED = −20 ÷ 10 = <b>−2</b>, elastic. Revenue falls from $36,000 to $31,680.<br>The cleaning service goes from $25 to $30 (+20%) and bookings fall from 200 to 180 (−10%): PED = <b>−0.5</b>, inelastic. Revenue rises from $5,000 to $5,400.</div>
+          <div class="tip">PED is usually negative (price up, demand down). Say whether it is elastic or inelastic, then what that means for the pricing decision and revenue.</div>` },
         { title: 'Promotion', html: `
           <ul><li><b>Above-the-line promotion</b>: paid advertising in mass media (TV, radio, cinema, billboards, newspapers). Reaches many people, but expensive and hard to target.</li>
               <li><b>Below-the-line promotion</b>: targeted methods the business controls: sales promotions (2-for-1), direct mail, sponsorship, public relations, events, in-store displays.</li>
               <li><b>Social media marketing</b>: content, ads and influencers on TikTok, Instagram, YouTube. Cheap, targeted and measurable, but one bad post can go viral too.</li>
               <li><b>Guerrilla marketing</b>: low-cost, surprising stunts in public places that get people talking (a giant sneaker on Strøget).</li></ul>
+          <p><b>Through-the-line promotion</b> combines both: one campaign that uses mass media <i>and</i> targeted methods, e.g. a TV advert that sends viewers to a TikTok challenge with a discount code.</p>
           <p>The <b>promotional mix</b> is the combination a business chooses.</p>` },
         { title: 'Place', html: `
           <p><b>Place</b> is how the product gets to the customer: the <b>distribution channel</b>.</p>
@@ -426,16 +463,16 @@ export const unit4 = {
         {
           type: 'sort', title: 'Name that pricing method',
           challenge: 'Sort all 8 correctly in one go.',
-          buckets: ['Penetration', 'Skimming', 'Psychological', 'Price discrimination'],
+          buckets: ['Penetration', 'Premium', 'Loss leader', 'Predatory'],
           items: [
             { t: '📺 A new streaming service at $1 a month for the first year', b: 0 },
-            { t: '🍔 A new burger chain opening with very low prices to win customers', b: 0 },
-            { t: '🎮 A new console at $699, cut to $499 a year later', b: 1 },
-            { t: '📱 A new phone at a record price for early fans', b: 1 },
-            { t: '🏷️ Sneakers at $89.95', b: 2 },
-            { t: '🧃 Drinks at 9.99 kr', b: 2 },
-            { t: '🎓 A student discount on the same sneakers', b: 3 },
-            { t: '🎬 Cheaper cinema tickets on Tuesday mornings', b: 3 }
+            { t: '🍔 A new burger chain opening with low prices to win customers, rising later', b: 0 },
+            { t: '👟 A 50-pair limited collab at $400, far above normal sneakers', b: 1 },
+            { t: '⌚ A luxury watch priced high to signal status', b: 1 },
+            { t: '🎮 A console sold below cost to sell more games', b: 2 },
+            { t: '🥤 Cheap cola at the entrance so shoppers fill their trolleys', b: 2 },
+            { t: '✈️ A big airline cuts fares below cost on a new rival\'s only route until it quits', b: 3 },
+            { t: '🛒 A supermarket giant prices below cost near a new local shop to close it down', b: 3 }
           ]
         }
       ],
@@ -446,8 +483,8 @@ export const unit4 = {
           { prompt: 'Unit cost?', answer: '$38 + $12 = <b>$50</b>' },
           { prompt: 'Cost-plus price at 80% mark-up?', answer: '50 × (1 + 0.80) = <b>$90</b> (profit $40 a pair).' },
           { prompt: 'How does $90 compare with rivals?', answer: 'Cheaper than all three rivals, so it fits a target market of teens on a budget. Cost-plus ignores demand, though: research said teens would pay up to $90 on average.' },
-          { prompt: 'Penetration or skimming for the launch?', answer: 'Skimming needs a strong brand and unique product with eager early buyers. Originals is new from a small brand, so a <b>penetration</b>-style launch (e.g. $79 for the first 500 pairs) could win attention and share, then rise to $90.' },
-          { prompt: 'Recommend, with a condition.', answer: '"Launch at a $79 penetration price for the first drop, then move to $89.95 (psychological pricing). This builds share quickly while keeping a healthy $30–40 margin, <i>as long as</i> the factory cost stays at $50."' }
+          { prompt: 'Penetration or premium pricing for the launch?', answer: 'Premium pricing needs a strong brand and a product people see as exclusive. Originals is new from a small brand, so a <b>penetration</b>-style launch (e.g. $79 for the first 500 pairs) could win attention and share, then rise to $90.' },
+          { prompt: 'Recommend, with a condition.', answer: '"Launch at a $79 penetration price for the first drop, then move to the $90 cost-plus price. This builds share quickly while keeping a healthy $29–40 margin, <i>as long as</i> the factory cost stays at $50. A small premium-priced limited edition could build the brand later."' }
         ],
         takeaway: 'Calculate first, then use the numbers and the case (target market, rivals, brand strength) to justify a pricing choice.'
       },
@@ -463,7 +500,12 @@ export const unit4 = {
         { id: '4.5-7', type: 'mcq', cmd: 'Identify', q: 'Concert tickets that get pricier as more people try to buy them use…', options: ['dynamic pricing', 'cost-plus pricing', 'loss-leader pricing', 'penetration pricing'], answer: 0, why: 'Dynamic pricing changes the price in real time with demand.' },
         { id: '4.5-8', type: 'mcq', cmd: 'Explain', q: 'Why does a sneaker-<b>cleaning service</b> need <b>physical evidence</b>?', options: ['Customers can\'t see the service in advance, so tangible signs show its quality', 'The law requires every service business to give customers a printed receipt each time', 'It replaces the need for trained staff to deliver the service to customers', 'It lowers the cost of the service, so the price can be kept low for customers'], answer: 0, why: 'Services are intangible. Before-and-after photos, a smart store, reviews and branded packaging reassure customers about quality.' },
         { id: '4.5-9', type: 'tf', q: 'A zero-level distribution channel has no intermediaries between producer and consumer.', answer: true, why: 'True. Zero-level = direct (e.g. SoleFlip\'s website). One-level adds a retailer; two-level adds a wholesaler too.' },
-        { id: '4.5-10', type: 'tf', q: 'A product in maturity always has the highest sales and the highest profit, so no action is needed.', answer: false, why: 'False. Sales peak in maturity, but competition grows and sales will eventually fall. This is exactly when businesses plan extension strategies.' }
+        { id: '4.5-10', type: 'tf', q: 'A product in maturity always has the highest sales and the highest profit, so no action is needed.', answer: false, why: 'False. Sales peak in maturity, but competition grows and sales will eventually fall. This is exactly when businesses plan extension strategies.' },
+        { id: '4.5-11', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> Complete the table to find the <b>PED</b> for Originals.' + tbl(['', 'Before', 'After', '% change'], [['Price ($)', '90', '99', A(10)], ['Pairs sold a month', '400', '320', A(-20)], ['<b>PED</b>', '', '', A(-2, true)]]), answer: -2, display: '−2', hint: 'PED = % change in quantity ÷ % change in price', why: 'Price: (99 − 90) ÷ 90 × 100 = +10%. Quantity: (320 − 400) ÷ 400 × 100 = −20%. PED = −20 ÷ 10 = −2 (elastic).' },
+        { id: '4.5-12', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> Demand for SoleFlip\'s cleaning service has a PED of <b>−0.5</b>. What happens to revenue if it <b>raises</b> its price?', options: ['Revenue rises, because demand is inelastic', 'Revenue falls, because demand is elastic', 'Revenue stays exactly the same as before', 'Revenue falls, because every price rise lowers revenue'], answer: 0, why: 'PED below 1 (ignoring the sign) = inelastic: quantity falls by a smaller percentage than price rises, so revenue goes up.' },
+        { id: '4.5-13', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> A festival offers $65 a pair for 300 Originals. Variable cost is $50 a pair and the workshop has spare capacity. Why might <b>contribution pricing</b> justify accepting?', options: ['Each pair covers its variable cost and adds $15 towards fixed costs', 'The order brings in more revenue per pair than the normal $90 price', 'Contribution pricing means the festival pays all of SoleFlip\'s fixed costs', 'Any order is worth accepting, whatever price the customer offers'], answer: 0, why: 'With spare capacity, fixed costs are paid anyway. $65 − $50 = $15 contribution × 300 = $4,500 extra towards fixed costs and profit. A price below $50 would lose money on every pair.' },
+        { id: '4.5-14', type: 'mcq', cmd: 'Distinguish', q: 'A supermarket giant prices bread below cost only near a new local bakery, aiming to close it down. This is…', options: ['predatory pricing', 'penetration pricing', 'premium pricing', 'competitive pricing'], answer: 0, why: 'Predatory pricing aims to drive a rival out (and is usually illegal). Penetration pricing aims to win share for a new product, not to destroy a competitor.' },
+        { id: '4.5-15', type: 'mcq', cmd: 'Identify', q: 'A campaign uses a TV advert that sends viewers to a TikTok challenge with a personal discount code. This is…', options: ['through-the-line promotion', 'above-the-line promotion only', 'below-the-line promotion only', 'guerrilla marketing'], answer: 0, why: 'It combines mass media (above the line) with targeted methods (below the line) in one campaign: through the line.' }
       ],
       explain: 'Pick a product you bought recently. Explain to a mate its <b>7 Ps</b> (or 4 Ps for a good), and which stage of the <b>product life cycle</b> you think it is in.'
     },
@@ -495,7 +537,7 @@ export const unit4 = {
               <li><b>Political</b>: tariffs, trade barriers, instability.</li>
               <li><b>Economic</b>: exchange rates, different income levels, local competitors who know the market.</li>
               <li><b>Practical</b>: shipping, returns, payment methods and customer service in another language.</li></ul>
-          <p class="muted small">A [[STEEPLE analysis]] (6.2) is a checklist for spotting these factors before you enter a market.</p>
+          <p class="muted small">A [[STEEPLE analysis]] (6.2) is a checklist for spotting these factors before you enter a market, and [[Hofstede's cultural dimensions]] (6.12) help you compare cultures.</p>
           <div class="example">German shoppers often pay by invoice (Klarna) or PayPal rather than card, and expect free returns. ${sf} must change its processes, not just its language.</div>` },
         { title: 'Global or local? Glocalization', html: `
           <p>Should the marketing mix be the same everywhere?</p>
@@ -569,10 +611,6 @@ export const unit4 = {
     { group: '4.1 Introduction to marketing', items: [
       { name: 'Market share', f: M`\frac{\text{a firm's sales}}{\text{total sales in the market}} \times 100` },
       { name: 'Market growth', f: M`\frac{\text{this year's market size} - \text{last year's}}{\text{last year's market size}} \times 100`, note: 'Not on the IB formula sheet: it is the usual percentage-change calculation.' }] },
-    { group: '4.3 Sales forecasting', items: [
-      { name: 'Four-part centred moving average', f: M`\frac{\text{4-part average}_1 + \text{4-part average}_2}{2}`, hl: true, note: 'Each 4-part average = sum of four consecutive quarters ÷ 4.' },
-      { name: 'Seasonal variation', f: M`\text{actual sales} - \text{trend}`, hl: true },
-      { name: 'Forecast', f: M`\text{projected trend} + \text{average seasonal variation}`, hl: true }] },
     { group: '4.5 The seven Ps of the marketing mix', items: [
       { name: 'Cost-plus price', f: M`\text{unit cost} \times \left(1 + \frac{\text{mark-up \%}}{100}\right)`, note: 'Not on the IB formula sheet, but needed to apply cost-plus (mark-up) pricing.' }] }
   ]

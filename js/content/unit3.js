@@ -183,6 +183,7 @@ export const unit3 = {
           ${F`\text{TVC} = \text{variable cost per unit} \times \text{quantity}`}
           ${F`\text{TC} = \text{TFC} + \text{TVC}`}` },
         { title: 'Semi-variable costs', html: `
+          <div class="extra">The IB guide names fixed, variable, direct and indirect costs. Semi-variable costs aren't on its list, but real bills often look like this, so it helps to recognise them.</div>
           <p><b>Semi-variable costs</b> have a fixed part <b>plus</b> a part that changes with use or output.</p>
           <ul><li>A phone plan: $20 base + extra for data over the limit.</li>
               <li>Electricity: fixed standing charge + per kWh used.</li>
@@ -293,6 +294,9 @@ export const unit3 = {
           <p><b>Units of production method</b>: based on how much the asset is actually used.</p>
           ${F`\text{Depreciation per unit} = \frac{\text{purchase cost} - \text{residual value}}{\text{expected total units over its life}}`}${F`\text{Depreciation this year} = \text{per unit} \times \text{units made}`}
           <div class="example">Gaming laptop: cost $2,000, sells for $400 after 4 years. Straight-line: (2,000 − 400) ÷ 4 = <b>$400 per year</b>.</div>
+          <p><b>Which method is appropriate?</b></p>
+          <ul><li><b>Straight-line</b> suits assets that lose value evenly with time, whatever their use: furniture, shop fittings, buildings, a software licence. Simple and easy to compare, but it ignores how hard the asset is actually worked.</li>
+              <li><b>Units of production</b> suits assets that wear out with use: a delivery van (kilometres), a laser engraver (pairs engraved). More accurate, because the cost matches output each year, but it needs a forecast of total use and careful records.</li></ul>
           <p class="muted small">Depreciation is an <b>expense</b> on the P&L, and it reduces the value of the asset on the balance sheet (accumulated depreciation).</p>` }
       ],
       labs: [
@@ -332,7 +336,8 @@ export const unit3 = {
         { id: '3.4-7', type: 'tf', q: 'Total assets − total liabilities = total equity.', answer: true, why: 'True. Net assets always equal total equity. That is why it is called a <i>balance</i> sheet.' },
         { id: '3.4-8', type: 'mcq', cmd: 'Define', q: 'Goodwill appears when…', options: ['a business is bought for more than the value of its net assets', 'customers leave lots of positive reviews about the business', 'the business gives a share of its profit to local charities', 'the business\'s non-current assets lose value over time'], answer: 0, why: 'Goodwill = price paid − net assets. The buyer pays extra for reputation, customers, location and so on.' },
         { id: '3.4-9', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> What is the van\'s annual <b>straight-line depreciation</b>?' + tbl(['Van', ''], [['Purchase cost', '$30,000'], ['Residual value', '$6,000'], ['Life span', '4 years']]), answer: 6000, display: '$6,000', unit: '$', why: '(30,000 − 6,000) ÷ 4 = $6,000 per year.' },
-        { id: '3.4-10', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> What is this year\'s depreciation using the <b>units of production</b> method?' + tbl(['Machine', ''], [['Purchase cost', '$10,000'], ['Residual value', '$1,000'], ['Expected total units over its life', '90,000'], ['Units made this year', '30,000']]), answer: 3000, display: '$3,000', unit: '$', hint: 'Per unit = (cost − residual) ÷ total units.', why: '(10,000 − 1,000) ÷ 90,000 = $0.10 per unit × 30,000 = $3,000.' }
+        { id: '3.4-10', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> What is this year\'s depreciation using the <b>units of production</b> method?' + tbl(['Machine', ''], [['Purchase cost', '$10,000'], ['Residual value', '$1,000'], ['Expected total units over its life', '90,000'], ['Units made this year', '30,000']]), answer: 3000, display: '$3,000', unit: '$', hint: 'Per unit = (cost − residual) ÷ total units.', why: '(10,000 − 1,000) ÷ 90,000 = $0.10 per unit × 30,000 = $3,000.' },
+        { id: '3.4-11', type: 'mcq', cmd: 'Explain', q: '<span class="tag">HL</span> Why might the <b>units of production</b> method be more appropriate than straight-line for SoleFlip\'s delivery van?', options: ['The van wears out with the kilometres driven, which change a lot from year to year', 'The van loses exactly the same value every year, whatever it is used for', 'Units of production is simpler to calculate and needs no forecasts at all', 'Straight-line depreciation is not allowed for vehicles in any country'], answer: 0, why: 'A van wears out with use. If usage varies, units of production matches the depreciation expense to how hard the van actually worked. Straight-line is simpler, but ignores usage.' }
       ],
       explain: 'What is the difference between the <b>profit and loss account</b> and the <b>balance sheet</b>? (Hint: video vs photo.)'
     },
@@ -405,8 +410,8 @@ export const unit3 = {
 
     // ------------------------------------------------------------------ 3.6
     {
-      id: '3.6', title: 'Debt/efficiency ratio analysis', emoji: '⚙️', minutes: 12, hl: true,
-      goal: 'calculate and interpret stock turnover, debtor days, creditor days and gearing, and explain insolvency vs bankruptcy.',
+      id: '3.6', title: 'Efficiency ratio analysis', emoji: '⚙️', minutes: 12, hl: true,
+      goal: 'calculate and interpret stock turnover, debtor days, creditor days and gearing, recommend strategies to improve them, and explain insolvency vs bankruptcy.',
       hook: `You lent a mate $50 for concert tickets. It's been <b>3 months</b>. You still haven't got it back, and now <i>you</i> can't afford the festival.<br><br>Businesses have the same problem with customers who pay late (<b>debtor days</b>), and the reverse with suppliers they pay late (<b>creditor days</b>). Efficiency ratios measure how fast money moves.`,
       cards: [
         { title: 'Stock turnover', html: `
@@ -497,6 +502,7 @@ export const unit3 = {
             <tr><td>Net cash flow (in − out)</td><td class="neg">−500</td><td>2,000</td></tr>
             <tr class="total"><td>Closing balance</td><td>1,500</td><td>3,500</td></tr></table></div>
           ${F`\text{Closing balance} = \text{opening balance} + \text{net cash flow}`}${F`\text{Closing balance this month} = \text{opening balance next month}`}
+          <p>The closing balances show the business's <b>liquidity position</b>: whether it will have enough cash to pay its bills each month. A negative closing balance is an early warning: arrange an [[overdraft]] or act on cash flow before it happens.</p>
           <p class="muted small">Forecasts can be wrong: sales can disappoint, costs rise, the economy changes. They are a plan, not a promise.</p>` },
         { title: 'Investment, profit and cash flow', html: `
           <p>Investing (e.g. in a new machine) <b>uses cash now</b> and should bring <b>profit later</b>. So a growing business often has <b>low cash</b> even when profits look good.</p>
@@ -626,6 +632,20 @@ export const unit3 = {
               <li><b>[[motivation|Motivation]]</b>: targets to aim for (if realistic!).</li>
               <li><b>Accountability</b>: managers are responsible for their budgets.</li></ul>
           <p class="muted small">Limits: a budget can be unrealistic, rigid when things change, or lead to "spend it or lose it" behaviour at year-end.</p>` },
+        { title: 'Constructing a budget', html: `
+          <p>Most budgets start from the <b>sales forecast</b>, because almost every cost depends on how much the business expects to sell.</p>
+          <ol><li>Forecast sales volume and price → <b>budgeted revenue</b>.</li>
+              <li>Budget the costs that follow from it: <b>variable costs</b> (volume × cost per unit), then <b>fixed costs</b> (rent, salaries, marketing).</li>
+              <li><b>Budgeted profit</b> = budgeted revenue − budgeted costs.</li></ol>
+          <div class="table-wrap"><table class="fin"><tr><th>${sf} pop-up, March</th><th>$</th></tr>
+            <tr><td>Revenue (200 pairs × $90)</td><td>18,000</td></tr>
+            <tr><td>Variable costs (200 pairs × $50)</td><td>(10,000)</td></tr>
+            <tr><td>Rent</td><td>(3,000)</td></tr>
+            <tr><td>Wages</td><td>(2,500)</td></tr>
+            <tr><td>Marketing</td><td>(500)</td></tr>
+            <tr class="total"><td>Budgeted profit</td><td>2,000</td></tr></table></div>
+          <p>Budgets are often based on last year's figures plus an adjustment, and agreed with the managers who must meet them. Involving them makes the budget more realistic and more motivating.</p>
+          <div class="tip">In a "construct a budget" question, lay it out as a table, show each calculation, and label every figure.</div>` },
         { title: 'Cost centres vs profit centres', html: `
           <p><b>Cost centre</b>: a part of the business where <b>costs</b> are recorded, but it doesn't earn revenue itself. E.g. the HR department, IT, a warehouse.</p>
           <p><b>Profit centre</b>: a part of the business that has <b>both costs and revenue</b>, so you can work out its profit. E.g. a single store, a product line.</p>
@@ -670,7 +690,8 @@ export const unit3 = {
           { t: 'Revenue: budget $10k, actual $12k', b: 0 }, { t: 'Wages: budget $5k, actual $5.6k', b: 1 },
           { t: 'Rent: budget $2k, actual $1.8k', b: 0 }, { t: 'Revenue: budget $30k, actual $27k', b: 1 },
           { t: 'Materials: budget $4k, actual $4.4k', b: 1 }], why: 'Good for profit = F. Bad for profit = A.' },
-        { id: '3.9-8', type: 'mcq', q: 'Which is a <b>limitation</b> of budgets?', options: ['They can be unrealistic and become out of date when conditions change', 'They make any kind of planning for the future impossible', 'They can only be used by sole traders, not by companies', 'They show the business\'s assets and liabilities on one particular date'], answer: 0, why: 'Budgets are based on forecasts, and the world changes.' }
+        { id: '3.9-8', type: 'mcq', q: 'Which is a <b>limitation</b> of budgets?', options: ['They can be unrealistic and become out of date when conditions change', 'They make any kind of planning for the future impossible', 'They can only be used by sole traders, not by companies', 'They show the business\'s assets and liabilities on one particular date'], answer: 0, why: 'Budgets are based on forecasts, and the world changes.' },
+        { id: '3.9-9', type: 'num', cmd: 'Calculate', q: '<span class="tag">HL</span> <i>Construct</i> the April budget for the pop-up. It expects to sell <b>250</b> pairs at <b>$80</b>; each pair costs <b>$45</b>; fixed costs are <b>$6,000</b>.' + tbl(['April budget', '$'], [['Budgeted revenue', A(20000)], ['Budgeted variable costs', A(11250)], ['Fixed costs', '6,000'], ['<b>Budgeted profit</b>', A(2750, true)]]), answer: 2750, unit: '$', display: '$2,750', hint: 'Revenue = 250 × 80; variable costs = 250 × 45.', why: 'Revenue = 250 × 80 = $20,000. Variable costs = 250 × 45 = $11,250. Profit = 20,000 − 11,250 − 6,000 = $2,750.' }
       ],
       explain: 'Explain why a <b>favourable</b> variance isn\'t always good news. Use your own example (festival, gaming, a business…).'
     }
@@ -695,7 +716,7 @@ export const unit3 = {
       { name: 'ROCE', f: M`\frac{\text{profit before interest and tax}}{\text{capital employed}} \times 100`, note: M`\text{Capital employed} = \text{non-current liabilities} + \text{total equity}` },
       { name: 'Current ratio', f: M`\frac{\text{current assets}}{\text{current liabilities}}` },
       { name: 'Acid-test ratio', f: M`\frac{\text{current assets} - \text{stock}}{\text{current liabilities}}` }] },
-    { group: '3.6 Debt/efficiency ratios', items: [
+    { group: '3.6 Efficiency ratios', items: [
       { name: 'Stock turnover (times)', f: M`\frac{\text{cost of sales}}{\text{average stock}}`, hl: true, note: M`\text{Average stock} = \frac{\text{opening stock} + \text{closing stock}}{2}` },
       { name: 'Stock turnover (days)', f: M`\frac{\text{average stock}}{\text{cost of sales}} \times 365`, hl: true },
       { name: 'Debtor days', f: M`\frac{\text{debtors}}{\text{total sales revenue}} \times 365`, hl: true },

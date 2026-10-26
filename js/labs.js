@@ -1,5 +1,5 @@
 // Interactive "Play" labs. Each lab gets a container and calls onWin() once its challenge is beaten.
-import { h, money, pct, round, slider, svg, lineChart, barChart, speakButton, toast } from './ui.js';
+import { h, money, pct, round, slider, svg, lineChart, barChart, speakButton, toast, shuffle } from './ui.js';
 import { sortWidget } from './quiz.js';
 import { sfx } from './audio.js';
 
@@ -46,7 +46,8 @@ function cpaSolve(dur) {
   lft[5] = est[5];
   for (let n = 4; n >= 1; n--) lft[n] = Math.min(...NETWORK.filter(a => a.from === n).map(a => lft[a.to] - dur[a.id]));
   const fl = Object.fromEntries(NETWORK.map(a => [a.id, lft[a.to] - dur[a.id] - est[a.from]]));
-  return { est, lft, fl, len: est[5] };
+  const ff = Object.fromEntries(NETWORK.map(a => [a.id, est[a.to] - dur[a.id] - est[a.from]]));
+  return { est, lft, fl, ff, len: est[5] };
 }
 
 const LABS = {
@@ -71,7 +72,7 @@ const LABS = {
     el.append(h('h2', {}, `🎮 ${lab.title}`), ch);
     lab.items.forEach((it, i) => {
       const fb = h('div');
-      const opts = it.options.map(o => {
+      const opts = shuffle(it.options).map(o => {
         const b = h('button', { class: 'opt', html: o.t });
         b.onclick = () => {
           b.classList.add(o.ok ? 'correct' : 'wrong');
@@ -706,7 +707,7 @@ const LABS = {
       challenges.check([s.mode === 4, s.fc === 40]);
     };
     el.append(h('h2', {}, `🎮 ${lab.title || 'Forecast SoleFlip\'s online sales'} `, h('span', { class: 'tag' }, 'HL only')),
-      h('p', { class: 'muted' }, 'Three years of quarterly online sales ($000). Find the trend, then forecast the next quarter.'), challenges,
+      h('p', { class: 'muted' }, 'Three years of quarterly online sales ($000). The app calculates the moving averages for you (you won\'t need to in the exam): find the trend, then forecast the next quarter.'), challenges,
       h('div', { class: 'lab-grid' },
         h('div', {}, h('div', { class: 'row', style: 'margin-bottom:12px' }, b3, b4),
           slider({ label: 'Your forecast for Y4 Q1 ($000)', min: 20, max: 60, value: s.fc, oninput: v => { s.fc = v; update(); } }), note),
@@ -999,7 +1000,7 @@ const LABS = {
         : 'Stalemate or worse: the forces against the change are at least as strong as the forces for it. Choose actions to shift the balance.';
       challenges.check([D > R, D - R >= 4 && on.size <= 3]);
     };
-    el.append(h('h2', {}, `🎮 ${lab.title || 'Will the Berlin store happen?'}`),
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Will the Berlin store happen?'} `, h('span', { class: 'tag' }, 'HL only')),
       h('p', { class: 'muted' }, 'Each force is scored 1 (weak) to 5 (strong). Choose actions to change the balance. Tap again to undo.'), challenges,
       h('div', {}, btns), kpis, boxes, note);
     update();
@@ -1032,7 +1033,7 @@ const LABS = {
         : 'Red bars start before a task they depend on has finished. Move them later (▶), or move the earlier task sooner.';
       challenges.check([valid, valid && finish === 10]);
     };
-    el.append(h('h2', {}, `🎮 ${lab.title || 'Plan the Berlin pop-up'}`),
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Plan the Berlin pop-up'} `, h('span', { class: 'tag' }, 'HL only')),
       h('p', { class: 'muted' }, 'Move each task bar to the week it starts. Every bar starts at week 0: fix the order first.'), challenges, kpis, chart, note);
     update();
   },
@@ -1050,7 +1051,7 @@ const LABS = {
       'Open in <b>9 weeks</b> by cutting <b>one</b> activity by just <b>1 week</b> (all others as planned).'
     ], onWin);
     const update = () => {
-      const { est, lft, fl, len } = cpaSolve(dur);
+      const { est, lft, fl, ff, len } = cpaSolve(dur);
       const crit = id => fl[id] === 0;
       // Network: activity on arrow. Node positions:
       const P = { 1: [40, 150], 2: [170, 150], 3: [300, 62], 4: [430, 150], 5: [530, 150] };
@@ -1072,9 +1073,9 @@ const LABS = {
       }
       netBox.replaceChildren(root, h('p', { class: 'muted small' }, 'Each node: number on top, EST bottom-left, LFT bottom-right. Red = critical path.'));
       tableBox.replaceChildren(h('table', { class: 'fin' },
-        h('tr', {}, h('th', {}, 'Activity'), h('th', {}, 'Weeks'), h('th', {}, 'EST'), h('th', {}, 'LFT'), h('th', {}, 'Float')),
+        h('tr', {}, h('th', {}, 'Activity'), h('th', {}, 'Weeks'), h('th', {}, 'EST'), h('th', {}, 'LFT'), h('th', {}, 'Total float'), h('th', {}, 'Free float')),
         NETWORK.map(a => h('tr', { class: crit(a.id) ? 'total' : '' }, h('td', {}, `${a.id} ${a.name}`), h('td', {}, dur[a.id]),
-          h('td', {}, est[a.from]), h('td', {}, lft[a.to]), h('td', {}, fl[a.id])))));
+          h('td', {}, est[a.from]), h('td', {}, lft[a.to]), h('td', {}, fl[a.id]), h('td', {}, ff[a.id])))));
       kpis.replaceChildren(kpi(`${len} weeks`, 'Project length', len <= 10 ? 'good' : 'bad'),
         kpi(NETWORK.filter(a => crit(a.id)).map(a => a.id).join(', '), 'Critical activities (zero float)'));
       const others = id => NETWORK.every(a => a.id === id || dur[a.id] === ORIG[a.id]);
@@ -1114,7 +1115,7 @@ const LABS = {
         { name: 'Your forecast', color: 'var(--chart-2)', points: [[30, s.fc]], dots: true }
       ], { xLabel: 'Instagram ad spend ($00 per month)', xTicks: [0, 8, 16, 24, 32], xFmt: x => String(x) }));
       kpis.replaceChildren(kpi(`y = ${round(s.a, 2)} + ${round(s.b, 2)}x`, 'Your line'), kpi(round(e, 1), 'Total squared error', e <= best * 1.2 ? 'good' : 'bad'),
-        kpi(round(r, 2), 'Correlation coefficient (r)'));
+        kpi(round(r, 2), 'Correlation coefficient r (interpret only)'));
       note.innerHTML = `Strong positive correlation: months with more ad spend had higher sales. But x = 30 is outside the data (5–25), so the forecast is <b>extrapolation</b>: less reliable. And correlation isn't proof that ads <i>cause</i> the sales.`;
       challenges.check([e <= best * 1.2, Math.abs(s.fc - (A0 + B * 30)) <= 1.5]);
     };
@@ -1125,6 +1126,122 @@ const LABS = {
           slider({ label: 'Slope (extra $000 per $100 of ads)', min: 0, max: 2.5, step: 0.05, value: s.b, fmt: v => round(v, 2), oninput: v => { s.b = v; update(); } }),
           slider({ label: 'Forecast at x = 30 ($000)', min: 20, max: 70, value: s.fc, oninput: v => { s.fc = v; update(); } }), kpis, note),
         h('div', {}, chartBox)));
+    update();
+  },
+  // ------------------------------------------------------------ 6.10 descriptive statistics
+  stats(el, lab, onWin) {
+    const BASE = [12, 15, 15, 18, 20, 21, 23, 25];   // pairs sold on 8 days at the Berlin pop-up
+    const s = { x: 40 };
+    const chartBox = h('div');
+    const kpis = h('div', { class: 'kpis' });
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'Make day 9 a festival day so big that the <b>mean is at least 5 pairs above the median</b>.',
+      'Find the day-9 sales that make the <b>mean equal the median</b>.',
+      'Make sales as steady as you can: get the <b>standard deviation below 4</b>.'
+    ], onWin);
+    const median = a => a.length % 2 ? a[(a.length - 1) / 2] : (a[a.length / 2 - 1] + a[a.length / 2]) / 2;
+    const update = () => {
+      const data = [...BASE, s.x], sorted = [...data].sort((a, b) => a - b), n = data.length;
+      const mean = data.reduce((a, b) => a + b, 0) / n, med = median(sorted);
+      const lower = sorted.slice(0, Math.floor(n / 2)), upper = sorted.slice(Math.ceil(n / 2));
+      const q1 = median(lower), q3 = median(upper);
+      const sd = Math.sqrt(data.reduce((a, v) => a + (v - mean) ** 2, 0) / n);
+      const counts = {}; data.forEach(v => { counts[v] = (counts[v] || 0) + 1; });
+      const top = Math.max(...Object.values(counts)), modes = Object.keys(counts).filter(k => counts[k] === top);
+      chartBox.replaceChildren(barChart(data.map((v, i) => ({ label: `D${i + 1}`, value: v, color: i === 8 ? 'var(--accent)' : 'var(--chart-1)' })),
+        { hLines: [{ y: mean, label: `mean ${round(mean, 1)}`, color: 'var(--chart-2)' }, { y: med, label: `median ${med}`, color: 'var(--good)' }], title: 'Pairs sold each day' }));
+      kpis.replaceChildren(kpi(round(mean, 2), 'Mean'), kpi(med, 'Median'), kpi(top > 1 ? modes.join(', ') : 'none', 'Mode'),
+        kpi(`${q1} – ${q3}`, 'Q1 – Q3'), kpi(q3 - q1, 'Interquartile range'), kpi(round(sd, 2), 'Standard deviation', sd < 4 ? 'good' : ''));
+      note.innerHTML = mean - med >= 5
+        ? 'One extreme day (an <b>outlier</b>) drags the mean up, but the median and quartiles hardly move. That\'s why the median is often the better "typical day" when data has outliers.'
+        : 'The standard deviation measures how spread out the days are around the mean: small = steady sales, large = unpredictable sales.';
+      challenges.check([mean - med >= 5, Math.abs(mean - med) < 1e-9, sd < 4]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'What does a typical day look like?'}`),
+      h('p', { class: 'muted' }, 'Pairs sold on the first 8 days of the Berlin pop-up are fixed. You choose day 9. Watch what happens to each statistic.'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, slider({ label: 'Pairs sold on day 9', min: 0, max: 90, value: s.x, oninput: v => { s.x = v; update(); } }), kpis, note),
+        h('div', {}, chartBox)));
+    update();
+  },
+
+  // ------------------------------------------------------------ 6.12 Hofstede's cultural dimensions (HL)
+  hofstede(el, lab, onWin) {
+    // Approximate scores (0-100) from Hofstede's research. PDI, IDV, MAS, UAI, LTO, IVR.
+    const DIMS = ['Power distance', 'Individualism', 'Masculinity', 'Uncertainty avoidance', 'Long-term orientation', 'Indulgence'];
+    const C = { Denmark: [18, 74, 16, 23, 35, 70], Germany: [35, 67, 66, 65, 83, 40], Portugal: [63, 27, 31, 99, 28, 33],
+      Japan: [54, 46, 95, 92, 88, 42], USA: [40, 91, 62, 46, 26, 68], China: [80, 20, 66, 30, 87, 24] };
+    const s = { c: 'USA' };
+    const box = h('div');
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'SoleFlip\'s Danish managers like staff to challenge the boss. Find the country where staff most expect the boss simply to decide (<b>highest power distance</b>).',
+      'SoleFlip\'s "just try it" style worries people who dislike risk. Find the country with the <b>highest uncertainty avoidance</b>: where SoleFlip\'s factory is!',
+      'Find the country <b>closest to Denmark on individualism</b>.'
+    ], onWin);
+    const others = Object.keys(C).filter(k => k !== 'Denmark');
+    const btns = others.map(k => h('button', { class: 'btn small ghost', style: 'margin:0 6px 6px 0', onclick: () => { s.c = k; update(); } }, k));
+    const row = (label, v, color) => h('div', { style: 'display:flex;align-items:center;gap:8px;margin:2px 0' },
+      h('span', { class: 'small', style: 'width:72px;flex:none' }, label),
+      h('span', { style: `display:block;height:12px;border-radius:6px;background:${color};width:${v * 0.8}%` }), h('span', { class: 'small' }, v));
+    const update = () => {
+      btns.forEach((b, i) => { b.className = `btn small${others[i] === s.c ? '' : ' ghost'}`; });
+      box.replaceChildren(...DIMS.map((d, i) => h('div', { style: 'margin-bottom:10px' }, h('b', { class: 'small' }, d),
+        row('Denmark', C.Denmark[i], 'var(--chart-1)'), row(s.c, C[s.c][i], 'var(--chart-2)'))));
+      const gaps = DIMS.map((d, i) => [d, Math.abs(C[s.c][i] - C.Denmark[i])]).sort((a, b) => b[1] - a[1]);
+      note.innerHTML = `Biggest difference from Denmark: <b>${gaps[0][0].toLowerCase()}</b> (${gaps[0][1]} points). That's where SoleFlip should adapt its management or marketing first.`;
+      const maxBy = i => others.reduce((a, b) => C[b][i] > C[a][i] ? b : a);
+      const closest = others.reduce((a, b) => Math.abs(C[b][1] - 74) < Math.abs(C[a][1] - 74) ? b : a);
+      challenges.check([s.c === maxBy(0), s.c === maxBy(3), s.c === closest]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Compare cultures'} `, h('span', { class: 'tag' }, 'HL only')),
+      h('p', { class: 'muted' }, 'Compare Denmark with another country on Hofstede\'s six dimensions (approximate scores, 0–100).'), challenges,
+      h('div', {}, btns), box, note);
+    update();
+  },
+
+  // ------------------------------------------------------------ 6.13 contribution and absorption costing (HL)
+  costing(el, lab, onWin) {
+    const LINES = [
+      { name: 'Resell', rev: 20000, vc: 12000, hours: 100, space: 20 },
+      { name: 'Custom', rev: 15000, vc: 6000, hours: 400, space: 30 },
+      { name: 'Cleaning', rev: 5000, vc: 1500, hours: 300, space: 50 }];
+    const FIXED = 15000;
+    const BASES = { hours: 'Labour hours', space: 'Floor space', rev: 'Sales revenue' };
+    const s = { basis: 'rev', keep: [true, true, true], dropped: false };
+    const tableBox = h('div', { class: 'table-wrap' });
+    const kpis = h('div', { class: 'kpis' });
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'Find an <b>allocation basis</b> that makes Cleaning look <b>loss-making</b> under absorption costing.',
+      'Test the decision: <b>drop Cleaning</b>, see what happens to total profit, then bring it back.'
+    ], onWin);
+    const basisBtns = Object.entries(BASES).map(([k, l]) => h('button', { class: 'btn small ghost', style: 'margin:0 6px 6px 0', onclick: () => { s.basis = k; update(); } }, l));
+    const keepBtns = LINES.map((l, i) => h('button', { class: 'chip', onclick: () => { s.keep[i] = !s.keep[i]; if (!s.keep[2]) s.dropped = true; update(); } }));
+    const update = () => {
+      const total = LINES.reduce((a, l) => a + l[s.basis], 0);
+      const rows = LINES.map(l => { const share = FIXED * l[s.basis] / total; return { ...l, con: l.rev - l.vc, share, full: l.rev - l.vc - share }; });
+      basisBtns.forEach((b, i) => { b.className = `btn small${Object.keys(BASES)[i] === s.basis ? '' : ' ghost'}`; });
+      keepBtns.forEach((b, i) => { b.textContent = `${s.keep[i] ? '✅' : '❌'} ${LINES[i].name}`; });
+      tableBox.replaceChildren(h('table', { class: 'fin' },
+        h('tr', {}, h('th', {}, ''), ...rows.map(r => h('th', {}, r.name))),
+        h('tr', {}, h('td', {}, 'Revenue'), ...rows.map(r => h('td', {}, money(r.rev)))),
+        h('tr', {}, h('td', {}, 'Variable costs'), ...rows.map(r => h('td', {}, money(r.vc)))),
+        h('tr', { class: 'total' }, h('td', {}, 'Contribution'), ...rows.map(r => h('td', {}, money(r.con)))),
+        h('tr', {}, h('td', {}, `Share of $15,000 overheads (by ${BASES[s.basis].toLowerCase()})`), ...rows.map(r => h('td', {}, money(Math.round(r.share))))),
+        h('tr', { class: 'total' }, h('td', {}, 'Profit (absorption costing)'), ...rows.map(r => h('td', { class: r.full < 0 ? 'neg' : '' }, money(Math.round(r.full)))))));
+      const profit = rows.reduce((a, r, i) => a + (s.keep[i] ? r.con : 0), 0) - FIXED;
+      kpis.replaceChildren(kpi(money(profit), 'SoleFlip total profit', profit >= 5500 ? 'good' : 'bad'));
+      note.innerHTML = s.keep[2]
+        ? 'Absorption costing shares out the overheads, so a line\'s "profit" depends on the basis you choose. Contribution doesn\'t: every line here has a positive contribution.'
+        : 'Dropping Cleaning loses its $3,500 contribution, but the $15,000 of overheads stays. Total profit falls. A positive contribution helps pay the fixed costs.';
+      challenges.check([rows[2].full < 0, s.dropped && s.keep.every(Boolean)]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Which product line pays its way?'} `, h('span', { class: 'tag' }, 'HL only')),
+      h('p', { class: 'muted' }, 'SoleFlip\'s three product lines in one month. Choose how overheads are shared out, and which lines to keep.'), challenges,
+      h('div', {}, h('b', { class: 'small' }, 'Share overheads by: '), basisBtns), h('div', { style: 'margin:6px 0' }, h('b', { class: 'small' }, 'Keep: '), keepBtns),
+      kpis, tableBox, note);
     update();
   }
 };

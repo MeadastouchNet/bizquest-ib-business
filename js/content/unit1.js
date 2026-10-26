@@ -44,7 +44,7 @@ export const unit1 = {
           <p><b>Sectoral change</b>: as countries get richer, jobs move from primary and secondary towards tertiary and quaternary. Most people in Denmark now work in services.</p>` },
         { title: 'Entrepreneurs, intrapreneurs and why people start up', html: `
           <p>An <b>entrepreneur</b> spots an opportunity, organizes the resources and takes the <b>risk</b> of starting a business.</p>
-          <p>An <b>intrapreneur</b> acts like an entrepreneur <i>inside</i> an existing organization, e.g. an employee who creates a new product line for their employer.</p>
+          <div class="extra">An <b>intrapreneur</b> acts like an entrepreneur <i>inside</i> an existing organization, e.g. an employee who creates a new product line for their employer. Useful for answers, but not named in the IB guide.</div>
           <p>Reasons for starting a business:</p>
           <ul><li>Earn money, or more than a job pays.</li><li>Be your own boss and have more control.</li>
               <li>Turn a hobby or passion into work.</li><li>Spot a gap in the market.</li>
@@ -132,7 +132,10 @@ export const unit1 = {
           <div class="tip">Companies cost more to set up and must follow more rules (publishing accounts). That is the price of limited liability and access to [[share capital]].</div>` },
         { title: 'Social enterprises', html: `
           <p>A <b>social enterprise</b> uses business methods to achieve <b>social or environmental goals</b>. Any surplus is mainly used for the cause.</p>
-          <ul><li><b>For-profit social enterprises</b> make a profit, but have social aims and reinvest much of it. They include <b>cooperatives</b>: businesses owned and run by their members (workers, customers or suppliers), who share the profits. <i>Arla is a cooperative owned by its dairy farmers; Coop is owned by its customer-members.</i></li>
+          <ul><li><b>For-profit social enterprises</b> make a profit, but have social aims and reinvest much of it. The IB names three kinds:
+                <ul><li><b>Private sector companies</b> with a social purpose. <i>Too Good To Go, a Danish company, sells surplus food cheaply to cut food waste.</i></li>
+                    <li><b>Public sector companies</b>: businesses owned by the government that sell goods or services but serve the public. <i>DSB, the Danish state railway, sells tickets but runs routes that matter to society, even if some are unprofitable.</i></li>
+                    <li><b>Cooperatives</b>: businesses owned and run by their members (workers, customers or suppliers), who share the profits. <i>Arla is a cooperative owned by its dairy farmers; Coop is owned by its customer-members.</i></li></ul></li>
               <li><b>Non-profit social enterprises</b> don't distribute profit to owners: any surplus goes back into the cause. They include <b>NGOs</b> (non-governmental organizations) such as the Red Cross and Médecins Sans Frontières.</li></ul>
           <div class="example">A café that hires and trains young people who have been homeless, and reinvests its profit in more training places, is a social enterprise.</div>` }
       ],
@@ -185,7 +188,11 @@ export const unit1 = {
         { id: '1.2-6', type: 'mcq', cmd: 'Identify', q: 'A cooperative is best described as a business that is…', options: ['owned and run by its members, who share the profits', 'owned and controlled by the government for everyone', 'owned by one person who has unlimited liability', 'a charity that is not allowed to make any surplus'], answer: 0, why: 'Cooperatives are owned by their members (e.g. workers, customers or farmers). They are a type of for-profit social enterprise.' },
         { id: '1.2-7', type: 'mcq', cmd: 'Distinguish', q: 'What is the key difference between a <b>for-profit</b> and a <b>non-profit</b> social enterprise?', options: ['A non-profit doesn\'t distribute any surplus to owners; it all goes back into the cause', 'A for-profit social enterprise has no social aims at all; it only exists for its owners', 'Only non-profit social enterprises are allowed to sell goods and services to customers', 'Only for-profit social enterprises can be NGOs; non-profits must be in the public sector'], answer: 0, why: 'Both have social goals and both can sell things. The difference is what happens to any surplus.' },
         { id: '1.2-8', type: 'tf', q: 'A sole trader can employ other people.', answer: true, why: 'True. "Sole" refers to ownership (one owner), not the number of workers.' },
-        { id: '1.2-9', type: 'mcq', cmd: 'Identify', q: 'Why might the owners of a privately held company choose <b>not</b> to become publicly held?', options: ['To keep control of who owns shares', 'To gain limited liability for the owners', 'To be allowed to employ more staff', 'To avoid publishing accounts or paying tax'], answer: 0, why: 'Privately held companies choose their shareholders, so owners keep control. They already have limited liability.' }
+        { id: '1.2-9', type: 'mcq', cmd: 'Identify', q: 'Why might the owners of a privately held company choose <b>not</b> to become publicly held?', options: ['To keep control of who owns shares', 'To gain limited liability for the owners', 'To be allowed to employ more staff', 'To avoid publishing accounts or paying tax'], answer: 0, why: 'Privately held companies choose their shareholders, so owners keep control. They already have limited liability.' },
+        { id: '1.2-10', type: 'sort', q: 'The IB names three kinds of <b>for-profit social enterprise</b>. Which is each?', buckets: ['Private sector company', 'Public sector company', 'Cooperative'], items: [
+          { t: 'An app company that sells leftover bakery food cheaply to cut waste', b: 0 }, { t: 'A shareholder-owned firm that hires and trains ex-prisoners', b: 0 },
+          { t: 'A state-owned railway that runs rural routes for the community', b: 1 }, { t: 'A government-owned energy company investing in wind power', b: 1 },
+          { t: 'A dairy owned by the farmers who supply its milk', b: 2 }, { t: 'A supermarket chain owned by its customer-members', b: 2 }], why: 'Private sector companies are owned by private shareholders; public sector companies are owned by the government; cooperatives are owned by their members. All three can be for-profit social enterprises.' }
       ],
       explain: 'Your mate wants to sell custom phone cases. Explain <b>unlimited vs limited liability</b> to them and say which legal form you\'d pick for them, and why.'
     },
@@ -211,7 +218,7 @@ export const unit1 = {
           <p><b>Strategic objectives</b> are long-term (usually several years), set by senior managers, and affect the whole business. <i>"Become Denmark's biggest sneaker-care brand by 2030."</i></p>
           <p><b>Tactical objectives</b> are shorter-term (usually up to a year or two), set by middle managers, and help achieve the strategic ones. <i>"Open a pop-up store in Aarhus this autumn."</i></p>
           <p>The order: <b>vision → mission → strategic objectives → tactical objectives</b>, each serving the one before.</p>
-          <div class="tip">Good objectives are <b>SMART</b>: specific, measurable, achievable, realistic, time-bound. "Grow" is not SMART. "Increase online sales by 20% by December" is.</div>` },
+          <div class="extra">Good objectives are <b>SMART</b>: specific, measurable, achievable, realistic, time-bound. "Grow" is not SMART. "Increase online sales by 20% by December" is. The IB guide doesn't name SMART, but it's a handy test for judging any objective.</div>` },
         { title: 'Corporate social responsibility (CSR)', html: `
           <p><b>Corporate social responsibility</b> is when a business takes responsibility for its impact on society and the environment, going <b>beyond what the law requires</b>.</p>
           <ul><li>✅ Better reputation and loyal customers, easier to attract staff, can attract investors, may avoid future regulation.</li>
@@ -325,7 +332,7 @@ export const unit1 = {
             <tr><td><b>Low power</b></td><td>Monitor (minimal effort)</td><td>Keep informed</td></tr>
           </table></div>
           <div class="example">For ${sf}'s late opening: the owners are key players. The council can refuse permission (high power), so keep it satisfied. The neighbours care a lot, so keep them informed, and they gain power if they complain to the council.</div>
-          <div class="tip">Stakeholder mapping is one of the IB business management tools. Use it to justify <i>whose</i> concerns come first in an "evaluate" or "recommend" answer.</div>` },
+          <div class="extra">Stakeholder mapping is not one of the 15 tools in the IB toolkit, but it's a widely used model. Use it to justify <i>whose</i> concerns come first in an "evaluate" or "recommend" answer.</div>` },
         { title: 'Resolving conflict', html: `
           <ul><li><b>Communicate and consult</b> early, so people feel heard.</li>
               <li><b>Compromise</b>: give each group part of what it wants.</li>
@@ -514,7 +521,8 @@ export const unit1 = {
               <li><b>Avoid trade barriers</b>: making goods inside a market avoids tariffs on imports.</li>
               <li><b>Access to resources</b>: oil, minerals or skilled workers.</li>
               <li><b>[[economies of scale|Economies of scale]]</b> and <b>spreading risk</b> across countries.</li></ul>
-          <p>MNCs have grown with <b>globalization</b>: the growing integration of the world's economies through trade, investment, technology and the movement of people.</p>` },
+          <p>MNCs have grown with <b>globalization</b>: the growing integration of the world's economies through trade, investment, technology and the movement of people.</p>
+          <p class="muted small">The IB guide focuses on the <b>impact of MNCs on host countries</b> (the next two cards). These reasons are background that helps you explain that impact.</p>` },
         { title: 'Benefits for the host country', html: `
           <ul><li><b>Jobs</b>, often better paid than local alternatives.</li>
               <li><b>Skills and technology transfer</b>: local workers and firms learn new methods.</li>

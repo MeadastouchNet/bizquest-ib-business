@@ -1,40 +1,31 @@
-# Roadmap: adding the other units
+# Roadmap: keeping BizQuest growing
 
-BizQuest already knows about all five units. Units 1, 2 and 3 are built; Units 4 and 5 show on the home page as
-"coming soon", with their planned topics listed in [`js/content/units.js`](../js/content/units.js).
+All five units of IB Business Management are built (1.1–5.9). This file is the checklist for changing or adding
+content, and the list of what is still to do.
 
-## Checklist for each new unit
+## Checklist for new or changed content
 
-1. **Content file.** Create `js/content/unitN.js` in the same shape as `unit3.js` (id, title, emoji, blurb,
-   sections, formulas), then replace the unit's `planned(...)` entry in `js/content/units.js` with it.
-   Check the topic titles against the official IB guide.
+1. **Content file.** Each unit lives in `js/content/unitN.js` (id, title, emoji, blurb, sections, formulas) and is
+   registered in `js/content/units.js`. Check topic titles and content points against the official IB guide.
+   Never change or reuse a published quiz id: progress and spaced review are stored by id (rewording is fine).
 2. **Presentation rules** (agreed with the parent):
    - Questions with several figures use tables (`tbl()`), and every `?` cell is fillable: write `A(value)`,
      or `A(value, true)` when the cell is the answer itself.
    - Formulas use typeset math (`F` in cards, `M` on the formula sheet).
-   - The calculator keys must cover what the unit needs (`js/calc.js`: set `calcKeys` in the unit file, e.g. `POWER_KEYS`; Unit 3 uses the default `BASIC_KEYS`).
+   - The calculator keys must cover what the unit needs (`js/calc.js`: set `calcKeys` in the unit file, e.g. `POWER_KEYS`; all five units use the default `BASIC_KEYS`).
 3. **Glossary terms** (`js/content/glossary.js`):
-   - Add an entry for each key term the unit teaches: `sec` = topic id, `card` = index of the Learn card.
+   - Add an entry for each key term taught: `sec` = topic id, `card` = index of the Learn card that defines it.
    - Write `[[term]]` (or `[[term|shown text]]`) wherever a term is mentioned in a topic **other** than the one
      that teaches it. Skip answer options, because a click there would also pick the option.
-   - When the new unit teaches a term that already has a "coming soon" entry, update its `card` and check the
-     definition. The link switches on automatically once the topic is built.
-4. **Go back over earlier units:** tag terms in them that the new unit now teaches (see the list below).
-5. **Docs:** add the unit's content points to [`docs/SYLLABUS.md`](SYLLABUS.md) (marked verified or from memory)
-   and update `README.md` (which units are built).
+4. **Docs:** update [`docs/SYLLABUS.md`](SYLLABUS.md) (content points, verified or from memory) and `README.md`.
+5. **Check:** `node skills/ib-learning-app/scripts/validate_content.mjs .`, then the smoke test in the browser.
 
-## Terms waiting for a future unit
+## Still to do
 
-These are already tagged in built units and show "coming soon" today. When the unit is built, set `card` and check
-the definition in `glossary.js`.
-
-| Term | Taught in | Mentioned in |
-|---|---|---|
-| market share | 4.1 Introduction to marketing | 1.3, 1.5 |
-| just-in-time (JIT) | 5.3 Lean management and quality management (HL) | 3.6 |
-| break-even | 5.5 Break-even analysis | 3.3 |
-
-Also worth tagging once their units exist: *marketing mix*, *pricing strategies* (Unit 4);
-*capacity utilization*, *quality control* (Unit 5); in Unit 5, tag Unit 2's *outsourcing*, *offshoring*, *reshoring*,
-*labour turnover*, *training* terms and *resistance to change* where they come up. When Unit 4 is built, tag
-*multinational company*, *globalization* and *economies of scale* in 4.6 International marketing.
+- **Verify against the official guide.** Every content point in [`docs/SYLLABUS.md`](SYLLABUS.md) is marked
+  *from memory*. When the guide is available, check each row, especially those with a note (2.1 recruitment and
+  training placement, 4.1 social marketing, 4.3 moving-average types, 5.9 technology list).
+- **Toolkit items** not yet taught: SWOT, STEEPLE, decision trees, force field analysis, Gantt charts, critical
+  path analysis (HL), simple linear regression (HL), circular business models, the business plan. They could
+  become a sixth "Toolkit" unit, with terms tagged where Units 1–5 already use them.
+- **Improve from use.** After a week or two, check Usage stats and fix low-rated or most-missed lessons first.

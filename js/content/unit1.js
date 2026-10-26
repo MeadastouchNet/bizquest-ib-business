@@ -32,8 +32,8 @@ export const unit1 = {
           <p>Every business, from Noah's bedroom to LEGO, has to do four jobs. They are the other four units of your course:</p>
           <ul><li><b>Human resources</b> (Unit 2): finding, paying and keeping the right people.</li>
               <li><b>Finance and accounts</b> (Unit 3): getting money, tracking it, not running out.</li>
-              <li><b>Marketing</b> (Unit 4): knowing customers and persuading them to buy.</li>
-              <li><b>Operations</b> (Unit 5): actually making the product or delivering the service.</li></ul>
+              <li><b>[[marketing|Marketing]]</b> (Unit 4): knowing customers and persuading them to buy.</li>
+              <li><b>[[operations management|Operations]]</b> (Unit 5): actually making the product or delivering the service.</li></ul>
           <div class="example">Right now Noah does all four himself. Bigger businesses have a separate department for each.</div>
           <div class="tip">The functions depend on each other. Strong answers say how a decision in one (e.g. a marketing campaign) affects the others (more stock, more staff, more cash needed).</div>` },
         { title: 'The four sectors', html: `
@@ -403,7 +403,7 @@ export const unit1 = {
         { title: 'To grow or to stay small?', html: `
           <p>Businesses can measure size by sales revenue, [[market share]], number of employees or capital employed.</p>
           <p><b>Reasons to grow:</b> lower costs per unit (economies of scale), more market share and power, survival against rivals, spreading risk across more products or markets, and managers' ambition.</p>
-          <p><b>Reasons to stay small:</b> owners keep control, a personal service and closer customer relationships, serving a <b>niche</b> market, less financial risk, more flexibility, and avoiding diseconomies of scale.</p>
+          <p><b>Reasons to stay small:</b> owners keep control, a personal service and closer customer relationships, serving a [[niche market]], less financial risk, more flexibility, and avoiding diseconomies of scale.</p>
           <div class="example">Lots of small Copenhagen coffee bars stay small on purpose: the owner knows the regulars by name, and that is the product.</div>` },
         { title: 'Economies of scale', html: `
           <p><b>Economies of scale</b> are the cost advantages of growing: as output rises, the <b>average cost</b> per unit falls.</p>

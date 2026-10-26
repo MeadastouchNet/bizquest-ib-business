@@ -6,6 +6,8 @@
 import { unit1 } from './unit1.js';
 import { unit2 } from './unit2.js';
 import { unit3 } from './unit3.js';
+import { unit4 } from './unit4.js';
+import { unit5 } from './unit5.js';
 
 const planned = (id, title, emoji, topics) => ({
   id, title, emoji,
@@ -16,14 +18,8 @@ export const UNITS = [
   unit1,
   unit2,
   unit3,
-  planned('4', 'Marketing', '📣', [
-    ['4.1', 'Introduction to marketing'], ['4.2', 'Marketing planning'], ['4.3', 'Sales forecasting', true],
-    ['4.4', 'Market research'], ['4.5', 'The seven Ps of the marketing mix'], ['4.6', 'International marketing', true]]),
-  planned('5', 'Operations management', '🏭', [
-    ['5.1', 'Introduction to operations management'], ['5.2', 'Operations methods'], ['5.3', 'Lean management and quality management', true],
-    ['5.4', 'Location'], ['5.5', 'Break-even analysis'], ['5.6', 'Production planning', true],
-    ['5.7', 'Crisis management and contingency planning', true], ['5.8', 'Research and development', true],
-    ['5.9', 'Management information systems', true]])
+  unit4,
+  unit5
 ];
 
 export const BUILT = UNITS.filter(u => u.sections);

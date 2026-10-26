@@ -41,3 +41,42 @@ HL tagging: 2.1, 2.2 and 2.4 are SL and HL with HL-only parts; 2.5 and 2.7 are H
 ## Unit 3: Finance and accounts (built 2026-10-26)
 
 Topics 3.1–3.9 as listed in `js/content/unit3.js`; HL-only parts are tagged there. All from memory.
+
+## Unit 4: Marketing (built 2026-10-26)
+
+| Topic | Content points | Status |
+|---|---|---|
+| 4.1 Introduction to marketing | Definition of marketing and its links with other functions; marketing of goods vs services; market orientation vs product orientation; market size, market growth and market share (formula); market leadership and the importance of market share | from memory |
+| 4.1 | Commercial vs social marketing | from memory: not included (thought to be from the previous guide); add it if the 2024 guide lists it |
+| 4.2 Marketing planning | Elements and role of a marketing plan; market segmentation (demographic, geographic, psychographic, behavioural); target markets, niche vs mass marketing; market positioning and perception maps; unique selling point (USP) and differentiation | from memory |
+| 4.2 | Ansoff matrix (a toolkit item, taught here) | from memory |
+| 4.3 Sales forecasting (HL) | Purpose of sales forecasting; three-part and four-part centred moving averages; trend; seasonal, cyclical and random variation; seasonal variation = actual − trend; forecast = projected trend + average seasonal variation; benefits and limitations | from memory: check whether the guide asks for three-part averages, four-part centred averages, or both |
+| 4.4 Market research | Purpose of research; primary research (surveys, interviews, focus groups, observation) and secondary research (market analyses, government statistics, academic journals, media); qualitative vs quantitative data; sampling methods (random, stratified, quota, cluster, convenience, snowball); ethical considerations | from memory |
+| 4.4 | Descriptive statistics (one mean question in the quiz): a toolkit item | from memory |
+| 4.5 The seven Ps of the marketing mix | Product: product life cycle (incl. links with cash flow), extension strategies, branding (awareness, loyalty, value), packaging. Price: cost-plus (mark-up), penetration, skimming, psychological, loss leader, price discrimination, dynamic and competitive pricing. Promotion: above and below the line, promotional mix, social media marketing, guerrilla marketing. Place: distribution channels, intermediaries, e-commerce. People, processes, physical evidence | from memory |
+| 4.5 | BCG matrix (a toolkit item, taught here) | from memory |
+| 4.6 International marketing (HL) | Opportunities of international markets; methods of entry (exporting, franchising/licensing, joint ventures, strategic alliances, mergers and acquisitions, direct investment); threats and barriers (cultural, legal, political, economic, practical); standardization vs adaptation, glocalization | from memory |
+
+HL tagging: 4.3 and 4.6 are HL only; the rest is SL and HL. From memory.
+
+## Unit 5: Operations management (built 2026-10-26)
+
+| Topic | Content points | Status |
+|---|---|---|
+| 5.1 Introduction to operations management | Role of operations (inputs → outputs) and links with other functions; goods and services; economic, social and environmental sustainability and their trade-offs | from memory |
+| 5.2 Operations methods | Job, batch, mass/flow production and mass customization; choosing a method | from memory |
+| 5.3 Lean management and quality management (HL) | Lean production and types of waste; kaizen, just-in-time, kanban, andon; cradle-to-cradle design and manufacturing; quality control vs quality assurance; TQM, quality circles, benchmarking; national and international quality standards (ISO 9001) | from memory |
+| 5.4 Location | Quantitative and qualitative location factors (incl. clustering, infrastructure, government incentives); reorganizing production: outsourcing/subcontracting, offshoring, insourcing, reshoring | from memory |
+| 5.5 Break-even analysis | Contribution per unit and total contribution; break-even quantity and revenue; break-even chart; margin of safety; target profit output; target price; effects of changes in price and costs; benefits and limitations | from memory |
+| 5.6 Production planning (HL) | Local and global supply chains; JIT vs JIC; stock control charts (buffer stock, lead time, reorder level, reorder quantity, maximum stock); capacity utilization rate; labour and capital productivity, productivity rate; defect rate; cost to buy vs cost to make | from memory |
+| 5.7 Crisis management and contingency planning (HL) | Crisis management vs contingency planning; effective crisis management (transparency, communication, speed, control); costs and benefits of contingency planning | from memory |
+| 5.8 Research and development (HL) | Importance of R&D; product, process, positioning and paradigm innovation; incremental vs disruptive innovation | from memory |
+| 5.9 Management information systems (HL) | Data, databases, data analytics; cybersecurity and cybercrime; critical technologies (AI and machine learning, big data, cloud computing, internet of things, virtual reality); data mining; customer loyalty programmes; employee monitoring and digital Taylorism; ethical implications | from memory: check the exact list of technologies in the guide |
+
+HL tagging: 5.3 and 5.6–5.9 are HL only; 5.1, 5.2, 5.4 and 5.5 are SL and HL. From memory.
+
+## Toolkit items not yet taught
+
+Covered: stakeholder mapping (1.4), Ansoff matrix (4.2), descriptive statistics (4.4, lightly), BCG matrix (4.5).
+Not yet taught anywhere: SWOT, STEEPLE, decision trees, force field analysis, Gantt charts, critical path analysis
+(HL), simple linear regression (HL), circular business models, the business plan.

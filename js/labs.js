@@ -1,5 +1,5 @@
 // Interactive "Play" labs. Each lab gets a container and calls onWin() once its challenge is beaten.
-import { h, money, pct, round, slider, lineChart, barChart, speakButton, toast } from './ui.js';
+import { h, money, pct, round, slider, svg, lineChart, barChart, speakButton, toast } from './ui.js';
 import { sortWidget } from './quiz.js';
 import { sfx } from './audio.js';
 
@@ -591,6 +591,290 @@ const LABS = {
       h('div', { class: 'lab-grid' },
         h('div', {}, slider({ label: 'Pairs finished per week', min: 20, max: 120, step: 5, value: s.pairs, oninput: v => { s.pairs = v; update(); } }),
           slider({ label: 'Piece rate per pair', min: 4, max: 15, step: 0.5, value: s.piece, fmt: v => money(v, 2), oninput: v => { s.piece = v; update(); } }), kpis),
+        h('div', {}, chartBox, note)));
+    update();
+  },
+
+  // ------------------------------------------------------------ 4.2 perception (positioning) map
+  position(el, lab, onWin) {
+    // x = price (1 cheap … 10 expensive), y = style (1 classic/plain … 10 bold/statement)
+    const RIVALS = [
+      { n: 'Nike AF1', x: 5, y: 3 }, { n: 'Adidas Samba', x: 5, y: 4 }, { n: 'Veja', x: 6, y: 2 },
+      { n: 'H&M basics', x: 2, y: 2 }, { n: 'Crocs collabs', x: 2, y: 9 }, { n: 'KickBack customs', x: 8, y: 8 },
+      { n: 'Balenciaga', x: 10, y: 9 }];
+    const s = { x: 3, y: 5 };
+    const mapBox = h('div');
+    const kpis = h('div', { class: 'kpis' });
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'Find <b>any gap</b> in the market: a spot at least 2.5 squares from every rival.',
+      'Find a gap that fits SoleFlip\'s <b>target market</b> (teens on a budget who want bold designs): price <b>6 or lower</b> and style <b>7 or higher</b>.'
+    ], onWin);
+    const S = 30, O = 34;   // grid square size and offset
+    const X = v => O + (v - 0.5) * S, Y = v => O + (10.5 - v) * S;
+    const update = () => {
+      const near = RIVALS.map(r => ({ ...r, d: Math.hypot(r.x - s.x, r.y - s.y) })).sort((a, b) => a.d - b.d)[0];
+      const gap = near.d >= 2.5, fits = gap && s.x <= 6 && s.y >= 7;
+      const root = svg('svg', { viewBox: `0 0 ${O * 2 + S * 10} ${O * 2 + S * 10}`, class: 'chart', role: 'img', 'aria-label': 'Perception map' });
+      const mid = O + 5 * S;
+      root.append(svg('line', { x1: O, x2: O + S * 10, y1: mid, y2: mid, stroke: 'var(--muted)' }),
+        svg('line', { x1: mid, x2: mid, y1: O, y2: O + S * 10, stroke: 'var(--muted)' }),
+        svg('text', { x: O + S * 10, y: mid - 6, 'text-anchor': 'end' }, 'High price →'),
+        svg('text', { x: O, y: mid - 6 }, '← Low price'),
+        svg('text', { x: mid + 6, y: O + 10 }, 'Bold / statement'),
+        svg('text', { x: mid + 6, y: O + S * 10 - 4 }, 'Classic / plain'));
+      root.append(svg('circle', { cx: X(s.x), cy: Y(s.y), r: S * 2.5, fill: gap ? 'var(--good)' : 'var(--bad)', 'fill-opacity': .12 }));
+      for (const r of RIVALS) root.append(svg('circle', { cx: X(r.x), cy: Y(r.y), r: 7, fill: 'var(--chart-3)' }),
+        svg('text', { x: X(r.x), y: Y(r.y) - 11, 'text-anchor': 'middle' }, r.n));
+      root.append(svg('circle', { cx: X(s.x), cy: Y(s.y), r: 9, fill: 'var(--accent)' }),
+        svg('text', { x: X(s.x), y: Y(s.y) + 22, 'text-anchor': 'middle', style: 'fill:var(--accent);font-weight:700' }, 'Originals'));
+      mapBox.replaceChildren(root);
+      kpis.replaceChildren(kpi(near.n, 'Closest rival'), kpi(round(near.d, 1), 'Distance to it', gap ? 'good' : 'bad'));
+      note.innerHTML = fits
+        ? 'A gap that fits the target market: bold designs at a price teens can afford. Now check there is real <b>demand</b> there (market research, 4.4).'
+        : gap
+          ? 'This is a gap, but does it fit SoleFlip\'s customers? A gap in the market is only useful if there is a market in the gap.'
+          : `Crowded: you would compete head-on with <b>${near.n}</b>, which has a bigger budget. You'd need a strong USP to win.`;
+      challenges.check([gap, fits]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Position SoleFlip Originals'}`),
+      h('p', { class: 'muted' }, 'This perception map shows how teen customers see sneaker brands. Move SoleFlip\'s new sneaker around it.'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, slider({ label: 'Price (1 = cheap, 10 = luxury)', min: 1, max: 10, value: s.x, oninput: v => { s.x = v; update(); } }),
+          slider({ label: 'Style (1 = plain, 10 = bold)', min: 1, max: 10, value: s.y, oninput: v => { s.y = v; update(); } }), kpis, note),
+        h('div', {}, mapBox)));
+    update();
+  },
+
+  // ------------------------------------------------------------ 4.3 moving averages and forecasting (HL)
+  forecast(el, lab, onWin) {
+    // SoleFlip online sales, $000 per quarter. Trend rises $2k a quarter; seasonal variations Q1 −4, Q2 +2, Q3 −6, Q4 +8.
+    const DATA = [16, 24, 18, 34, 24, 32, 26, 42, 32, 40, 34, 50];
+    const qName = i => `Y${Math.floor(i / 4) + 1} Q${i % 4 + 1}`;
+    const s = { mode: 3, fc: 30 };
+    const ma = mode => DATA.map((_, i) => {
+      if (mode === 3) return i >= 1 && i <= 10 ? (DATA[i - 1] + DATA[i] + DATA[i + 1]) / 3 : null;
+      if (i < 2 || i > 9) return null;
+      const a = DATA.slice(i - 2, i + 2).reduce((x, y) => x + y, 0), b = DATA.slice(i - 1, i + 3).reduce((x, y) => x + y, 0);
+      return (a + b) / 8;
+    });
+    const chartBox = h('div');
+    const tableBox = h('div', { class: 'table-wrap' });
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'Pick the moving average that <b>removes the seasonal pattern</b> and leaves a smooth trend.',
+      'Forecast sales for <b>Y4 Q1</b>: extend the trend, then add the average Q1 seasonal variation.'
+    ], onWin);
+    const b3 = h('button', { class: 'btn small', onclick: () => { s.mode = 3; update(); } }, '3-part');
+    const b4 = h('button', { class: 'btn small', onclick: () => { s.mode = 4; update(); } }, '4-part centred');
+    const update = () => {
+      const m = ma(s.mode);
+      b3.className = `btn small${s.mode === 3 ? '' : ' ghost'}`;
+      b4.className = `btn small${s.mode === 4 ? '' : ' ghost'}`;
+      chartBox.replaceChildren(lineChart([
+        { name: 'Actual sales', color: 'var(--chart-1)', points: DATA.map((v, i) => [i + 1, v]), dots: true },
+        { name: 'Moving average (trend)', color: 'var(--chart-2)', points: m.map((v, i) => [i + 1, v]).filter(p => p[1] != null) },
+        { name: 'Your forecast', color: 'var(--accent)', points: [[13, s.fc]], dots: true }
+      ], { xLabel: 'Quarter ($000 of sales)', xTicks: [1, 5, 9, 13], xFmt: x => qName(x - 1) }));
+      tableBox.replaceChildren(h('table', { class: 'fin' },
+        h('tr', {}, h('th', {}, 'Quarter'), h('th', {}, 'Sales'), h('th', {}, 'Trend'), h('th', {}, 'Variation')),
+        DATA.map((v, i) => h('tr', {}, h('td', {}, qName(i)), h('td', {}, v),
+          h('td', {}, m[i] == null ? '' : round(m[i], 2)), h('td', {}, m[i] == null ? '' : round(v - m[i], 2))))));
+      note.innerHTML = s.mode === 3
+        ? 'A 3-part average mixes different quarters each time, so the seasonal ups and downs still show. Sales data with <b>4 seasons</b> needs a 4-part average.'
+        : 'Smooth! Each 4-part average contains one of every quarter, so the seasonal effects cancel out. Centring puts each average on a real quarter. Variation = actual − trend.';
+      challenges.check([s.mode === 4, s.fc === 40]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Forecast SoleFlip\'s online sales'} `, h('span', { class: 'tag' }, 'HL only')),
+      h('p', { class: 'muted' }, 'Three years of quarterly online sales ($000). Find the trend, then forecast the next quarter.'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, h('div', { class: 'row', style: 'margin-bottom:12px' }, b3, b4),
+          slider({ label: 'Your forecast for Y4 Q1 ($000)', min: 20, max: 60, value: s.fc, oninput: v => { s.fc = v; update(); } }), note),
+        h('div', {}, chartBox, tableBox)));
+    update();
+  },
+
+  // ------------------------------------------------------------ 4.5 product life cycle and extension strategies
+  plc(el, lab, onWin) {
+    const base = t => t <= 0 ? 0 : 1000 * (t / 24) ** 2 * Math.exp(2 * (1 - t / 24));   // launch at month 6, peak at month 30
+    const ext = u => u <= 0 ? 0 : 400 * (u / 10) ** 2 * Math.exp(2 * (1 - u / 10));
+    const s = { m: 6, ext: 0 };
+    const sales = m => Math.round(base(m - 6) + (s.ext ? ext(m - s.ext) : 0));
+    // Monthly cash flow: $40 contribution a pair, minus development ($8k/month) or marketing ($10k/month until month 17, then $4k).
+    const cash = m => m < 6 ? -8000 : sales(m) * 40 - (m < 18 ? 10000 : 4000);
+    const stage = m => m < 6 ? 'Development' : m < 14 ? 'Introduction' : m < 28 ? 'Growth' : m < 46 ? 'Maturity' : 'Decline';
+    const firstPositive = () => { for (let m = 0; m <= 60; m++) if (cash(m) > 0) return m; return -1; };
+    const kpis = h('div', { class: 'kpis' });
+    const chartBox = h('div');
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'Move to the <b>first month</b> when SoleFlip Originals brings in a <b>positive monthly cash flow</b>.',
+      'Time an extension strategy so monthly sales stay at <b>700 pairs or more</b> from month 30 all the way to month 60.'
+    ], onWin);
+    const months = [...Array(61)].map((_, i) => i);
+    const update = () => {
+      kpis.replaceChildren(kpi(stage(s.m), 'Stage'), kpi(sales(s.m), 'Pairs sold this month'),
+        kpi(money(cash(s.m)), 'Cash flow this month', cash(s.m) >= 0 ? 'good' : 'bad'));
+      chartBox.replaceChildren(lineChart([
+        { name: 'Sales (pairs)', color: 'var(--chart-1)', points: months.map(m => [m, sales(m)]) },
+        { name: 'Cash flow ($00)', color: 'var(--chart-2)', points: months.map(m => [m, cash(m) / 100]) }
+      ], { xLabel: 'Months since development began', xTicks: [0, 6, 14, 28, 46, 60], xFmt: x => String(x),
+        markers: [{ x: s.m, label: stage(s.m), color: 'var(--accent)' }].concat(s.ext ? [{ x: s.ext, label: 'extension', color: 'var(--chart-3)' }] : []),
+        hLines: [{ y: 700, label: '700 pairs', color: 'var(--chart-4)' }] }));
+      const st = stage(s.m);
+      note.innerHTML = st === 'Development' ? 'Designing and testing: costs but no sales, so cash flow is negative.'
+        : st === 'Introduction' ? 'Launched: sales are low and marketing is expensive. Cash flow is usually still negative.'
+          : st === 'Growth' ? 'Sales rise fast, competitors notice, and cash flow turns positive.'
+            : st === 'Maturity' ? 'Sales peak and level off. Marketing costs fall, so this is the best time for cash. Plan an extension strategy now.'
+              : 'Sales fall. Without an extension strategy, the product will eventually be withdrawn.';
+      let held = s.ext > 0;
+      for (let m = 30; m <= 60; m++) if (sales(m) < 700) held = false;
+      challenges.check([s.m === firstPositive(), held]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'The life of SoleFlip Originals'}`),
+      h('p', { class: 'muted' }, 'Move through the product\'s life. An extension strategy (e.g. new colourways and a German launch) adds a second wave of sales.'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, slider({ label: 'Month', min: 0, max: 60, value: s.m, oninput: v => { s.m = v; update(); } }),
+          slider({ label: 'Launch extension strategy in month', min: 0, max: 60, value: s.ext, fmt: v => v ? `month ${v}` : 'none', oninput: v => { s.ext = v; update(); } }), kpis, note),
+        h('div', {}, chartBox)));
+    update();
+  },
+
+  // ------------------------------------------------------------ 5.4 location: weighted factor scoring
+  location(el, lab, onWin) {
+    const FACTORS = ['Cheap land and rent', 'Low labour costs', 'Near customers', 'Near the Porto factory', 'Skilled labour'];
+    const SITES = [
+      { n: 'Copenhagen', sc: [1, 1, 5, 2, 5] },
+      { n: 'Køge', sc: [4, 2, 4, 2, 3] },
+      { n: 'Porto', sc: [5, 5, 1, 5, 3] }];
+    const w = [3, 3, 3, 3, 3];
+    const tableBox = h('div', { class: 'table-wrap' });
+    const chartBox = h('div');
+    const challenges = challengeList([
+      'Change the weights so <b>Copenhagen</b> wins.',
+      'Change the weights so <b>Køge</b> wins.'
+    ], onWin);
+    const update = () => {
+      const tot = SITES.map(st => st.sc.reduce((a, v, i) => a + v * w[i], 0));
+      const best = Math.max(...tot), winners = SITES.filter((_, i) => tot[i] === best);
+      const win = winners.length === 1 ? winners[0].n : null;
+      tableBox.replaceChildren(h('table', { class: 'fin' },
+        h('tr', {}, h('th', {}, 'Factor (weight)'), SITES.map(st => h('th', {}, st.n))),
+        FACTORS.map((f, i) => h('tr', {}, h('td', {}, `${f} (×${w[i]})`), SITES.map(st => h('td', {}, st.sc[i])))),
+        h('tr', { class: 'total' }, h('td', {}, 'Weighted score'), tot.map(t => h('td', {}, t)))));
+      chartBox.replaceChildren(barChart(SITES.map((st, i) => ({ label: st.n, value: tot[i], color: st.n === win ? 'var(--good)' : 'var(--chart-1)' })), { showValues: true }));
+      challenges.check([win === 'Copenhagen', win === 'Køge']);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Where should the new workshop go?'}`),
+      h('p', { class: 'muted' }, 'Each site is scored 1–5 on each factor. Weight the factors by how much they matter to SoleFlip (0 = not at all, 5 = a lot).'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, FACTORS.map((f, i) => slider({ label: f, min: 0, max: 5, value: w[i], oninput: v => { w[i] = v; update(); } }))),
+        h('div', {}, chartBox, tableBox, h('p', { class: 'muted small', html: 'The scores are objective-looking, but the <b>weights</b> are judgements about priorities. Change them and the "best" site changes. Exam answers should say which factors matter most <i>for this business</i>, and why.' }))));
+    update();
+  },
+
+  // ------------------------------------------------------------ 5.5 break-even, margin of safety and target profit
+  breakeven(el, lab, onWin) {
+    const s = { p: 120, vc: 35, fc: 1500, q: 30 };
+    const kpis = h('div', { class: 'kpis' });
+    const chartBox = h('div');
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'Keep the costs at $35 and $1,500. Change only the <b>price</b> so the break-even quantity is <b>12 pairs</b>.',
+      'Price $120, variable cost $35: cut the <b>fixed costs</b> so break-even is exactly <b>10 pairs</b>.',
+      'Back to $120, $35 and $1,500: find the output that makes the <b>target profit of $1,900</b>.'
+    ], onWin);
+    const update = () => {
+      const c = s.p - s.vc, beq = c > 0 ? Math.ceil(s.fc / c) : null;
+      const profit = c * s.q - s.fc, mos = beq == null ? null : s.q - beq;
+      kpis.replaceChildren(kpi(money(c), 'Contribution per pair'),
+        kpi(beq == null ? 'never' : `${round(s.fc / c, 1)} → ${beq}`, 'Break-even quantity (pairs)'),
+        kpi(mos == null ? '–' : mos, 'Margin of safety (pairs)', mos == null || mos < 0 ? 'bad' : 'good'),
+        kpi(money(profit), profit >= 0 ? 'Profit' : 'Loss', profit >= 0 ? 'good' : 'bad'));
+      const qs = [0, 60];
+      chartBox.replaceChildren(lineChart([
+        { name: 'Total revenue', color: 'var(--chart-2)', points: qs.map(q => [q, s.p * q]) },
+        { name: 'Total cost', color: 'var(--chart-4)', points: qs.map(q => [q, s.fc + s.vc * q]) },
+        { name: 'Fixed cost', color: 'var(--chart-3)', points: qs.map(q => [q, s.fc]), dash: '6 4' }
+      ], { xLabel: 'Pairs sold per month', xTicks: [0, 15, 30, 45, 60],
+        markers: [{ x: s.q, label: `output ${s.q}`, color: 'var(--accent)' }].concat(beq != null && beq <= 60 ? [{ x: s.fc / c, label: 'BEQ', color: 'var(--muted)' }] : []) }));
+      note.innerHTML = c <= 0
+        ? '⚠️ Price is not above variable cost, so each pair adds nothing towards fixed costs. SoleFlip can never break even.'
+        : `Each pair contributes <b>${money(c)}</b> towards fixed costs, then profit. ${mos >= 0 ? `Sales could fall by <b>${mos} pairs</b> before SoleFlip makes a loss.` : `SoleFlip is <b>${-mos} pairs</b> short of break-even.`}`;
+      const orig = s.p === 120 && s.vc === 35;
+      challenges.check([s.vc === 35 && s.fc === 1500 && beq === 12, orig && beq === 10, orig && s.fc === 1500 && profit === 1900]);
+    };
+    const sl = (label, key, min, max, step, fmt) => slider({ label, min, max, step, value: s[key], fmt, oninput: v => { s[key] = v; update(); } });
+    el.append(h('h2', {}, `🎮 ${lab.title || 'SoleFlip break-even lab'}`),
+      h('p', { class: 'muted' }, 'Custom sneakers: change the price, costs and monthly output and watch break-even and the margin of safety move.'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, sl('Price per pair', 'p', 40, 250, 5, money), sl('Variable cost per pair', 'vc', 10, 120, 1, money),
+          sl('Fixed costs per month', 'fc', 500, 4000, 50, money), sl('Pairs sold per month', 'q', 0, 60, 1, v => v), kpis),
+        h('div', {}, chartBox, note)));
+    update();
+  },
+
+  // ------------------------------------------------------------ 5.6 stock control chart (HL)
+  stockcontrol(el, lab, onWin) {
+    const s = { use: 40, lead: 2, buffer: 30, rol: 90, roq: 160 };
+    const WEEKS = 12;
+    const kpis = h('div', { class: 'kpis' });
+    const chartBox = h('div');
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'Lead time 2 weeks: set the <b>reorder level</b> so each delivery arrives exactly when stock falls to the <b>buffer</b>.',
+      'The supplier\'s lead time rises to <b>3 weeks</b>. Reset the reorder level so you still never dip into the buffer stock.'
+    ], onWin);
+    // Piecewise-linear stock level: falls at `use` per week; an order is placed at the reorder level and arrives `lead` weeks later.
+    const simulate = () => {
+      let t = 0, st = s.buffer + s.roq, low = st;
+      const pts = [[0, st]];
+      while (t < WEEKS) {
+        const tOrder = st > s.rol ? t + (st - s.rol) / s.use : t;
+        const atOrder = Math.min(st, s.rol);
+        if (tOrder > t) pts.push([tOrder, atOrder]);
+        const tArrive = tOrder + s.lead;
+        let before = atOrder - s.use * s.lead;
+        if (before < 0) { pts.push([tOrder + atOrder / s.use, 0]); before = 0; }
+        pts.push([tArrive, before]);
+        low = Math.min(low, before);
+        st = before + s.roq;
+        pts.push([tArrive, st]);
+        t = tArrive;
+      }
+      // Trim to the chart window.
+      const out = [];
+      for (let i = 0; i < pts.length; i++) {
+        const [x, y] = pts[i];
+        if (x <= WEEKS) { out.push([x, y]); continue; }
+        const [px, py] = pts[i - 1];
+        if (px < WEEKS) out.push([WEEKS, py + (y - py) * (WEEKS - px) / (x - px)]);
+        break;
+      }
+      return { pts: out, low };
+    };
+    const update = () => {
+      const { pts, low } = simulate(), ideal = s.buffer + s.use * s.lead;
+      kpis.replaceChildren(kpi(s.buffer + s.roq, 'Maximum stock'), kpi(round(low, 0), 'Lowest stock reached', low <= 0 ? 'bad' : low < s.buffer ? 'warn' : 'good'),
+        kpi(s.use * s.lead, 'Pairs used during the lead time'));
+      chartBox.replaceChildren(lineChart([{ name: 'Stock of blank sneakers', color: 'var(--chart-1)', points: pts }],
+        { xLabel: 'Weeks', xTicks: [0, 2, 4, 6, 8, 10, 12], xFmt: x => String(x),
+          hLines: [{ y: s.rol, label: 'reorder level', color: 'var(--chart-2)' }, { y: s.buffer, label: 'buffer', color: 'var(--chart-4)' }] }));
+      note.innerHTML = low <= 0
+        ? '🚨 <b>Stock-out!</b> The workshop runs out before the delivery arrives: orders are delayed and customers go elsewhere.'
+        : low < s.buffer
+          ? 'Deliveries arrive late, so SoleFlip is eating into its buffer stock. Raise the reorder level.'
+          : low > s.buffer
+            ? 'Safe, but deliveries arrive while stock is still above the buffer, so SoleFlip holds more stock (and ties up more cash) than it needs.'
+            : 'Each delivery arrives just as stock reaches the buffer. Reorder level = buffer + usage × lead time.';
+      challenges.check([s.lead === 2 && s.rol === ideal, s.lead === 3 && s.rol === ideal]);
+    };
+    const sl = (label, key, min, max, step, fmt = v => v) => slider({ label, min, max, step, value: s[key], fmt, oninput: v => { s[key] = v; update(); } });
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Never run out of blanks'} `, h('span', { class: 'tag' }, 'HL only')),
+      h('p', { class: 'muted' }, 'The workshop uses blank sneakers every week. Set when to reorder and how much, and watch the stock control chart.'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, sl('Usage (pairs per week)', 'use', 20, 60, 5), sl('Lead time (weeks)', 'lead', 1, 4, 1, v => `${v} wk`),
+          sl('Buffer stock (pairs)', 'buffer', 0, 100, 10), sl('Reorder level (pairs)', 'rol', 0, 300, 10), sl('Reorder quantity (pairs)', 'roq', 50, 300, 10), kpis),
         h('div', {}, chartBox, note)));
     update();
   }

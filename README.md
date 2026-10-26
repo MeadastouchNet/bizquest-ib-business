@@ -3,13 +3,15 @@
 An interactive study app for IB Business Management (HL), built for a smart-but-busy 17-year-old.
 All five units are built: **Unit 1: Introduction to business management** (1.1–1.6), **Unit 2: Human resource
 management** (2.1–2.7), **Unit 3: Finance and accounts** (3.1–3.9), **Unit 4: Marketing** (4.1–4.6) and
-**Unit 5: Operations management** (5.1–5.9).
+**Unit 5: Operations management** (5.1–5.9), plus **the business management toolkit** as "Unit 6" (6.1–6.8: SWOT,
+STEEPLE, decision trees, force field analysis, Gantt charts, critical path analysis, linear regression, circular
+business models).
 
 Each topic is a ~10-minute "mission":
 
 1. **Hook**: a relatable situation (gaming PCs, festivals, MrBeast, Taylor Swift's masters…)
 2. **Learn**: short cards with read-aloud 🔊
-3. **Play**: an interactive lab with a challenge (profit simulator, ratio "control room", cash flow forecast, investment showdown, perception map, product life cycle, break-even, stock control…)
+3. **Play**: an interactive lab with a challenge (profit simulator, ratio "control room", cash flow forecast, investment showdown, perception map, product life cycle, break-even, stock control, decision tree, critical path…)
 4. **Worked example**: revealed one step at a time
 5. **Quiz**: instant feedback; missed questions come back at the end
 6. **Explain**: put it in your own words, plus a 1-tap rating
@@ -39,7 +41,7 @@ Then open http://localhost:8765.
 
 | Path | What |
 |---|---|
-| `js/content/unit1.js` … `unit5.js` | All content per unit: cards, worked examples, quizzes, formulas |
+| `js/content/unit1.js` … `unit6.js` | All content per unit: cards, worked examples, quizzes, formulas |
 | `js/labs.js` | The interactive labs |
 | `js/quiz.js` | Quiz engine (multiple choice, true/false, numeric, sort) |
 | `js/store.js` | Progress, XP, streaks, spaced repetition (localStorage) |

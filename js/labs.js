@@ -29,6 +29,26 @@ function challengeList(texts, onWin) {
   return wrap;
 }
 
+// 6.5 / 6.6: the Berlin pop-up project, shared by the Gantt chart and critical path labs.
+const PROJECT = [
+  { id: 'A', name: 'Sign the lease', dur: 3, after: [], from: 1, to: 2 },
+  { id: 'B', name: 'Fit out the store', dur: 5, after: ['A'], from: 2, to: 4 },
+  { id: 'C', name: 'Recruit staff', dur: 4, after: ['A'], from: 2, to: 3 },
+  { id: 'D', name: 'Train staff', dur: 2, after: ['C'], from: 3, to: 4 },
+  { id: 'E', name: 'Ship stock from Porto', dur: 6, after: [], from: 1, to: 4 },
+  { id: 'F', name: 'Stock shelves, soft launch', dur: 1, after: ['B', 'D', 'E'], from: 4, to: 5 },
+  { id: 'G', name: 'Marketing campaign', dur: 2, after: ['C'], from: 3, to: 5 }];
+const NETWORK = PROJECT;
+/** Forward and backward pass over the activity-on-arrow network (nodes 1–5). */
+function cpaSolve(dur) {
+  const est = { 1: 0 }, lft = {};
+  for (let n = 2; n <= 5; n++) est[n] = Math.max(...NETWORK.filter(a => a.to === n).map(a => est[a.from] + dur[a.id]));
+  lft[5] = est[5];
+  for (let n = 4; n >= 1; n--) lft[n] = Math.min(...NETWORK.filter(a => a.from === n).map(a => lft[a.to] - dur[a.id]));
+  const fl = Object.fromEntries(NETWORK.map(a => [a.id, lft[a.to] - dur[a.id] - est[a.from]]));
+  return { est, lft, fl, len: est[5] };
+}
+
 const LABS = {
   // ------------------------------------------------------------ classify
   sort(el, lab, onWin) {
@@ -876,6 +896,235 @@ const LABS = {
         h('div', {}, sl('Usage (pairs per week)', 'use', 20, 60, 5), sl('Lead time (weeks)', 'lead', 1, 4, 1, v => `${v} wk`),
           sl('Buffer stock (pairs)', 'buffer', 0, 100, 10), sl('Reorder level (pairs)', 'rol', 0, 300, 10), sl('Reorder quantity (pairs)', 'roq', 50, 300, 10), kpis),
         h('div', {}, chartBox, note)));
+    update();
+  },
+
+  // ------------------------------------------------------------ 6.3 decision tree (expected values)
+  decisiontree(el, lab, onWin) {
+    const s = { p: 0.6, win: 150, lose: 30 };   // store: probability of success, returns in $000
+    const STORE_COST = 60, POP = { cost: 15, p: 0.6, hi: 55, lo: 30 };
+    const treeBox = h('div');
+    const kpis = h('div', { class: 'kpis' });
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'Keep the returns at $150k and $30k. Find the <b>probability of success</b> at which the store and the pop-up give the <b>same</b> expected net gain.',
+      'Probability back at 0.6, failure return $30k: find the <b>lowest success return</b> at which the store is still at least as good as the pop-up.'
+    ], onWin);
+    const k = v => `${v < 0 ? '−' : ''}$${round(Math.abs(v), 1)}k`;
+    const update = () => {
+      const evS = s.p * s.win + (1 - s.p) * s.lose, netS = evS - STORE_COST;
+      const evP = POP.p * POP.hi + (1 - POP.p) * POP.lo, netP = evP - POP.cost;
+      const best = netS > netP && netS > 0 ? 'store' : netP > 0 && netP > netS ? 'popup' : netS === netP ? 'tie' : 'online';
+      // Tree: decision square → three branches; chance circles → outcomes.
+      const W = 560, H = 300;
+      const root = svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart', role: 'img', 'aria-label': 'Decision tree' });
+      const line = (x1, y1, x2, y2) => root.append(svg('line', { x1, y1, x2, y2, stroke: 'var(--muted)', 'stroke-width': 2 }));
+      const cut = (x, y) => { for (const d of [-4, 4]) root.append(svg('line', { x1: x + d - 5, y1: y + 7, x2: x + d + 5, y2: y - 7, stroke: 'var(--bad)', 'stroke-width': 2.5 })); };
+      const txt = (x, y, t, anchor = 'start', style = '') => root.append(svg('text', { x, y, 'text-anchor': anchor, style: 'font-size:15px;' + style }, t));
+      const D = [30, 150];
+      const branches = [
+        { y: 60, name: 'Berlin store', cost: STORE_COST, ev: evS, net: netS, key: 'store', outs: [[`Success (${round(s.p, 2)})`, s.win], [`Failure (${round(1 - s.p, 2)})`, s.lose]] },
+        { y: 165, name: 'Pop-up', cost: POP.cost, ev: evP, net: netP, key: 'popup', outs: [[`High demand (${POP.p})`, POP.hi], [`Low demand (${round(1 - POP.p, 2)})`, POP.lo]] },
+        { y: 265, name: 'Online only', cost: 0, ev: 0, net: 0, key: 'online', outs: [] }];
+      for (const b of branches) {
+        const cx = 250, chosen = best === b.key || (best === 'tie' && b.key !== 'online');
+        // Elbow connector: square → x = 90, then a flat segment carrying the option's name and cost.
+        line(D[0] + 28, D[1], 90, b.y);
+        line(90, b.y, cx - (b.outs.length ? 14 : 0), b.y);
+        if (!chosen) cut(205, b.y);
+        txt(100, b.y - 8, b.name, 'start', 'font-weight:600');
+        if (b.cost) txt(100, b.y + 20, `cost ${k(b.cost)}`);
+        if (!b.outs.length) { txt(cx + 6, b.y + 5, '$0 (no change)'); continue; }
+        root.append(svg('circle', { cx, cy: b.y, r: 14, fill: 'var(--card-2)', stroke: 'var(--chart-1)', 'stroke-width': 2 }));
+        txt(cx, b.y + 36, `EV ${k(b.ev)}`, 'middle', 'fill:var(--chart-1);font-weight:600');
+        b.outs.forEach(([label, v], i) => {
+          const oy = b.y + (i ? 26 : -26);
+          line(cx + 14, b.y, 428, oy);
+          txt(300, oy + (i ? 18 : -7), label);
+          txt(434, oy + 5, k(v), 'start', 'font-weight:600');
+        });
+      }
+      root.append(svg('rect', { x: D[0], y: D[1] - 14, width: 28, height: 28, fill: 'var(--accent)', rx: 3 }));
+      treeBox.replaceChildren(root);
+      kpis.replaceChildren(kpi(k(netS), 'Store: expected net gain', best === 'store' ? 'good' : ''),
+        kpi(k(netP), 'Pop-up: expected net gain', best === 'popup' ? 'good' : ''), kpi('$0k', 'Online only'));
+      note.innerHTML = `Expected value = Σ (probability × outcome). Net gain = EV − cost. The cut branches (//) are rejected. ${best === 'store' ? 'Remember: the store still has a ' + Math.round((1 - s.p) * 100) + '% chance of a ' + k(s.lose - STORE_COST) + ' result.' : ''}`;
+      challenges.check([s.win === 150 && s.lose === 30 && Math.abs(s.p - 0.5) < 1e-9,
+        Math.abs(s.p - 0.6) < 1e-9 && s.lose === 30 && s.win === 130]);
+    };
+    const sl = (label, key, min, max, step, fmt) => slider({ label, min, max, step, value: s[key], fmt, oninput: v => { s[key] = v; update(); } });
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Berlin: store, pop-up or stay online?'}`),
+      h('p', { class: 'muted' }, 'Change the store\'s probability of success and its returns, and watch the expected values decide.'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, sl('Store: probability of success', 'p', 0, 1, 0.05, v => round(v, 2)),
+          sl('Store: return if it succeeds', 'win', 60, 250, 5, v => `$${v}k`), sl('Store: return if it fails', 'lose', 0, 80, 5, v => `$${v}k`), kpis, note),
+        h('div', {}, treeBox)));
+    update();
+  },
+
+  // ------------------------------------------------------------ 6.4 force field analysis
+  forcefield(el, lab, onWin) {
+    const DRIVING = [['German online sales are growing', 4], ['A store makes the brand visible', 3], ['Freja wants to run it', 2], ['Berlin rents are lower than Copenhagen', 2]];
+    const RESTRAINING = [['Cost of about $60,000', 4], ['No German-speaking manager', 3], ['Staff fear being stretched', 2], ['Exchange-rate risk', 2]];
+    const ACTIONS = [
+      { t: '🏪 Start with a pop-up', fx: { r: [[0, -2]] } },
+      { t: '🧑‍💼 Hire a German-speaking manager', fx: { r: [[1, -2], [0, 1]] } },
+      { t: '🗣️ Involve staff in planning', fx: { r: [[2, -1]] } },
+      { t: '💶 Price and pay suppliers in euros', fx: { r: [[3, -1]] } },
+      { t: '📣 Run a German Instagram campaign first', fx: { d: [[0, 1]] } }];
+    const on = new Set();
+    const boxes = h('div', { class: 'lab-grid', style: 'grid-template-columns:1fr 1fr' });
+    const kpis = h('div', { class: 'kpis' });
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'Make the <b>driving forces</b> outweigh the <b>restraining forces</b>.',
+      'Get driving forces ahead by <b>4 or more</b>, using <b>no more than 3</b> actions.'
+    ], onWin);
+    const btns = ACTIONS.map((a, i) => h('button', { class: 'btn small ghost', style: 'margin:0 6px 6px 0', onclick: () => { on.has(i) ? on.delete(i) : on.add(i); update(); } }, a.t));
+    const bar = (label, v, color, right) => h('div', { style: 'margin-bottom:8px' },
+      h('div', { class: 'small', style: right ? 'text-align:right' : '' }, `${label} (${v})`),
+      h('div', { style: `display:flex;justify-content:${right ? 'flex-end' : 'flex-start'}` },
+        h('span', { style: `display:block;height:12px;border-radius:6px;background:${color};width:${v * 20}%` })));
+    const update = () => {
+      const d = DRIVING.map(x => x[1]), r = RESTRAINING.map(x => x[1]);
+      for (const i of on) { for (const [j, c] of ACTIONS[i].fx.d || []) d[j] += c; for (const [j, c] of ACTIONS[i].fx.r || []) r[j] += c; }
+      const D = d.reduce((a, b) => a + b, 0), R = r.reduce((a, b) => a + b, 0);
+      btns.forEach((b, i) => { b.className = `btn small${on.has(i) ? '' : ' ghost'}`; });
+      boxes.replaceChildren(
+        h('div', {}, h('b', {}, '➡️ Driving forces'), DRIVING.map(([l], i) => bar(l, d[i], 'var(--good)'))),
+        h('div', {}, h('b', {}, '⬅️ Restraining forces'), RESTRAINING.map(([l], i) => bar(l, r[i], 'var(--bad)', true))));
+      kpis.replaceChildren(kpi(D, 'Driving total', 'good'), kpi(R, 'Restraining total', 'bad'), kpi(D - R > 0 ? `+${D - R}` : D - R, 'Balance', D > R ? 'good' : 'bad'));
+      note.innerHTML = D > R
+        ? 'The change is likely to succeed. Notice that most of the gain came from <b>weakening restraining forces</b>, which is often cheaper and creates less resistance than pushing harder.'
+        : 'Stalemate or worse: the forces against the change are at least as strong as the forces for it. Choose actions to shift the balance.';
+      challenges.check([D > R, D - R >= 4 && on.size <= 3]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Will the Berlin store happen?'}`),
+      h('p', { class: 'muted' }, 'Each force is scored 1 (weak) to 5 (strong). Choose actions to change the balance. Tap again to undo.'), challenges,
+      h('div', {}, btns), kpis, boxes, note);
+    update();
+  },
+
+  // ------------------------------------------------------------ 6.5 Gantt chart
+  gantt(el, lab, onWin) {
+    const T = PROJECT.map(a => ({ ...a, start: 0 }));
+    const WEEKS = 14;
+    const chart = h('div');
+    const kpis = h('div', { class: 'kpis' });
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'Make the plan <b>valid</b>: no task starts before the tasks it depends on have finished.',
+      'Make it valid <b>and</b> open the store as early as possible: in <b>10 weeks</b>.'
+    ], onWin);
+    const end = a => a.start + a.dur;
+    const ok = a => a.after.every(p => T.find(x => x.id === p) && end(T.find(x => x.id === p)) <= a.start);
+    const update = () => {
+      const finish = Math.max(...T.map(end)), valid = T.every(ok);
+      chart.replaceChildren(...T.map(a => h('div', { style: 'display:flex;align-items:center;gap:6px;margin:6px 0' },
+          h('div', { class: 'small', style: 'width:144px;flex:none' }, h('b', {}, `${a.id} `), `${a.name} (${a.dur} wk)`, a.after.length ? h('div', { class: 'muted' }, `after ${a.after.join(', ')}`) : null),
+          h('button', { class: 'chip', onclick: () => { a.start = Math.max(0, a.start - 1); update(); } }, '◀'),
+          h('div', { style: 'position:relative;flex:1;height:22px;border-radius:6px;background:repeating-linear-gradient(90deg, var(--card-2) 0 calc(100% / 14 - 1px), var(--line) 0 calc(100% / 14))' },
+            h('span', { style: `position:absolute;top:2px;height:18px;border-radius:5px;left:${a.start / WEEKS * 100}%;width:${a.dur / WEEKS * 100}%;background:${ok(a) ? 'var(--chart-1)' : 'var(--bad)'}` })),
+          h('button', { class: 'chip', onclick: () => { a.start = Math.min(WEEKS - a.dur, a.start + 1); update(); } }, '▶'))));
+      kpis.replaceChildren(kpi(valid ? 'Valid' : `${T.filter(a => !ok(a)).length} clash(es)`, 'Plan', valid ? 'good' : 'bad'), kpi(`${finish} weeks`, 'Opening day'));
+      note.innerHTML = valid
+        ? finish === 10 ? 'Valid and as fast as possible. Tasks that run at the same time (in parallel) are what make this short.' : 'Valid, but the opening could be earlier. Which tasks can run at the same time?'
+        : 'Red bars start before a task they depend on has finished. Move them later (▶), or move the earlier task sooner.';
+      challenges.check([valid, valid && finish === 10]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Plan the Berlin pop-up'}`),
+      h('p', { class: 'muted' }, 'Move each task bar to the week it starts. Every bar starts at week 0: fix the order first.'), challenges, kpis, chart, note);
+    update();
+  },
+
+  // ------------------------------------------------------------ 6.6 critical path analysis (HL)
+  cpa(el, lab, onWin) {
+    const dur = Object.fromEntries(PROJECT.map(a => [a.id, a.dur]));
+    const ORIG = { ...dur };
+    const netBox = h('div');
+    const tableBox = h('div', { class: 'table-wrap' });
+    const kpis = h('div', { class: 'kpis' });
+    const challenges = challengeList([
+      'Fit-out (B) is running late. Find the <b>longest</b> B can take <b>without</b> delaying the opening (all other times as planned).',
+      'Shipping from Porto (E) is delayed. Find the <b>longest</b> E can take without delaying the opening (all others as planned).',
+      'Open in <b>9 weeks</b> by cutting <b>one</b> activity by just <b>1 week</b> (all others as planned).'
+    ], onWin);
+    const update = () => {
+      const { est, lft, fl, len } = cpaSolve(dur);
+      const crit = id => fl[id] === 0;
+      // Network: activity on arrow. Node positions:
+      const P = { 1: [40, 150], 2: [170, 150], 3: [300, 62], 4: [430, 150], 5: [530, 150] };
+      const W = 570, H = 260, R = 26;
+      const root = svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart', role: 'img', 'aria-label': 'Critical path network' });
+      for (const a of NETWORK) {
+        const [x1, y1] = P[a.from], [x2, y2] = P[a.to], c = crit(a.id);
+        const bend = a.id === 'E' ? 90 : 0;
+        const mx = (x1 + x2) / 2, my = (y1 + y2) / 2 + bend;
+        root.append(svg('path', { d: bend ? `M${x1},${y1 + R} Q${mx},${my + 30} ${x2},${y2 + R}` : `M${x1},${y1} L${x2},${y2}`,
+          fill: 'none', stroke: c ? 'var(--bad)' : 'var(--muted)', 'stroke-width': c ? 3.5 : 2 }));
+        root.append(svg('text', { x: mx, y: (bend ? my + 12 : my - 8), 'text-anchor': 'middle', style: `font-size:17px;font-weight:700;fill:${c ? 'var(--bad)' : 'var(--text)'}` }, `${a.id} ${dur[a.id]}`));
+      }
+      for (const [n, [x, y]] of Object.entries(P)) {
+        root.append(svg('circle', { cx: x, cy: y, r: R, fill: 'var(--card)', stroke: 'var(--text)', 'stroke-width': 1.5 }),
+          svg('line', { x1: x - R, x2: x + R, y1: y, y2: y, stroke: 'var(--text)' }), svg('line', { x1: x, x2: x, y1: y, y2: y + R, stroke: 'var(--text)' }),
+          svg('text', { x, y: y - 8, 'text-anchor': 'middle', style: 'font-size:15px' }, n),
+          svg('text', { x: x - 12, y: y + 19, 'text-anchor': 'middle', style: 'font-size:15px;font-weight:700' }, est[n]), svg('text', { x: x + 12, y: y + 19, 'text-anchor': 'middle', style: 'font-size:15px;font-weight:700' }, lft[n]));
+      }
+      netBox.replaceChildren(root, h('p', { class: 'muted small' }, 'Each node: number on top, EST bottom-left, LFT bottom-right. Red = critical path.'));
+      tableBox.replaceChildren(h('table', { class: 'fin' },
+        h('tr', {}, h('th', {}, 'Activity'), h('th', {}, 'Weeks'), h('th', {}, 'EST'), h('th', {}, 'LFT'), h('th', {}, 'Float')),
+        NETWORK.map(a => h('tr', { class: crit(a.id) ? 'total' : '' }, h('td', {}, `${a.id} ${a.name}`), h('td', {}, dur[a.id]),
+          h('td', {}, est[a.from]), h('td', {}, lft[a.to]), h('td', {}, fl[a.id])))));
+      kpis.replaceChildren(kpi(`${len} weeks`, 'Project length', len <= 10 ? 'good' : 'bad'),
+        kpi(NETWORK.filter(a => crit(a.id)).map(a => a.id).join(', '), 'Critical activities (zero float)'));
+      const others = id => NETWORK.every(a => a.id === id || dur[a.id] === ORIG[a.id]);
+      const diffs = NETWORK.filter(a => dur[a.id] !== ORIG[a.id]);
+      challenges.check([others('B') && dur.B === 6 && len === 10, others('E') && dur.E === 9 && len === 10,
+        diffs.length === 1 && dur[diffs[0].id] === ORIG[diffs[0].id] - 1 && len === 9]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Find the critical path'} `, h('span', { class: 'tag' }, 'HL only')),
+      h('p', { class: 'muted' }, 'The Berlin pop-up project as a network. Change how long each activity takes and watch the critical path and the floats.'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, NETWORK.map(a => slider({ label: `${a.id}: ${a.name}`, min: 1, max: 10, value: dur[a.id], fmt: v => `${v} wk`, oninput: v => { dur[a.id] = v; update(); } })), kpis),
+        h('div', {}, netBox, tableBox)));
+    update();
+  },
+
+  // ------------------------------------------------------------ 6.7 simple linear regression (HL)
+  regression(el, lab, onWin) {
+    const X = [5, 8, 10, 12, 15, 18, 20, 25], Y = [16, 20, 21, 25, 27, 33, 34, 39];   // ad spend ($00), online sales ($000)
+    const n = X.length, mx = X.reduce((a, b) => a + b) / n, my = Y.reduce((a, b) => a + b) / n;
+    let sxy = 0, sxx = 0, syy = 0;
+    X.forEach((x, i) => { sxy += (x - mx) * (Y[i] - my); sxx += (x - mx) ** 2; syy += (Y[i] - my) ** 2; });
+    const B = sxy / sxx, A0 = my - B * mx, r = sxy / Math.sqrt(sxx * syy);
+    const sse = (a, b) => X.reduce((s, x, i) => s + (Y[i] - (a + b * x)) ** 2, 0), best = sse(A0, B);
+    const s = { a: 4, b: 0.6, fc: 30 };
+    const chartBox = h('div');
+    const kpis = h('div', { class: 'kpis' });
+    const note = h('p', { class: 'muted small' });
+    const challenges = challengeList([
+      'Fit the line: get the total squared error within <b>20%</b> of the best possible line.',
+      'Use the best-fit line to forecast online sales if SoleFlip spends <b>$3,000</b> a month on ads (x = 30).'
+    ], onWin);
+    const update = () => {
+      const e = sse(s.a, s.b);
+      chartBox.replaceChildren(lineChart([
+        { name: 'Months (data)', color: 'var(--chart-1)', points: X.map((x, i) => [x, Y[i]]), dots: true, dash: '0 1000' },
+        { name: 'Your line', color: 'var(--accent)', points: [[0, s.a], [32, s.a + s.b * 32]] },
+        { name: 'Your forecast', color: 'var(--chart-2)', points: [[30, s.fc]], dots: true }
+      ], { xLabel: 'Instagram ad spend ($00 per month)', xTicks: [0, 8, 16, 24, 32], xFmt: x => String(x) }));
+      kpis.replaceChildren(kpi(`y = ${round(s.a, 2)} + ${round(s.b, 2)}x`, 'Your line'), kpi(round(e, 1), 'Total squared error', e <= best * 1.2 ? 'good' : 'bad'),
+        kpi(round(r, 2), 'Correlation coefficient (r)'));
+      note.innerHTML = `Strong positive correlation: months with more ad spend had higher sales. But x = 30 is outside the data (5–25), so the forecast is <b>extrapolation</b>: less reliable. And correlation isn't proof that ads <i>cause</i> the sales.`;
+      challenges.check([e <= best * 1.2, Math.abs(s.fc - (A0 + B * 30)) <= 1.5]);
+    };
+    el.append(h('h2', {}, `🎮 ${lab.title || 'Do ads drive sales?'} `, h('span', { class: 'tag' }, 'HL only')),
+      h('p', { class: 'muted' }, 'Eight months of SoleFlip data. Move the line until it fits the dots as closely as possible, then forecast.'), challenges,
+      h('div', { class: 'lab-grid' },
+        h('div', {}, slider({ label: 'Intercept (sales with no ads, $000)', min: 0, max: 20, step: 0.5, value: s.a, oninput: v => { s.a = v; update(); } }),
+          slider({ label: 'Slope (extra $000 per $100 of ads)', min: 0, max: 2.5, step: 0.05, value: s.b, fmt: v => round(v, 2), oninput: v => { s.b = v; update(); } }),
+          slider({ label: 'Forecast at x = 30 ($000)', min: 20, max: 70, value: s.fc, oninput: v => { s.fc = v; update(); } }), kpis, note),
+        h('div', {}, chartBox)));
     update();
   }
 };

@@ -224,7 +224,8 @@ export const unit4 = {
               <li>Find the <b>average seasonal variation</b> for the quarter you're forecasting.</li>
               <li>Forecast = projected trend + average seasonal variation.</li></ol>
           ${F`\text{Forecast} = \text{projected trend} + \text{average seasonal variation}`}
-          <p><b>Benefits</b>: simple, uses real data, shows seasonal patterns for planning stock and staff. <b>Limitations</b>: assumes the past continues, ignores new events and qualitative factors, and gets less reliable the further ahead you look.</p>` }
+          <p><b>Benefits</b>: simple, uses real data, shows seasonal patterns for planning stock and staff. <b>Limitations</b>: assumes the past continues, ignores new events and qualitative factors, and gets less reliable the further ahead you look.</p>
+          <p class="muted small">Another forecasting tool, from the toolkit: [[simple linear regression]] (6.7).</p>` }
       ],
       labs: [{ type: 'forecast', title: 'Forecast SoleFlip\'s online sales' }],
       worked: {
@@ -494,6 +495,7 @@ export const unit4 = {
               <li><b>Political</b>: tariffs, trade barriers, instability.</li>
               <li><b>Economic</b>: exchange rates, different income levels, local competitors who know the market.</li>
               <li><b>Practical</b>: shipping, returns, payment methods and customer service in another language.</li></ul>
+          <p class="muted small">A [[STEEPLE analysis]] (6.2) is a checklist for spotting these factors before you enter a market.</p>
           <div class="example">German shoppers often pay by invoice (Klarna) or PayPal rather than card, and expect free returns. ${sf} must change its processes, not just its language.</div>` },
         { title: 'Global or local? Glocalization', html: `
           <p>Should the marketing mix be the same everywhere?</p>

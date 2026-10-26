@@ -185,7 +185,7 @@ export const unit5 = {
           <div class="example">Toyota made these famous. In ${sf}'s workshop: an empty paint tray on a shelf is the kanban to reorder; Omar can hit a red button (andon) if the laser engraves badly.</div>` },
         { title: 'Cradle to cradle', html: `
           <p><b>Cradle-to-cradle</b> design and manufacturing means designing products so that, at the end of their life, all their materials can be safely reused, recycled or returned to nature, instead of thrown away ("cradle to grave").</p>
-          <p>It links lean thinking with environmental sustainability: no waste, ever.</p>
+          <p>It links lean thinking with environmental sustainability: no waste, ever. It is one route to a [[circular economy]] (6.8).</p>
           <div class="example">${sf}'s "bring back your old pair" scheme: old soles are ground up into new soles for Originals. Laces are made from recycled plastic bottles and can be recycled again.</div>` },
         { title: 'Quality control vs quality assurance', html: `
           <p><b>Quality control</b> checks finished products (or samples) for defects at the end of production, by inspectors.</p>

@@ -75,8 +75,23 @@ HL tagging: 4.3 and 4.6 are HL only; the rest is SL and HL. From memory.
 
 HL tagging: 5.3 and 5.6–5.9 are HL only; 5.1, 5.2, 5.4 and 5.5 are SL and HL. From memory.
 
-## Toolkit items not yet taught
+## The business management toolkit (shown as "Unit 6", built 2026-10-26)
 
-Covered: stakeholder mapping (1.4), Ansoff matrix (4.2), descriptive statistics (4.4, lightly), BCG matrix (4.5).
-Not yet taught anywhere: SWOT, STEEPLE, decision trees, force field analysis, Gantt charts, critical path analysis
-(HL), simple linear regression (HL), circular business models, the business plan.
+The guide doesn't number the toolkit as a unit; BizQuest gives it id `6` so it gets its own lessons, Boss Battle and
+formula sheet. Quiz ids are `6.x-n`.
+
+| Topic | Content points | Status |
+|---|---|---|
+| 6.1 SWOT analysis | Internal strengths and weaknesses, external opportunities and threats; matching them into strategies; limitations | from memory |
+| 6.2 STEEPLE analysis | Social, technological, economic, environmental, political, legal and ethical factors; link to SWOT; judging significance; limitations | from memory |
+| 6.3 Decision trees | Decision and chance nodes, probabilities, expected value, net gain, rolling back and pruning; strengths and limitations | from memory |
+| 6.4 Force field analysis | Lewin's driving and restraining forces, scoring, strategies to strengthen or weaken forces; limitations | from memory |
+| 6.5 Gantt charts | Bars over time, dependent (sequential) and parallel (concurrent) tasks, milestones, shortest project time; strengths and limitations | from memory |
+| 6.6 Critical path analysis (HL) | Activity-on-arrow network diagrams, nodes with EST and LFT, forward and backward pass, total float = LFT − duration − EST, critical path; strengths and limitations | from memory: free float not taught; check whether the guide asks for it |
+| 6.7 Simple linear regression (HL) | Scatter diagrams, independent and dependent variables, correlation (direction, strength, r described but not calculated), line of best fit y = a + bx, interpolation and extrapolation, correlation vs causation | from memory: check whether r or R² must be calculated or only interpreted |
+| 6.8 Circular business models | Linear vs circular economy; the five models: circular supplies, resource recovery, product life extension, sharing platforms, product service systems; benefits and challenges | from memory |
+
+HL tagging: 6.6 and 6.7 are HL only; the rest is SL and HL. From memory.
+
+Toolkit items covered elsewhere: stakeholder mapping (1.4), Ansoff matrix (4.2), descriptive statistics (4.4,
+lightly), BCG matrix (4.5). Not yet taught: the business plan, and any other toolkit items in the guide not listed here.

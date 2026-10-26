@@ -1,6 +1,6 @@
 # Using this skill with other coding agents
 
-The skill is plain Markdown plus one Node script, with no Claude-specific tools in its instructions, so any
+The skill is plain Markdown plus a Node script and a browser-console script, with no Claude-specific tools in its instructions, so any
 coding agent that can read files, run shell commands and use git can follow it.
 
 ## Claude Code / Claude desktop app (Code tab)
@@ -19,7 +19,7 @@ request matches its description. A copy also lives in the app repo under `skills
   ## Building IB learning apps
   When asked to create or extend a learning app for a course (e.g. "create all chapters of IB Economics HL",
   "add the remaining units"), read skills/ib-learning-app/SKILL.md and follow it, including its
-  references/ files and scripts/validate_content.mjs.
+  references/ files and scripts (validate_content.mjs, smoke_test.js).
   ```
 
 ## Google Gemini CLI

@@ -255,7 +255,7 @@ export const unit3 = {
           <p class="muted small">${sf} Ltd, year 1. <b>Cost of sales</b> = direct cost of the goods sold (the sneakers they resold, materials). <b>Expenses</b> = overheads (rent, wages, ads).</p>` },
         { title: 'The balance sheet', html: `
           <p>A <b>snapshot</b> of what a business owns and owes <b>on one day</b>. It's like a photo, not a video.</p>
-          <ul><li><b>Assets</b>: what it owns. <b>Non-current</b> (kept over 1 year: machines, vans) and <b>current</b> (cash, debtors, stock).</li>
+          <ul><li><b>Assets</b>: what it owns. <b>Non-current assets</b> (kept over 1 year: machines, vans) and <b>current assets</b> (cash, debtors, stock).</li>
               <li><b>Liabilities</b>: what it owes. <b>Current</b> (due within 1 year: [[overdraft]], creditors, short-term loans) and <b>non-current</b> (long-term loans).</li>
               <li><b>Equity</b>: the owners' money: [[share capital]] + retained earnings.</li></ul>
           ${F`\text{Total assets} - \text{total liabilities} = \text{net assets} = \text{total equity}`}

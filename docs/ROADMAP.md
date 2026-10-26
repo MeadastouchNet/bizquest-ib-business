@@ -20,6 +20,8 @@ BizQuest already knows about all five units. Units 1 and 3 are built; Units 2, 4
    - When the new unit teaches a term that already has a "coming soon" entry, update its `card` and check the
      definition. The link switches on automatically once the topic is built.
 4. **Go back over earlier units:** tag terms in them that the new unit now teaches (see the list below).
+5. **Docs:** add the unit's content points to [`docs/SYLLABUS.md`](SYLLABUS.md) (marked verified or from memory)
+   and update `README.md` (which units are built).
 
 ## Terms waiting for a future unit
 

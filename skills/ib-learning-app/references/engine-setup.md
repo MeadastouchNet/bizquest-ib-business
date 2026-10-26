@@ -25,6 +25,7 @@ What you get:
 | `js/content/glossary.js` | **Empty** the `GLOSSARY` object (keep the lookup code below it). |
 | `docs/LEARNING-DESIGN.md` | Keep (subject-independent research notes). |
 | `docs/ROADMAP.md` | **Rewrite** for the new course: the checklist (copy it) and a fresh "terms waiting" table. |
+| `docs/SYLLABUS.md` | **Rewrite**: one section per unit with its content points, each marked *verified* or *from memory*. |
 | `README.md` | **Write new**: what the app is, the live link, how to run it, the file structure. |
 
 **The storage key must be new.** All apps on one GitHub Pages account share the same web address origin

@@ -34,7 +34,11 @@ about what is genuinely unknown, all in one message:
 
 - **Subject and level** (SL/HL; HL-only topics are tagged in the app).
 - **Syllabus.** Prefer the official subject guide if the user can provide it (PDF or notes). Otherwise use your
-  knowledge of the current guide, and say clearly which topic lists you couldn't verify.
+  knowledge of the current guide, and say clearly which topic lists you couldn't verify. Record the content
+  points of each unit you build in `docs/SYLLABUS.md`, marking each one *verified* (checked against the guide)
+  or *from memory*, so the next job knows what still needs checking. Guide-wide "toolkit" items (e.g. SWOT,
+  STEEPLE, stakeholder mapping in Business Management) are taught inside the topic where they are first used,
+  with a note that they are toolkit items.
 - **Learner.** Age, interests, language. The default is a 17-year-old in Denmark who likes gaming, sneakers,
   festivals and social media. Relatable examples are a big part of why the app works.
 - **GitHub account and repo name** (new subject only). If several accounts are logged in, ask which one.
@@ -47,7 +51,13 @@ about what is genuinely unknown, all in one message:
   enable Pages.
 - **Extend:** read the repo's `docs/ROADMAP.md` first. It has the checklist and the list of glossary terms
   waiting for future units. Then read `js/content/units.js`, `js/content/glossary.js` and one built unit file
-  so the new content matches what is already there.
+  so the new content matches what is already there. Three rules protect the student's existing progress and
+  the app's accuracy:
+  - Never change `APP.storageKey` in `js/config.js`: progress is stored under it.
+  - Never change or reuse a published quiz id (progress and spaced review are stored by id). Rewording a
+    question or its options under the same id is fine.
+  - The `planned(...)` topic titles and HL flags in `units.js` were written from memory too. Re-check them
+    against the guide when you build the unit, and fix them in the unit file.
 
 ## 3. Build the content, one unit at a time
 
@@ -60,7 +70,10 @@ For each unit:
 
 1. **Plan the unit.** List its topics from the syllabus. Choose one **running case** for the unit (BizQuest
    uses SoleFlip, two 17-year-olds reselling sneakers) and reuse its numbers across topics, so the topics
-   connect (e.g. the same accounts feed 3.4, 3.5 and 3.6).
+   connect (e.g. the same accounts feed 3.4, 3.5 and 3.6). When extending an app that already has a case,
+   reuse it (as a prequel, sequel or a different side of the same business) and keep its figures consistent
+   with the built units, so the whole course connects. Use other businesses only where the case can't
+   plausibly fit the topic (e.g. SoleFlip can't be a multinational, so 1.6 uses real and fictional MNCs).
 2. **Write `js/content/unitN.js`.** Each topic needs:
    - a hook: a relatable 3–5 sentence situation that creates a question;
    - 3–6 short Learn cards: definitions, a worked mini-example, and an exam tip using IB command terms;
@@ -84,8 +97,9 @@ For each unit:
      inside an answer option. If a term belongs to a unit that isn't built yet, still add the entry pointing
      at the planned topic; the link switches on when that unit is built.
 4. **Register the unit** in `js/content/units.js`, replacing its `planned(...)` entry.
-5. **Revisit earlier units.** Tag `[[terms]]` in them that this unit now teaches, and update the
-   "waiting" table in `docs/ROADMAP.md`.
+5. **Revisit earlier units and the docs.** Tag `[[terms]]` in earlier units that this unit now teaches,
+   update the "waiting" table in `docs/ROADMAP.md`, add the unit's content points to `docs/SYLLABUS.md`, and
+   update `README.md` (which units are built, the structure table).
 6. **Validate** (see section 4), fix everything it reports, then commit and push. Push after every unit, so
    the student gets new units as they're ready and a long job never loses work.
 
@@ -104,13 +118,33 @@ since those are shared.
    ```bash
    node <this-skill>/scripts/validate_content.mjs <repo-root>
    ```
-   It checks unique ids, quiz shapes, that answer cells match answers, that lab types exist, and that every
-   `[[term]]` has a glossary entry pointing at a real card. Fix all errors; read the warnings.
-2. **Run the app** (`python -m http.server 8765` in the repo) and open it in a browser if you have one: home,
-   each new unit page, a few lessons end to end (Learn, Play, the quiz with a table question, Explain), the
-   formula sheet, a term popover, and a phone-width check (375 px wide). Look at the browser console for
-   errors. Browsers cache ES modules aggressively; force a fresh load after edits.
-3. Commit with a clear message and push. GitHub Pages redeploys in about a minute.
+   It checks unique ids, quiz shapes, that answer cells match answers, that lab types exist, that every
+   `[[term]]` has a glossary entry pointing at a real card that mentions the term, and warns when the correct
+   option is too often the longest. Fix all errors; read the warnings.
+2. **Run the app** (`python -m http.server 8765` in the repo) and open it in a browser if you have one.
+   The pages are hash routes:
+
+   | Page | Route |
+   |---|---|
+   | Home / unit | `#/` · `#/u/<unit>` |
+   | Lesson step | `#/s/<topic>/<step>`, step = `hook`, `learn`, `lab` (the Play step), `worked`, `quiz`, `explain` |
+   | One Learn card | `#/s/<topic>/learn/<card index>` |
+   | Formula sheet / Boss Battle | `#/formulas/<unit>` · `#/boss/<unit>` |
+
+   First paste `scripts/smoke_test.js` into the browser console (or run it with a JS tool) with the unit id
+   set at the top. It opens every step and card of the unit and reports pages that are empty, show
+   `undefined`/`NaN`/raw `[[`, or scroll sideways; run it again at 375 px wide. Then check by hand: each new
+   lab's challenges can be beaten, a quiz table question marks right and wrong cells, the calculator shows,
+   a term popover links to the right card, and the console has no errors. Browsers cache ES modules
+   aggressively; force a fresh load after edits. Testing adds XP and progress to that browser's local
+   profile; that's harmless on localhost (a different origin from the live site), but don't test on the
+   student's own device.
+3. Commit with a clear message and push. GitHub Pages redeploys in about a minute. If several GitHub accounts
+   are logged in and the repo belongs to one that isn't active, push as that account without switching:
+   ```bash
+   GH_TOKEN="$(gh auth token --user <account>)" git -c credential.helper= -c 'credential.helper=!gh auth git-credential' push origin main
+   ```
+   Then open the live site (not only localhost) and check the new unit loads.
 
 ## 5. Report back
 
@@ -126,3 +160,4 @@ or two to see what's working, because the app is meant to be improved from how t
 - `references/engine-setup.md`: creating a new subject repo from the BizQuest engine, renaming, GitHub and Pages.
 - `references/porting.md`: using this skill from Codex, Gemini CLI or other coding agents.
 - `scripts/validate_content.mjs`: the content checker (Node 18+, no dependencies).
+- `scripts/smoke_test.js`: a browser-console script that opens every page of a unit and reports problems.

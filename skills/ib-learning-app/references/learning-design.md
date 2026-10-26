@@ -27,6 +27,9 @@ the easy thing. Knowing *why* each piece exists lets you write content that actu
   shows how topics connect and saves the student re-reading set-ups.
 - **Ask, don't tell.** Worked-example steps are questions; labs have challenges; quizzes include
   misconception questions ("A favourable variance is always good news: true or false?").
+- **No give-away options.** If the right answer is always the longest or most precise option, a clever student
+  learns to spot the cue instead of retrieving the idea, and the retrieval practice is lost. Write
+  distractors that are as long and plausible as the answer.
 - **Exam transfer.** Use the IB command terms and say what earns marks. Mix definition, application,
   calculation and evaluation questions, as the papers do.
 - **Accuracy over volume.** A wrong definition or number gets learned as truth. Re-calculate everything and

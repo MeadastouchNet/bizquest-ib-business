@@ -90,6 +90,12 @@ Aim for a mix: a couple of definitions, application to the running case, at leas
 question, and calculations wherever the topic has any. A `num` question, or an `mcq` with `cmd: 'Calculate'`,
 shows the calculator automatically.
 
+**Write wrong options as carefully as the right one.** Options are shuffled, but length still gives the
+answer away: a first draft tends to make the correct option the longest and most precise. Make the
+distractors about as long and as specific, each a believable misconception (e.g. confusing average with
+total cost, public sector with publicly held company). The validator warns if the correct option is the
+longest in more than 40% of a unit's mcqs.
+
 ## 5. Tables with fillable cells
 
 Whenever a question gives several figures, put them in a table laid out like the exam does. Every unknown is
@@ -125,12 +131,17 @@ formulas: [
 ]
 ```
 
+If the unit needs a formula that isn't on the official IB formula sheet (e.g. average cost for economies of
+scale), still list it, and say so in its `note`: `note: 'Not on the IB formula sheet, but …'`.
+
 Use `\text{…}` for words, `\frac{}{}`, `\times`, `\div`, `\sum`, `^`. Keep a formula short enough for a phone;
 split long ones into two lines (two `F` blocks). Read-aloud turns the TeX into words automatically.
 
 ## 7. Labs (the "Play" step)
 
-Every topic needs at least one lab with a **challenge** the student can beat (+25 XP).
+Every topic needs at least one lab with a **challenge** the student can beat (+25 XP). `labs` can hold
+several; they appear one after another on the Play step (e.g. a custom model lab followed by a quick
+`scenarios` lab). Two is plenty.
 
 Generic lab types you can configure without code:
 
@@ -173,7 +184,7 @@ challenge that needs understanding rather than luck. Make them work at 375 px wi
 ```
 
 - `sec`: the topic that teaches the term (built or planned). `card`: index of the Learn card that defines it
-  (once built). `def`: 1–2 plain sentences, may contain `<b>`/`<i>`.
+  (once built); the term or one of its aliases must appear in that card (the validator checks). `def`: 1–2 plain sentences, may contain `<b>`/`<i>`.
 - In content, write `[[term]]` or `[[term|shown text]]` (the name must match the key or an alias, any case).
 - Tag a term where it is **mentioned** outside its own topic, at the first mention per card or explanation.
   Don't tag it inside the topic that teaches it, and never inside quiz `options` or sort item labels.

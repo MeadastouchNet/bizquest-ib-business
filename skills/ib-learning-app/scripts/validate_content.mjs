@@ -113,6 +113,11 @@ for (const u of built) {
     });
   }
   for (const g of u.formulas || []) for (const f of g.items || []) if (!f.name || !String(f.f).includes('$$')) warn(`${U} formula "${f.name}": should be TeX between $$ … $$ (use M\`…\`)`);
+
+  // Options are shuffled, but if the right one is usually the longest, students can guess by length.
+  const mcqs = u.sections.flatMap(s => s.quiz || []).filter(q => q.type === 'mcq' && q.options?.[q.answer] != null);
+  const longest = mcqs.filter(q => q.options[q.answer].length > Math.max(...q.options.filter((_, i) => i !== q.answer).map(o => o.length)));
+  if (mcqs.length >= 5 && longest.length / mcqs.length > 0.4) warn(`${U}: the correct option is the longest in ${longest.length}/${mcqs.length} mcqs, so students can guess by length. Make the distractors as long and specific (e.g. ${longest.slice(0, 5).map(q => q.id).join(', ')})`);
 }
 
 // Glossary entries must point at a real topic (built or planned), and a valid Learn card once built.
@@ -122,6 +127,12 @@ for (const [key, e] of Object.entries(GLOSSARY)) {
   if (s) {
     if (e.card == null) warn(`Glossary "${key}": taught in ${e.sec}, add "card" (Learn card index) so the link opens the right card`);
     else if (e.card < 0 || e.card >= s.cards.length) err(`Glossary "${key}": card ${e.card} doesn't exist in ${e.sec} (${s.cards.length} cards)`);
+    else {
+      // The card the link opens should actually mention the term (or an alias).
+      const c = s.cards[e.card];
+      const text = `${c.title} ${c.html}`.replace(/<[^>]+>/g, '').replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (_, t, shown) => shown || t).toLowerCase();
+      if (![key, ...(e.aliases || [])].some(n => text.includes(n.toLowerCase()))) warn(`Glossary "${key}": card ${e.card} of ${e.sec} ("${c.title}") doesn't mention the term or an alias; check "card"`);
+    }
   } else if (!plannedIds.has(e.sec)) err(`Glossary "${key}": topic ${e.sec} is neither built nor planned`);
 }
 

@@ -1,7 +1,7 @@
 // App identity. A new subject built from this engine changes only this file (plus the content in js/content/).
 export const APP = {
   name: 'BizQuest',
-  icon: '📈',
+  icon: 'trending-up', // a Lucide icon name from js/icons.js (shown in the yellow brand square)
   course: 'IB Business HL',
   // Progress is kept in localStorage under this key. Apps hosted on the same domain (e.g. one GitHub Pages
   // account) share storage, so every subject needs its own key.

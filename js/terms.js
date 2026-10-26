@@ -3,6 +3,7 @@
 import { h, speakButton } from './ui.js';
 import { lookupTerm } from './content/glossary.js';
 import { findTopic } from './content/units.js';
+import { icon } from './icons.js';
 
 const TERM = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
 
@@ -54,14 +55,14 @@ function openPopover(anchor, entry) {
     // Inside a quiz a new tab keeps the question; elsewhere just go there.
     const inQuiz = !!document.querySelector('#app .q-text');
     link = h('a', { class: 'btn small', href, target: inQuiz ? '_blank' : null, rel: inQuiz ? 'noopener' : null },
-      here ? `📖 Re-read it in ${entry.sec}` : `📖 Learn it in ${entry.sec} ${where.topic.title}${inQuiz ? ' ↗' : ''}`);
+      here ? `Re-read it in ${entry.sec}` : `Learn it in ${entry.sec} ${where.topic.title}`, inQuiz ? icon('arrow-up-right') : null);
   } else if (where) {
-    link = h('div', { class: 'muted small' }, `🔜 You'll learn this in Unit ${where.unit.id} · ${where.topic.id} ${where.topic.title} (coming soon).`);
+    link = h('div', { class: 'muted small' }, `You'll learn this in Unit ${where.unit.id} · ${where.topic.id} ${where.topic.title} (coming soon).`);
   }
   pop = h('div', { class: 'term-pop', role: 'dialog', 'aria-label': entry.key },
     h('div', { class: 'spread', style: 'align-items:start' }, h('b', { class: 'term-title' }, entry.key[0].toUpperCase() + entry.key.slice(1)),
       h('div', { class: 'row', style: 'gap:6px' }, speakButton(`${entry.key}. ${entry.def}`),
-        h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Close', onclick: closePopover }, '✕'))),
+        h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Close', onclick: closePopover }, icon('x')))),
     h('p', { html: entry.def }), link);
   document.body.append(pop);
   // Below the term, kept inside the viewport.

@@ -96,6 +96,11 @@ For each unit:
      a term is *mentioned* in a topic other than the one that teaches it, write `[[term]]`. Never put a term
      inside an answer option. If a term belongs to a unit that isn't built yet, still add the entry pointing
      at the planned topic; the link switches on when that unit is built.
+   - **Visual design.** The look is fixed: black / white / grey with one yellow accent, green and red only for
+     right and wrong, Bricolage Grotesque / Figtree / JetBrains Mono, and Lucide icons (not emoji) in buttons
+     and headings. Content never sets colours. A new lab or view uses the existing classes and CSS tokens and
+     must work in light and dark mode. Read `references/visual-design.md` before writing a lab or touching
+     `css/` or a view.
 4. **Register the unit** in `js/content/units.js`, replacing its `planned(...)` entry.
 5. **Revisit earlier units and the docs.** Tag `[[terms]]` in earlier units that this unit now teaches,
    update the "waiting" table in `docs/ROADMAP.md`, add the unit's content points to `docs/SYLLABUS.md`, and
@@ -157,6 +162,7 @@ or two to see what's working, because the app is meant to be improved from how t
 
 - `references/content-schema.md`: the unit file format, all quiz and lab types, tables, formulas, glossary. Read before writing content.
 - `references/learning-design.md`: the research behind the lesson structure, and the tone. Read once per job.
+- `references/visual-design.md`: colours, fonts, components, icons and the light/dark rules. Read before writing a lab or changing the look.
 - `references/engine-setup.md`: creating a new subject repo from the BizQuest engine, renaming, GitHub and Pages.
 - `references/porting.md`: using this skill from Codex, Gemini CLI or other coding agents.
 - `scripts/validate_content.mjs`: the content checker (Node 18+, no dependencies).

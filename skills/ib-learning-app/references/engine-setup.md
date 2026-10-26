@@ -15,9 +15,9 @@ What you get:
 
 | Path | Keep / change |
 |---|---|
-| `index.html`, `css/`, `js/main.js`, `store.js`, `audio.js`, `ui.js`, `quiz.js`, `calc.js`, `tex.js`, `terms.js` | Engine: keep as is. |
-| `js/config.js` | **Change**: name, icon, course, `storageKey`, level titles, voice-test sentence. |
-| `index.html` | **Change** the `<title>`, the favicon emoji and the brand text so they match `config.js` (they show before the JS loads). |
+| `index.html`, `css/`, `js/main.js`, `store.js`, `audio.js`, `ui.js`, `quiz.js`, `calc.js`, `tex.js`, `terms.js`, `icons.js` | Engine: keep as is. The look (colours, fonts, icons) stays the same for every subject; see `visual-design.md`. |
+| `js/config.js` | **Change**: name, icon (a Lucide icon name from `js/icons.js`, e.g. `scale` for Economics; add its paths there if missing), course, `storageKey`, level titles, voice-test sentence. |
+| `index.html` | **Change** the `<title>`, the brand text and the favicon (a yellow rounded square with the brand icon's paths in ink) so they match `config.js` (they show before the JS loads). |
 | `js/labs.js` | Keep the helpers and the generic `sort` and `scenarios` labs. Delete the Business-specific labs (`profit`, `pnl`, `depreciation`, `ratios`, `cashflow`, `investment`, `variance`) unless the new subject uses them; add the new subject's labs. |
 | `js/content/helpers.js` | Keep. |
 | `js/content/unit3.js` | Delete (it's Business content). Use it only as a model of good content. |

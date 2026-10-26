@@ -54,6 +54,7 @@ Then open http://localhost:8765.
 | `js/quiz.js` | Quiz engine (multiple choice, true/false, numeric, sort) |
 | `js/store.js` | Progress, XP, streaks, spaced repetition (localStorage) |
 | `js/main.js` | Pages: home, lesson, review, boss, formulas, parent, settings |
+| `css/styles.css`, `js/icons.js` | The look: black/white/grey with a yellow accent, light and dark mode, Lucide icons ([design notes](skills/ib-learning-app/references/visual-design.md)) |
 
 To add a unit, follow the checklist in [docs/ROADMAP.md](docs/ROADMAP.md) (content file, `js/content/units.js`, glossary terms).
 

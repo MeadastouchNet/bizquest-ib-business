@@ -7,6 +7,7 @@
 import { h, shuffle, reward, speakButton } from './ui.js';
 import { sfx } from './audio.js';
 import { calculator } from './calc.js';
+import { icon } from './icons.js';
 import * as store from './store.js';
 
 /** Parses typed numbers, including accounting brackets: "(14,000)" = −14000. */
@@ -59,7 +60,7 @@ function setupBlanks(root, onEnter) {
 export function renderQuestion(el, q, { meta = '', onAnswer, done } = {}) {
   el.replaceChildren();
   const fb = h('div');
-  const next = h('button', { class: 'btn hidden', style: 'margin-top:12px' }, 'Next →');
+  const next = h('button', { class: 'btn dark hidden', style: 'margin-top:14px' }, 'Next', icon('arrow-right'));
   let answered = false;
 
   const finish = (ok, extra = '') => {
@@ -94,12 +95,15 @@ export function renderQuestion(el, q, { meta = '', onAnswer, done } = {}) {
       ? [{ label: 'True', val: true }, { label: 'False', val: false }]
       : shuffle(q.options.map((o, i) => ({ label: o, val: i })));
     const wrap = h('div', { class: 'options' });
-    const buttons = opts.map(o => {
-      const b = h('button', { class: 'opt', html: o.label });
+    const buttons = opts.map((o, i) => {
+      const b = h('button', { class: 'opt' }, h('span', { class: 'opt-key' }, 'ABCDEFGH'[i]), h('span', { html: o.label }));
       b.onclick = () => {
         const ok = o.val === q.answer;
-        buttons.forEach((x, i) => { x.disabled = true; if (opts[i].val === q.answer) x.classList.add('correct'); });
-        if (!ok) b.classList.add('wrong');
+        buttons.forEach((x, i) => {
+          x.disabled = true;
+          if (opts[i].val === q.answer) x.classList.add('correct'), x.append(h('span', { class: 'opt-mark' }, icon('check')));
+        });
+        if (!ok) b.classList.add('wrong'), b.append(h('span', { class: 'opt-mark' }, icon('x')));
         finish(ok);
       };
       return b;
@@ -113,7 +117,7 @@ export function renderQuestion(el, q, { meta = '', onAnswer, done } = {}) {
     const input = finalCell ? finalCell.input
       : h('input', { type: 'text', inputmode: 'decimal', placeholder: 'Your answer', 'aria-label': 'Your answer' });
     const check = h('button', { class: 'btn' }, 'Check');
-    const hint = q.hint ? h('button', { class: 'btn ghost small' }, '💡 Hint') : null;
+    const hint = q.hint ? h('button', { class: 'btn ghost small' }, icon('lightbulb'), 'Hint') : null;
     const hintBox = h('div', { class: 'muted small', style: 'margin-top:8px' });
     if (hint) hint.onclick = () => { hintBox.innerHTML = q.hint; hint.remove(); };
     submit = () => {
@@ -194,7 +198,7 @@ export function runQuiz(el, questions, { mode = 'lesson', title = 'Quiz', xpRigh
     if (i >= queue.length) { onFinish && onFinish({ right, total }); return; }
     const item = queue[i];
     progress.firstChild.style.width = `${(i / queue.length) * 100}%`;
-    const meta = item.first ? `${title} · ${i + 1} / ${queue.length}` : `🔁 Second chance`;
+    const meta = item.first ? `${title} · ${i + 1} / ${queue.length}` : 'Second chance';
     renderQuestion(box, item.q, {
       meta,
       onAnswer: ok => {

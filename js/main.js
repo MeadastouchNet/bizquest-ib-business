@@ -40,7 +40,8 @@ function route() {
   const parts = location.hash.replace(/^#\/?/, '').split('/');
   const [view, a, b] = parts;
   window.scrollTo(0, 0);
-  if (view === 's' && findSection(a)) sectionView(findSection(a), b);
+  if (view === 's' && findSection(a) && b === 'practice') practiceView(findSection(a));
+  else if (view === 's' && findSection(a)) sectionView(findSection(a), b);
   else if (view === 'review') reviewView();
   else if (view === 'boss') bossView();
   else if (view === 'formulas') formulasView();
@@ -92,7 +93,7 @@ function homeView() {
         h('div', { class: 'num' }, `${s.emoji} ${s.id}`, s.hl === true ? h('span', { class: 'tag' }, 'HL only') : s.hl ? h('span', { class: 'tag' }, 'part HL') : null),
         h('h3', {}, s.title),
         h('div', { class: 'bar' }, h('span', { style: `width:${m * 100}%` })),
-        h('div', { class: 'muted small', style: 'margin-top:6px' }, sec.done ? `✅ Done · mastery ${Math.round(m * 100)}%` : Object.keys(sec.steps).length ? '⏳ In progress' : `${s.minutes} min`));
+        h('div', { class: 'muted small', style: 'margin-top:6px' }, sec.done ? `✅ Done · mastery ${Math.round(m * 100)}% · tap to practise` : Object.keys(sec.steps).length ? '⏳ In progress · tap to continue' : `${s.minutes} min`));
     });
     return h('section', {}, h('h2', {}, u.title), h('p', { class: 'muted' }, u.blurb), h('div', { class: 'grid' }, tiles));
   });
@@ -102,6 +103,13 @@ function homeView() {
 // ---------- lesson ----------
 function sectionView(s, stepKey) {
   const prog = store.section(s.id);
+  if (!stepKey) {
+    // Opening a topic: finished → overview; otherwise resume at the first step not done yet.
+    if (prog.done) return sectionOverview(s);
+    const resume = STEPS.find(x => !prog.steps[x.key]) || STEPS[0];
+    location.replace(`#/s/${s.id}/${resume.key}`);
+    return;
+  }
   const idx = Math.max(0, STEPS.findIndex(x => x.key === stepKey));
   const step = STEPS[idx];
   const go = k => { location.hash = `#/s/${s.id}/${k}`; };
@@ -113,7 +121,8 @@ function sectionView(s, stepKey) {
   const stepper = h('nav', { class: 'stepper', 'aria-label': 'Lesson steps' }, STEPS.map((x, i) =>
     h('button', { class: `${i === idx ? 'active' : ''} ${prog.steps[x.key] ? 'done' : ''}`, onclick: () => go(x.key) }, x.label)));
   const head = h('div', {},
-    h('a', { href: '#/', class: 'muted small' }, '← All topics'),
+    h('div', { class: 'row small' }, h('a', { href: '#/', class: 'muted' }, '← All topics'),
+      prog.done ? h('a', { href: `#/s/${s.id}`, class: 'muted' }, '📋 Topic overview') : null),
     h('h1', { style: 'margin-top:6px' }, `${s.emoji} ${s.id} ${s.title}`, s.hl === true ? h('span', { class: 'tag' }, 'HL only') : null),
     stepper);
   const body = h('div');
@@ -248,6 +257,48 @@ function workedExample(w) {
   renderSteps();
   card.append(stepsBox, btn);
   return card;
+}
+
+// ---------- finished topic: overview + practice ----------
+function sectionOverview(s) {
+  const ids = s.quiz.map(q => q.id);
+  const m = store.mastery(s.id, ids);
+  const next = store.nextReview(ids);
+  const boxes = ids.map(id => store.get().cards[id]?.box || 1);
+  const strong = boxes.filter(b => b >= 4).length;
+  app.replaceChildren(
+    h('a', { href: '#/', class: 'muted small' }, '← All topics'),
+    h('h1', { style: 'margin-top:6px' }, `${s.emoji} ${s.id} ${s.title}`),
+    h('div', { class: 'card hero' },
+      h('h2', {}, `✅ Lesson done · mastery ${Math.round(m * 100)}%`),
+      h('div', { class: 'bar', style: 'margin:8px 0 12px' }, h('span', { style: `width:${m * 100}%` })),
+      h('p', {}, 'Finishing the lesson is step one. Mastery shows how well these ',
+        h('b', {}, `${ids.length} questions`), ' are stored in your long-term memory. It grows each time you get one right in ',
+        h('b', {}, 'Review'), ', which brings them back after 1, 3, 7 and 16 days. Spacing them out is what makes them stick.'),
+      h('p', { class: 'muted' }, `${strong}/${ids.length} questions locked in so far. `,
+        next ? `Next review for this topic: ${store.relDay(next)}.` : ''),
+      h('div', { class: 'row' },
+        h('a', { class: 'btn', href: `#/s/${s.id}/practice` }, '🎯 Practise this topic now'),
+        h('a', { class: 'btn ghost', href: '#/review' }, '🔁 Go to Review'))),
+    h('div', { class: 'card' }, h('h2', {}, 'Revisit any part'),
+      h('div', { class: 'row' }, STEPS.map(x => h('a', { class: 'btn ghost small', href: `#/s/${s.id}/${x.key}` }, x.label))),
+      store.get().explains[s.id] ? h('div', { class: 'example plain', style: 'margin-top:14px;white-space:pre-wrap' }, h('b', {}, 'Your explanation: '), store.get().explains[s.id].text) : null));
+}
+
+function practiceView(s) {
+  const holder = h('div');
+  app.replaceChildren(
+    h('a', { href: `#/s/${s.id}`, class: 'muted small' }, `← ${s.id} overview`),
+    h('h1', { style: 'margin-top:6px' }, `🎯 Practise ${s.id} ${s.title}`),
+    h('p', { class: 'muted' }, 'Extra practice, in a new order. Mistakes come back in Review sooner. Questions that aren\'t due yet don\'t move up here: only Review on the right day does that.'),
+    holder);
+  runQuiz(holder, shuffle(s.quiz).map(q => ({ q, sec: s.id })), {
+    mode: 'practice', title: 'Practice', xpRight: 4, xpRetry: 1,
+    onFinish: ({ right, total }) => holder.replaceChildren(h('div', { class: 'card hero' },
+      h('h2', {}, `${right}/${total} first try`),
+      h('p', {}, right === total ? 'Perfect. Come back for Review when these questions are due.' : 'The ones you missed are now due in Review. Do them again later today or tomorrow.'),
+      h('div', { class: 'row' }, h('a', { class: 'btn', href: `#/s/${s.id}` }, 'Back to topic'), h('a', { class: 'btn ghost', href: '#/' }, 'Home'))))
+  });
 }
 
 // ---------- review (spaced + interleaved) ----------
@@ -399,7 +450,7 @@ function parentView() {
       wrongs.length ? h('ol', {}, wrongs.map(([id, c]) => h('li', { html: `${questionIndex.get(id).q.q} <span class="muted small">(${c.wrong}× wrong, ${c.right}× right)</span>` })))
         : h('p', { class: 'muted' }, 'None yet.')),
     h('div', { class: 'card' }, h('h2', {}, '"Explain it" answers'),
-      explains.length ? explains.map(([id, e]) => h('div', { class: 'example', style: 'white-space:pre-wrap' }, h('b', {}, `${id} ${findSection(id)?.title || ''}: `), e.text))
+      explains.length ? explains.map(([id, e]) => h('div', { class: 'example plain', style: 'white-space:pre-wrap' }, h('b', {}, `${id} ${findSection(id)?.title || ''}: `), e.text))
         : h('p', { class: 'muted' }, 'None yet.')),
     h('div', { class: 'row' }, exportBtn, h('button', { class: 'btn ghost small', onclick: () => importInput.click() }, '⬆ Import'), importInput,
       h('button', { class: 'btn ghost small', onclick: () => { if (confirm('Delete all progress on this device?')) { store.reset(); route(); } } }, 'Reset progress')));

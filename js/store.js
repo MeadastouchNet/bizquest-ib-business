@@ -78,7 +78,10 @@ export function markStep(id, step) { section(id).steps[step] = true; save(); }
 export function recordAnswer(q, sectionId, correct, { firstAttempt = true, mode = 'lesson' } = {}) {
   const c = (state.cards[q.id] ||= { box: 1, due: today(), right: 0, wrong: 0, sec: sectionId });
   if (correct) c.right++; else c.wrong++;
-  if (firstAttempt) {
+  // Extra practice before a question is due doesn't move it up a box (that would defeat the spacing),
+  // but a miss still sends it back to box 1.
+  const early = mode === 'practice' && c.due > today();
+  if (firstAttempt && !(early && correct)) {
     c.box = correct ? Math.min(5, c.box + 1) : 1;
     c.due = addDays(today(), BOX_DAYS[c.box]);
     if (mode === 'lesson') {
@@ -94,6 +97,16 @@ export function recordAnswer(q, sectionId, correct, { firstAttempt = true, mode 
 export function dueCards() {
   const t = today();
   return Object.entries(state.cards).filter(([, c]) => c.due <= t).map(([id]) => id);
+}
+/** Earliest review date among these questions, or null if none have been answered yet. */
+export function nextReview(questionIds) {
+  const dues = questionIds.map(id => state.cards[id]?.due).filter(Boolean).sort();
+  return dues[0] || null;
+}
+/** "today", "tomorrow", "in 3 days" for a YYYY-MM-DD date. */
+export function relDay(dayStr) {
+  const n = Math.round((new Date(dayStr + 'T12:00:00') - new Date(today() + 'T12:00:00')) / 864e5);
+  return n <= 0 ? 'today' : n === 1 ? 'tomorrow' : `in ${n} days`;
 }
 /** Mastery 0..1 for a section: how far its questions have climbed the boxes. */
 export function mastery(sectionId, questionIds) {

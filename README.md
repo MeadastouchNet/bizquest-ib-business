@@ -52,13 +52,16 @@ Then open http://localhost:8765.
 | `js/content/unit1.js` … `unit7.js` | All content per unit: cards, worked examples, quizzes, formulas |
 | `js/labs.js` | The interactive labs |
 | `js/quiz.js` | Quiz engine (multiple choice, true/false, numeric, sort) |
-| `js/store.js` | Progress, XP, streaks, spaced repetition (localStorage) |
+| `js/store.js` | Progress, XP, streaks, spaced repetition (localStorage working copy) |
+| `js/cloud.js` | Google sign-in and the cloud copy of progress (Firebase Auth + Firestore) |
 | `js/main.js` | Pages: home, lesson, review, boss, formulas, parent, settings |
 | `css/styles.css`, `js/icons.js` | The look: black/white/grey with a yellow accent, light and dark mode, Lucide icons ([design notes](skills/ib-learning-app/references/visual-design.md)) |
 
 To add a unit, follow the checklist in [docs/ROADMAP.md](docs/ROADMAP.md) (content file, `js/content/units.js`, glossary terms).
 
-Progress is stored only in the browser of the device being used.
+Signing in with Google is required. Progress is kept in the browser and synced to the user's Firestore document
+(`users/{uid}`), so it follows them to any device. The Firebase project and its security rule are set up in the
+Firebase console; the web config is in `js/config.js`.
 
 ## Building more subjects or units
 
